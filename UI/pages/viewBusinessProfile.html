@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>View Profile</title>
+    <link rel="apple-touch-icon" href="../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
+    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/components.css">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/core/menu/menu-types/horizontal-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/pages/dashboard-ecommerce.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
+
+
+
+
+    <link rel="icon" href="../img/core-img/favicon.png" />
+
+
+    <link rel="stylesheet" href="../css/responsive.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+
+
+    <script src="../js/modernizr.js"></script>
+
+    <style>
+        .banner{
+            height: 200px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ***** Header Area Start ***** -->
+    <!-- <section> -->
+ 
+
+
+        <div class="row headroom-top-row bg-primary px-0 py-0" style="height: 35px;">
+            <div class="col-9">
+                <h4 class="text-white pl-1">Sanathana Entrepreneurs Association</h4>
+            </div>
+            <div class="col-3 text-right">
+                <div class="d-flex justify-content-around">
+                    <div class=" text-white">Contact Us</div>
+                    <!-- <div class=" text-right"> -->
+                    <span class="float-right">
+              <div class="badge-light-info mx-auto  text-white  ">
+              <i class="bx bxl-facebook-square font-medium-5"></i>
+            </div>
+          </span>
+                    <span class="float-right">
+             
+                <div class="badge-light-info mx-auto text-white ">
+                <i class="bx bxl-twitter font-medium-5"></i>
+              </div>
+            
+            </span>
+
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+
+
+    <header class="headroom mb-4" >
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
+            <a href="./admin.html "><img src="../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
+            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+
+            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
+                <ul class="navbar-nav mr-auto " id="Tnavlist ">
+
+                </ul>
+                <ul class="float-right navbar-nav" id="profileContainer">
+
+                </ul>
+                    
+
+            </div>
+        </nav>
+
+
+    </header>
+    <!-- </section> -->
+
+    <section>
+        <div class="container-fluid bg-white float-left" style="width:100% !important;">
+            
+            <div class="row align-items-center">
+                <!-- Menu Area Start -->
+                <div class="col-12">
+                    <div class="menu_area">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container main-section" style="margin-top: 2%;">
+        <div class="row">
+            <div class="col-12">
+                <img src="../images/emptystates/banner.jpg" alt="" class="banner" id="bannerImage">
+            </div>
+        </div>
+        <div class="row justify-content-between align-items-center" style="margin-top: -5%;">
+            <div class="col-2 ml-2 card" >
+                <img src="../images/emptystates/logo.jpg" alt=""  class="logo" id="logoImage">
+            </div>
+            <div class="col-8">
+                <div class="row justify-content-end" class="onlyAdmin">
+                    <button class="btn btn-primary mr-1" data-toggle="modal" data-target="#businessForm" >Edit Profile</button>
+                    <div class="modal fade text-left" id="businessForm" tabindex="-1"  aria-hidden="true" style="display: none; width:50% ; top : 25%; left:25%">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h3 class="modal-title">Edit Business Profile</h3>
+                              <button type="button" class="close rounded-pill" data-dismiss="modal" aria-label="Close">
+                                <i class="bx bx-x"></i>
+                              </button>
+                            </div>
+                            <div class="col modal-body">
+                              <div class="formgroup">
+                                  
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-light-primary" data-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Close</span>
+                              </button>
+                              <button type="button" class="btn btn-primary ml-1">
+                                <span class="d-none d-sm-block">Accept</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <button onclick="prodcutForm()" class="btn btn-primary mr-1">Add Products</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-3" id="left-cards">
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-primary">
+                                <h4 class="card-title text-white">
+                                    Chapters
+                                </h4>
+                            </div>
+                            <div class="card-body" id="chaptersData">
+                                <div class="row">
+                                    no chapters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-primary">
+                                <h4 class="card-title text-white">
+                                    Groups
+                                </h4>
+                            </div>
+                            <div class="card-body" id="groupsData">
+                                <div class="row">
+                                    no groups 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-primary">
+                            <h4 class="card-title text-white">
+                                About
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <span id="businessDescription">
+
+                            </span>
+                        </div>
+                    </div>
+                    <div class="products col">
+                        
+                        
+                    </div>
+                    <!-- <div class="other-buisness col">
+                        <div class="card row">
+                            <div class="col">
+                                <div class="row card-body justify-content-between">
+                                    <div class="col">
+                                        <div class="row">
+                                            name of the person
+                                        </div>
+                                        <div class="row">
+                                            business logo
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row"></div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="row">
+                                                    business name
+                                                </div>
+                                                <div class="row">
+                                                    email
+                                                </div>
+                                                <div class="row">
+                                                    phone number
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            category
+                                        </div>
+                                        <div class="row">
+                                            address
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h4 class="card-title text-white">
+                            Connect
+                        </h4>
+                    </div>
+                    <div class="card-body" id="connectBody">
+                        <div class="row">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h4 class="card-title text-white">
+                            Details
+                        </h4>
+                    </div>
+                    <div class="card-body" id="detailsBody">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Footer Area End ***** -->
+    <!-- Start of Async Drift Code -->
+    <script>
+        "use strict";
+
+        !(function() {
+            var t = (window.driftt = window.drift = window.driftt || []);
+            if (!t.init) {
+                if (t.invoked) return void(window.console && console.error && console.error("Drift snippet included twice."));
+                (t.invoked = !0),
+                (t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"]),
+                (t.factory = function(e) {
+                    return function() {
+                        var n = Array.prototype.slice.call(arguments);
+                        return n.unshift(e), t.push(n), t;
+                    };
+                }),
+                t.methods.forEach(function(e) {
+                        t[e] = t.factory(e);
+                    }),
+                    (t.load = function(t) {
+                        var e = 3e5,
+                            n = Math.ceil(new Date() / e) * e,
+                            o = document.createElement("script");
+                        (o.type = "text/javascript"),
+                        (o.async = !0),
+                        (o.crossorigin = "anonymous"),
+                        (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
+                        var i = document.getElementsByTagName("script")[0];
+                        i.parentNode.insertBefore(o, i);
+                    });
+            }
+        })();
+        drift.SNIPPET_VERSION = "0.3.1";
+        drift.load("6ashbsefxhx7");
+    </script>
+    <!-- End of Async Drift Code -->
+    <!-- ***** App Screenshots Area End *****====== -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i["GoogleAnalyticsObject"] = r;
+            (i[r] =
+                i[r] ||
+                function() {
+                    (i[r].q = i[r].q || []).push(arguments);
+                }),
+            (i[r].l = 1 * new Date());
+            (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+
+        ga("create", "UA-96096445-4", "auto");
+        ga("send", "pageview");
+    </script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
+    <!-- Jquery-2.2.4 JS -->
+    <script src="../js/jquery-2.2.4.min.js"></script>
+    <!-- Headroom js -->
+    <script src="../js/headroom.js"></script>
+    <!-- Popper js -->
+    <script src="../js/popper.min.js"></script>
+    <!-- Bootstrap-4 Beta JS -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="js/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="../js/active.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/main.js"></script>
+    <script src=""></script>
+    <script src="../../app-assets/vendors/js/vendors.min.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="./app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="../../app-assets/js/scripts/configs/horizontal-menu.js"></script>
+    <script src="../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../app-assets/js/core/app.js"></script>
+    <script src="../../app-assets/js/scripts/components.js"></script>
+    <script src="../../app-assets/js/scripts/footer.js"></script>
+    <script src="../js/globalFuntions.js"></script>
+    <!-- END: Theme JS-->
+    <!-- Headroom -->
+    <script>
+        var myHeaders = new Headers();
+        //fetch this data from url
+        var memberId;
+        var category;
+        auth();
+        getUrlData();
+        function getUrlData(){
+            const params = (new URL(document.location)).searchParams;
+            if(params.get('category')){
+                category = params.get('category');
+                console.log(category);
+            }
+            if(params.get('memberid')){
+                memberId = params.get('memberid');
+                console.log(memberId);
+            }
+            loadBasicProfile();
+            loadProducts();
+        }
+        function prodcutForm(){
+            var url = `http://localhost/sea_dev/ui/productform.html?category=`+category+`&memberid=`+memberId+``;
+            window.location=url;
+        }
+        function loadProducts(){
+            //get data from api
+            //get the section
+            var productsSection = document.querySelector('.products');
+            //make template and add to inner html
+            var productBody = {
+                load : "loadproducts",
+                id : memberId,
+                category : category
+            }
+            productBody = JSON.stringify(productBody);
+            var productRequestOptions = {
+                method : "POST",
+                redirect : "follow",
+                headers : myHeaders,
+                body : productBody
+            }
+            fetch("../../ws/businessprofile.php",productRequestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if(Array.isArray(result)){
+                    var productCard = "";
+                    result.forEach(item =>{
+                        productCard +=  `<div class="card">
+                            <div class="row card-body justify-content-between">
+                                    <div class="col text-left">
+                                        `+item.Name+`
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        `+item.Description+`
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="`+item.broucher+`">
+                                            <span class="material-icons">
+                                                picture_as_pdf
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="`+item.video+`">
+                                            <span class="material-icons">
+                                                play_circle
+                                            </span>
+                                        </a>
+                                    </div>
+                            </div>
+                        </div>`;
+                    });
+                    productsSection.innerHTML = productCard;
+                }else{
+                    productsSection.innerHTML = "";
+                }
+            })
+            .catch(error =>{console.log(error);});
+        }
+        function loadBasicProfile(){
+            console.log("loading")
+            var profileBody = {
+                load : "loadbynumber",
+                id : memberId
+            }
+            profileBody = JSON.stringify(profileBody);
+            var profileRequestOptions = {
+                method : "POST",
+                redirect : "follow",
+                headers : myHeaders,
+                body  : profileBody
+            }
+            fetch("../../ws/Memberprofile.php",profileRequestOptions)
+            .then(response => response.json())
+            .then((result)=>{
+                console.log(result);
+                if(Array.isArray(result)){
+                    var basicDetails = result[0];
+                    console.log(basicDetails)
+                    var groupsData = document.getElementById('groupsData');
+                    var chaptersData = document.getElementById('chaptersData');
+                    var connectBody = document.getElementById('connectBody');
+                    var detailsBody = document.getElementById('detailsBody');
+                    var businessDescription = document.getElementById('businessDescription');
+                    var bannerImage = document.getElementById('bannerImage');
+                    var logoImage = document.getElementById('logoImage');
+                    detailsBody.innerHTML = `
+                        <div class="row">
+                            `+basicDetails.Name+`
+                        </div>
+                        <div class="row">
+                            `+basicDetails.gothram+`
+                        </div>
+                        <div class="row">
+                            `+basicDetails.gender+`
+                        </div>
+                        `; 
+                    //load profile details
+                    var businessBody = {
+                        load : "loadbynumber",
+                        id : memberId
+                    }
+                    businessBody = JSON.stringify(businessBody);
+                    var businessRequestOptions = {
+                        method : "POST",
+                        redirect : "follow",
+                        headers : myHeaders,
+                        body : businessBody
+                    }
+                    fetch("../../ws/businessprofile.php",businessRequestOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+                        if(Array.isArray(result)){
+                            var profile = {};
+                            for(var i in result){
+                                if(result[i].category == category){
+                                    profile = result[i];
+                                }
+                            }
+                            if(profile.banner === ""){
+                                profile.banner = "../images/emptystates/banner.jpg";
+                            }
+                            if(profile.logo === ""){
+                                profile.logo = "../images/emptystates/logo.jpg";
+                            }
+                            bannerImage.setAttribute('src',profile.banner);
+                            logoImage.setAttribute('src',profile.logo)
+                            if(profile.Description != ""){
+                                businessDescription.innerHTML = profile.Description;
+                            }
+                            else{
+                                businessDescription.innerHTML = "No description Available for this business";
+                            }
+                        }
+                    })
+                    .catch(error =>{
+                        console.log(error);
+                    });
+                    //fetch groups data and add to inner html
+                    var groupBody = {
+                        load : "loadmemchapters",
+                        id : memberId
+                    }
+                    groupBody = JSON.stringify(groupBody);
+                    var groupRequestOptions = {
+                        method :"POST",
+                        redirect : "follow",
+                        headers : myHeaders,
+                        body : groupBody
+                    }
+                    fetch("../../ws/Memberprofile.php",groupRequestOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+                        if(Array.isArray(result)){
+                            //add groups to body
+                            var groupHtml = '';
+                            for( var i in result){
+                                groupHtml = groupHtml + `<div class="row">
+                                    `+result[i].ContentName+` 
+                                </div>`;
+                            }
+                            groupsData.innerHTML = groupHtml
+                        }else{
+                            groupsData.innerHTML = "No groups available"
+                        }
+                    })
+                    .catch(error =>{console.log(error);});
+
+
+                    //fetch chapters data and add to inner html
+                    var chapterBody = {
+                        load : "loadmemchapters",
+                        id : memberId
+                    }
+                    chapterBody = JSON.stringify(chapterBody);
+                    var chapterRequestOptions = {
+                        method : "POST",
+                        headers : myHeaders,
+                        redirect : "follow",
+                        body : chapterBody
+                    }
+                    fetch("../../ws/Memberprofile.php",chapterRequestOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+                        if(Array.isArray(result)){
+                            var chapterHtml = '';
+                            for( var i in result){
+                                chapterHtml = chapterHtml + `<div class="row">
+                                    `+result[i].ContentName+` 
+                                </div>`;
+                            }
+                            chaptersData.innerHTML = chapterHtml;
+                        }else{
+                            chaptersData.innerHTML = "No chapters available for this group"
+                        }
+
+                    })
+                    .catch(error =>{console.log(error);});
+                    //fetch contact details and add to inner html
+                    var contactBody = {
+                        load : "loadmemcontacts",
+                        id : memberId,
+                        category : category
+                    }
+                    contactBody = JSON.stringify(contactBody);
+                    var contactRequestOptions = {
+                        method : "POST",
+                        redirect : "follow",
+                        headers : myHeaders,
+                        body : contactBody
+                    }
+                    fetch("../../ws/businessProfile.php",contactRequestOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+                        if(Array.isArray(result)){
+                            var contactHtml = '';
+                            for(var i in result){
+                                contactHtml = contactHtml + `
+                                <div class="row">
+                                <span class="material-icons mr-1">
+                                    contact_page
+                                </span>
+                                <span>
+                                    `+result[i].contactdetails+`
+                                </span>
+                                </div>`;                                
+                            }
+                            connectBody.innerHTML = contactHtml;
+                        }else{
+                            connectBody.innerHTML = "No contact details available"
+                        }
+                    })
+                    .catch(error =>{console.log(error);});
+                    //fetch basic details and add to body
+                    
+                }else{
+                    //load empty state
+                }
+            })
+            .catch(error =>{
+                console.log(error);
+            });
+        }
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta name="description"
+    content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+  <meta name="keywords"
+    content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+  <meta name="author" content="PIXINVENT">
+  <title>Member Form</title>
+  <link rel="apple-touch-icon" href="../../app-assets/images/ico/apple-icon-120.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../../app-assets/images/ico/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
+    rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
+  <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap-extended.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/colors.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/components.css">
+
+
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/core/menu/menu-types/horizontal-menu.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/pages/dashboard-ecommerce.css">
+
+
+
+
+
+  <link rel="icon" href="img/core-img/favicon.png" />
+
+
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <link rel="stylesheet" type="text/css" href="css/custom.css" />
+
+
+  <script src="js/modernizr.js"></script>
+  <style>
+    .hide{
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <header class="headroom mb-4" >
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
+        <a href="./admin.html "><img src="../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
+        <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
+    <span class="navbar-toggler-icon "></span>
+  </button>
+
+        <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
+            <ul class="navbar-nav mr-auto " id="Tnavlist ">
+
+            </ul>
+            <ul class="float-right navbar-nav" id="profileContainer">
+
+            </ul>
+                
+
+        </div>
+    </nav>
+
+
+</header>
+
+  <main role="main" class="container">
+
+    <div class="row mt-1" id="memberForm_one">
+      <div class="col-8">
+        <form class="form form-horizontal">
+          <div class="form-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header bg-primary">
+                    <h4 class="card-title text-white">Basic Profile</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="memberId">Mobile Number</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <input type="number" pattern="[0-9]{10}" id="memberId" class="form-control " name="fname" placeholder="Mobile Number" required>
+                        <span style="color : #f00" id="errorElement"></span>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="name">Name</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <input type="text" id="name" class="form-control" name="fname" placeholder="Name">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="surname">Surname</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <input type="text" id="surname" class="form-control" name="fname" placeholder="Surname">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="dob">DOB</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <input type="date" id="dob" class="form-control format-picker picker__input picker__input--active"
+                          placeholder="DOB">
+                      </div>
+                      <div class="col-md-4">
+                        <label >Gender</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <fieldset class="form-group">
+                          <select class="form-control" id="gender">
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="gotram">Gotram</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <input type="text" id="gotram" class="form-control" name="fname" placeholder="Gothram">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="memberPhoto">member photo</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <div class="input-group">
+                          <input  type="file" class="form-control" id="memberPhoto">
+                          <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="referredBy">referred by</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <input type="text" id="referredBy" class="form-control" name="contact" placeholder="Refreed By">
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row ">
+              <div class="col-md-12 mb-2 col-12  d-flex justify-content-end ">
+                <button type="button" class="btn btn-primary mr-1" id="saveBtnOne">Save </button>
+                <button type="button" class="btn btn-warning" id="nextBtnOne" style="display: none;">Next</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <h4 class="card-title text-white">User Status</h4>
+              </div>
+              <div class="card-body">
+                <form class="form form-horizontal">
+                  <div class="form-body">
+                    <div class="row">
+                      <div class="col-12 form-group">
+                        <ul class="list-unstyled mb-0">
+                          <li class="d-inline-block mr-2 mb-1">
+                            <fieldset>
+                              <div class="radio">
+                                <input type="radio" name="activeStatus" id="active" checked>
+                                <label for="active">Active</label>
+                              </div>
+                            </fieldset>
+                          </li>
+                          <li class="d-inline-block mr-2 mb-1">
+                            <fieldset>
+                              <div class="radio">
+                                <input type="radio" name="activeStatus" id="inactive">
+                                <label for="inactive">Inactive</label>
+                              </div>
+                            </fieldset>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <h4 class="card-title text-white">User Privilige</h4>
+              </div>
+              <div class="card-body">
+                <form class="form form-horizontal">
+                  
+                        <ul class="list-unstyled mb-0">
+                          <li class="d-inline-block mr-2 mb-1">
+                            <fieldset>
+                              <div class="radio">
+                                <input type="radio" name="activeStatus" id="admin">
+                                <label for="admin">Admin</label>
+                              </div>
+                            </fieldset>
+                          </li>
+                          <li class="d-inline-block mr-2 mb-1">
+                            <fieldset>
+                              <div class="radio">
+                                <input type="radio" name="activeStatus" id="nonadmin" checked>
+                                <label for="nonadmin">Not Admin</label>
+                              </div>
+                            </fieldset>
+                          </li>
+                        </ul>
+                     
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+      
+    </div>
+    <!--testing area  -->
+   
+          
+        
+    <!-- testing area ends -->
+  <!-- second tab -->
+    <div class="row mt-1" id="memberForm_two">
+      <div class="col-12">
+          <div class="form-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header bg-primary">
+                    <h4 class="card-title text-white text-right">Member Verticals</h4>
+                  </div>
+                  <div class="card-body">
+                    <h4>Business Category</h4>
+                    <div class="row">
+                      <div class="col-md-8 form-group">
+                        <ul class="list-unstyled mb-0" id="businessCategory">
+                          <li class="d-inline-block mr-2 mb-1">
+                            <fieldset>
+                              <div class="checkbox">
+                                <input type="checkbox" class="checkbox-input" id="businessCat" checked="">
+                                <label for="businessCat">no data</label>
+                              </div>
+                            </fieldset>
+                          </li>
+                         </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- business form start -->
+            <div  id="businessDetailsForm">
+              
+            </div>
+            <!-- business form ends -->
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-2 d-flex justify-content-end ">
+          <button type="button" class="btn btn-warning mr-1" id="nextBtnTwo">Next</button>
+          <button type="submit" class="btn btn-primary mr-1" id="saveBtnTwo">Save </button>
+          <button type="submit" class="btn btn-warning viewProfileBtn" id="">View Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <!--  third form-->
+    <div id="memberForm_three" class="row mt-1">
+      <div class="col-12">
+        <div class="form form-horizontal">
+          <div class="form-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header bg-primary">
+                    <h4 class="card-title text-white text-right">Chapter / Group / Category</h4>
+                  </div>
+                  <div class="card-body">
+                    <h4>Primary Chapter</h4>
+                    <div class="row">
+                      <div class="col-md-8 form-group">
+                        <ul class="list-unstyled mb-0" id="chapterRadios">
+                          <li class="d-inline-block mr-2 mb-1">
+                            <fieldset>
+                              <div class="radio">
+                                <input type="radio" class="radio-input" id="radio1">
+                                <label for="radio1" name="chapterRadios">no data</label>
+                              </div>
+                            </fieldset>
+                          </li>  
+                         </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h4>Secondary Chapter</h4>
+                    <div class="row"> 
+                      <div class="col-md-8 form-group">
+                        <ul class="list-unstyled mb-0" id="chapterCheckBoxes">
+                          <li class="d-inline-block mr-2 mb-1">
+                            <fieldset>
+                              <div class="checkbox">
+                                <input type="checkbox" class="checkbox-input" id="checkbox1" >
+                                <label for="checkbox1">no data</label>
+                              </div>
+                            </fieldset>
+                          </li>
+                         </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h4>Group</h4>
+                    <div class="row">
+                      <div class="col-md-8 form-group">
+                        <ul class="list-unstyled mb-0" id="groupCheckBoxes">
+                          <li class="d-inline-block mr-2 mb-1">
+                            <fieldset>
+                              <div class="checkbox">
+                                <input type="checkbox" class="checkbox-input" id="checkbox1">
+                                <label for="checkbox1">no data</label>
+                              </div>
+                            </fieldset>
+                          </li>  
+                         </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-2 d-flex justify-content-end ">
+          <button type="submit" class="btn btn-primary mr-1" id="saveBtnThree">Save </button>
+          <button type="submit" class="btn btn-warning viewProfileBtn" id="">View Profile</button>
+        </div>
+      </div>
+    </div>
+
+
+  <script src="js/jquery-2.2.4.min.js"></script>
+
+  <script src="js/headroom.js"></script>
+
+  <script src="js/popper.min.js"></script>
+
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src="js/plugins.js"></script>
+
+  <script src="js/active.js"></script>
+
+  <script src="js/jquery.mobile.custom.min.js"></script>
+
+  <script src="js/main.js"></script>
+
+  <script src="../../app-assets/vendors/js/vendors.min.js"></script>
+  <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
+  <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
+  <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
+
+  <script src="../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+  <script src="../../app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
+
+
+  <script src="../../app-assets/js/scripts/configs/horizontal-menu.js"></script>
+  <script src="../../app-assets/js/core/app-menu.js"></script>
+  <script src="../../app-assets/js/core/app.js"></script>
+  <script src="../../app-assets/js/scripts/components.js"></script>
+  <script src="../../app-assets/js/scripts/footer.js"></script>
+  <script src="../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
+  <script src="../js/custom.js"></script>
+  <script src="../../js/globalFuntions.js"></script>
+  
+
+  <script>
+    //fetch data from api
+    var myHeaders = new Headers();
+  // myHeaders.append("Content-Type ", "text/plain ");
+  // myHeaders.append("Cookie ", "PHPSESSID=a147dbe2815c8b7145c6f2ca214f3716 ");
+  auth();
+    //end fetch nav data from api
+    
+    //fetch data from url
+    var action = "add";
+    var updateMemberId = "";
+    const params = (new URL(document.location)).searchParams;
+    if(params.get('action')){
+      action = params.get('action');
+    }
+    if(params.get('memberId')){
+      updateMemberId = params.get('memberId');
+    }
+
+    var form1 = document.getElementById("memberForm_one");
+    var form2 = document.getElementById("memberForm_two");
+    var form3 = document.getElementById("memberForm_three");
+    form3.classList.add("hide");//setting initial state
+    form2.classList.add("hide");//setting initial state
+    var saveBtnOne = document.getElementById("saveBtnOne");
+    var nextBtnOne = document.getElementById("nextBtnOne");
+    var nextBtnTwo = document.getElementById("nextBtnTwo")
+    var saveBtnTwo = document.getElementById("saveBtnTwo");
+    var saveBtnThree = document.getElementById("saveBtnThree");
+    var viweProfileBtns = document.getElementsByClassName("viewProfileBtn");
+    var memberId;
+    if(action ===  "modify"){
+      memberId = updateMemberId;
+    }
+    openForm1();
+    nextBtnOne.addEventListener("click" , (event)=>{
+      event.preventDefault();
+      openForm2();
+      scrollToTop();
+    });
+    
+
+    nextBtnTwo.addEventListener("click" , (event) =>{
+      event.preventDefault();
+      openForm3();
+      scrollToTop();
+      //fetch groups and chapter from api and build checkboxees and radios
+      //call save form2 function
+    });
+
+   
+
+    
+    
+    saveBtnOne.addEventListener("click", (event)=>{
+      event.preventDefault();
+      //call save form1 fucntion
+      saveForm1();
+    });
+
+    saveBtnTwo.addEventListener("click", (event)=>{
+      event.preventDefault();
+      //call save form2 function
+      saveForm2();
+    });
+
+    saveBtnThree.addEventListener("click", (event)=>{
+      event.preventDefault();
+      saveForm3();
+    });
+    viweProfileBtns = Array.from(viweProfileBtns);
+    viweProfileBtns.forEach(element => {
+      element.addEventListener("click" , (event)=>{
+        event.preventDefault();
+        //do view profile action
+      })
+    });
+
+    
+
+    //functions
+    //scroll top function
+    function scrollToTop(){
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+    //open form1 function
+    function openForm1(){
+      console.log(action);
+      form2.classList.add("hide");
+      form1.classList.remove("hide");
+      if(action == "modify"){
+          //make member id text field disabled
+          document.getElementById("memberId").disabled = true;
+          //fetch data from api and add it to form
+          var dataBody = {
+            load : "loadbynumber",
+            id : updateMemberId
+          }
+          dataBody = JSON.stringify(dataBody);
+          console.log(dataBody);
+          var dataRequestOptions = {
+            method : "POST",
+            header : myHeaders,
+            redirect : "follow",
+            body : dataBody
+          }
+
+          fetch("../../ws/Memberprofile.php", dataRequestOptions)
+          .then(response => response.json())
+          .then(result =>{
+            console.log(result);
+            var status  = (parseInt(result[0].status) == 1)? true : false;
+            var admin = (parseInt(result[0].admin) == 1)? true : false;
+            console.log(status);
+            document.getElementById("memberId").value = result[0].userid;
+            document.getElementById("name").value = result[0].Name;
+            document.getElementById("surname").value = result[0].Surname;
+            document.getElementById("dob").value = result[0].Dob;
+            document.getElementById("gender").value = result[0].gender;
+            document.getElementById("gotram").value = result[0].gotram;
+            document.getElementById("active").checked = status;
+            document.getElementById("inactive").checked = !status;
+            document.getElementById("admin").checked = admin;
+            document.getElementById("nonadmin").checked = !admin;
+          })
+          .catch(error =>{
+            console.log(error);
+          })
+
+      }else{
+        //do normal action
+      }
+    }
+   
+    function addContactElement(category){
+        var repeaterItem = document.createElement("div");
+        var repeaterItemRow = document.createElement("div");
+        var textBoxContainer = document.createElement("div");
+        var selectorContainer = document.createElement("div");
+        var deleteBtnContainer = document.createElement("div");
+        var textBoxLabel = document.createElement("label");
+        var textBox = document.createElement("input");
+        var selectorLabel = document.createElement("label");
+        var selector = document.createElement("select");
+        function createSelectorOptions(){
+            //fetch types names form api
+            var contactData = {
+              load : "loadbyparent",
+              id : "contacttypes"
+            }
+            contactData = JSON.stringify(contactData);
+            var contactRequestOptions =  {
+              method :"POST",
+              redirect : "follow",
+              headers : myHeaders,
+              body : contactData
+            }
+            fetch("../../ws/Accessconfig.php",contactRequestOptions).
+            then(response => response.json())
+            .then(result => {
+              console.log(result);
+              if(Array.isArray(result)){
+                    result.forEach((type)=>{
+                        var selectorOption = document.createElement("option");
+                        selectorOption.innerHTML = type.ContentName;
+                        selectorOption.value = type.ContentName;
+                        selector.appendChild(selectorOption);
+                    });
+              }else{
+                console.log("no data");
+              }
+            })
+            .catch(error =>{console.log(error);}); 
+            
+        }
+        var button = document.createElement("button");
+        var buttonIcon = document.createElement("i");
+        //add attributes to each element
+        repeaterItem.setAttribute('class',`repeaterItem`);
+        repeaterItemRow.setAttribute('class','row justify-content-between');
+        textBoxContainer.setAttribute('class','col-md-4 col-sm-12 form-group');
+        textBoxLabel.setAttribute('for','contactDetail');
+        textBoxLabel.innerHTML = "Contact Detail";
+        textBox.setAttribute('type','text');
+        textBox.setAttribute('class','form-control');
+        textBox.setAttribute('id','contactDetail');
+        textBox.setAttribute('palceholder','Enter Details');
+        selectorContainer.setAttribute('class','col-md-4 col-sm-12 form-group');
+        selectorLabel.setAttribute('for','contactType');
+        selector.setAttribute('name','contactType');
+        selector.setAttribute('id','contacttype');
+        selector.setAttribute('class','form-control');
+        createSelectorOptions();
+        deleteBtnContainer.setAttribute('class','col-md-2 col-sm-12 form-group d-flex align-items-center pt-2');
+        button.setAttribute('class','btn btn-danger text-nowrap px-1');
+        button.setAttribute('type','button');
+        button.setAttribute('id','deleteBtn');
+        buttonIcon.setAttribute('class','bx bx-x');
+        button.innerHTML = "Delete";
+
+        //create element structure
+        textBoxContainer.appendChild(textBoxLabel);
+        textBoxContainer.appendChild(textBox);
+
+        selectorContainer.appendChild(selectorLabel);
+        selectorContainer.appendChild(selector);
+
+        button.appendChild(buttonIcon);
+        deleteBtnContainer.appendChild(button);
+
+        repeaterItemRow.appendChild(textBoxContainer);
+        repeaterItemRow.appendChild(selectorContainer);
+        repeaterItemRow.appendChild(deleteBtnContainer);
+
+        repeaterItem.appendChild(repeaterItemRow);
+        console.log(category);
+        document.getElementById(category+`Contacts`).appendChild(repeaterItem);
+        button.addEventListener('click',()=>{
+          console.log(repeaterItem);
+          document.getElementById(category+`Contacts`).removeChild(repeaterItem);
+        })
+    }
+    function openForm2(){
+      form2.classList.remove("hide");
+      if(form3.classList.contains("hide")){
+        form1.classList.add("hide");
+      }else{
+        form3.classList.add("hide");
+      }
+      //fetch data form api and add build the form
+      var categoryData = {
+        load : "loadbyparent",
+        id : "categories"
+      }
+      categoryData = JSON.stringify(categoryData);
+      var categoryRequestOptions = {
+        method : "POST",
+        headers : myHeaders,
+        redirect : "follow",
+        body : categoryData
+      }
+      fetch("../../ws/Accessconfig.php", categoryRequestOptions)
+      .then( response => response.json())
+      .then( function (result){
+        console.log(result);
+        if(Array.isArray(result)){
+          var categories = [];
+          var catHtml = "";
+          for(var i in result){
+            categories.push(result[i].ContentName);
+          }
+          for(var i in categories){
+            catHtml = catHtml + `<li class="d-inline-block mr-2 mb-1">
+                              <fieldset>
+                                <div class="checkbox">
+                                  <input type="checkbox" class="cat-checkbox-input" data-category="`+categories[i]+`" id="businessCat`+i+`">
+                                  <label for="businessCat`+i+`">`+categories[i]+`</label>
+                                </div>
+                              </fieldset>
+                            </li>`;
+          }
+          document.getElementById("businessCategory").innerHTML = catHtml;
+        }
+        
+      })
+      .then(function (){
+        //open forms according to check boxes
+        var checkBoxes = document.getElementsByClassName("cat-checkbox-input");
+        checkBoxes = Array.prototype.slice.call(checkBoxes);
+        var i = 0;
+        checkBoxes.forEach((item)=>{
+          item.addEventListener("click", ()=>{
+            var heading = item.nextSibling.nextSibling.innerHTML;
+            if(item.checked){
+              addCategoryElement(heading);
+            }else{
+              heading = heading.split(" ");
+              heading = heading.join("");
+              removeCategoryElement(heading);
+            }
+          })
+        });
+      })
+      .then(()=>{
+        loadForm2(); 
+      })
+      .catch(error =>{
+        console.log(error);
+      });  
+
+    }
+    function removeCategoryElement(category){
+      //target parent node
+      var businessDetailsForm = document.getElementById('businessDetailsForm');
+      //get child element
+      var child = businessDetailsForm.querySelector(`#`+category);
+      //remove child
+      businessDetailsForm.removeChild(child);
+    }
+    function addCategoryElement(category){
+      var template = document.createElement('template');
+      var heading = category;
+      var joinedHeading = heading.split(" ");
+      joinedHeading = joinedHeading.join("");
+      template.innerHTML = `<div class="row businessCategoryForm" id="`+joinedHeading+`" data-category="`+category+`">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card">
+                        <div class="card-header bg-primary">
+                          <h4 class="card-title text-white">`+heading+` Details</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label>Business Name</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                              <input type="text" id="businessName-cat" class="form-control" name="fname" placeholder="Business Name">
+                            </div>
+                            <div class="col-md-4">
+                              <label>Description (Editor)</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                              <fieldset class="form-group">
+                                <textarea class="form-control" id="businessDescription-cat" rows="3" placeholder="Textarea"></textarea>
+                            </fieldset>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Communication Address</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                              <fieldset class="form-group">
+                                <textarea class="form-control" id="businessCommAddress-cat" rows="3" placeholder="Textarea"></textarea>
+                            </fieldset>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Pincode</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                              <input type="text" id="businessPincode-cat"class="form-control" name="fname" placeholder="Pincode">
+                            </div>
+                            <div class="col-md-4">
+                              <label>City</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                              <fieldset class="form-group">
+                                <select class="form-control" id="businessCity-cat">
+                                  <option>No Options</option>
+                                </select>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="card">
+                              <div class="card-header bg-primary">
+                                <h4 class="card-title text-white">Media Content</h4>
+                              </div>
+                              <div class="card-body">
+                                  <div class="form-body">
+                                    <div class="col-md-6">
+                                      <label for="memberBanner-cat">Banner</label>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                      <div class="input-group">
+                                        <input  type="file" class="form-control" id="memberBanner-cat">
+                                        <label class="input-group-text" for="memberBanner-cat">Upload</label>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="memberLogo-cat">Logo</label>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                      <div class="input-group">
+                                        <input  type="file" class="form-control" id="memberLogo-cat">
+                                        <label class="input-group-text" for="memberLogo-cat">Upload</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-8">
+                      <div class="contactDetails">
+                        <div class="row col-12">
+                            <div class="card col-12">
+                              <div class="card-header bg-primary row align-items-center justify-content-between">
+                                <h4 class="card-title text-white">
+                                  Contact Details
+                                </h4>
+                                <button class="btn btn-primary" id="`+joinedHeading+`Create" type="button"><i class="bx bx-plus"></i>
+                                  Add
+                                </button>
+                              </div>
+                              <div class="card-body" id="`+joinedHeading+`Contacts">
+
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+      function cityOptions(){
+        //get available cities
+        var cityBody = {
+          load : "loadbyparent",
+          id : "chapters"
+        }
+        cityBody = JSON.stringify(cityBody);
+        var cityRequestOptions = {
+          method : "POST",
+          redirect : "follow",
+          body : cityBody,
+          headers : myHeaders
+        }
+        fetch("../../ws/Accessconfig.php",cityRequestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          if(Array.isArray(result)){
+            var options = '';
+            result.forEach((city)=>{
+              options = options + `<option>`+city.ContentName+`</options>`
+            })
+            var businessCity = template.content.querySelector('#businessCity-cat');
+            businessCity.innerHTML = options;
+          }
+        })
+        .catch(error =>{console.log(error);});
+      }
+      function contactDetails(){
+        var createBtn = template.content.querySelector(`#`+joinedHeading+`Create`);
+        createBtn.addEventListener("click",()=>{
+          console.log(joinedHeading);
+          addContactElement(joinedHeading);
+        });
+      }
+      cityOptions();
+      contactDetails();
+      //get parent element for catgories
+      var businessDetailsForm = document.getElementById('businessDetailsForm');
+      var form = template.content.firstChild;
+      businessDetailsForm.appendChild(form);
+    }
+    function loadForm2(){
+        console.log('load function called');
+        
+        if(action === "modify"){
+          //open businesss forms according to selectio and add value to them
+          //get business profiles
+          var getProfilesData = {
+            load : "loadbynumber",
+            id : updateMemberId
+          }
+          console.log(getProfilesData);
+          getProfilesData = JSON.stringify(getProfilesData);
+          var profileRequestOptions = {
+            method : "POST",
+            header : myHeaders,
+            redirect : "follow",
+            body : getProfilesData
+          }
+          fetch("../../ws/businessprofile.php", profileRequestOptions)
+          .then( response => response.json())
+          .then (result =>{
+            console.log(result);
+            var checkBoxes = document.getElementsByClassName("cat-checkbox-input");
+            checkBoxes = Array.from(checkBoxes);
+            console.log(checkBoxes)
+            for(var i in result){
+              var searchId = result[i].category;
+              for(var box in checkBoxes){
+                if(searchId == checkBoxes[box].dataset.category){
+                  checkBoxes[box].click();
+                  var category = checkBoxes[box].dataset.category;
+                  var temp = category;
+                  category = category.split(" ");
+                  category = category.join("");
+                  //get form container
+                  var form = document.getElementById(category);
+                  //add values to form
+                  form.querySelector('#businessName-cat').value = result[i].Name;
+                  form.querySelector('#businessDescription-cat').value = result[i].Description;
+                  form.querySelector('#businessCommAddress-cat').value = result[i].Address;
+                  form.querySelector('#businessPincode-cat').value = result[i].pincode;
+                  form.querySelector('#businessCity-cat').value = result[i].city;
+                  loadContacts(temp);
+                }
+              }
+            }
+          })
+          .catch(error =>{
+            console.log(error);
+          });
+        }
+      }
+    function loadContacts(category){
+        //get contacts container
+        var contactBody = {
+          load : "loadmemcontacts",
+          id : updateMemberId,
+          category
+        }
+        console.log(contactBody);
+        contactBody = JSON.stringify(contactBody);
+        var contactRequestOptions = {
+          method : "POST",
+          redirect : "follow",
+          headers : myHeaders,
+          body : contactBody
+        }
+        fetch("../../ws/buinessprofile.php",contactRequestOptions)
+        .then(response => response.json())
+        .then(result =>{
+          console.log(result);
+          if(Array.isArray(result)){
+            //get add button for the category
+            category = category.split(" ");
+            category = category.join("");
+            var contactForm = document.getElementById(category+`Contacts`);
+            var createBtn = document.getElementById(category+`Create`);
+            for(var i in result){
+              createBtn.click();
+            }
+            //run loop for contact elemets
+            var contacts = contactForm.children;
+            contacts = Array.from(contacts);
+            for(var i in result){
+              contacts[i].querySelector('#contacttype').value = result[i].ContentName;
+              contacts[i].querySelector('#contactDetail').value = result[i].contactdetails;
+            }
+          }
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+    }
+    function openForm3(){
+      form3.classList.remove("hide");
+      form2.classList.add("hide");
+
+      //load chapters
+      var chapterBody ={
+        load : "loadbyparent",
+        id : "chapters"
+      };
+      chapterBody = JSON.stringify(chapterBody);
+      var chapterRequestOptions = {
+        method : "POST",
+        headers : myHeaders,
+        redirect : "follow",
+        body : chapterBody
+      };
+      fetch("../../ws/Accessconfig.php" , chapterRequestOptions)
+      .then( response => response.json())
+      .then( result =>{
+        console.log(result);
+        if(Array.isArray(result)){
+          var chapters = [];
+          for(var i in result){
+            chapters.push(result[i].ContentName);
+          }
+          var primaryHTML = "";
+          var secondaryHTML = "";
+          for(var i in chapters){
+            primaryHTML = primaryHTML + `<li class="d-inline-block mr-2 mb-1">
+                              <fieldset>
+                                <div class="radio">
+                                  <input type="radio" name="chapterRadios" class="radio-input-chapters" data-primechapter="`+chapters[i]+`" id="chapter-radio`+i+`">
+                                  <label for="chapter-radio`+i+`" >`+chapters[i]+`</label>
+                                </div>
+                              </fieldset>
+                            </li>  `;
+            secondaryHTML = secondaryHTML + `<li class="d-inline-block mr-2 mb-1">
+                              <fieldset>
+                                <div class="checkbox">
+                                  <input type="checkbox" class="checkbox-input-chapters" data-secchapter="`+chapters[i]+`" id="chapter-checkbox`+i+`" >
+                                  <label for="chapter-checkbox`+i+`">`+chapters[i]+`</label>
+                                </div>
+                              </fieldset>
+                            </li>`;
+          }
+          //add html to dom
+          document.getElementById("chapterRadios").innerHTML = primaryHTML;
+          document.getElementById("chapterCheckBoxes").innerHTML = secondaryHTML;
+        }
+        
+      })
+      .then(()=>{
+          //load groups and add to body
+          var groupBody = {
+            load : "loadbyparent",
+            id : "groups"
+          };
+          groupBody = JSON.stringify(groupBody);
+          var groupRequestOptions ={
+            method : "POST",
+            headers : myHeaders,
+            redirect : "follow",
+            body : groupBody
+          };
+
+          fetch("../../ws/Accessconfig.php" , groupRequestOptions)
+          .then( response => response.json())
+          .then( result =>{
+            console.log(result);
+            if(Array.isArray(result)){
+              var groups = [];
+              var groupsHtml = "";
+              for(var i in result){
+                groups.push(result[i].ContentName);
+              }
+              for(var i in groups){
+                groupsHtml = groupsHtml + `<li class="d-inline-block mr-2 mb-1">
+                                  <fieldset>
+                                    <div class="checkbox">
+                                      <input type="checkbox" class="checkbox-input-groups" data-group="`+groups[i]+`" id="group-checkbox`+i+`">
+                                      <label for="group-checkbox`+i+`" >`+groups[i]+`</label>
+                                    </div>
+                                  </fieldset>
+                                </li>  `;
+              }
+              document.getElementById("groupCheckBoxes").innerHTML = groupsHtml;
+            }
+            
+          })
+          .catch(error =>{
+            console.log(error);
+          });
+      })
+      .then(()=>{
+        //fecth member chapters filter them to primary and secondary
+        if(action == "modify"){
+          var primaryChapter = "";
+          var secondaryChapters = [];
+          var chapterRequestBody = {
+            load : "loadmemchapters",
+            id : memberId
+          };
+          chapterRequestBody = JSON.stringify(chapterRequestBody);
+          var chapterRequestOptions = {
+            method : "POST",
+            header : myHeaders,
+            redirect : "follow",
+            body : chapterRequestBody
+          }
+          fetch("../../ws/Memberprofile.php",chapterRequestOptions)
+          .then(response => response.json())
+          .then(result =>{
+            console.log(result);
+            for(var i in result){
+              if(result[i].prime == 1){
+                primaryChapter = result[i].ContentName;
+              }else if(result[i].prime == 0){
+                secondaryChapters.push(result[i].ContentName);
+              }
+            }
+            var chapterRadio = document.getElementsByClassName("radio-input-chapters");
+            chapterRadio = Array.from(chapterRadio);
+            chapterRadio.forEach((item)=>{
+              if(item.dataset.primechapter == primaryChapter){
+                item.checked = true;
+              }else{
+                item.checked = false;
+              }
+            });
+            console.log(secondaryChapters);
+            var chapterBox = document.getElementsByClassName("checkbox-input-chapters");
+            chapterBox = Array.from(chapterBox);
+            chapterBox.forEach((item)=>{
+              console.log(item);
+              secondaryChapters.forEach((element)=>{
+                if(item.dataset.secchapter == element){
+                  item.checked = true;
+                }
+                else{
+                  item.checked = false;
+                }
+              })
+            })
+          })
+          .catch(error =>{
+            console.log(error);
+          })
+          //add values to primary chapter
+          //add values to secondary chapters
+          var groups = [];
+          //fetch membergroups
+          var groupBody = {
+            load : "loadmemgroups",
+            id : memberId
+          }
+          groupBody = JSON.stringify(groupBody);
+          var groupRequestOptions = {
+            method : "POST",
+            redirect : "follow",
+            headers : myHeaders,
+            body : groupBody
+          }
+          fetch("../../ws/Memberprofile.php",groupRequestOptions)
+          .then(response => response.json())
+          .then(result =>{
+            console.log(result);
+            for(var i in result){
+              groups.push(result[i].ContentName);
+            }
+            var groupBoxes = document.getElementsByClassName("checkbox-input-groups");
+            groupBoxes = Array.from(groupBoxes);
+            groupBoxes.forEach((item)=>{
+              groups.forEach((element)=>{
+                if(item.dataset.group == element){
+                  item.checked = true;
+                }
+                else{
+                  item.checked = false;
+                }
+              })
+            });
+        })
+        .catch(error=>{
+          console.log(error);
+        })
+        }
+        
+      })
+      .catch(error =>{
+        console.log(error);
+      });
+
+      
+    }
+    //save form 1 function
+    async function saveForm1(){
+      //prepare data object for form1
+      var photo="";
+      var errors = {
+        empty : "This field cannot be empty",
+        exists : "This number already exists"
+      };
+      var load = "addEntry";
+      if( action === "modify"){
+        load = "";
+      }
+      let formdata = new FormData();
+      //uploadig files if exists
+      memberId = document.getElementById("memberId").value;
+      if(memberPhoto.files.length > 0){
+          var date = new Date();
+          date = date.getTime();
+          var newFileName = date + memberPhoto.files[0].name;
+          formdata.set("file" , memberPhoto.files[0] , newFileName);
+          await fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
+          photo = `../../uploads/`+ newFileName;
+      }
+      var status = (document.getElementById("active").checked)? 1 : 0;
+      var admin = (document.getElementById("admin").checked)? 1 : 0;
+
+      if(document.getElementById("name").value){
+        name = document.getElementById("name").value;
+      }
+      var surName = "";
+      if(document.getElementById("surname").value){
+        surName = document.getElementById("surname").value;
+      }
+      var dob="";
+      if(document.getElementById("dob").value){
+        dob = document.getElementById("dob").value;
+      }
+      var gothram = "";
+      if(document.getElementById("gotram").value){
+        gothram = document.getElementById("gotram").value;
+      }
+      var profileData = {
+          load : load,
+          id : memberId,
+          Name : name,
+          surName : surName,
+          dob : dob,
+          gender : document.getElementById("gender").value,
+          Gothram : gothram,
+          photo : photo,
+          admin : admin,
+          status : status,
+          pwd : "seal123$$"
+      }
+      console.log(profileData);
+      profileData = JSON.stringify(profileData);
+      var profileRequestOptions = {
+        method : "POST",
+        headers : myHeaders,
+        redirect : "follow",
+        body : profileData
+      }
+      if(memberId != ""){
+        hideError();
+        await validateID(memberId)
+        .then(response =>{
+          console.log(response);
+          if(action === "modify"){
+            response = false;
+          }
+          if(response){
+            //display exits error message
+            displayError(errors.exists);
+          }
+          else{
+            //send data to api
+            fetch("../../ws/Memberprofile.php", profileRequestOptions)
+            .then(response => response.json())
+            .then(result =>{
+              console.log(result);
+              openForm2();
+            })
+            .catch(error =>{
+              console.log(error);
+            });
+          }
+        });
+      }
+      else{
+        //show empty error
+        displayError(errors.empty);
+      }
+      
+    }
+    function hideError(){
+      var errorElement = document.getElementById('errorElement');
+      errorElement.innerHTML = "";
+    }
+    function displayError(message){
+      var idInputElement = document.getElementById('memberId');
+      idInputElement.classList.add("is-invalid");
+      var errorElement = document.getElementById('errorElement');
+      errorElement.innerHTML = message;
+    }
+    async function validateID(memberId){
+      var memberBody = {
+        load : "loadbynumber",
+        id : memberId
+      }
+      console.log(memberBody);
+      
+      memberBody = JSON.stringify(memberBody);
+
+      var memeberRequestOptions = {
+        method : "POST",
+        redirect : "follow",
+        headers : myHeaders,
+        body  : memberBody
+      }
+      try{
+        var result = await fetch("../../ws/Memberprofile.php", memeberRequestOptions).then(response=> response.json());
+        console.log(result);
+        if(Array.isArray(result)){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
+    //save form 2 fucntion
+    function saveForm2(){
+      //call in loop
+      var categoryForm = document.getElementsByClassName("businessCategoryForm");
+      //for eacg form call add business data form
+      categoryForm = Array.from(categoryForm);
+      categoryForm.forEach((form)=>{
+        addBusinessData(form);
+      })
+    }
+    //save form 3 function
+    function saveForm3(){
+      //prepare data object for form3
+      //get primary chapter
+      var load = "addmemchapters";
+      var chapter="";
+      var primaryChapters = document.getElementsByClassName("radio-input-chapters");
+      primaryChapters = Array.from(primaryChapters);
+      primaryChapters.forEach((item)=>{
+        if(item.checked){
+          chapter = item.nextSibling.nextSibling.innerHTML;
+        }
+      });
+      if(action === "modify"){
+        load  = "updatememchapters";
+      }
+      var primaryBody ={
+        load : load,
+        id : memberId,
+        chapter : chapter,
+        prime : 1
+      }
+      console.log(primaryBody);
+      primaryBody = JSON.stringify(primaryBody);
+      var primaryRequestOptions = {
+        method : "POST",
+        headers : myHeaders,
+        redirect : "follow",
+        body : primaryBody
+      };
+      //send to api
+      fetch("../../ws/Memberprofile.php", primaryRequestOptions)
+      .then( response => response.json())
+      .then( result => {
+        console.log(result);
+      })
+      .catch( error =>{
+        console.log(error);
+      });
+
+      //get second chapter run loop
+      var secondaryChapters = document.getElementsByClassName("checkbox-input-chapters");
+      var chapters = [];
+      secondaryChapters = Array.from(secondaryChapters);
+      secondaryChapters.forEach((item)=>{
+          if(item.checked)
+            chapters.push(item.nextSibling.nextSibling.innerHTML);
+      })
+      chapters.forEach((item)=>{
+        addSecChapters(item);
+      })
+      
+      //get group
+      var groups = document.getElementsByClassName("checkbox-input-groups");
+      var groupItems = []
+      groups = Array.from(groups);
+      groups.forEach((item)=>{
+          if(item.checked)
+            groupItems.push(item.nextSibling.nextSibling.innerHTML);
+      })
+      //run loop
+      groupItems.forEach((item)=>{
+        addGroups(item);
+      })
+      //send data to form3
+      setTimeout(()=>{
+          window.open("./main.html","_self");
+      },2000);
+    }
+    
+    function addSecChapters(chapter){
+        var load = "addmemchapters";
+        if(action === "modify"){
+          load = "updatememchapters";
+        }
+        var chapterBody ={
+          load : load,
+          id : memberId,
+          chapter : chapter,
+          prime : 0
+        }
+        chapterBody = JSON.stringify(chapterBody);
+        var chapterRequestOptions = {
+          method : "POST",
+          headers : myHeaders,
+          redirect : "follow",
+          body : chapterBody
+        }
+        fetch("../../ws/Memberprofile.php", chapterRequestOptions)
+        .then( response => response.json())
+        .then( result => {
+          console.log(result);
+        })
+        .catch( error =>{
+          console.log(error);
+        });
+    }
+
+    function addGroups(group){
+      var load = "addmemgroups";
+      if(action === "modfiy"){
+        load = "updatememgroups";
+      }
+      var groupBody = {
+        load : load,
+        id : memberId,
+        group : group
+      }
+      groupBody = JSON.stringify(groupBody);
+      var groupRequestOptions = {
+        method : "POST",
+        redirect : "follow",
+        headers : myHeaders,
+        body : groupBody
+      }
+      fetch("../../ws/Memberprofile.php", groupRequestOptions)
+        .then( response => response.json())
+        .then( result => {
+          console.log(result);
+        })
+        .catch( error =>{
+          console.log(error);
+        });
+    }
+    function addBusinessData(category){
+      console.log(category);
+      //send business profile details
+      var logo = "";
+      var banner ="";
+      var load = "addEntry";
+      var pincode = 0;
+      let formdata = new FormData();
+      //uploadig files if exists
+      var logoElement = category.querySelector('#memberLogo-cat');
+      var bannerElement = category.querySelector('#memberBanner-cat');
+      if(logoElement.files.length > 0){
+          formdata.set("file" , logoElement.files[0]);
+          fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
+          logo = `../../uploads/`+logoElement.files[0].name;
+      }
+      if(bannerElement.files.length > 0){
+          formdata.set("file" , bannerElement.files[0]);
+          fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
+          banner = `../../uploads/`+bannerElement.files[0].name;
+      }
+      if(action === "modify"){
+        //check for existence of business profile if not then load is add
+        //load by number all business profiles
+        var loadProfile = {
+          load : "loadbynumber",
+          id : memberId
+        }
+        loadProfile = JSON.stringify(loadProfile);
+        var loadRequestOptions = {
+          method :"POST",
+          redirect : "follow",
+          headers : myHeaders,
+          body : loadProfile
+        }
+        fetch("../../ws/businessprofile.php",loadRequestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          if(Array.isArray(result)){
+              result.forEach(item =>{
+                if(item.category === category.dataset.category){
+                  load = "modify";
+                }
+              })
+          }
+          else {
+            load = "add";
+          }
+        })
+        .then(()=>{
+          sendData();
+        })
+        .catch(error =>{console.log(error);});
+        //if category matches then load is update else load is add
+      }
+      function sendData(){
+        if(category.querySelector('#businessPincode-cat').value != ""){
+          pincode = parseInt(category.querySelector('#businessPincode-cat').value);
+        }
+        var businessProfileData = {
+          load : load,
+          id : memberId,
+          Name : category.querySelector('#businessName-cat').value,
+          desc : category.querySelector('#businessDescription-cat').value,
+          Address : category.querySelector('#businessCommAddress-cat').value,
+          pincode : pincode,
+          City : category.querySelector('#businessCity-cat').value,
+          category : category.dataset.category,
+          status : 1,
+          logo : logo,
+          banner : banner
+        };
+        console.log(businessProfileData);
+        businessProfileData = JSON.stringify(businessProfileData);
+        var businessProfileRequestOptions = {
+          method : "POST",
+          headers : myHeaders,
+          redirect : "follow",
+          body : businessProfileData
+        }
+        fetch("../../ws/businessprofile.php",businessProfileRequestOptions)
+        .then(response => response.json())
+        .then(result =>{
+          console.log(result);
+          var contactContainer = document.getElementById(category.id+`Contacts`);
+          var contacts = contactContainer.children;
+          contacts = Array.from(contacts);
+          contacts.forEach((contact)=>{
+            addContactDetails(contact,category.dataset.category);
+          })
+        })
+        .catch(error =>{
+          console.log(error);
+        });
+      } 
+    }
+    function addContactDetails(contact,category){
+      if(action === "modify"){
+        updateContacts();
+      }else{
+        insertContacts();
+      }
+      //updating existing contacts
+      function updateContacts(){
+        //clear previous data
+        var clearData = {
+          load : "clearmemcontacts",
+          id : memberId,
+          category
+        }
+        console.log(clearData);
+        clearData = JSON.stringify(clearData);
+        var clearRequestOptions = {
+          method : "POST",
+          redirect : "follow",
+          headers : myHeaders,
+          body : clearData
+        }
+        fetch("../../ws/businessprofile.php",clearRequestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          insertContacts();
+        })
+        .catch(error =>{console.log(error);});
+        //clear prev data
+      }
+      //adding new contacts
+      function insertContacts(){
+        var load = "addmemcontacts";
+        if( action === "modify"){
+          laod = "updatememcontacts";
+        }
+        var contactData = {
+          load : load,
+          id : memberId,
+          contactdetails : contact.querySelector('#contactDetail').value,
+          contacttype : contact.querySelector('#contacttype').value,
+          category : category
+        };
+        console.log(contactData);
+        contactData = JSON.stringify(contactData);
+        var contactRequestOptions = {
+          method : "POST",
+          headers : myHeaders,
+          redirect : "follow",
+          body : contactData
+        };
+        fetch("../../ws/businessprofile.php", contactRequestOptions)
+        .then(response => response.json())
+        .then( result => {
+          console.log(result);
+        })
+        .catch(error =>{
+          console.log(error);
+        });
+      }
+    }
+    
+  </script>
+
+</body>
+
+</html>

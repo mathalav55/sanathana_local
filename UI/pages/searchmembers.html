@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta name="description"
+    content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+  <meta name="keywords"
+    content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+  <meta name="author" content="PIXINVENT">
+  <title>Search Members</title>
+  <link rel="apple-touch-icon" href="../../app-assets/images/ico/apple-icon-120.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../../app-assets/images/ico/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
+    rel="stylesheet">
+
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
+  
+  <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
+  <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap-extended.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/colors.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/components.css">
+
+
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/core/menu/menu-types/horizontal-menu.css">
+  <link rel="stylesheet" type="text/css" href="../../app-assets/css/pages/dashboard-ecommerce.css">
+
+
+
+
+
+  <link rel="icon" href="img/core-img/favicon.png" />
+
+
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <link rel="stylesheet" type="text/css" href="css/custom.css" />
+
+
+  <script src="js/modernizr.js"></script>
+  <style>
+    .hide{
+      display: none;
+    }
+    #memberCard{
+        height: 80vh;
+        overflow-x: scroll;
+    }
+    #memberCard::-webkit-scrollbar{
+        display: none;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+    <header class="headroom mb-4" >
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
+            <a href="./admin.html"><img src="../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
+            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+
+            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
+                <ul class="navbar-nav mr-auto " id="Tnavlist ">
+
+                </ul>
+                <ul class="float-right navbar-nav" id="profileContainer">
+
+                </ul>
+                    
+
+            </div>
+        </nav>
+
+
+    </header>
+  <div class="body-container">
+      <!-- row 1 search box -->
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 col-12 ">
+                <!-- search bar -->
+                <input type="search" class="form-control rounded-right form-control-lg shadow pl-2" id="searchBar"
+                placeholder="Search">
+            </div>
+            <div class="col-md-3 col-12">
+                <!-- search button -->
+                <button class="btn btn-primary search-btn rounded" type="button">
+                    <span class="d-none d-sm-block">Search</span>
+                  </button>
+            </div>
+        </div>
+        <div class="row justify-content-start col-md-12" id="memberCard" style="margin-top:30px">
+           
+        </div>
+       
+      <!-- next per row 3 profile cards -->
+  </div>
+
+
+  <script src="js/jquery-2.2.4.min.js"></script>
+
+  <script src="js/headroom.js"></script>
+
+  <script src="js/popper.min.js"></script>
+
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src="js/plugins.js"></script>
+
+  <script src="js/active.js"></script>
+
+  <script src="js/jquery.mobile.custom.min.js"></script>
+
+  <script src="js/main.js"></script>
+
+  <script src="../../app-assets/vendors/js/vendors.min.js"></script>
+  <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
+  <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
+  <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
+
+  <script src="../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+
+  <script src="../../app-assets/js/scripts/configs/horizontal-menu.js"></script>
+  <script src="../../app-assets/js/core/app-menu.js"></script>
+  <script src="../../app-assets/js/core/app.js"></script>
+  <script src="../../app-assets/js/scripts/components.js"></script>
+  <script src="../../app-assets/js/scripts/footer.js"></script>
+  <script src="../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
+  <script src="../index.html"></script>
+  <script src="../../js/globalFuntions.js"></script>
+  <script>
+    //fetch data from api
+    var myHeaders = new Headers();
+  // myHeaders.append("Content-Type ", "text/plain ");
+  // myHeaders.append("Cookie ", "PHPSESSID=a147dbe2815c8b7145c6f2ca214f3716 ");
+
+  
+
+    var profileList = [];
+    auth();
+    loadProfiles(); 
+    search();
+    function search(){
+        var searchBar = document.getElementById('searchBar');
+        searchBar.addEventListener('keyup' , (e)=>{
+            console.log(e.target.value);
+            const searchString = e.target.value.toLowerCase();
+            const filteredProfiles = profileList.filter( profile =>{
+                return (
+                    profile.Name.toLowerCase().includes(searchString) 
+                );
+            })
+            console.log(filteredProfiles);
+            displayMembers(filteredProfiles);
+        })
+    }
+    async function loadProfiles(){
+        var requestMemeberBody ={
+            load : "loadallMemdata"
+        }
+        requestMemeberBody = JSON.stringify(requestMemeberBody);
+        var requestMemberOptions = {
+            method : "POST",
+            headers : myHeaders,
+            redirect : "follow",
+            body  : requestMemeberBody
+        }
+        var memberCard = document.getElementById('memberCard');
+        try{
+            const response = await  fetch("../../ws/Memberprofile.php" , requestMemberOptions).then(response => response.json());
+            if(Array.isArray(response)){
+                profileList = response;
+                displayMembers(response);
+            }
+            else{
+                loadEmptyState();
+            }
+        }  
+        catch(error){
+            console.log(error);
+        }      
+    }
+    async function loadEmptyState(){
+        var mainSection = document.querySelector('.body-container');
+        var empty = document.createElement('div');
+        var button = `<div class="col-6 text-center">
+                        <a href="./main.html" class="btn btn-primary">Add members</a>
+                    </div>`;
+        empty.innerHTML = `
+                    <div class="row align-items-center justify-content-around">
+                        <div class="col-4">
+                            <img src="#" alt="" id="emptyImage" width="100%">
+                            <h4 class="text-center">No Members</h4>
+                        </div>
+                        `+button+`
+                </div>`;
+        empty = await emptyState(empty,myHeaders);
+        mainSection.innerHTML = "";
+        mainSection.appendChild(empty);
+    }
+    function displayMembers(profiles){
+        console.log(profiles);
+        //get profile card body
+        const cardHtml = (profiles)
+            .map((profile) =>{
+                if(profile.photo == ""){
+                    if(profile.gender === "Male"){
+                        profile.photo = "../../images/emptystates/male.png"
+                    }else{
+                        profile.photo = "../../images/emptystates/female.png"
+                    }
+                }
+                var status = "bg-success";
+                if(profile.status == 0){
+                    status = "bg-warning"
+                }
+                return `
+                <div class="col-md-4">
+            <div class="card text-right" style="margin-bottom: 10px; ">
+                <div class="card-header col `+status+`">
+                        <div class="row justify-content-between mr-2 ml-2">
+                            <h4 class="card-title text-white text-left">
+                                `+profile.Name+`
+                            </h4>
+                            <a href="./member_form.html?action=modify&memberId=`+profile.userid+`">
+                                <span class="material-icons onlyAdmin" style="color:#fff">
+                                        edit
+                                </span>
+                            </a>
+                        </div>
+                </div>
+                <div class="card-body py-1 ">
+                    <div class="row justify-content-between mb-1">
+                      <img src="`+profile.photo+`" alt="" height="100px" width="100px">
+
+                      </div>
+                      <div class="row col-md-12 mb-1 justify-content-between">
+                          <span class="material-icons">
+                              phone
+                          </span></a>
+                          <span>
+                              `+profile.userid+`
+                          </span>
+                    </div>
+                    <div class="row col-md-12 mb-1 justify-content-between">
+                        <span class="">
+                            Gender
+                        </span>
+                        <span>
+                            `+profile.gender+`
+                        </span>
+                    </div>
+                    <div class="row col-md-12 mb-1  justify-content-between">
+                        <span class="">
+                            Gothram
+                        </span>
+                        <span>
+                            `+profile.gothram+`
+                        </span>
+                    </div>
+                    <div class="row col-md-12 justify-content-between">
+                        <span class="">
+                            Date Of Birth
+                        </span>
+                        <span>
+                            `+profile.Dob+`
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+            `;   
+        }).join('');
+        var memberCard = document.getElementById('memberCard');
+        memberCard.innerHTML = cardHtml;
+    }
+    </Script>
+
+    
+</body>
+
+</html>

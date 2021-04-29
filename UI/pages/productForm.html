@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Add Product</title>
+    <link rel="apple-touch-icon" href="../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
+    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/components.css">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/core/menu/menu-types/horizontal-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/pages/dashboard-ecommerce.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
+
+
+
+
+    <link rel="icon" href="../img/core-img/favicon.png" />
+
+
+    <link rel="stylesheet" href="../css/responsive.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+
+
+    <script src="../js/modernizr.js"></script>
+
+    <style>
+        .banner{
+            height: 200px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ***** Header Area Start ***** -->
+    <!-- <section> -->
+    <header class="headroom">
+
+
+        <div class="row headroom-top-row bg-primary px-0 py-0" style="height: 35px;">
+            <div class="col-9">
+                <h4 class="text-white pl-1">Sanathana Entrepreneurs Association</h4>
+            </div>
+            <div class="col-3 text-right">
+                <div class="d-flex justify-content-around">
+                    <div class=" text-white">Contact Us</div>
+                    <!-- <div class=" text-right"> -->
+                    <span class="float-right">
+              <div class="badge-light-info mx-auto  text-white  ">
+              <i class="bx bxl-facebook-square font-medium-5"></i>
+            </div>
+          </span>
+                    <span class="float-right">
+             
+                <div class="badge-light-info mx-auto text-white ">
+                <i class="bx bxl-twitter font-medium-5"></i>
+              </div>
+            
+            </span>
+
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+    <!-- </section> -->
+    <div class="row mt-3">
+
+    </div>
+    <div class="row mt-1 justify-content-center" id="memberForm_one">
+        <div class="col-6">
+          <form class="form form-horizontal">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header bg-primary">
+                      <h4 class="card-title text-white">Product Details</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label for="name">Product Name</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <input type="text" id="name" class="form-control" name="fname" placeholder="Product Name">
+                        </div>
+                        <div class="col-md-4">
+                          <label for="desc">Description</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <textarea type="text" id="desc" class="form-control" name="fname" placeholder="Description"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="doc">Document</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <div class="input-group">
+                            <input  type="file" class="form-control" id="productDoc">
+                            <label class="input-group-text" for="productDoc">Upload</label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="videoUrl">Video Url</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <input type="text" id="videoUrl" class="form-control" name="video" placeholder="URL">
+                        </div> 
+                        <div class="col-md-12 mb-2 col-12  d-flex justify-content-end ">
+                            <button type="button" class="btn btn-primary mr-1" id="saveBtn" onclick="saveProduct()">Save </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+          </form>
+        </div>
+       
+        
+      </div>
+    <!-- ***** Footer Area End ***** -->
+    <!-- Start of Async Drift Code -->
+    <script>
+        "use strict";
+
+        !(function() {
+            var t = (window.driftt = window.drift = window.driftt || []);
+            if (!t.init) {
+                if (t.invoked) return void(window.console && console.error && console.error("Drift snippet included twice."));
+                (t.invoked = !0),
+                (t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"]),
+                (t.factory = function(e) {
+                    return function() {
+                        var n = Array.prototype.slice.call(arguments);
+                        return n.unshift(e), t.push(n), t;
+                    };
+                }),
+                t.methods.forEach(function(e) {
+                        t[e] = t.factory(e);
+                    }),
+                    (t.load = function(t) {
+                        var e = 3e5,
+                            n = Math.ceil(new Date() / e) * e,
+                            o = document.createElement("script");
+                        (o.type = "text/javascript"),
+                        (o.async = !0),
+                        (o.crossorigin = "anonymous"),
+                        (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
+                        var i = document.getElementsByTagName("script")[0];
+                        i.parentNode.insertBefore(o, i);
+                    });
+            }
+        })();
+        drift.SNIPPET_VERSION = "0.3.1";
+        drift.load("6ashbsefxhx7");
+    </script>
+    <!-- End of Async Drift Code -->
+    <!-- ***** App Screenshots Area End *****====== -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i["GoogleAnalyticsObject"] = r;
+            (i[r] =
+                i[r] ||
+                function() {
+                    (i[r].q = i[r].q || []).push(arguments);
+                }),
+            (i[r].l = 1 * new Date());
+            (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+
+        ga("create", "UA-96096445-4", "auto");
+        ga("send", "pageview");
+    </script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
+    <!-- Jquery-2.2.4 JS -->
+    <script src="../js/jquery-2.2.4.min.js"></script>
+    <!-- Headroom js -->
+    <script src="../js/headroom.js"></script>
+    <!-- Popper js -->
+    <script src="../js/popper.min.js"></script>
+    <!-- Bootstrap-4 Beta JS -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="js/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="../js/active.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/main.js"></script>
+    <script src=""></script>
+    <script src="../../app-assets/vendors/js/vendors.min.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="./app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="../../app-assets/js/scripts/configs/horizontal-menu.js"></script>
+    <script src="../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../app-assets/js/core/app.js"></script>
+    <script src="../../app-assets/js/scripts/components.js"></script>
+    <script src="../../app-assets/js/scripts/footer.js"></script>
+    <!-- END: Theme JS-->
+    <!-- Headroom -->
+   <script>
+     //get business profile id and category from url
+     var myheaders = new Headers();
+     var category = "";
+     var memberid = "";
+     function getUrlData(){
+      const params = (new URL(document.location)).searchParams;
+        if(params.get('category')){
+            category = params.get('category');
+            console.log(category);
+        }
+        if(params.get('memberid')){
+          memberid = params.get('memberid');
+          console.log(memberid);
+        }
+     }
+     getUrlData();
+     async function saveProduct(){
+        var prodcutDetails = {
+           name : "",
+           desc : "",
+           doc : "",
+           video : "",
+        }
+        var productDoc = document.getElementById('productDoc');
+        if(productDoc.files[0]){
+          var date = new Date();
+          date = date.getTime();
+          var newFileName = date + productDoc.files[0].name;
+          var formdata = new FormData();
+          formdata.set("file" , productDoc.files[0] , newFileName);
+          await fetch("../../upload.php" , {method : "POST" , body : formdata});
+          prodcutDetails.doc = `../../uploads/`+ newFileName;
+        }
+        prodcutDetails.name =  document.getElementById('name').value;
+        prodcutDetails.desc = document.getElementById('desc').value;
+        prodcutDetails.video = document.getElementById('videoUrl').value;
+        //api
+        var prodData = {
+          id : memberid,
+          load : "addproducts",
+          category : category,
+          prodname : prodcutDetails.name,
+          prodDesc : prodcutDetails.desc,
+          prodbroucher : prodcutDetails.doc,
+          prodvideo : prodcutDetails.video
+        }
+        console.log(prodData);
+        prodData = JSON.stringify(prodData);
+        var productRequestOptions = {
+          method : "POST",
+          redirect : "follow",
+          headers : myheaders,
+          body : prodData
+        }
+        fetch("../../ws/businessprofile.php",productRequestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          location.reload();
+        })
+        .catch(error =>{console.log(error);});
+     }
+   </script>
+</body>
+
+</html>

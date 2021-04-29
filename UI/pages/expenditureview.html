@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Reports</title>
+    <link rel="apple-touch-icon" href="../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
+    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/components.css">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/core/menu/menu-types/horizontal-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/pages/dashboard-ecommerce.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
+
+
+
+
+    <link rel="icon" href="../img/core-img/favicon.png" />
+
+
+    <link rel="stylesheet" href="../css/responsive.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+
+
+    <script src="../js/modernizr.js"></script>
+
+    <style>
+        .main-section{
+            height: 100vh;
+        }
+        .profile-cards{
+            height: 80vh;
+            overflow-y: scroll;
+        }
+        .active{
+            color: #5a8dee;
+        }
+        #business-image{
+            width: auto;
+            height: 100px;
+        }
+        .profile-cards::-webkit-scrollbar{
+            display: none;
+        }
+        .search-background{
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ***** Header Area Start ***** -->
+    <!-- <section> -->
+        <header class="headroom mb-4" >
+
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
+                <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width" alt="Brand Logo " /></a>
+                <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
+            <span class="navbar-toggler-icon "></span>
+          </button>
+    
+                <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
+                    <ul class="navbar-nav mr-auto " id="Tnavlist ">
+    
+                    </ul>
+                    <ul class="float-right navbar-nav" id="profileContainer">
+    
+                    </ul>
+                        
+    
+                </div>
+            </nav>
+    
+    
+        </header>
+    <!-- </section> -->
+
+    <section>
+        <div class="container-fluid bg-white float-left" style="width:100% !important;">
+            
+            
+        </div>
+    </section>
+    <div class="main-section ml-4 mr-4" style="margin-top: 2%;">
+        <div class="row">
+            <div class="col-md-4" style="height: 100vh;">
+                <div class="side-bar card">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h3 class="">
+                                
+                            </h3>
+                        </div>
+                        <div class="col" id="menuContainer">
+                            <a href="" class="btn btn-warning">No menu available</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="search-bar">
+                    <div class="card">
+                        <div class="row card-body justify-content-between">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="month" class="form-control" name="" id="date">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="active">
+                                            <option>Active</option>
+                                            <option>Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row justify-content-end">
+                                    <div class="col">
+                                        <!-- <button type="button" class="btn btn-primary mr-1" id="">Search</button> -->
+                                    </div>
+                                    <div class="col" id="newbtn">
+                                        <a href="./expenditureForm.html?action=add&">
+                                            <button type="button" class="btn btn-primary mr-1" id="leftmenuvalue">no data</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="report-cards">
+                    
+                    
+                </div>               
+            </div>
+        </div>
+        
+       
+        
+    </div>
+    <!-- ***** Footer Area End ***** -->
+    <!-- Start of Async Drift Code -->
+    <script>
+        "use strict";
+
+        !(function() {
+            var t = (window.driftt = window.drift = window.driftt || []);
+            if (!t.init) {
+                if (t.invoked) return void(window.console && console.error && console.error("Drift snippet included twice."));
+                (t.invoked = !0),
+                (t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"]),
+                (t.factory = function(e) {
+                    return function() {
+                        var n = Array.prototype.slice.call(arguments);
+                        return n.unshift(e), t.push(n), t;
+                    };
+                }),
+                t.methods.forEach(function(e) {
+                        t[e] = t.factory(e);
+                    }),
+                    (t.load = function(t) {
+                        var e = 3e5,
+                            n = Math.ceil(new Date() / e) * e,
+                            o = document.createElement("script");
+                        (o.type = "text/javascript"),
+                        (o.async = !0),
+                        (o.crossorigin = "anonymous"),
+                        (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
+                        var i = document.getElementsByTagName("script")[0];
+                        i.parentNode.insertBefore(o, i);
+                    });
+            }
+        })();
+        drift.SNIPPET_VERSION = "0.3.1";
+        drift.load("6ashbsefxhx7");
+    </script>
+    <!-- End of Async Drift Code -->
+    <!-- ***** App Screenshots Area End *****====== -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i["GoogleAnalyticsObject"] = r;
+            (i[r] =
+                i[r] ||
+                function() {
+                    (i[r].q = i[r].q || []).push(arguments);
+                }),
+            (i[r].l = 1 * new Date());
+            (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+
+        ga("create", "UA-96096445-4", "auto");
+        ga("send", "pageview");
+    </script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
+    <!-- Jquery-2.2.4 JS -->
+    <script src="../js/jquery-2.2.4.min.js"></script>
+    <!-- Headroom js -->
+    <script src="../js/headroom.js"></script>
+    <!-- Popper js -->
+    <script src="../js/popper.min.js"></script>
+    <!-- Bootstrap-4 Beta JS -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="js/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="../js/active.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/main.js"></script>
+
+    <script src="../../app-assets/vendors/js/vendors.min.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="./app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="../../app-assets/js/scripts/configs/horizontal-menu.js"></script>
+    <script src="../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../app-assets/js/core/app.js"></script>
+    <script src="../../app-assets/js/scripts/components.js"></script>
+    <script src="../../app-assets/js/scripts/footer.js"></script>
+    <script src="../../js/globalFuntions.js"></script>
+    <!-- END: Theme JS-->
+    <!-- Headroom -->
+
+    <script>
+    var myHeaders = new Headers();
+    var userData = {};
+    var nonFilteredReports =[];
+    var leftFilteredReports = [];
+    var dateFilteredReports = [];
+    var activeFilteredReports = [];
+    var authRequestOptions = {
+        method : "POST",
+        redirect : "follow",
+        headers : myHeaders,
+        body : ""
+    }
+    fetch("../../ws/auth.php",authRequestOptions)
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+        userData = result;
+    })
+    .catch(error =>{console.log(error);});
+    auth();
+    function loadLeftMenu(){
+        var menuContainer = document.getElementById('menuContainer');
+        var leftData = {
+            load : "loadbyparent",
+            id : "leftmenu"
+        };
+        leftData = JSON.stringify(leftData);
+        var leftRequestOptions = {
+            method : "POST",
+            redirect : "follow",
+            headers : myHeaders,
+            body : leftData
+        }
+        fetch("../../ws/Accessconfig.php",leftRequestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            if(Array.isArray(result)){
+                var options = "";
+                result.forEach(item =>{
+                    if(item.status == "0"){
+                        return
+                    }
+                    options += `<div class="row m-2 ">
+                                    <div class="radio">
+                                        <input type="radio" class="btn btn-primary left-item" id="`+item.ContentName+`"  value="`+item.ContentName+`" name="left-item">
+                                        <label for="`+item.ContentName+`"><h4>`+item.ContentName+`</h3></label>
+                                    </div>
+                                </div>`
+                })
+                menuContainer.innerHTML = options;
+
+            }
+        })
+        .then(()=>{
+            //get all left menu values
+            //get the active one value and add it to btn
+            var options = document.querySelectorAll('.left-item');
+            options = Array.from(options);
+            console.log(options);
+            options.forEach(option =>{
+                option.addEventListener('click', ()=>{
+                    var btn = ``;
+                    var newbtn = document.getElementById('newbtn');
+                    if(option.checked){
+                        // console.log(option.value);
+                        btn = `<a href="./expenditureForm.html?action=add&leftmenu=`+option.value+`">
+                                            <button type="button" class="btn btn-primary mr-1" id="leftmenuvalue">Add `+option.value+`</button>
+                                </a>`;
+                        newbtn.innerHTML = btn; 
+                    }
+                })
+                
+            });
+            // options[0].click();
+            
+        })
+        .then(()=>{
+            loadReports();
+        })
+        .catch(error =>{console.log(error);});
+
+    }
+    async function loadEmptyState(){
+        var mainSection = document.querySelector('.main-section');
+        var empty = document.createElement('div');
+        var button = `<div class="col-6 text-center">
+                        <a href="./main.html" class="btn btn-primary">Add Expenditure</a>
+                    </div>`;
+        empty.innerHTML = `<div class="row align-items-center justify-content-around">
+            <div class="col-4">
+                <img src="#" alt="" id="emptyImage">
+                <h4 class="text-center">No Expenditures</h4>
+            </div>
+            `+button+`
+        </div>`;
+        empty = await emptyState(empty,myHeaders);
+        mainSection.innerHTML = "";
+        mainSection.appendChild(empty);
+    }
+    // loadEmptyState();
+    loadLeftMenu();
+    function loadReports(){
+        //call this function after left menu is loaded
+        
+        var data = {
+            load : "loadall"
+        }
+        data = JSON.stringify(data);
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        fetch("../../ws/reports.php", requestOption )
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            if(Array.isArray(result)){
+               nonFilteredReports = result;
+               globalFilters();
+               //add event listener for left filter
+               var leftItems = document.querySelectorAll('.left-item');
+               leftItems = Array.from(leftItems);
+               leftItems.forEach(item =>{
+                   item.addEventListener('click',()=>{
+                       if(item.checked){
+                           leftFilter(item.value);
+                       }
+                   })
+               })
+               document.querySelector('.left-item').click();
+               //date filter
+               var date = document.getElementById('date');
+               date.addEventListener('change',()=>{
+                   console.log("change");
+                   dateFilter(date.value);
+               });
+               //active filter
+               var active = document.getElementById('active');
+               active.addEventListener('change',()=>{
+                   var status = (active.value == "Active") ? "1" : "0";
+                   activeFilter(status);
+               })
+
+            }
+        })
+        .catch(error =>{console.log(error);});
+    }
+    function nodoc(){
+        alert('document is not uploaded');
+    }
+    function changeStatus(id){
+        var status = 1;
+        var element = document.getElementById(`active-`+id);
+        if(element.classList.contains('active')){
+            element.classList.remove('active');
+            status = 0;
+        }else{
+            element.classList.add('active');
+            status = 1;
+        }
+        var data = {
+            "load": "changestatus",
+            "id" : id,
+            "status" : status
+        }
+        data = JSON.stringify(data);
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        fetch("../../ws/reports.php", requestOption )
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            alert("status updated");
+        }).catch(error =>{console.log(error);});
+        
+    }
+    function leftFilter(leftmenuid){
+        console.log(leftmenuid);
+        //called when left menu data is changed
+        //takes left menu id as argument
+        //filters non filtered list according to left menu id and updates filtered list
+        //show reports give arg filtered list
+        var result = nonFilteredReports.filter(report =>{
+            return(
+                report.leftmenuid == leftmenuid
+            );
+        })
+        console.log(result);
+        leftFilteredReports = result;
+        dateFilteredReports = leftFilteredReports;
+        showReports(leftFilteredReports);
+    }
+    function dateFilter(date){
+        //called when date is changed
+        //operates on filtered values
+        var result = leftFilteredReports.filter(report =>{
+            var reportDate = report.createddate.slice(0,7);
+            return(
+                reportDate == date
+            );
+        })
+        dateFilteredReports = result;
+        showReports(dateFilteredReports);
+    }
+    function activeFilter(status){
+        //called when value is changed on drop down
+        //operates on top filtered values
+        var result = dateFilteredReports.filter(report =>{
+            return(
+                report.status == status
+            );
+        })
+        activeFilteredReports = result;
+        showReports(activeFilteredReports);
+    }
+    function globalFilters(){
+        //admin filter
+        if(userData.admin == "0"){
+            var result = [];
+            result = nonFilteredReports.filter(report =>{
+                    return (
+                        report.admin == "0" 
+                    );
+            })
+            nonFilteredReports = result;
+            var data = {
+                load : "loadmemgroups",
+                id : userData.memberId
+            }
+            data = JSON.stringify(data);
+            var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+            fetch("../../ws/Memberprofile.php", requestOption )
+            .then(response => response.json()).
+            then(result => {
+                console.log(result);
+                var userGroups = [];
+                if(Array.isArray(result)){
+                    for(var i in result){
+                        userGroups[i] = result[i].ContentName;
+                    }
+                    console.log(userGroups);
+                    result = nonFilteredReports.filter(report =>{
+                        var reportGroups = report.visibility.split(',');
+                        var flag = false;
+                        reportGroups.forEach(group=>{
+                            if(userGroups.includes(group)){
+                                flag = true;
+                            }
+                        })
+                        return flag;
+                    })
+                    nonFilteredReports = result;
+                    console.log(result);
+                    showReports(nonFilteredReports);
+                    
+                }else{
+                    alert('You must be in atleast one group to view reports');
+                    window.location = './dashBoard.html';
+                }
+            }).catch(error =>{console.log(error);});
+        }else{
+            showReports(nonFilteredReports);
+        }
+    }
+    function showReports(reports){
+        console.log(reports);
+        var reportCards = document.querySelector('.report-cards');
+        if(reports.length > 0){
+            // load profiles
+            var cardHtml = "";
+            reports.forEach(report =>{
+                var adminIcon = "";
+                var active = "active";
+                if(report.document == ""){
+                    report.document = "javascript:nodoc()";
+                }
+                if(report.admin == "1"){
+                            
+                    adminIcon = `<div class="col">
+                        <span class="material-icons active">
+                                                security
+                                            </span>
+                        </div>`;
+                }else{
+                    report.admin = "";
+                }
+                if(report.status == "0"){
+                    active = "";
+                }
+                cardHtml += `<div class="card">
+                        <div class="row card-body align-items-center">
+                            <div class="col">
+                                `+report.Name+`
+                            </div>
+                            <div class="col">
+                                `+report.createddate+`
+                            </div>
+                            <div class="col">
+                                `+report.Description+`
+                            </div>
+                            <div class="col text-center">
+                                <label style="font-weight:bold">Created by</label>
+                                <br/>
+                                `+report.createdby+`
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                `+adminIcon+`  
+                                    <div class="col">
+                                        <a href="`+report.document+`" target="_blank">
+                                            <span class="material-icons">
+                                                download
+                                            </span>
+                                            <span class="material-icons"  style="display: none;">
+                                                visibility_off 
+                                            </span>
+                                        </a>
+                                        
+                                    </div>
+                                    <div class="col">
+                                            <span class="material-icons `+active+`" id="active-`+report.id+`" onclick="changeStatus(`+report.id+`)">
+                                                thumb_up
+                                            </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+            reportCards.innerHTML = cardHtml;
+        }else{
+            //load empty state
+            reportCards.innerHTML = "";
+        }
+    }
+    </script>
+</body>
+
+</html>

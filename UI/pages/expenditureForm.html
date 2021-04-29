@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Repotrs Form</title>
+    <link rel="apple-touch-icon" href="../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/components.css">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/core/menu/menu-types/horizontal-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/pages/dashboard-ecommerce.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
+
+
+
+
+    <link rel="icon" href="../img/core-img/favicon.png" />
+
+
+    <link rel="stylesheet" href="../css/responsive.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+
+
+    <script src="../js/modernizr.js"></script>
+
+    <style>
+        .banner{
+            height: 200px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ***** Header Area Start ***** -->
+    <!-- <section> -->
+      <header class="headroom mb-4" >
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
+            <a href="./admin.html "><img src="../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
+            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+
+            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
+                <ul class="navbar-nav mr-auto " id="Tnavlist ">
+
+                </ul>
+                <ul class="float-right navbar-nav" id="profileContainer">
+
+                </ul>
+                    
+
+            </div>
+        </nav>
+
+
+    </header>
+    <!-- </section> -->
+    <div class="row mt-1 justify-content-center" id="memberForm_one">
+        <div class="col-6 ">
+          <form class="form form-horizontal">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header bg-primary">
+                      <h4 class="card-title text-white text-center" id="reportname">Report</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label for="name">Report Name</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <input type="text" id="name" class="form-control" name="fname" placeholder="Report Name">
+                        </div>
+                        <div class="col-md-4">
+                          <label for="desc">Description</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <textarea type="text" id="desc" class="form-control" name="fname" placeholder="Description"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="doc">Upload Document</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <div class="input-group">
+                            <input  type="file" class="form-control" id="doc">
+                            <label class="input-group-text" for="doc">Upload</label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="">Status</label>
+                        </div>
+                        <div class="col-md-8">
+                          <ul class="list-unstyled mb-0">
+                            <li class="d-inline-block mr-2 mb-1">
+                              <fieldset>
+                                <div class="radio">
+                                  <input type="radio" name="activeStatus" id="active" checked>
+                                  <label for="active">Active</label>
+                                </div>
+                              </fieldset>
+                            </li>
+                            <li class="d-inline-block mr-2 mb-1">
+                              <fieldset>
+                                <div class="radio">
+                                  <input type="radio" name="activeStatus" id="inactive">
+                                  <label for="inactive">Inactive</label>
+                                </div>
+                              </fieldset>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="">Admin</label>
+                        </div>
+                        <div class="col-md-8">
+                          <ul class="list-unstyled mb-0">
+                            <li class="d-inline-block mr-2 mb-1">
+                              <fieldset>
+                                <div class="radio">
+                                  <input type="radio" name="admin" id="admin" >
+                                  <label for="admin">Yes</label>
+                                </div>
+                              </fieldset>
+                            </li>
+                            <li class="d-inline-block mr-2 mb-1">
+                              <fieldset>
+                                <div class="radio">
+                                  <input type="radio" name="admin" id="nonadmin">
+                                  <label for="nonadmin">No</label>
+                                </div>
+                              </fieldset>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="status">Groups</label>
+                        </div>
+                        <div class="col-md-8 ">
+                          <ul class="list-unstyled mb-0 groups">
+                            
+                            
+                          </ul>
+                        </div>
+                        <div class="col-md-12 mb-2 col-12  d-flex justify-content-end ">
+                            <button type="button" class="btn btn-primary mr-1" id="savebtn" onclick="saveform()">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+          </form>
+        </div>
+       
+        
+      </div>
+    <!-- ***** Footer Area End ***** -->
+    <!-- Start of Async Drift Code -->
+    <script>
+        "use strict";
+
+        !(function() {
+            var t = (window.driftt = window.drift = window.driftt || []);
+            if (!t.init) {
+                if (t.invoked) return void(window.console && console.error && console.error("Drift snippet included twice."));
+                (t.invoked = !0),
+                (t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"]),
+                (t.factory = function(e) {
+                    return function() {
+                        var n = Array.prototype.slice.call(arguments);
+                        return n.unshift(e), t.push(n), t;
+                    };
+                }),
+                t.methods.forEach(function(e) {
+                        t[e] = t.factory(e);
+                    }),
+                    (t.load = function(t) {
+                        var e = 3e5,
+                            n = Math.ceil(new Date() / e) * e,
+                            o = document.createElement("script");
+                        (o.type = "text/javascript"),
+                        (o.async = !0),
+                        (o.crossorigin = "anonymous"),
+                        (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
+                        var i = document.getElementsByTagName("script")[0];
+                        i.parentNode.insertBefore(o, i);
+                    });
+            }
+        })();
+        drift.SNIPPET_VERSION = "0.3.1";
+        drift.load("6ashbsefxhx7");
+    </script>
+    <!-- End of Async Drift Code -->
+    <!-- ***** App Screenshots Area End *****====== -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i["GoogleAnalyticsObject"] = r;
+            (i[r] =
+                i[r] ||
+                function() {
+                    (i[r].q = i[r].q || []).push(arguments);
+                }),
+            (i[r].l = 1 * new Date());
+            (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+
+        ga("create", "UA-96096445-4", "auto");
+        ga("send", "pageview");
+    </script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
+    <!-- Jquery-2.2.4 JS -->
+    <script src="../js/jquery-2.2.4.min.js"></script>
+    <!-- Headroom js -->
+    <script src="../js/headroom.js"></script>
+    <!-- Popper js -->
+    <script src="../js/popper.min.js"></script>
+    <!-- Bootstrap-4 Beta JS -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="js/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="../js/active.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/main.js"></script>
+    <script src=""></script>
+    <script src="../../app-assets/vendors/js/vendors.min.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="./app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="../../app-assets/js/scripts/configs/horizontal-menu.js"></script>
+    <script src="../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../app-assets/js/core/app.js"></script>
+    <script src="../../app-assets/js/scripts/components.js"></script>
+    <script src="../../app-assets/js/scripts/footer.js"></script>
+    <script src="../../js/globalFuntions.js"></script>
+    <!-- END: Theme JS-->
+    <!-- Headroom -->
+   <script>
+      var myHeaders = new Headers();
+      var leftmenuid = "";
+      var action = "";
+      auth();
+      var userData = {};
+      var authRequestOptions = {
+          method : "POST",
+          redirect : "follow",
+          headers : myHeaders,
+          body : ""
+      }
+      fetch("../../ws/auth.php",authRequestOptions)
+      .then(response => response.json())
+      .then(result => {
+          console.log(result);
+          userData = result;
+      })
+      .catch(error =>{console.log(error);});
+     function getURLData(){
+        const params = (new URL(document.location)).searchParams;
+        if(params.get('action')){
+          action = params.get('action');
+        }
+        if(params.get('leftmenu')){
+          leftmenuid = params.get('leftmenu');
+        }
+        console.log(action);
+        console.log(leftmenuid);
+        var reportname = document.getElementById('reportname');
+        reportname.textContent = leftmenuid;
+     }
+     async function saveform(){
+       //get data
+       var docfile = document.getElementById('doc');
+       var docpath = "";
+       if(docfile.files.length > 0){
+          var date = new Date();
+          date = date.getTime();
+          var formdata = new FormData();
+          var newFileName = date + docfile.files[0].name;
+          formdata.set("file" , docfile.files[0] , newFileName);
+          await fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
+          docpath = `../../uploads/`+ newFileName;
+      }
+      var status = (document.getElementById("active").checked) ? 1 : 0; 
+      var admin = (document.getElementById("admin").checked) ? 1 : 0;
+      var visibilityList = [];
+      var groupvalues = document.querySelectorAll('.group-values');
+      groupvalues = Array.from(groupvalues);
+      groupvalues.forEach(group =>{
+        if(group.checked){
+          visibilityList.push(group.value);
+        }
+      })
+      var d = new Date();
+      var date = ``+d.getFullYear()+`-`+d.getMonth()+`-`+d.getDate()+``;
+      visibilityList = visibilityList.join(',');
+      console.log(visibilityList);
+      var data = {
+        "load" : "add",
+        "name" : document.getElementById("name").value,
+        "desc" : document.getElementById("desc").value,
+        "doc" : docpath,
+        "status" : status,
+        "leftid" : leftmenuid,
+        "visibility" : visibilityList,
+        "admin" : admin,
+        "id" : 0,
+        "createdby" : userData.memberId,
+        "createddate" : date
+      }
+      console.log(data);
+      data = JSON.stringify(data);
+      
+      var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+      fetch("../../ws/reports.php", requestOption )
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        window.location = "./expenditureview.html";
+      }).catch(error =>{console.log(error);});
+       //save data
+     }
+     function init(){
+        getURLData();
+        loadGroups();
+     }
+     function loadGroups(){
+       var data = {
+         load : "loadbyparent",
+         id : "groups"
+       }
+       data = JSON.stringify(data);
+       var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+       fetch("../../ws/Accessconfig.php", requestOption )
+       .then(response => response.json())
+       .then(result => {
+         console.log(result);
+         if(Array.isArray(result)){
+           var groups = document.querySelector('.groups');
+           var html = "";
+           result.forEach(item =>{
+              html += `<li class="d-inline-block mr-2 mb-1">
+                            <div class="checkbox">
+                              <input type="checkbox" class="group-values" name="" id="`+item.ContentName+`" value="`+item.ContentName+`">
+                              <label for="`+item.ContentName+`">`+item.ContentName+`</label>
+                            </div>
+                        </li>`;
+           })
+           groups.innerHTML = html;
+           console.log(groups);
+         }
+        }).catch(error =>{console.log(error);});
+     }
+     init();
+   </script>
+</body>
+
+</html>

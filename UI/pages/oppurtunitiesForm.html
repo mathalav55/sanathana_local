@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Oppurtunities  Form</title>
+    <link rel="apple-touch-icon" href="../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
+    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/components.css">
+
+
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/core/menu/menu-types/horizontal-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../app-assets/css/pages/dashboard-ecommerce.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
+
+
+
+
+    <link rel="icon" href="../img/core-img/favicon.png" />
+
+
+    <link rel="stylesheet" href="../css/responsive.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+
+
+    <script src="../js/modernizr.js"></script>
+
+    <style>
+        .banner{
+            height: 200px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ***** Header Area Start ***** -->
+    <!-- <section> -->
+      <header class="headroom " style="margin-bottom: 30px; ">
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
+            <a href="./admin.html "><img src="../images/emptystates/logo.jpg" class="img-fluid logo-width " alt="Brand Logo " /></a>
+            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+
+            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
+                <ul class="navbar-nav mr-auto " id="Tnavlist ">
+
+                </ul>
+                <ul class="float-right " id="profileContainer">
+                   
+                </ul>
+
+            </div>
+        </nav>
+
+
+    </header>
+    <!-- </section> -->
+    <div class="row mt-1 justify-content-center" id="memberForm_one">
+        <div class="col-6 ">
+          <form class="form form-horizontal">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header bg-primary">
+                      <h4 class="card-title text-white text-center">Oppurtunity Form</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label for="desc">Refer By</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <input type="text" id="referby" class="form-control" name="fname" placeholder="Name">
+                        </div>
+                        <!-- <div class="col-md-4">
+                          <label for="name">Refer To</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <select name="refer" id="referto" class="form-control">
+                            <option value=""></option>
+                          </select>
+                        </div> -->
+                        <div class="col-md-4">
+                          <label for="leadname">Lead Name</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <input type="" list="leads" id="leadname" class="form-control" name="fname" placeholder="Name" autocomplete="off">
+                          <datalist id="leads">
+                          </datalist>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="leadname">Lead Contact Details</label>
+                        </div>
+                        <div class="col-md-6" id="contacts">
+
+                        </div>
+                        <div class="col-md-2 form-group text-right">
+                          <button type="button" class="btn-primary btn" id="addcontact" onclick="addContactElement()">Add</button>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="amt">Amount</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <input type="number" id="amt" class="form-control" name="fname" placeholder="Amount">
+                        </div>
+                        <div class="col-md-4">
+                          <label for="ptamt">Potential Amount</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <input type="number" id="ptamt" class="form-control" name="fname" placeholder="Amount">
+                        </div>
+                        <div class="col-md-4">
+                          <label for="status">Status</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                          <select class="form-control" id="status">
+                              <option>In Progress</option>
+                              <option>Done</option>
+                              <option>Not Done</option>
+                              <option>Valid</option>
+                          </select>
+                        </div>
+                        
+                        <div class="col-md-12 mb-2 col-12  d-flex justify-content-end ">
+                            <button type="button" class="btn btn-primary mr-1" id="saveBtn">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+          </form>
+        </div>
+       
+        
+      </div>
+    <!-- ***** Footer Area End ***** -->
+    <!-- Start of Async Drift Code -->
+    <script>
+        "use strict";
+
+        !(function() {
+            var t = (window.driftt = window.drift = window.driftt || []);
+            if (!t.init) {
+                if (t.invoked) return void(window.console && console.error && console.error("Drift snippet included twice."));
+                (t.invoked = !0),
+                (t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"]),
+                (t.factory = function(e) {
+                    return function() {
+                        var n = Array.prototype.slice.call(arguments);
+                        return n.unshift(e), t.push(n), t;
+                    };
+                }),
+                t.methods.forEach(function(e) {
+                        t[e] = t.factory(e);
+                    }),
+                    (t.load = function(t) {
+                        var e = 3e5,
+                            n = Math.ceil(new Date() / e) * e,
+                            o = document.createElement("script");
+                        (o.type = "text/javascript"),
+                        (o.async = !0),
+                        (o.crossorigin = "anonymous"),
+                        (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
+                        var i = document.getElementsByTagName("script")[0];
+                        i.parentNode.insertBefore(o, i);
+                    });
+            }
+        })();
+        drift.SNIPPET_VERSION = "0.3.1";
+        drift.load("6ashbsefxhx7");
+    </script>
+    <!-- End of Async Drift Code -->
+    <!-- ***** App Screenshots Area End *****====== -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i["GoogleAnalyticsObject"] = r;
+            (i[r] =
+                i[r] ||
+                function() {
+                    (i[r].q = i[r].q || []).push(arguments);
+                }),
+            (i[r].l = 1 * new Date());
+            (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+
+        ga("create", "UA-96096445-4", "auto");
+        ga("send", "pageview");
+    </script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
+    <!-- Jquery-2.2.4 JS -->
+    <script src="../js/jquery-2.2.4.min.js"></script>
+    <!-- Headroom js -->
+    <script src="../js/headroom.js"></script>
+    <!-- Popper js -->
+    <script src="../js/popper.min.js"></script>
+    <!-- Bootstrap-4 Beta JS -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="js/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="../js/active.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <!-- Resource jQuery -->
+    <script src="../js/main.js"></script>
+    <script src=""></script>
+    <script src="../../app-assets/vendors/js/vendors.min.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="./app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="../../app-assets/js/scripts/configs/horizontal-menu.js"></script>
+    <script src="../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../app-assets/js/core/app.js"></script>
+    <script src="../../app-assets/js/scripts/components.js"></script>
+    <script src="../../app-assets/js/scripts/footer.js"></script>
+    <!-- END: Theme JS-->
+    <!-- Headroom -->
+   <script>
+     var myHeaders = new Headers();
+     var action = "";
+     var id = "";
+     function getURLData(){
+        const params = (new URL(document.location)).searchParams;
+        if(params.get('action')){
+          action = params.get('action');
+        }
+        if(params.get('id')){
+          id = params.get('id');
+        }
+        console.log(action);
+        console.log(id);
+     }
+     getURLData();
+     function auth(){
+        var authRequestOptions = {
+        method : "POST",
+        redirect : "follow",
+        headers : myHeaders,
+        body : ""
+        }
+        fetch("../../ws/auth.php",authRequestOptions)
+        .then(response => response.json())
+        .then(result => {
+        console.log(result);
+        if(result.status === "Not Logged In"){
+            //redirect to login screen
+            window.open("http://localhost/sea_dev/ui/login.html","_self");
+        }else{
+                userData = result;
+                loadProfile();
+                // loadGroups();
+                loadNavItems();
+                loadForm();
+        }
+        })
+        .catch(error =>{console.log(error);});
+    }
+    function loadProfile(){
+        console.log(userData);
+        var profileContainer = document.getElementById('profileContainer');
+        if(userData.photo === ""){
+            if(userData.gender === "Male")
+                userData.photo = "../../images/emptystates/male.png";
+            else
+                userData.photo = "../../images/emptystates/female.png";
+        }
+        profileContainer.innerHTML = `<li class="dropdown dropdown-user nav-item float-right">
+                        <a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                          <div class="user-nav d-sm-flex d-none">
+                            <span class="user-name text-bold-600" style="color: #fff;">`+userData.name+`</span>
+                            
+                          </div>
+                          <span>
+                            <img class="round" src="`+userData.photo+`" alt="avatar" height="40" width="40">
+                          </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" href="javascript:void(0);">
+                            <i class="bx bx-power-off mr-50"></i>
+                            <span onclick="logOut()"> Logout</span>
+                          </a>
+                        </div>
+                      </li>`;
+    }
+    function loadGroups(){
+        var memberdData = {
+            load : "loadbyparent",
+            id : "groups"
+        }
+        memberdData = JSON.stringify(memberdData);
+        var memeberRequestOptions = {
+            method : "POST",
+            redirect : "follow",
+            headers : myHeaders,
+            body : memberdData
+        }
+        fetch("../../ws/Accessconfig.php",memeberRequestOptions)
+        .then(response => response.json())
+        .then(result => {
+            var options = document.getElementById('referto');
+            console.log(result);
+            if(Array.isArray(result)){
+                var optionHtml = "";
+                result.forEach((member)=>{
+                    optionHtml = optionHtml + `<option value="`+member.ContentName+`">`+member.ContentName+`</option>`;
+                })
+                options.innerHTML = optionHtml;
+            }
+        })
+        .catch(error =>{console.log(error);});
+    }
+    function loadForm(){
+      //disable refer by from always refer by is name of login person
+      var saveBtn = document.getElementById('saveBtn');
+      if(action === "update"){
+        console.log("update");
+        //get refferal data from the db
+        //load it into form
+        saveBtn.textContent = "Update";
+        var data = {
+          load : 'loadbynumber',
+          id : parseInt(id)
+        }
+        console.log(data);
+        data = JSON.stringify(data);
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        fetch("../../ws/oppurtunities.php", requestOption)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          
+            //target from elements
+            //add data to them
+            var referData = result;
+            var referby = document.getElementById('referby');
+            referby.value = referData.id.referby;
+            referby.disabled = true;
+            var amt = document.getElementById('amt');
+            amt.value = referData.data.referralamnt;
+            var ptamt = document.getElementById('ptamt');
+            ptamt.value = referData.data.finalamnt;
+            var status = document.getElementById('status');
+            status.value = referData.data.status;
+            var leadname = document.getElementById('leadname');
+            leadname.value = referData.data.contactname;
+            //loading contact details
+            loadContactDetails(referData.data.masterid);
+            //updating form
+            saveBtn.addEventListener('click', ()=>{
+              console.log(id);
+              saveOppurtunity(referData.data.id,referData.data.masterid);
+            })
+          
+        })
+        .catch(error =>{console.log(error);});
+      }else{
+        var referby = document.getElementById('referby');
+        referby.value = userData.name;
+        referby.disabled = true;
+        var status = document.getElementById('status');
+        status.value = "Valid";
+        status.disabled = true;
+        var addcontact = document.getElementById('addcontact');
+        addcontact.click();
+        saveBtn.addEventListener('click', ()=>{
+        saveOppurtunity(0,0);
+      })
+      }
+      //refer to is a drop down select member names fom it
+      //if request is coming from view peofile page then autofill refer to  and disable it
+      
+    }
+    function saveOppurtunity(id,masterid){
+      //get form data 
+      //make an object ready
+      console.log('saving refferal');
+      var load =  "addentry";
+      if(action === "update"){
+        load = "update";
+      }
+      var data = {
+        id: parseInt(id),//for updation purpose
+        load : load,
+        referid : userData.memberId,
+        name : document.getElementById("leadname").value,
+        refferalamnt : parseInt(document.getElementById("amt").value),
+        finalamnt : parseInt(document.getElementById("ptamt").value),
+        status : document.getElementById("status").value
+      }
+      console.log(data);
+      data = JSON.stringify(data);
+      var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+      fetch("../../ws/oppurtunities.php",requestOption)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        // window.location = "./oppurtunityView.html";
+        if(action == "update"){
+          result.masterid = masterid;
+        }
+        return result.masterid;
+      })
+      .then((idmaster)=>{
+        //add contacts  in loop
+        var contacts = document.querySelectorAll('.repeaterItem');
+        console.log(contacts);
+        contacts = Array.from(contacts);
+        if(contacts.length > 0){
+          var flag = false;
+          for(var i in contacts){
+            if( i == (contacts.length - 1)){
+              flag = true;
+            }
+            addContactDetails(idmaster,contacts[i],flag);
+          }
+        }else{
+            window.location = "./oppurtunityView.html";
+        }
+      })
+      .catch(error =>{console.log(error);});
+      
+    }
+    function addContactDetails(id,contact,flag){
+      console.log(id);
+      //get id
+      //clear existing contats in case of update
+      if(action == "update"){
+        clearContacts(id).then(result =>{
+          if(result){
+            addContact();
+          }
+        })
+      }else{
+        addContact();
+      }
+      //add new contacts given
+      function addContact(){
+        var data = {
+          load : "addcontacts",
+          masterid : id,
+          contactdetail : contact.querySelector('#contactDetail').value,
+          contacttype : contact.querySelector('#contacttype').value
+        }
+        data = JSON.stringify(data);
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        fetch("../../ws/refferals.php",requestOption)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          if(flag){
+            window.location = "./oppurtunityView.html";
+          }
+        })
+        .catch(error =>{console.log(error);});
+      }
+    }
+    async function clearContacts(id){
+      console.log(id);
+      var data = {
+        id : id,
+        load : "clearcontacts"
+      }
+      data = JSON.stringify(data);
+      var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+      try{
+        var result = await fetch("../../ws/refferals.php",requestOption).then(response => response.json());
+        if(result.status == "Cleared all contacts"){
+          return true;
+        }else{
+          return false;
+        }
+      }catch(error) {console.log(error);return false;}
+    }
+    function loadNavItems(){
+        var rawMenu = "{\"load\":\"loadbyparent\",\"id\":\"Menu\"} ";
+        var requestOptionsMenu = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow',
+        body : rawMenu
+        };
+        fetch("../../ws/Accessconfig.php ", requestOptionsMenu)
+        .then(response => response.json())
+        .then(result => {
+            const navData =  result;
+            
+            var navhtml = '';
+            for (var i in navData) {
+                    console.log(navData[i].urlredirection);
+                    // if(navData[i].urlredirection === ""){
+                    //     navData[i].urlredirection = "#";
+                    // }
+                    if(navData[i].status == "0")
+                        continue;
+                    if(userData.admin == "0" && navData[i].ContentName == "Admin") continue
+                    navhtml = navhtml + `<li class="nav-item active">
+                                <a class="nav-link " href="`+navData[i].urlredirection+`">` + navData[i].ContentName + `</a>
+                            </li>`;
+            }
+            
+            
+            document.getElementById("Tnavlist ").innerHTML = navhtml;
+        })
+        .catch(error => console.log('error', error));
+    }
+    function loadContactDetails(id){
+      //load details using master id
+      //click add btn array times and add existing detail each time
+      var data = {
+        load : "loadcontacts",
+        id : parseInt(id)
+      }
+      console.log(data);
+      data = JSON.stringify(data);
+      var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+      fetch("../../ws/refferals.php",requestOption)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        if(Array.isArray(result)){
+          var addcontact = document.getElementById('addcontact');
+          result.forEach(item=>{
+            addcontact.click();
+          })
+          var contacts = document.querySelectorAll('.repeaterItem');
+          contacts = Array.from(contacts);
+          if(contacts.length > 0){
+           for(var i in contacts){
+             contacts[i].querySelector('#contactDetail').value = result[i].contactdetails;
+             contacts[i].querySelector('#contacttype').value = result[i].contacttype;
+           }
+
+          }
+        }
+      })
+      .catch(error =>{console.log(error);});
+    }
+    function logOut(){
+        console.log('logout intiated'); 
+        var logoutRequestOptions = {
+            method : "POST",
+            redirect : "follow",
+            headers  : myHeaders,
+            body : ""
+        };
+        fetch("../../ws/logout.php",logoutRequestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            //redirect to home page
+            window.open("http://localhost/sea_dev/ui/","_self");
+            })
+        .catch(error =>{
+            console.log(error);
+            alert("There was an error loggin you out Please try again")
+            });
+    }
+    function addContactElement(){
+        var repeaterItem = document.createElement("div");
+        var repeaterItemRow = document.createElement("div");
+        var textBoxContainer = document.createElement("div");
+        var selectorContainer = document.createElement("div");
+        var deleteBtnContainer = document.createElement("div");
+        var textBoxLabel = document.createElement("label");
+        var textBox = document.createElement("input");
+        var selectorLabel = document.createElement("label");
+        var selector = document.createElement("select");
+        function createSelectorOptions(){
+            //fetch types names form api
+            var contactData = {
+              load : "loadbyparent",
+              id : "contacttypes"
+            }
+            contactData = JSON.stringify(contactData);
+            var contactRequestOptions =  {
+              method :"POST",
+              redirect : "follow",
+              headers : myHeaders,
+              body : contactData
+            }
+            fetch("../../ws/Accessconfig.php",contactRequestOptions).
+            then(response => response.json())
+            .then(result => {
+              console.log(result);
+              if(Array.isArray(result)){
+                    result.forEach((type)=>{
+                        var selectorOption = document.createElement("option");
+                        selectorOption.innerHTML = type.ContentName;
+                        selectorOption.value = type.ContentName;
+                        selector.appendChild(selectorOption);
+                    });
+              }else{
+                console.log("no data");
+              }
+            })
+            .catch(error =>{console.log(error);}); 
+            
+        }
+        var button = document.createElement("button");
+        var buttonIcon = document.createElement("i");
+        //add attributes to each element
+        repeaterItem.setAttribute('class',`repeaterItem`);
+        repeaterItemRow.setAttribute('class','row justify-content-between');
+        textBoxContainer.setAttribute('class','col-md-6 col-sm-12 form-group');
+        textBoxLabel.setAttribute('for','contactDetail');
+        textBoxLabel.innerHTML = "Contact Detail";
+        textBox.setAttribute('type','text');
+        textBox.setAttribute('class','form-control');
+        textBox.setAttribute('id','contactDetail');
+        textBox.setAttribute('palceholder','Enter Details');
+        selectorContainer.setAttribute('class','col-md-4 col-sm-12 form-group');
+        selectorLabel.setAttribute('for','contactType');
+        selector.setAttribute('name','contactType');
+        selector.setAttribute('id','contacttype');
+        selector.setAttribute('class','form-control');
+        createSelectorOptions();
+        deleteBtnContainer.setAttribute('class','col-md-2 col-sm-12 form-group d-flex align-items-center pt-2');
+        button.setAttribute('class','btn btn-danger text-nowrap px-1');
+        button.setAttribute('type','button');
+        button.setAttribute('id','deleteBtn');
+        button.innerHTML = "Delete";
+
+        //create element structure
+        textBoxContainer.appendChild(textBoxLabel);
+        textBoxContainer.appendChild(textBox);
+
+        selectorContainer.appendChild(selectorLabel);
+        selectorContainer.appendChild(selector);
+
+        button.appendChild(buttonIcon);
+        deleteBtnContainer.appendChild(button);
+
+        repeaterItemRow.appendChild(textBoxContainer);
+        repeaterItemRow.appendChild(selectorContainer);
+        repeaterItemRow.appendChild(deleteBtnContainer);
+
+        repeaterItem.appendChild(repeaterItemRow);
+        document.getElementById('contacts').appendChild(repeaterItem);
+        button.addEventListener('click',()=>{
+          document.getElementById('contacts').removeChild(repeaterItem);
+        })
+    }
+    auth();
+   </script>
+</body>
+
+</html>
