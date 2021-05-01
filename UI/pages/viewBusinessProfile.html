@@ -91,7 +91,7 @@
     <header class="headroom mb-4" >
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-            <a href="./admin.html "><img src="../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
+            <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
             <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
         <span class="navbar-toggler-icon "></span>
       </button>
@@ -136,7 +136,7 @@
                 <img src="../images/emptystates/logo.jpg" alt=""  class="logo" id="logoImage">
             </div>
             <div class="col-8">
-                <div class="row justify-content-end" class="onlyAdmin">
+                <div class="row justify-content-end onlyAdmin">
                     <button class="btn btn-primary mr-1" data-toggle="modal" data-target="#businessForm" >Edit Profile</button>
                     <div class="modal fade text-left" id="businessForm" tabindex="-1"  aria-hidden="true" style="display: none; width:50% ; top : 25%; left:25%">
                         <div class="modal-dialog modal-dialog-scrollable">
@@ -164,7 +164,7 @@
                           </div>
                         </div>
                     </div>
-                    <button onclick="prodcutForm()" class="btn btn-primary mr-1">Add Products</button>
+                    <button onclick="prodcutForm()" class="btn btn-primary mr-1 onlyAdmin">Add Products</button>
                 </div>
             </div>
         </div>
@@ -378,7 +378,7 @@
     <script src="../../app-assets/js/core/app.js"></script>
     <script src="../../app-assets/js/scripts/components.js"></script>
     <script src="../../app-assets/js/scripts/footer.js"></script>
-    <script src="../js/globalFuntions.js"></script>
+    <script src="../../js/globalFuntions.js"></script>
     <!-- END: Theme JS-->
     <!-- Headroom -->
     <script>
@@ -386,7 +386,32 @@
         //fetch this data from url
         var memberId;
         var category;
-        auth();
+        var userData = {}
+        async function profile(){
+            var authRequestOptions = {
+            method : "POST",
+            redirect : "follow",
+            headers : myHeaders,
+            body : ""
+            }
+            var result = await fetch("../../ws/auth.php",authRequestOptions)
+            .then(response => response.json());
+            return result;
+        }
+        async function loadData(){
+            try{
+                profile().then(response =>{
+                    userData = response;
+                    console.log(userData);
+                    if(userData.status == "Logged In")
+                        auth();
+                })
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        loadData();
         getUrlData();
         function getUrlData(){
             const params = (new URL(document.location)).searchParams;
@@ -402,7 +427,7 @@
             loadProducts();
         }
         function prodcutForm(){
-            var url = `http://localhost/sea_dev/ui/productform.html?category=`+category+`&memberid=`+memberId+``;
+            var url = `./productform.html?category=`+category+`&memberid=`+memberId+``;
             window.location=url;
         }
         function loadProducts(){
@@ -428,7 +453,16 @@
                 console.log(result);
                 if(Array.isArray(result)){
                     var productCard = "";
+                    
                     result.forEach(item =>{
+                        var broucher = item.broucher;
+                        var video = item.video;
+                        if(broucher == ""){
+                            broucher = "javascript:void(0)";
+                        }
+                        if(video == ""){
+                            video = "javasript:void(0)";
+                        }
                         productCard +=  `<div class="card">
                             <div class="row card-body justify-content-between">
                                     <div class="col text-left">
@@ -438,14 +472,14 @@
                                         `+item.Description+`
                                     </div>
                                     <div class="col text-right">
-                                        <a href="`+item.broucher+`">
+                                        <a href="`+broucher+`">
                                             <span class="material-icons">
                                                 picture_as_pdf
                                             </span>
                                         </a>
                                     </div>
                                     <div class="col text-right">
-                                        <a href="`+item.video+`">
+                                        <a href="`+video+`">
                                             <span class="material-icons">
                                                 play_circle
                                             </span>
@@ -523,10 +557,10 @@
                                 }
                             }
                             if(profile.banner === ""){
-                                profile.banner = "../images/emptystates/banner.jpg";
+                                profile.banner = "../../images/emptystates/banner.jpg";
                             }
                             if(profile.logo === ""){
-                                profile.logo = "../images/emptystates/logo.jpg";
+                                profile.logo = "../../images/emptystates/logo.jpg";
                             }
                             bannerImage.setAttribute('src',profile.banner);
                             logoImage.setAttribute('src',profile.logo)
@@ -543,7 +577,7 @@
                     });
                     //fetch groups data and add to inner html
                     var groupBody = {
-                        load : "loadmemchapters",
+                        load : "loadmemgroups",
                         id : memberId
                     }
                     groupBody = JSON.stringify(groupBody);

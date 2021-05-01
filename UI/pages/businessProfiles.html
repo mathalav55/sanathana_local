@@ -271,6 +271,9 @@
         try{
             profile().then(response =>{
                 userData = response;
+                console.log(userData);
+                if(userData.status == "Logged In")
+                    auth();
                 loadProfiles();
             })
         }
@@ -388,7 +391,7 @@
         var referBtn = "";
         if(userData.status === "Logged In"){
             referBtn = `<button class="btn btn-primary mr-1">Refer</button>`;
-            if(userData.admin == 0)
+            if(userData.admin == 1)
                 editBtn = `<button class="btn btn-primary mr-1">Edit Profile</button>`;
         }
         console.log(profiles);

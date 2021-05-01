@@ -38,6 +38,7 @@ else if($rcvData == "addEntry")
   $updatedby = $data['updatedby'];
   $updateddate = $data['updateddate'];
   $status = $data['status'];
+  $emptystateimg = $data['emptystateimg'];
   insert_masters($conn);
 }
 else
@@ -59,6 +60,7 @@ else
   $updatedby = $data['updatedby'];
   $updateddate = $data['updateddate'];
   $status = $data['status'];
+  $emptystateimg = $data['emptystateimg'];
   update_masters($conn);
 }
 
@@ -115,8 +117,8 @@ function load_masterdatabyname($conn)
 
 function insert_masters($conn)
 {
-  global $ContentName,$Alias_Name,$parent_id,$access_to,$urlredirection,$iconpath,$header,$content,$imagepath,$videopath,$createdby,$createddate,$updatedby,$updateddate,$status;
-  $insertUpdateQuery = "insert INTO `acessconfig`(`ContentName`, `Alias_Name`, `parent_id`, `access_to`, `urlredirection`, `iconpath`, `header`, `content`, `imagepath`, `videopath`,`status`,`createdby`, `createddate`, `updatedby`, `updateddate`) VALUES ('$ContentName','$Alias_Name','$parent_id','$access_to','$urlredirection','$iconpath','$header','$content','$imagepath','$videopath','$status','$createdby','$createddate','$updatedby','$updateddate')";
+  global $ContentName,$Alias_Name,$parent_id,$access_to,$urlredirection,$iconpath,$header,$content,$imagepath,$videopath,$createdby,$createddate,$updatedby,$updateddate,$status,$emptystateimg;
+  $insertUpdateQuery = "insert INTO `acessconfig`(`ContentName`, `Alias_Name`, `parent_id`, `access_to`, `urlredirection`, `iconpath`, `header`, `content`, `imagepath`, `videopath`,`status`,`createdby`, `createddate`, `updatedby`, `updateddate`,`emptystateimg`) VALUES ('$ContentName','$Alias_Name','$parent_id','$access_to','$urlredirection','$iconpath','$header','$content','$imagepath','$videopath','$status','$createdby','$createddate','$updatedby','$updateddate','$emptystateimg')";
   $returndata = setData($conn, $insertUpdateQuery);
   //echo json_encode("Added Succesfully");
   if($returndata == "Record created")
@@ -133,13 +135,13 @@ function insert_masters($conn)
 
 function update_masters($conn)
 {
-  global $id,$ContentName,$Alias_Name,$parent_id,$access_to,$urlredirection,$iconpath,$header,$content,$imagepath,$videopath,$createdby,$createddate,$updatedby,$updateddate,$status;
+  global $id,$ContentName,$Alias_Name,$parent_id,$access_to,$urlredirection,$iconpath,$header,$content,$imagepath,$videopath,$createdby,$createddate,$updatedby,$updateddate,$status,$emptystateimg;
 
   $slqry = "select * FROM `acessconfig` WHERE `id` = '$id'";
   $tempdata = getdata($conn, $slqry);
   if(count($tempdata) >0)
   {
-    $insertUpdateQuery = "Update `acessconfig` SET `ContentName`='$ContentName' ,`Alias_Name`='$Alias_Name',`parent_id`='$parent_id',`access_to`='$access_to',`urlredirection`='$urlredirection',`iconpath`='$iconpath',`header`='$header',`content`='$content',`imagepath`='$imagepath',`videopath`='$videopath',`status` = '$status',`createdby`='$createdby',`createddate`='$createddate',`updatedby`='$updatedby',`updateddate`='$updateddate' WHERE `id` = '$id'";
+    $insertUpdateQuery = "Update `acessconfig` SET `ContentName`='$ContentName' ,`Alias_Name`='$Alias_Name',`parent_id`='$parent_id',`access_to`='$access_to',`urlredirection`='$urlredirection',`iconpath`='$iconpath',`header`='$header',`content`='$content',`imagepath`='$imagepath',`videopath`='$videopath',`status` = '$status',`createdby`='$createdby',`createddate`='$createddate',`updatedby`='$updatedby',`updateddate`='$updateddate',`emptystateimg` = '$emptystateimg' WHERE `id` = '$id'";
     $returndata = setData($conn, $insertUpdateQuery);
     if($returndata == "Record created")
     {

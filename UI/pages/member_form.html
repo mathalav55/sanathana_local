@@ -518,8 +518,8 @@
           .then(response => response.json())
           .then(result =>{
             console.log(result);
-            var status  = (parseInt(result[0].status) == 1)? true : false;
-            var admin = (parseInt(result[0].admin) == 1)? true : false;
+            var status  = (parseInt(result[0].status) == "1")? true : false;
+            var admin = (parseInt(result[0].admin) == "1")? true : false;
             console.log(status);
             document.getElementById("memberId").value = result[0].userid;
             document.getElementById("name").value = result[0].Name;
@@ -1025,7 +1025,8 @@
               var groups = [];
               var groupsHtml = "";
               for(var i in result){
-                groups.push(result[i].ContentName);
+                if(result[i].status == "1")
+                  groups.push(result[i].ContentName);
               }
               for(var i in groups){
                 groupsHtml = groupsHtml + `<li class="d-inline-block mr-2 mb-1">
@@ -1066,9 +1067,9 @@
           .then(result =>{
             console.log(result);
             for(var i in result){
-              if(result[i].prime == 1){
+              if(result[i].prime == "1"){
                 primaryChapter = result[i].ContentName;
-              }else if(result[i].prime == 0){
+              }else if(result[i].prime == "0"){
                 secondaryChapters.push(result[i].ContentName);
               }
             }

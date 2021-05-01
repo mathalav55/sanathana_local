@@ -493,7 +493,7 @@
         var template = document.createElement('div');
         template.innerHTML = `<div class="row">
                                 <div class="col-8">
-                                    <div class="rowjustify-content-center">
+                                    <div class="row justify-content-center">
                                         <img src="#" id="emptyImage" alt="">
                                     </div>
                                     <div class="row justify-content-center">
@@ -501,7 +501,7 @@
                                     </div>
                                 </div>
                             </div>`;
-        template = await emptyState(template);
+        template = await emptyState(template,"Oppurtunities");
         section.appendChild(template);
     }
     function getInboundOppurtunities(id){
@@ -664,6 +664,8 @@
     }
     auth();
     // loadNavItems();
+   
 </script>
+
 
 </html>

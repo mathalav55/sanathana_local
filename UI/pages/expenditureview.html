@@ -333,7 +333,6 @@
                 })
                 
             });
-            // options[0].click();
             
         })
         .then(()=>{
@@ -342,23 +341,7 @@
         .catch(error =>{console.log(error);});
 
     }
-    async function loadEmptyState(){
-        var mainSection = document.querySelector('.main-section');
-        var empty = document.createElement('div');
-        var button = `<div class="col-6 text-center">
-                        <a href="./main.html" class="btn btn-primary">Add Expenditure</a>
-                    </div>`;
-        empty.innerHTML = `<div class="row align-items-center justify-content-around">
-            <div class="col-4">
-                <img src="#" alt="" id="emptyImage">
-                <h4 class="text-center">No Expenditures</h4>
-            </div>
-            `+button+`
-        </div>`;
-        empty = await emptyState(empty,myHeaders);
-        mainSection.innerHTML = "";
-        mainSection.appendChild(empty);
-    }
+    
     // loadEmptyState();
     loadLeftMenu();
     function loadReports(){
@@ -376,30 +359,6 @@
             if(Array.isArray(result)){
                nonFilteredReports = result;
                globalFilters();
-               //add event listener for left filter
-               var leftItems = document.querySelectorAll('.left-item');
-               leftItems = Array.from(leftItems);
-               leftItems.forEach(item =>{
-                   item.addEventListener('click',()=>{
-                       if(item.checked){
-                           leftFilter(item.value);
-                       }
-                   })
-               })
-               document.querySelector('.left-item').click();
-               //date filter
-               var date = document.getElementById('date');
-               date.addEventListener('change',()=>{
-                   console.log("change");
-                   dateFilter(date.value);
-               });
-               //active filter
-               var active = document.getElementById('active');
-               active.addEventListener('change',()=>{
-                   var status = (active.value == "Active") ? "1" : "0";
-                   activeFilter(status);
-               })
-
             }
         })
         .catch(error =>{console.log(error);});
@@ -477,7 +436,7 @@
             var result = [];
             result = nonFilteredReports.filter(report =>{
                     return (
-                        report.admin == "0" 
+                        report.admin != "1" 
                     );
             })
             nonFilteredReports = result;
@@ -509,7 +468,30 @@
                     })
                     nonFilteredReports = result;
                     console.log(result);
-                    showReports(nonFilteredReports);
+                    //add event listener for left filter
+                    var leftItems = document.querySelectorAll('.left-item');
+                    leftItems = Array.from(leftItems);
+                    leftItems.forEach(item =>{
+                        item.addEventListener('click',()=>{
+                            if(item.checked){
+                                leftFilter(item.value);
+                            }
+                        })
+                    });
+                    document.querySelector('.left-item').click();
+                    //date filter
+                    var date = document.getElementById('date');
+                    date.addEventListener('change',()=>{
+                        console.log("change");
+                        dateFilter(date.value);
+                    });
+                    //active filter
+                    var active = document.getElementById('active');
+                    active.addEventListener('change',()=>{
+                        var status = (active.value == "Active") ? "1" : "0";
+                        activeFilter(status);
+                    })
+                    // showReports(nonFilteredReports);
                     
                 }else{
                     alert('You must be in atleast one group to view reports');
@@ -517,7 +499,7 @@
                 }
             }).catch(error =>{console.log(error);});
         }else{
-            showReports(nonFilteredReports);
+            // showReports(nonFilteredReports);
         }
     }
     function showReports(reports){
@@ -589,8 +571,24 @@
             reportCards.innerHTML = cardHtml;
         }else{
             //load empty state
-            reportCards.innerHTML = "";
+            empty(reportCards);
         }
+    }
+    async function empty(section){
+        section.innerHTML = "";
+        var template = document.createElement('div');
+        template.innerHTML = `<div class="row">
+                                <div class="col-8">
+                                    <div class="row justify-content-center">
+                                        <img src="#" id="emptyImage" alt="" style="width:50%">
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <h4 >No Reports</h4>
+                                    </div>
+                                </div>
+                            </div>`;
+        template = await emptyState(template,"Reports");
+        section.appendChild(template);
     }
     </script>
 </body>

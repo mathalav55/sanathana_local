@@ -305,6 +305,13 @@
                           </div>
                           <div class="col-md-6 col-12">
                             <div class="form-label-group">
+                                <input type="file" id="emptyImagePath" class="form-control" 
+                                  placeholder="Upload Image" name="imageUpload">
+                                <label for="emptyImagePath">Empty Image</label>
+                              </div>
+                          </div>
+                          <div class="col-md-6 col-12">
+                            <div class="form-label-group">
                                 <input type="file" id="videoPath" class="form-control" 
                                   placeholder="Upload Video" name="videUpload">
                                   <label for="videoPath">Video</label>
@@ -736,6 +743,7 @@ function openAddForm(id,number,parentName,action){
         console.log("clicked save")
         var id = saveBtn.dataset.id;
         onFormSubmit(id,selfId,parentId,action,event);
+        
     });
 }
 
@@ -766,6 +774,7 @@ function onFormSubmit(id,selfId,parentId,action,event){
     var updateDate  ="";
     var updatedBy = "";
     var createdBy = "";
+    var emptyImageUrl = "";
 
     if(action === "update"){
         //do update actions
@@ -791,6 +800,12 @@ function onFormSubmit(id,selfId,parentId,action,event){
     var date = new Date();
     date = date.getTime();
     //uploadig files if exists
+    if(emptyImagePath.files.length > 0){
+        var newEmptyImageName = date + emptyImagePath.files[0].name;
+        formdata.set("file" , emptyImagePath.files[0] , newEmptyImageName);
+        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
+        emptyImageUrl = `../../uploads/`+newEmptyImageName;
+    }
     if(videoPath.files.length > 0){
         
         var newVideoName = date + videopath.files[0].name;
@@ -803,7 +818,8 @@ function onFormSubmit(id,selfId,parentId,action,event){
         formdata.set("file" , iconPath.files[0] , newIconName);
         fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
         iconUrl = `../../uploads/`+ newIconName;
-    }if(imagePath.files.length > 0){
+    }
+    if(imagePath.files.length > 0){
         var newImageName = date + imagePath.files[0].name;
         formdata.set("file" , imagePath.files[0] , newImageName);
         fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
@@ -826,7 +842,8 @@ function onFormSubmit(id,selfId,parentId,action,event){
         createdby: "admin",
         createddate: date,
         updatedby: "",
-        updateddate: "",
+        updateddate: date,
+        emptystateimg : emptyImageUrl,
         status: status
     };
     console.log(data);

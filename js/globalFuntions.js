@@ -1,8 +1,10 @@
-async function emptyState(section,myheaders){
+async function emptyState(section,pageName){
+    var myheaders = new Headers();
+    console.log(pageName);
     //show empty state div and hide the rest of the content
     var emptyData = {
-        load : "loadbyparent",
-        id : "emptyImage"
+        load : "loadbyname",
+        id : pageName
     }
     emptyData = JSON.stringify(emptyData);
     var emptyRequestOptions = {
@@ -18,7 +20,7 @@ async function emptyState(section,myheaders){
         console.log(section);
         var image = section.querySelector('#emptyImage');
         console.log(image);
-        image.setAttribute('src',result[0].imagepath);
+        image.setAttribute('src',result[0].	emptystateimg);
         return section;
     }
     catch(error){
@@ -96,7 +98,6 @@ function auth(){
 }
 function loadNavItems(userData){
     var rawMenu = "{\"load\":\"loadbyparent\",\"id\":\"Menu\"} ";
-
     var requestOptionsMenu = {
     method: 'POST',
     headers: myHeaders,
@@ -117,7 +118,7 @@ function loadNavItems(userData){
                         continue;
                     }
                 }
-                if(navData[i].status == "0"){
+                if(navData[i].status == 0){
                     continue;
                 }
                 navhtml = navhtml + `<li class="nav-item active">
@@ -156,7 +157,9 @@ function onlyAdmin(userData){
         var items = document.querySelectorAll('.onlyAdmin');
         items = Array.from(items);
         items.forEach(item =>{
-            item.innerHTML = "";
+            var dummy = document.createElement('div');
+            item.parentNode.appendChild(dummy);
+            item.parentNode.removeChild(item);
         })
     }
 }
