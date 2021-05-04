@@ -46,11 +46,17 @@ function auth(){
     .then(response => response.json())
     .then(result => {
     console.log(result);
+    try{
+        userData = result;
+        onlyAdmin(userData);
+    }
+    catch(error){
+        console.log(error);
+    }
     if(result.status === "Not Logged In"){
         //redirect to login screen
         window.open("./login.html","_self");
     }else{
-            userData = result;
             userData.admin = parseInt(userData.admin);
             // if(userData.admin == 0){
             //     window.open("http://localhost/sea_dev/ui/admin/dashBoard.html","_self");
@@ -58,12 +64,7 @@ function auth(){
             // onlyAdmin();
             loadProfile(userData);
             loadNavItems(userData);
-            try{
-                onlyAdmin(userData);
-            }
-            catch(error){
-                console.log(error);
-            }
+            
     }
     })
     .catch(error =>{console.log(error);});
@@ -153,7 +154,10 @@ function logOut(){
         });
 }
 function onlyAdmin(userData){
-    if(userData.admin == 0){
+    console.log(userData);
+    console.log("called only admin");
+    if(userData.admin != 1){
+        console.log("Is Not Admin")
         var items = document.querySelectorAll('.onlyAdmin');
         items = Array.from(items);
         items.forEach(item =>{

@@ -1162,7 +1162,7 @@ hr {
     }
 
     .row {
-        margin: 0px;
+        margin: 0px !important;
     }
 
     .text-big {

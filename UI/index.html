@@ -111,8 +111,8 @@
                                     <!-- <li class="nav-item"><a class="nav-link px-3" href="#components">Components</a></li> -->
                                     <!-- <li class="nav-item"><a class="nav-link px-3" href="https://pixinvent.ticksy.com/" target="_blank">Support</a></li> -->
                                     <!-- <button type="button" class="btn btn-light-primary mr-1 mb-1">Primary</button> -->
-                                    <a class="" href="./pages/login.html" target="_blank"> <button type="button" class="btn btn-light-primary mr-1 mb-1" id="login-btn">Member Login</button></a>
-                                    <a class="" href="./pages/businessProfiles.html"><button type="button" class="btn btn-primary mr-1 mb-1">Search</button></a>
+                                    <a class="" href="./pages/login.html" target="_blank"> <button type="button" class="btn btn-light-warning  mr-1 mb-1" id="login-btn">Member Login</button></a>
+                                    <a class="" href="./pages/businessProfiles.html"><button type="button" class="btn bg-dark text-white mr-1 mb-1">Search</button></a>
 
                                 </ul>
                             </div>
@@ -182,7 +182,7 @@
                         <p class="mt-4 text-white">
                             Frest admin is perfectly suited for all level of developers which helps you to <br> kick start your next big projects / app.
                         </p>
-                        <button type="button" class="btn btn-white mr-1 mb-1 float-r-lg"> <a href="http://localhost/sea_dev/ui/businessProfiles.html">Search</a> </button>
+                        <button type="button" class="btn btn-warning  mr-1 mb-1 float-r-lg"> <a href="./pages/businessProfiles.html" class="text-white">Search</a> </button>
                     </div>
 
                 </div>
@@ -491,12 +491,12 @@
                                         and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of
                                         Lorem Ipsum,
                                     </p>
-                                    <div class="row" style="margin-bottom: -10%"">
+                                    <div class="row" style="margin-bottom: -10%">
                                         <div class="col-6">
                                             <button type="button" class="btn btn-primary mr-1 mb-1">Contact Us</button>
                                         </div>
                                         <div class="col-6">
-                                            <button type="button" class="btn btn-warning mr-1 mb-1"> <a href="http://localhost/sea_dev/ui/businessProfiles.html" class="text-white">Search</a> </button>
+                                            <a href="./pages/businessProfiles.html" class="btn btn-warning mr-1 mb-1">Search</a>
                                         </div>
                                     </div>
                                 </div>
@@ -520,59 +520,51 @@
 
    
 
-    <section class="bg-grey pb-150" id="components" style="padding-top:2rem;padding-bottom:2rem">
+    <section class="bg-grey pb-150 pt-1 pb-1" id="components">
         <div class="container-fluid">
             <div class="section-heading text-center">
                 <h2 class="wow pulse">Our Stories</h2>
             </div>
-            <div class="row">
-
-                <div class="col-6">
-                    <div class="card" id="carousel-caption">
-
-                        <div class="card-content">
-                            <div class="card-body">
-
-                                <div id="carousel-example-caption-video" class="carousel slide" data-ride="carousel" >
-                                    
-                                    <div class="carousel-inner" role="listbox" id="videoItems">
-                                       <div class="carousel-item carousel-item-next carousel-item-left">
-                                            <img class="img-fluid" src="../images/emptystates/nodata.jpg" alt="First slide">
-                                            <div class="card-img-overlay bg-overlay">
-                                                <div class="carousel-caption d-none d-sm-block">
-                                                    <p>
-                                                      
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#carousel-example-caption-video" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carousel-example-caption-video" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
+            <div id="carousel-example-generic" class="carousel slide pointer-event" data-ride="carousel">
+                
+                <div class="carousel-inner video-carousel" role="listbox">
+                  
+                  <div class="carousel-item" data-interval = "10000">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/WTJSt4wP2ME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="row justify-content-center">
+                                <h3>Heading</h3>
+                            </div>
+                            <div class="row ">
+                                <span class="text-left">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, natus!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, natus!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, natus!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, natus!
+                                </span>
+                            </div>
+                        </div>
                     </div>
+                  </div>
+                  
                 </div>
-                <div class="col-6">
-                    <h3 class="text-center">Story Heading
-                    </h3>
-                    <p>
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up
-                        one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33
-                        of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
-                    </p>
-                </div>
-
-
-
+                <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
             </div>
+            
         </div>
     </section>
     <!-- ***** Components End ***** -->
@@ -963,14 +955,16 @@
         .then(response => response.json())
         .then( result =>{
           console.log(result);
+          var carouselItems = document.getElementById('carouselItems');
           if(Array.isArray(result)){
-            var carouselItems = document.getElementById('carouselItems');
             var slides = "";
             for(var i in result){
               var active = "active";
               if(i != 0){
                 active = ""
               }
+              result[i].imagepath = result[i].imagepath.slice(3);
+              console.log(result[i].imagepath);
               slides = slides + `   
                                         <div class="carousel-item `+active+`">
                                             <img class="img-fluid" src="`+result[i].imagepath+`" alt="First slide">
@@ -996,8 +990,8 @@
         })
       }
       function emptyState(){
-        var nodata = `<div class="col-6">
-                        <img class="" src="../images/emptystates/nodata.jpg" height="800px" width="800px">
+        var nodata = `<div class="row justify-content-center">
+                        <img class="" src="../images/emptystates/nodata.png" width="40%">
                       </div>`;
         return nodata;
       }
@@ -1020,24 +1014,13 @@
         .then(response => response.json())
         .then( result =>{
           console.log(result);
+          var section =  document.querySelector('.video-carousel');
           if(Array.isArray(result)){
-            var slides = "";
-            for(var i in result){
-              var active = "active";
-              if(i != 0){
-                active = ""
-              }
-              slides = slides + ` <div class="carousel-item `+active+`" data-interval="200000">
-                                          <iframe width="560" height="315" src="`+result[i].urlredirection+`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                     
-                                        </div>
-                                     
-                                    
-              `;
-            }
-            var carouselItems = document.getElementById('videoItems');
-            carouselItems.innerHTML = slides;
+              console.log("data exists");            
+          }else{
+              section.innerHTML = emptyState();
           }
+          
         })
         .catch(error =>{
           console.log(error);

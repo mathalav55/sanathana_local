@@ -154,8 +154,7 @@
 
 <!-- BEGIN: Body-->
 
-<body class="horizontal-layout navbar-static 2-columns footer-static pace-done menu-expanded horizontal-menu " data-open="hover " data-menu="horizontal-menu " data-col="2-columns ">
-
+<body style="background-color:  #d4d4d473;">
 
     <header class="headroom mb-4" >
 
@@ -189,34 +188,60 @@
         <div class="col-6 ">
             <div class="col-12 ">
                 <div class="card text-left " style="margin-bottom: 10px;">
-                    <div class="card-body py-1 ">
-                        <div class="">
-                            <a href="./member_form.html" style="cursor: pointer; ">
-                                <span class="material-icons onlyAdmin">
-                                add
-                                </span></a>
-                            <a href="./searchmembers.html" style="cursor: pointer; margin-left: 20px; ">
-                                <span class="material-icons ">
-                                border_all
-                                </span></a>
-                            <h3 style="display: inline; float: right ">Members</h3>
-                        </div>
-                        <div class="row">
-                            <div class="col-6 dashboard-users-success ">
-                                <div class="card text-center ">
-                                    <div class="card-body py-1 ">
-                                        <div class="text-muted line-ellipsis ">Active</div>
-                                        <h3 id="activeMembers" class="mb-0 ">0</h3>
-                                    </div>
+                    <div class="row card-header" style="margin-top : -6%;">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="./member_form.html">
+                                        <div class="livicon-evo" data-options="
+                                        name: plus-alt.svg; 
+                                        size: 3rem; 
+                                        "></div>
+                                </a>
+                                </div>
+                                <div class="col">
+                                    <a href="./searchmembers.html">
+                                        <div class="livicon-evo" data-options="
+                                        name: thumbnails-big.svg; 
+                                        size: 3rem;
+                                        "></div>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="col-6 dashboard-users-success ">
-                                <div class="card text-center ">
-                                    <div class="card-body py-1 ">
-                                        <div class="text-muted line-ellipsis ">inActive</div>
-                                        <h3 id="inactiveMembers" class="mb-0 ">0</h3>
-                                    </div>
+                        </div>
+                        <div class="col text-right">
+                            <div class="row chip-primary chip">
+                                <div class="col chip-body">
+                                    <span class="chip-text" style="font-size: 1.2rem; padding: .4rem;">
+                                        Members
+                                    </span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row card-body pb-4">
+                        <div class="col p-1 m-1" style="background-color: #ff99f785;" >
+                            <div class="row justify-content-center">
+                                <h4 id="activeMembers">
+                                    0
+                                </h4>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h4>
+                                    Active
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="col p-1 m-1" style="background-color: #99bdff85;" >
+                            <div class="row justify-content-center">
+                                <h4 id="inactiveMembers">
+                                    0
+                                </h4>
+                            </div>
+                            <div class="row justify-content-center">
+                                <h4>
+                                   In Active
+                                </h4>
                             </div>
                         </div>
                     </div>
@@ -226,19 +251,41 @@
         </div>
         <div class="col-6 ">
             <div id="dbFields " class="col-12 ">
-                <div class="card text-right " style="margin-bottom: 10px; ">
-                    <div class="card-body py-1 ">
-                        <h3 style="display: inline; float: left ">Member</h3>
-                        <a href="# " style="cursor: pointer; ">
-                            <span class="material-icons ">
-                            add
-                            </span></a>
-                        <a href="# " style="cursor: pointer; margin-left: 20px; ">
-                            <span class="material-icons ">
-                            border_all
-                            </span></a>
+                <!-- <div class="row">
+                    <div class="col card">
+                        <div class="row card-header">
+                            <div class="col">
+                                <div class="row chip chip-primary">
+                                    <div class="col chip-body">
+                                        <span class="chip-text" style="font-size: 1.2rem; padding: 0.4rem;">
+                                            no data
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row ">
+                                    <div class="col">
+                                        <a href="#" class="row justify-content-end">
+                                            <div class="livicon-evo" data-options="
+                                            name: plus-alt.svg; 
+                                            size: 3rem; 
+                                            "></div>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="#" class="">
+                                            <div class="livicon-evo" data-options="
+                                            name: thumbnails-big.svg; 
+                                            size: 3rem;
+                                            "></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -397,9 +444,7 @@
     <script src="../../js/main.js "></script>
 
     <script src="../../app-assets/vendors/js/vendors.min.js "></script>
-    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js "></script>
-    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js "></script>
-    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js "></script>
+    
 
     <script src="../../app-assets/vendors/js/ui/jquery.sticky.js "></script>
 
@@ -410,13 +455,6 @@
     <script src="../../app-assets/js/scripts/footer.js "></script>
     <script src="../../js/globalFuntions.js"></script>
     
-
-
-
-
-
-</body>
-
 <script>
 var myHeaders = new Headers();
 // myHeaders.append("Content-Type ", "text/plain ");
@@ -459,35 +497,48 @@ var myHeaders = new Headers();
         const idValues = [];
         console.log(result);
         if(result.length > 0){
-            for( var i in result){
-            console.log(result[i].ContentName);
-            var item = result[i].ContentName;
-            var id = result[i].id;
-            idValues.push(id);
-            data.push(item);
-            }
-            var HTMLData = '';
-        for (var i in data) {
-            HTMLData = HTMLData + `<div class="card text-right " style="margin-bottom: 10px; ">
-                        <div class="card-body py-1 ">
-                            <h3 style="display: inline; float: left ">` +
-                data[i] + `</h3>
-                            <a  href="#" id="` + data[i] + `Btn "  onclick="openAddForm('`+data[i]+`',`+idValues[i]+`,'`+data[i]+`','add')" style="cursor: pointer; ">
-                                <span class="material-icons onlyAdmin">
-                                add
-                                </span></a>
-                            <a href="#" id="` + data[i] + `Btn0 " onclick="openListView('`+data[i]+`')" style="cursor: pointer; margin-left: 20px; ">
-                                <span class="material-icons ">
-                                border_all
-                                </span></a>
+            var HTMLData = "";
+            result.forEach(item =>{
+                HTMLData +=  `<div class="row">
+                    <div class="col card">
+                        <div class="row card-header">
+                            <div class="col">
+                                <div class="row chip chip-primary">
+                                    <div class="col chip-body">
+                                        <span class="chip-text" style="font-size: 1.2rem; padding: 0.4rem;">
+                                        `+item.ContentName+`
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row ">
+                                    <div class="col">
+                                        <a href="#" id="` + item.ContentName + `Btn " class="row justify-content-end" onclick="openAddForm('`+item.ContentName+`','`+item.id+`')">
+                                            <div class="livicon-evo" data-options="
+                                            name: plus-alt.svg; 
+                                            size: 3rem; 
+                                            "></div>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="#" id="` + item.ContentName + `Btn0 " onclick="openListView('`+ item.ContentName+`')" class="row justify-content-end">
+                                            <div class="livicon-evo" data-options="
+                                            name: thumbnails-big.svg; 
+                                            size: 3rem;
+                                            "></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>`
-    
+                    </div>
+                </div>`;
+            })
+                document.getElementById("dbFields ").innerHTML = HTMLData;
+                loadScripts();
         }
-        }
     
-        
-        document.getElementById("dbFields ").innerHTML = HTMLData;
     })
     .catch(error => console.log('error', error));
   }
@@ -536,327 +587,26 @@ adminRedirect();
 loadMembers();
 loadData();
 function openListView(id){
-    console.log("button clicked");
-    document.getElementById("dash-section").style.display="none";
-    document.getElementById("list-view").style.display="block";
-    var listHTML = '';
-    var raw = "{\"load\":\"loadbyparent\",\"id\":\""+id+"\"} ";
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        redirect: 'follow',
-        body : raw
-    }
-    var listViewTitle = `<h3 class="card-title">`+id+`</h3>`;
-    document.getElementById("list-view-title").innerHTML = listViewTitle;
-    fetch("../../ws/Accessconfig.php",requestOptions)
-    .then(
-        response => response.json()
-    )
-    .then(result =>{
-            var listData = [];
-            var idValues = [];
-            var activeStatus = [];
-            console.log(result);
-            if(result.length){
-                for(var i in result){
-                    listData.push(result[i].ContentName);
-                    idValues.push(result[i].id);
-                    
-                }
-                for(var i in listData){
-                    var activeIconClass;
-                    var inactiveIconClass;
-                    if(result[i].status == 1){
-                        activeIconClass = "active";
-                        inactiveIconClass = "inactive";
-                    }else if(result[i].status == 0){
-                        activeIconClass = "inactive";
-                        inactiveIconClass = "active";
-                    }
-                    console.log(listData[i]);
-                    console.log(activeIconClass);
-                    console.log(inactiveIconClass);
-                    listHTML = listHTML + `
-                    <div class="card text-right " style="margin-bottom: 10px; ">
-                        <div class="card-body py-1 ">
-                            <h3 style="display: inline; float: left ">`+ listData[i]+`</h3>
-                            <a href="# " style="cursor: pointer; margin-left: 20px; " onclick="openAddForm('`+listData[i]+`',`+idValues[i]+`,'`+id+`','update')">
-                                <span class="material-icons onlyAdmin">
-                                edit
-                                </span></a>
-                            <a href="# "  style="cursor: pointer; margin-left: 20px; " >
-                            <span id="active-`+listData[i]+`" class="material-icons `+activeIconClass+`" onclick="changeStatus('`+listData[i]+`',1)">
-                            thumb_up
-                            </span></a>
-                            <a href="# " style="cursor: pointer; margin-left: 20px; " >
-                            <span id="inactive-`+listData[i]+`" class="material-icons `+inactiveIconClass+`" onclick="changeStatus('`+listData[i]+`',0)"">
-                            thumb_down
-                            </span></a>
-                        </div>
-                    </div>`;
-                }
-                document.getElementById("dbFieldData").innerHTML = listHTML;
-            }else{
-                    
-            }
-                
-    })
-    .catch(error =>{
-        console.log(error);
-    })
-
+    window.location = `./mastersView.html?id=`+id;
 }
-function changeStatus(id,status){
-    var activeTarget = `active-`+id+``;
-    var inactiveTarget = `inactive-`+id+``;
-    var activeClassList = document.getElementById(activeTarget).classList;
-    var inActiveClassList = document.getElementById(inactiveTarget).classList;
-    if(status == 1){
-        if(activeClassList.contains("inactive")){
-            activeClassList.remove("inactive");
-            activeClassList.add("active");
-        }
-        if(inActiveClassList.contains("active")){
-            inActiveClassList.remove("active");
-            inActiveClassList.add("inactive");
-        }
-    }else if(status == 0){
-        if(activeClassList.contains("active")){
-            activeClassList.remove("active");
-            activeClassList.add("inactive");
-        }
-        if(inActiveClassList.contains("inactive")){
-            inActiveClassList.remove("inactive");
-            inActiveClassList.add("active");
-        }
-    }
-
-    //updating status
-    //fetch data
-    var fetchFormBody = {
-        load : "loadbyname",
-        id : id
-    }
-    fetchFormBody = JSON.stringify(fetchFormBody);
-    var fetchFormRequestOptions = {
-        method : "POST",
-        headers : myHeaders,
-        redirect : "follow",
-        body : fetchFormBody
-    }
-    fetch("../../ws/Accessconfig.php",fetchFormRequestOptions)
-    .then( response => response.json())
-    .then( result =>{
-        console.log(result);
-        var formValues = result[0];
-        var data = {
-            load : "update",
-            Alias_Name: formValues.Alias_Name,
-            ContentName: formValues.ContentName,
-            access_to: formValues.access_to,
-            content: formValues.content,
-            createdby: formValues.createdby,
-            createddate: formValues.createddate,
-            header: formValues.header,
-            iconpath: formValues.iconpath,
-            id: formValues.id,
-            imagepath: formValues.imagepath,
-            parent_id: formValues.parent_id,
-            status: status,
-            updatedby: formValues.updatedby,
-            updateddate: formValues.updateddate,
-            urlredirection: formValues.urlredirection,
-            videopath: formValues.videopath
-        };
-        data = JSON.stringify(data);
-        console.log(data);
-        var updateRequestOptions = {
-            headers : myHeaders,
-            method : "POST",
-            redirect : "follow",
-            body : data
-        }
-        fetch("../../ws/Accessconfig.php", updateRequestOptions)
-        .then(response =>{console.log(response)});
-    })
-    .catch( error =>{
-        console.log(error);
-    })
-    //get object ready
-    //send data back
-
-}
-function openAddForm(id,number,parentName,action){
-    document.getElementById("addForm").style.display="block";
-    document.getElementById("dash-section").style.display="none";
-    document.getElementById("form").reset();
-    var heading = `<h2 class="card-title">`+parentName+` Form</h2>`;
-    document.getElementById("form_heading").innerHTML = heading;
-    var parentId = number;
-    var selfId = 0;
-    if(action === "update"){
-        document.getElementById("list-view").style.display = "none";
-        //get data from database
-        var fetchDataBody = {
-            load : "loadbyname",
-            id : id
-        }
-        fetchDataBody = JSON.stringify(fetchDataBody);
-        var fetchRequestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow',
-            body : fetchDataBody
-        }
-        //change save button to update
-        document.getElementById("save-btn").innerHTML = "update";
-        //remove reset button
-        document.getElementById("reset-btn").display = "block";
-        fetch("../../ws/Accessconfig.php", fetchRequestOptions)
-        .then( response => response.json())
-        .then( result => {
-            console.log(result[0]);
-            formValues = result[0];
-            //add data to form
-            selfId = formValues.id;
-            parentId = formValues.parent_id;
-            document.getElementById("contentName").value = formValues.ContentName;
-            document.getElementById("aliasName").value = formValues.Alias_Name;
-            document.getElementById("urlColumn").value = formValues.urlredirection;
-            document.getElementById("header").value = formValues.header;
-            document.getElementById("content").value = formValues.content;
-            if(formValues.status == 0){
-                document.getElementById("radio2").checked = true;
-            }else if(formValues.status == 1){
-                document.getElementById("radio1").checked = true;
-            }
-
-        })
-        .catch(error =>{
-            console.log(error);
-        })
-    }
-    var saveBtn = document.getElementById("save-btn");
-    saveBtn.addEventListener("click",(event)=>{
-        event.preventDefault();
-        console.log("clicked save")
-        var id = saveBtn.dataset.id;
-        onFormSubmit(id,selfId,parentId,action,event);
-        
-    });
+function openAddForm(id,parentId){
+    window.location = `./mastersAdd.html?id=`+id+`&action=add&parentId=`+parentId+``;
 }
 
-function openDashSection(){
-    document.getElementById("dash-section").style.display = "block";
-    document.getElementById("addForm").style.display = "none";
-    document.getElementById("list-view").style.display = "none";
-    document.getElementById("dbFieldData").innerHTML = `<div class="card text-right " style="margin-bottom: 10px; ">
-                <div class="card-body py-1 ">
-                    <h3 style="display: inline; float: left ">No Data</h3>
-                    <a href="# " style="cursor: pointer; margin-left: 20px; ">
-                        <span class="material-icons ">
-                        edit
-                        </span></a>
-                </div>
-            </div>`;
-}
-function onFormSubmit(id,selfId,parentId,action,event){
-    console.log(event);
-    var load = "";
-    //date
-    var d = new Date();
-    var date = ``+d.getFullYear()+`-`+d.getMonth()+`-`+d.getDate()+``;
-    var videoUrl = "";
-    var iconUrl = "";
-    var imageUrl = "";
-    var createDate = "";
-    var updateDate  ="";
-    var updatedBy = "";
-    var createdBy = "";
-    var emptyImageUrl = "";
 
-    if(action === "update"){
-        //do update actions
-        load = "update"
-        updateDate = date;
-        updatedBy = "admin";
-    }
-    else if(action === "add"){
-        //do add actions
-        load = "addEntry"
-        //set create date
-        createDate = date;
-        //set created by
-        createdBy = "admin";
-    }
-    
-    var status = 0;
-    if(document.getElementById("radio1").checked){
-        status = 1;
-    }
- 
-    let formdata = new FormData();
-    var date = new Date();
-    date = date.getTime();
-    //uploadig files if exists
-    if(emptyImagePath.files.length > 0){
-        var newEmptyImageName = date + emptyImagePath.files[0].name;
-        formdata.set("file" , emptyImagePath.files[0] , newEmptyImageName);
-        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
-        emptyImageUrl = `../../uploads/`+newEmptyImageName;
-    }
-    if(videoPath.files.length > 0){
-        
-        var newVideoName = date + videopath.files[0].name;
-        formdata.set("file" , videoPath.files[0] , newVideoName);
-        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
-        videoUrl = `../../uploads/`+newVideoName;
-    }
-    if(iconPath.files.length > 0){
-        var newIconName = date + iconPath.files[0].name;
-        formdata.set("file" , iconPath.files[0] , newIconName);
-        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
-        iconUrl = `../../uploads/`+ newIconName;
-    }
-    if(imagePath.files.length > 0){
-        var newImageName = date + imagePath.files[0].name;
-        formdata.set("file" , imagePath.files[0] , newImageName);
-        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
-        imageUrl = `../../uploads/`+ newImageName;
-    }
-    //getting object ready
-    var data={
-        id : selfId,
-        load: load,
-        ContentName : document.getElementById("contentName").value,
-        Alias_Name: document.getElementById("aliasName").value,
-        parent_id: parentId,
-        access_to: 0,
-        urlredirection: document.getElementById("urlColumn").value,
-        iconpath: iconUrl,
-        header: document.getElementById("header").value,
-        content: document.getElementById("content").value,
-        imagepath: imageUrl,
-        videopath: videoUrl,
-        createdby: "admin",
-        createddate: date,
-        updatedby: "",
-        updateddate: date,
-        emptystateimg : emptyImageUrl,
-        status: status
-    };
-    console.log(data);
-    data = JSON.stringify(data);
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        redirect: 'follow',
-        body : data
-    }
-    fetch("../../ws/Accessconfig.php",requestOptions).then(response =>{console.log(response);location.reload()}).catch(error =>{console.log(error)});
-}
 
 </script>
-
+<script>
+    function loadScripts(){
+        var locations = ["LivIconsEvo.tools.js","LivIconsEvo.defaults.js","LivIconsEvo.min.js"];
+        locations.forEach(location =>{
+            var script = document.createElement('script');
+            script.src = `../../app-assets/fonts/LivIconsEvo/js/`+location;
+            var ref = document.querySelector('body');
+            ref.appendChild(script);
+        });
+    }
+    loadScripts();
+</script>
+</body>
 </html>

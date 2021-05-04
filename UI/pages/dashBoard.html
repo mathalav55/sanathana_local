@@ -74,7 +74,7 @@
 
     <link rel="stylesheet " href="../../css/responsive.css " />
 
-    <link rel="stylesheet " type="text/css " href="../../css/custom.css " />
+    <link rel="stylesheet " type="text/css " href="../../css/custom.css" />
 
 
     <script src="../../js/modernizr.js "></script>
@@ -88,6 +88,9 @@
 <style>
     body {
         font-family: Arial, Helvetica, sans-serif;
+    }
+    .row{
+        margin: 0 ;
     }
     /* The Modal (background) */
     
@@ -153,8 +156,7 @@
 
 <!-- BEGIN: Body-->
 
-<body class="horizontal-layout navbar-static 2-columns footer-static pace-done menu-expanded horizontal-menu " data-open="hover " data-menu="horizontal-menu " data-col="2-columns ">
-
+<body style="background-color: #d4d4d473;">
 
     <header class="headroom " style="margin-bottom: 30px; ">
 
@@ -180,8 +182,8 @@
     <div class="container ">
         <div class="row  justify-content-center align-items-center col-12">
             <div class="col-md-5">
-                <div class="row  card onlyAdmin">
-                    <div class="row card-body justify-content-between">
+                <div class="row mb-4 card onlyAdmin">
+                    <div class="row card-body pb-1 justify-content-between">
                         <div class="col-6">
                             <fieldset class="form-group">
                                 <select class="form-control" id="memberOptionsOne">
@@ -190,56 +192,66 @@
                             </fieldset>
                         </div>
                         <div class="col-1 text-center">
-                            <span class="material-icons ">
-                                download
-                            </span>
+                            <div class="livicon-evo" data-options="
+                            name: cloud-download.svg; 
+                            size: 3rem   
+                            "></div>
                         </div>
                     </div>
                 </div>
-                <div class="row p-1 card">
-                    <div class="col-12 ">
-                        <div class="card text-left " style="margin-bottom: 10px; ">
-                            <div class="card-body ">
-                                <div class="row justify-content-between" style="margin-top : -10%" >
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="./oppurtunitiesForm.html" style="cursor: pointer; ">
-                                                <span class="material-icons ">
-                                                add
-                                                </span></a>
-                                        </div>
-                                        <div class="col">
-                                            <a href="./oppurtunityView.html" style="cursor: pointer; margin-left: 20px; ">
-                                                <span class="material-icons ">
-                                                border_all
-                                                </span></a>
-                                        </div>
+                <div class="row  ">
+                    <div class="col card">
+                        <div class="row card-header justify-content-between" style="margin-top : -8%">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="./oppurtunityView.html">
+                                            <div class="livicon-evo" data-options="
+                                            name: plus-alt.svg; 
+                                            size: 3rem; 
+                                            "></div>
+                                        </a>
                                     </div>
-                                    <a href="./oppurtunityView.html">
-                                        <button type="button" class="btn btn-primary mr-1 mb-1">Oppurtunities</button>
-                                    </a>
+                                    <div class="col">
+                                        <a href="./oppurtunitiesForm.html">
+                                            <div class="livicon-evo" data-options="
+                                            name: thumbnails-big.svg; 
+                                            size: 3rem;
+                                            "></div></a>
+                                    </div>
                                 </div>
-                                <div class="row" >
-                                    <div class="col-6 dashboard-users-success ">
-                                        <div class="card text-center ">
-                                            <div class="card-body py-1 ">
-                                                <div>
-                                                    number
-                                                </div>
-                                                <h4>text</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 dashboard-users-success ">
-                                        <div class="card text-center ">
-                                            <div class="card-body py-1 ">
-                                                <div>
-                                                    number
-                                                </div>
-                                                <h4>text</h4>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="col text-right ">
+                                <div class="row chip chip-primary">
+                                    <span class="chip-text text-white" style="font-size: 1.2rem; padding: 0.4rem;">
+                                        Oppurtunities
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row card-body pb-3">
+                            <div class="col p-1 m-1" style="background-color: #ff99f785;">
+                                <div class="row justify-content-center">
+                                    <h4>
+                                        0
+                                    </h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h4>
+                                        My Oppurtunities
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="col m-1 p-1" style="background-color: #99bdff85;">
+                                <div class="row justify-content-center">
+                                    <h4>
+                                        0
+                                    </h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h4>
+                                        All Oppurtunities
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -247,8 +259,8 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <div class="row  card onlyAdmin">
-                    <div class="row card-body justify-content-between">
+                <div class="row mb-4 card onlyAdmin">
+                    <div class="row card-body pb-1 justify-content-between">
                         <div class="col-6">
                             <fieldset class="form-group">
                                 <select class="form-control" id="memberOptionsTwo">
@@ -257,55 +269,68 @@
                             </fieldset>
                         </div>
                         <div class="col-1 text-center">
-                            <span class="material-icons ">
-                                download
-                            </span>
+                            <div class="col-1 text-center">
+                                <div class="livicon-evo" data-options="
+                                name: cloud-download.svg; 
+                                size: 3rem   
+                                "></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row p-1 card">
-                    <div class="col-12 ">
-                        <div class="card text-left " style="margin-bottom: 10px; ">
-                            <div class="card-body ">
-                                <div class="row justify-content-between" style="margin-top : -10%" >
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="./refferalForm.html" style="cursor: pointer; ">
-                                                <span class="material-icons ">
-                                                add
-                                                </span></a>
-                                        </div>
-                                        <div class="col">
-                                            <a href="./referalview.html" style="cursor: pointer; margin-left: 20px; ">
-                                                <span class="material-icons ">
-                                                border_all
-                                                </span></a>
-                                        </div>
+                <div class="row ">
+                    <div class="col card">
+                        <div class="row card-header justify-content-between" style="margin-top : -8%">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="./refferalForm.html">
+                                            <div class="livicon-evo" data-options="
+                                            name: plus-alt.svg; 
+                                            size: 3rem; 
+                                            "></div>
+                                        </a>
                                     </div>
-
-                                    <a href="./referalview.html" type="button" class="btn btn-primary mr-1 mb-1" style="color: #fff;">Referrals</a>
+                                    <div class="col">
+                                        <a href="./referalview.html">
+                                            <div class="livicon-evo" data-options="
+                                            name: thumbnails-big.svg; 
+                                            size: 3rem;
+                                            "></div></a>
+                                    </div>
                                 </div>
-                                <div class="row" >
-                                    <div class="col-6 dashboard-users-success ">
-                                        <div class="card text-center ">
-                                            <div class="card-body py-1 ">
-                                                <div>
-                                                    number
-                                                </div>
-                                                <h4>text</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 dashboard-users-success ">
-                                        <div class="card text-center ">
-                                            <div class="card-body py-1 ">
-                                                <div>
-                                                    number
-                                                </div>
-                                                <h4>text</h4>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="col text-right ">
+                                <div class="row chip chip-primary">
+                                    <span class="chip-text text-white" style="font-size: 1.2rem; padding: 0.4rem;">
+                                        Referrals
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row card-body pb-3">
+                            <div class="col p-1 m-1" style="background-color: #ff99f785;">
+                                <div class="row justify-content-center" >
+                                    <h4>
+                                        0
+                                    </h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h4>
+                                        In Bound
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="col m-1 p-1" style="background-color: #99bdff85;">
+                                <div class="row justify-content-center">
+                                    <h4>
+                                        0
+                                    </h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h4>
+                                        Out Bound
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -385,7 +410,7 @@
                 memberOptionsTwo.innerHTML = options;
             }
         })
-        .catch(error =>{console.log(error);});
+        .catch(error=>{console.log(error);});
     }
     auth();
     loadMembers();

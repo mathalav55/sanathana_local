@@ -403,6 +403,7 @@
                 profile().then(response =>{
                     userData = response;
                     console.log(userData);
+                    onlyAdmin(userData);
                     if(userData.status == "Logged In")
                         auth();
                 })
@@ -511,7 +512,6 @@
             fetch("../../ws/Memberprofile.php",profileRequestOptions)
             .then(response => response.json())
             .then((result)=>{
-                console.log(result);
                 if(Array.isArray(result)){
                     var basicDetails = result[0];
                     console.log(basicDetails)

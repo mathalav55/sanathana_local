@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<!-- saved from url=(0128)https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/horizontal-menu-template/form-layout.html -->
+<html class="loaded" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Add Master Data</title>
+    <link rel="apple-touch-icon" href="https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/images/ico/favicon.ico">
+    <link href="../../css/css"rel=" stylesheet ">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet " type="text/css " href="../../css/vendors.min.css ">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/bootstrap.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/bootstrap-extended.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/colors.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/components.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/dark-layout.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/semi-dark-layout.min.css ">
+    <!-- END: Theme CSS-->
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet " type="text/css " href="../../css/horizontal-menu.min.css ">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet " type="text/css " href="../../css/style.css ">
+    <!-- END: Custom CSS-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
+    <link rel="apple-touch-icon " href="../../app-assets/images/ico/apple-icon-120.png ">
+    <link rel="shortcut icon " type="image/x-icon " href="../../app-assets/images/ico/favicon.ico ">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700 " rel="stylesheet ">
+
+
+    <link rel="stylesheet " type="text/css " href="../../app-assets/vendors/css/vendors.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/vendors/css/charts/apexcharts.css ">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/vendors/css/extensions/swiper.min.css ">
+    <link rel="stylesheet " href="../../css/font-awesome-4.7.0/css/font-awesome.min.css ">
+
+
+
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/bootstrap.css ">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/bootstrap-extended.css ">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/colors.css ">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/components.css ">
+
+
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/core/menu/menu-types/horizontal-menu.css ">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/pages/dashboard-ecommerce.css ">
+
+
+
+
+
+    <link rel="icon " href="../../img/core-img/favicon.png " />
+
+
+    <link rel="stylesheet " href="../../css/responsive.css " />
+
+    <link rel="stylesheet " type="text/css " href="../../css/custom.css " />
+
+
+    <script src="../../js/modernizr.js "></script>
+    
+
+
+
+
+</head>
+<!-- END: Head-->
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    /* The Modal (background) */
+    
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 100px;
+        /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+    /* Modal Content */
+    
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        height: 100%;
+    }
+    /* The Close Button */
+    
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .row{
+        margin: 0 !important;
+    }
+    .material-icons.active{
+        color: #5a8dee;
+    }
+    .material-icons.inactive{
+        color : #c7c7c7;
+    }
+</style>
+
+<!-- BEGIN: Body-->
+
+<body style="background-color:  #d4d4d473;">
+
+    <header class="headroom mb-4" >
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
+            <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
+            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+
+            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
+                <ul class="navbar-nav mr-auto " id="Tnavlist ">
+
+                </ul>
+                <ul class="float-right navbar-nav" id="profileContainer">
+
+                </ul>
+                    
+
+            </div>
+        </nav>
+
+
+    </header>
+
+
+
+
+
+         <div class="row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+                <div class="col toast-container">
+                    
+                </div>
+        </div>
+    
+        <div class="container">
+            <div class="row match-height justify-content-center">
+                <div class="col-8">
+                  <div class="card">
+                    <div class="card-header justify-content-center" id="form_heading">
+                      <h3 class="card-title"></h3>
+                    </div>
+                    <div class="card-body">
+                      <form class="form" id="form">
+                        <div class="form-body">
+                          <div class="row">
+                            <div class="col-md-6 col-12">
+                              <div class="form-label-group">
+                                <input type="text" id="contentName" class="form-control" placeholder="Content Name"
+                                  >
+                                <label for="contentName">Content Name</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-label-group">
+                                <input type="text" id="aliasName" class="form-control" placeholder="Alias Name"
+                                  >
+                                <label for="aliasName">Alias Name</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-label-group">
+                                <input type="text" id="urlColumn" class="form-control" placeholder="URl Redirection">
+                                <label for="urlColumn">URL Redirection</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-label-group">
+                                <input type="file" id="iconPath" class="form-control"
+                                  placeholder="Upload Icon" name="iconUpload">
+                                <label for="iconPath">Icon</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-label-group">
+                                <input type="text" id="header" class="form-control" 
+                                  placeholder="Header">
+                                <label for="header">Header</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-label-group">
+                                <input type="text" id="content" class="form-control" 
+                                  placeholder="Content">
+                                  <label for="content">Content</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-label-group">
+                                  <input type="file" id="imagePath" class="form-control" 
+                                    placeholder="Upload Image" name="imageUpload">
+                                  <label for="imagePath">Image</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-label-group">
+                                  <input type="file" id="emptyImagePath" class="form-control" 
+                                    placeholder="Upload Image" name="imageUpload">
+                                  <label for="emptyImagePath">Empty Image</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-label-group">
+                                  <input type="file" id="videoPath" class="form-control" 
+                                    placeholder="Upload Video" name="videUpload">
+                                    <label for="videoPath">Video</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <label for="">Status</label>
+                              <div class="form-label-group">
+                                  <li class="d-inline-block mr-2 mb-1">
+                                      <fieldset>
+                                        <div class="radio">
+                                          <input type="radio" name="status" id="radio1" checked>
+                                          <label for="radio1">Active</label>
+                                        </div>
+                                      </fieldset>
+                                    </li>
+                                    <li class="d-inline-block mr-2 mb-1">
+                                      <fieldset>
+                                        <div class="radio">
+                                          <input type="radio" name="status" id="radio2">
+                                          <label for="radio2">Inactive</label>
+                                        </div>
+                                      </fieldset>
+                                    </li>
+                              </div>
+                            </div>
+                            
+                            <div class="col-12 d-flex justify-content-end">
+                              <button type="button" class="btn  bg-secondary text-white mr-1" id="save-btn" onclick="saveForm()">Save</button>
+                              <button type="reset" class="btn btn-warning" onclick="openDashSection()">Back</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row justify-content-end">
+                  </div>
+                </div>
+              </div>
+        </div>
+           
+    
+    <script src="../../js/jquery-2.2.4.min.js "></script>
+
+    <script src="../../js/headroom.js "></script>
+
+    <script src="../../js/popper.min.js "></script>
+
+    <script src="../../js/bootstrap.min.js "></script>
+
+    <script src="../../js/plugins.js "></script>
+
+    <script src="../../js/active.js "></script>
+
+    <script src="../../js/jquery.mobile.custom.min.js "></script>
+
+    <script src="../../js/main.js "></script>
+
+    <script src="../../app-assets/vendors/js/vendors.min.js "></script>
+    
+
+    <script src="../../app-assets/vendors/js/ui/jquery.sticky.js "></script>
+
+    <script src="../../app-assets/js/scripts/configs/horizontal-menu.js "></script>
+    <script src="../../app-assets/js/core/app-menu.js "></script>
+    <script src="../../app-assets/js/core/app.js "></script>
+    <script src="../../app-assets/js/scripts/components.js "></script>
+    <script src="../../app-assets/js/scripts/footer.js "></script>
+    <script src="../../js/globalFuntions.js"></script>
+    
+<script>
+var myHeaders = new Headers();
+// myHeaders.append("Content-Type ", "text/plain ");
+// myHeaders.append("Cookie ", "PHPSESSID=a147dbe2815c8b7145c6f2ca214f3716 "); 
+var action = "";
+var id = "";
+var imageUrl = "";
+var iconUrl = "";
+var videoUrl = "";
+var emptyImageUrl = "";
+var parentId = "";
+var selfId = "";
+var createdDate = "";
+const params = (new URL(document.location)).searchParams;
+if(params.get('action')){
+    action = params.get('action');
+    if(params.get('id')){
+        id = params.get('id');
+        loadForm();
+    }
+    if(params.get('parentId')){
+        parentId = parseInt(params.get('parentId'));
+    }
+}
+  function adminRedirect(){
+    var userData = {};
+    var authRequestOptions = {
+    method : "POST",
+    redirect : "follow",
+    headers : myHeaders,
+    body : ""
+    }
+    fetch("../../ws/auth.php",authRequestOptions)
+    .then(response => response.json())
+    .then(result => {
+    console.log(result);
+    if(result.status === "Not Logged In"){
+        //redirect to login screen
+        window.open("./login.html","_self");
+    }else{
+            if(result.admin == "0"){
+                window.open("./dashBoard.html","_self");
+            }
+    }
+    })
+    .catch(error =>{console.log(error);});
+  }
+
+auth();
+adminRedirect();
+function loadForm()
+{
+    //get data from database
+    var form_heading = document.getElementById('form_heading');
+    form_heading.innerHTML = `<h3 class="card-title text-center">`+id+` Form</h3>`;
+    if(action == "update"){
+        var fetchDataBody = {
+            load : "loadbyname",
+            id : id
+        }
+        fetchDataBody = JSON.stringify(fetchDataBody);
+        var fetchRequestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow',
+            body : fetchDataBody
+        }
+        //change save button to update
+        document.getElementById("save-btn").innerHTML = "update";
+        fetch("../../ws/Accessconfig.php", fetchRequestOptions)
+        .then( response => response.json())
+        .then( result => {
+            console.log(result[0]);
+            formValues = result[0];
+            //add data to form
+            selfId = formValues.id;
+            parentId = formValues.parent_id;
+            document.getElementById("contentName").value = formValues.ContentName;
+            document.getElementById("aliasName").value = formValues.Alias_Name;
+            document.getElementById("urlColumn").value = formValues.urlredirection;
+            document.getElementById("header").value = formValues.header;
+            document.getElementById("content").value = formValues.content;
+            imageUrl = formValues.imagepath;
+            iconUrl = formValues.iconpath;
+            videoUrl = formValues.videopath;
+            emptyImageUrl = formValues.emptystateimg;
+            createdDate = formValues.createddate;
+            if(formValues.status == 0){
+                document.getElementById("radio2").checked = true;
+            }else if(formValues.status == 1){
+                document.getElementById("radio1").checked = true;
+            }
+
+        })
+        .catch(error =>{
+            console.log(error);
+        })
+    }else{
+        
+    }
+}
+
+function openDashSection(){
+    window.location = "./main.html";
+}
+function saveForm(){
+    //date
+    var load = "";
+    load = (action == "add") ? "addEntry" : "update";
+    var d = new Date();
+    var da = ``+d.getFullYear()+`-`+d.getMonth()+`-`+d.getDate()+``;
+    let formdata = new FormData();
+    var date = new Date();
+    date = date.getTime();
+    var updateDate = da;
+    if(action == "add"){
+        createdDate = da;
+        updateDate = "";
+    }
+    var status  = (document.getElementById("radio1").checked)? 1 : 0 ;
+    //uploadig files if exists
+    if(emptyImagePath.files.length > 0){
+        var newEmptyImageName = date + emptyImagePath.files[0].name;
+        formdata.set("file" , emptyImagePath.files[0] , newEmptyImageName);
+        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
+        emptyImageUrl = `../../uploads/`+newEmptyImageName;
+    }
+    if(videoPath.files.length > 0){
+        var newVideoName = date + videopath.files[0].name;
+        formdata.set("file" , videoPath.files[0] , newVideoName);
+        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
+        videoUrl = `../../uploads/`+newVideoName;
+    }
+    if(iconPath.files.length > 0){
+        var newIconName = date + iconPath.files[0].name;
+        formdata.set("file" , iconPath.files[0] , newIconName);
+        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
+        iconUrl = `../../uploads/`+ newIconName;
+    }
+    if(imagePath.files.length > 0){
+        var newImageName = date + imagePath.files[0].name;
+        formdata.set("file" , imagePath.files[0] , newImageName);
+        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
+        imageUrl = `../../uploads/`+ newImageName;
+    }
+    //getting object ready
+    var data={
+        id : selfId,
+        load: load,
+        ContentName : document.getElementById("contentName").value,
+        Alias_Name: document.getElementById("aliasName").value,
+        parent_id: parentId,
+        access_to: 0,
+        urlredirection: document.getElementById("urlColumn").value,
+        iconpath: iconUrl,
+        header: document.getElementById("header").value,
+        content: document.getElementById("content").value,
+        imagepath: imageUrl,
+        videopath: videoUrl,
+        createdby: "admin",
+        createddate: createdDate,
+        updatedby: "",
+        updateddate: updateDate,
+        emptystateimg : emptyImageUrl,
+        status: status
+    };
+    console.log(data);
+    data = JSON.stringify(data);
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow',
+        body : data
+    }
+    fetch("../../ws/Accessconfig.php",requestOptions).then(response => response.json())
+    .then(response =>{
+        console.log(response);
+        if(response == "Added Successfully")
+        toast(response.status,"bg-info");
+        //show toast green  
+    }).
+    catch(error =>{
+        console.log(error);
+        //show toast red
+        toast(response.status,"bg-info");
+    });
+}
+function toast(message,bg){
+    var toastParent = document.createElement('div');
+    toastParent.innerHTML = `<div class="col card p-0">
+            <div class="row card-header `+bg+`">
+                <i class="ficon bx bx-bell bx-tada bx-flip-horizontal text-white"></i>
+                <span class="text-white">Message</span>
+                <div class="col"></div>
+                <div class="col"></div>
+                <a href="javascipt:void(0)" onclick="remove(this)">
+                    <i class="col bx bx-sm bx-x-circle text-white"  ></i>
+                </a>
+            </div>
+            <div class="row card-body p-1">
+                `+message+`
+            </div>
+        </div>`;
+    // document.querySelector('.toast-container').innerHTML = "";
+    document.querySelector('.toast-container').appendChild(toastParent.firstElementChild);
+}
+</script>
+<script>
+    function loadScripts(){
+        var locations = ["LivIconsEvo.tools.js","LivIconsEvo.defaults.js","LivIconsEvo.min.js"];
+        locations.forEach(location =>{
+            var script = document.createElement('script');
+            script.src = `../../app-assets/fonts/LivIconsEvo/js/`+location;
+            var ref = document.querySelector('body');
+            ref.appendChild(script);
+        });
+    }
+    loadScripts();
+</script>
+</body>
+</html>
