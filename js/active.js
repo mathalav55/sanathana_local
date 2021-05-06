@@ -116,10 +116,10 @@
     $window.on('scroll', function () {
         if ($window.scrollTop() > 48) {
             $('.header_area').addClass('sticky slideInDown');
-            $('nav.navbar img.logo-width').attr('src', 'img/bg-img/logo-white.png')
+            $('nav.navbar img.logo-width').attr('src', '../../img/bg-img/logo-white.png')
         } else {
             $('.header_area').removeClass('sticky slideInDown');
-            $('nav.navbar img.logo-width').attr('src', 'img/bg-img/logo.png')
+            $('nav.navbar img.logo-width').attr('src', '../../img/bg-img/logo.png')
         }
     });
 

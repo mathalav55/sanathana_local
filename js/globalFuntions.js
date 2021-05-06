@@ -79,23 +79,25 @@ function auth(){
         else
             userData.photo = "../../emptystates/female.png";
     }
-    profileContainer.innerHTML = `<li class="dropdown dropdown-user nav-item float-right">
-                    <a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                      <div class="user-nav d-sm-flex d-none">
-                        <span class="user-name text-bold-600" style="color: #fff;">`+userData.name+`</span>
-                        
-                      </div>
-                      <span>
-                        <img class="round" src="`+userData.photo+`" alt="avatar" height="40" width="40">
-                      </span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="bx bx-power-off mr-50"></i>
-                        <span onclick="logOut()"> Logout</span>
-                      </a>
-                    </div>
-                  </li>`;
+    profileContainer.innerHTML = `<li class="dropdown dropdown-user nav-item">
+                                    <a class="" href="javascript:void(0);" data-toggle="dropdown">
+                                        <div class="row align-items-center">
+                                            <div class="user-nav d-sm-flex d-none">
+                                                <span class="user-name text-white">`+userData.name+`</span>
+                                            </div>
+                                            <div class="div p-1"></div>
+                                            <span>
+                                                <img class="round" src="`+userData.photo+`" alt="avatar" height="40" width="40">
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right pb-0">
+                                        <a class="dropdown-item" href="javascript:void(0);">
+                                            <i class="bx bx-power-off mr-50"></i>
+                                            <span onclick="logOut()"> Logout</span>
+                                        </a> 
+                                    </div>
+                                </li>`;
 }
 function loadNavItems(userData){
     var rawMenu = "{\"load\":\"loadbyparent\",\"id\":\"Menu\"} ";

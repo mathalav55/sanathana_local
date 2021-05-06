@@ -20,19 +20,17 @@
     <title>Main Page</title>
     <link rel="apple-touch-icon" href="https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/images/ico/favicon.ico">
-    <link href="../../css/css"rel=" stylesheet ">
-
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet " type="text/css " href="../../css/vendors.min.css ">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/bootstrap.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/bootstrap-extended.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/colors.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/components.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/dark-layout.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/semi-dark-layout.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/bootstrap.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/bootstrap-extended.min.css">
+    <link rel="stylesheet " type="text/css " href="../../css/colors.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/components.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/dark-layout.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/semi-dark-layout.min.css ">
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
@@ -40,7 +38,6 @@
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet " type="text/css " href="../../css/style.css ">
     <!-- END: Custom CSS-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons " rel="stylesheet ">
 
@@ -53,13 +50,13 @@
     <link rel="stylesheet " type="text/css " href="../../app-assets/vendors/css/charts/apexcharts.css ">
     <link rel="stylesheet " type="text/css " href="../../app-assets/vendors/css/extensions/swiper.min.css ">
     <link rel="stylesheet " href="../../css/font-awesome-4.7.0/css/font-awesome.min.css ">
+    <link rel="stylesheet" href="../../app-assets/vendors/css/forms/select/select2.css">
 
 
-
-    <link rel="stylesheet " type="text/css " href="../../app-assets/css/bootstrap.css ">
-    <link rel="stylesheet " type="text/css " href="../../app-assets/css/bootstrap-extended.css ">
-    <link rel="stylesheet " type="text/css " href="../../app-assets/css/colors.css ">
-    <link rel="stylesheet " type="text/css " href="../../app-assets/css/components.css ">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/bootstrap.css">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/colors.css">
+    <link rel="stylesheet " type="text/css " href="../../app-assets/css/components.css">
 
 
     <link rel="stylesheet " type="text/css " href="../../app-assets/css/core/menu/menu-types/horizontal-menu.css ">
@@ -73,14 +70,9 @@
 
 
     <link rel="stylesheet " href="../../css/responsive.css " />
-
-    <link rel="stylesheet " type="text/css " href="../../css/custom.css " />
-
+    <link href="../../css/custom.css"rel=" stylesheet ">
 
     <script src="../../js/modernizr.js "></script>
-    
-
-
 
 
 </head>
@@ -168,7 +160,7 @@
                 <ul class="navbar-nav mr-auto " id="Tnavlist ">
 
                 </ul>
-                <ul class="float-right navbar-nav" id="profileContainer">
+                <ul class="navbar-nav nav float-right" id="profileContainer">
 
                 </ul>
                     
@@ -522,7 +514,7 @@ var myHeaders = new Headers();
                                         </a>
                                     </div>
                                     <div class="col">
-                                        <a href="#" id="` + item.ContentName + `Btn0 " onclick="openListView('`+ item.ContentName+`')" class="row justify-content-end">
+                                        <a href="#" id="` + item.ContentName + `Btn0 " onclick="openListView('`+ item.ContentName+`','`+item.id+`')" class="row justify-content-end">
                                             <div class="livicon-evo" data-options="
                                             name: thumbnails-big.svg; 
                                             size: 3rem;
@@ -584,10 +576,11 @@ function loadMembers(){
 }
 auth();
 adminRedirect();
+setInterval(loadMembers,3000);
 loadMembers();
 loadData();
-function openListView(id){
-    window.location = `./mastersView.html?id=`+id;
+function openListView(id,parentId){
+    window.location = `./mastersView.html?id=`+id+`&parentId=`+parentId+``;
 }
 function openAddForm(id,parentId){
     window.location = `./mastersAdd.html?id=`+id+`&action=add&parentId=`+parentId+``;

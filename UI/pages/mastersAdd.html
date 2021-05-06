@@ -27,12 +27,12 @@
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/bootstrap.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/bootstrap-extended.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/colors.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/components.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/dark-layout.min.css ">
-    <link rel="stylesheet " type="text/css " href="../../css/Form Layouts - Frest - Bootstrap HTML admin template_files/semi-dark-layout.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/bootstrap.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/bootstrap-extended.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/colors.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/components.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/dark-layout.min.css ">
+    <link rel="stylesheet " type="text/css " href="../../css/semi-dark-layout.min.css ">
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
@@ -282,7 +282,7 @@
                             
                             <div class="col-12 d-flex justify-content-end">
                               <button type="button" class="btn  bg-secondary text-white mr-1" id="save-btn" onclick="saveForm()">Save</button>
-                              <button type="reset" class="btn btn-warning" onclick="openDashSection()">Back</button>
+                              <button type="button" class="btn btn-warning" onclick="goBack()">Back</button>
                             </div>
                           </div>
                         </div>
@@ -429,6 +429,9 @@ function loadForm()
 function openDashSection(){
     window.location = "./main.html";
 }
+function goBack(){
+    window.history.back();
+}
 function saveForm(){
     //date
     var load = "";
@@ -499,17 +502,28 @@ function saveForm(){
         body : data
     }
     fetch("../../ws/Accessconfig.php",requestOptions).then(response => response.json())
-    .then(response =>{
-        console.log(response);
-        if(response == "Added Successfully")
-        toast(response.status,"bg-info");
+    .then(result =>{
+        console.log(result);
+        document.getElementById('save-btn').disabled = true;
+        if(result.status == "Added Successfully")
+            toast(result.status,"bg-success");
+        else if(result.status == "Updated Succesfully"){
+            toast(result.status,"bg-info")
+        }else{
+            toast(result.status,"bg-danger")
+        }
         //show toast green  
     }).
     catch(error =>{
         console.log(error);
         //show toast red
-        toast(response.status,"bg-info");
+        toast("An Error occured please try again","bg-danger");
+        document.getElementById('save-btn').disabled = false;
     });
+}
+function remove(el){
+    var toast = el.parentNode.parentNode;
+    toast.remove();
 }
 function toast(message,bg){
     var toastParent = document.createElement('div');

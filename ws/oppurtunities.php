@@ -15,6 +15,10 @@ else if( $rcvData == "loadbynumber"){
     $id = $data['id'];
     load_bynumber($conn);
 }
+else if($rcvData == "loadall"){
+    $id = $data['id'];
+    Load_all($conn);
+}
 else if ($rcvData == "loadoutbound"){
     $id = $data['id'];
     load_outbound($conn);
@@ -131,6 +135,20 @@ function load_inbound($conn){
     else 
     {
         $jsonresponse = array('code' => '200', 'status' => 'No Refferals');
+        echo json_encode($jsonresponse);
+    }
+}
+function load_all($conn){
+    global $id;
+    $sqlQuery = "select `referrals_master`.`id`,`referrals_master`.`referralamnt`, `referrals_master`.`finalamnt`, `referrals_master`.`status`, `contactlists_master`.`contactname` FROM `referrals_master` JOIN `contactlists_master` on `contactlists_master`.`referralid` = `referrals_master`.`id` WHERE `referrals_master`.`type` = 0";
+    $datatable = getdata($conn, $sqlQuery);
+    if (count($datatable) > 0) 
+    {
+        echo json_encode($datatable);
+    } 
+    else 
+    {
+        $jsonresponse = array('code' => '200', 'status' => 'No Oppurtunities');
         echo json_encode($jsonresponse);
     }
 }

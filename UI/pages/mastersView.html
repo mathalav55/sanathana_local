@@ -180,11 +180,18 @@
         </div>
     </div>
     <div class="container">
-        <div class="row justify-content-center mb-1">
-            <h3 class="list-heading">
-                Heading
-            </h3>
+        <div class="row justify-content-center p-2">
+            <div class="col">
+
+            </div>
+            <div class="col">
+                <h2 class="list-heading text-center"></h2>
+            </div>
+            <div class="col text-right">
+                <a href="javascript:void(0)" class="btn btn-danger new-btn">New <i class="bx bx-plus"></i></a>
+            </div>
         </div>
+
         <div class="row justify-content-around data-cards">
             
         </div>
@@ -225,9 +232,13 @@ var myHeaders = new Headers();
 // myHeaders.append("Content-Type ", "text/plain ");
 // myHeaders.append("Cookie ", "PHPSESSID=a147dbe2815c8b7145c6f2ca214f3716 "); 
 var id;
+var parentId;
 const params = (new URL(document.location)).searchParams;
 if(params.get('id')){
     id = params.get('id');
+    if(params.get('parentId')){
+        parentId = params.get('parentId');
+    }
 }else{
     window.location = "./main.html";
 }
@@ -285,6 +296,9 @@ function toast(message,bg){
 }
 function showData(){
     document.querySelector('.list-heading').textContent = id;
+    document.querySelector('.new-btn').addEventListener('click',()=>{
+        openAddForm(0,"add");
+    })
     console.log(id);
     var data = {
         load : "loadbyparent",
@@ -319,7 +333,7 @@ function showData(){
                         </div>
                         <div class="col">
                             <div class="row justify-content-around">
-                                <a href="javascript:void(0)" onclick="openAddForm('`+item.ContentName+`')">
+                                <a href="javascript:void(0)" onclick="openAddForm('`+item.ContentName+`','update')">
                                     <div class="livicon-evo" data-options=" name: pen.svg; size: 3rem "></div>
                                 </a>
                                 <div class="active-status" style="position: relative;">
@@ -440,8 +454,12 @@ function changeStatus(id,status){
     //send data back
 
 }
-function openAddForm(id){
-    window.location = `./mastersAdd.html?id=`+id+`&action=update`;
+function openAddForm(selfid,action){
+    if(action == "add"){
+        window.location = `./mastersAdd.html?id=`+id+`&action=add&parentId=`+parentId+``;
+    }else{
+        window.location = `./mastersAdd.html?id=`+selfid+`&action=update`;
+    }
 }
 function loadScripts(){
     var locations = ["LivIconsEvo.tools.js","LivIconsEvo.defaults.js","LivIconsEvo.min.js"];
