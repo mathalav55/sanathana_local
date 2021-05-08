@@ -16,7 +16,7 @@ else if( $rcvData == "loadbynumber"){
     load_bynumber($conn);
 }
 else if($rcvData == "loadall"){
-    $id = $data['id'];
+    // $id = $data['id'];
     Load_all($conn);
 }
 else if ($rcvData == "loadoutbound"){
@@ -139,7 +139,7 @@ function load_inbound($conn){
     }
 }
 function load_all($conn){
-    global $id;
+    // global $id;
     $sqlQuery = "select `referrals_master`.`id`,`referrals_master`.`referralamnt`, `referrals_master`.`finalamnt`, `referrals_master`.`status`, `contactlists_master`.`contactname` FROM `referrals_master` JOIN `contactlists_master` on `contactlists_master`.`referralid` = `referrals_master`.`id` WHERE `referrals_master`.`type` = 0";
     $datatable = getdata($conn, $sqlQuery);
     if (count($datatable) > 0) 

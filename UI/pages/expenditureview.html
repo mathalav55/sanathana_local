@@ -40,7 +40,7 @@
 
     <link rel="stylesheet" href="../css/responsive.css" />
 
-    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 
 
     <script src="../js/modernizr.js"></script>
@@ -66,6 +66,9 @@
         .search-background{
             height: 200px;
         }
+        .row{
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -73,10 +76,10 @@
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
-        <header class="headroom mb-4" >
+        <header class="headroom mb-4" style="position:fixed;z-index:99999999;width: 100%;">
 
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-                <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width" alt="Brand Logo " /></a>
+                <a href="./admin.html "><img src="../../images/emptystates/logo.jpg"class="img-fluid logo-width" alt="Brand Logo "/></a>
                 <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
             <span class="navbar-toggler-icon "></span>
           </button>
@@ -103,7 +106,7 @@
             
         </div>
     </section>
-    <div class="main-section ml-4 mr-4" style="margin-top: 2%;">
+    <div class="main-section ml-4 mr-4" style="padding-top: 10%;"> 
         <div class="row">
             <div class="col-md-4" style="height: 100vh;">
                 <div class="side-bar card">
@@ -124,7 +127,7 @@
                 <div class="search-bar">
                     <div class="card">
                         <div class="row card-body justify-content-between">
-                            <div class="col-6">
+                            <div class="col-8">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <input type="month" class="form-control" name="" id="date">
@@ -137,11 +140,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div class="row justify-content-end">
-                                    <div class="col">
-                                        <!-- <button type="button" class="btn btn-primary mr-1" id="">Search</button> -->
-                                    </div>
+                                    
                                     <div class="col" id="newbtn">
                                         <a href="./expenditureForm.html?action=add&">
                                             <button type="button" class="btn btn-primary mr-1" id="leftmenuvalue">no data</button>
@@ -440,6 +441,7 @@
                     );
             })
             nonFilteredReports = result;
+        }
             var data = {
                 load : "loadmemgroups",
                 id : userData.memberId
@@ -498,9 +500,7 @@
                     window.location = './dashBoard.html';
                 }
             }).catch(error =>{console.log(error);});
-        }else{
-            // showReports(nonFilteredReports);
-        }
+        
     }
     function showReports(reports){
         console.log(reports);
@@ -577,7 +577,7 @@
     async function empty(section){
         section.innerHTML = "";
         var template = document.createElement('div');
-        template.innerHTML = `<div class="row">
+        template.innerHTML = `<div class="row justify-content-center">
                                 <div class="col-8">
                                     <div class="row justify-content-center">
                                         <img src="#" id="emptyImage" alt="" style="width:50%">

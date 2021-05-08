@@ -228,6 +228,7 @@
                 if(profile.status == 0){
                     status = "bg-warning"
                 }
+                var id = profile.userid.replace("+","%2b");
                 return `
                 <div class="col-md-4">
             <div class="card text-right" style="margin-bottom: 10px; ">
@@ -236,7 +237,7 @@
                             <h4 class="card-title text-white text-left">
                                 `+profile.Name+`
                             </h4>
-                            <a href="./member_form.html?action=modify&memberId=`+profile.userid+`">
+                            <a href="./member_form.html?action=modify&memberId=`+id+`">
                                 <span class="material-icons onlyAdmin" style="color:#fff">
                                         edit
                                 </span>

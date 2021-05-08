@@ -63,6 +63,9 @@
         .search-background{
             height: 200px;
         }
+        .row{
+            margin: 0 ;
+        }
     </style>
 </head>
 
@@ -70,14 +73,13 @@
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
-        <header class="headroom mb-4" >
+        <header class="headroom mb-4" style="display: none;" >
 
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-                <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
+                <a href="./admin.html "><img src="../../img/bg-img/logo-white.png" class="img-fluid logo-width " alt="Brand Logo " /></a>
                 <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
-            <span class="navbar-toggler-icon "></span>
-          </button>
-    
+                    <span class="navbar-toggler-icon "></span>
+                </button>
                 <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
                     <ul class="navbar-nav mr-auto " id="Tnavlist ">
     
@@ -85,13 +87,73 @@
                     <ul class="float-right navbar-nav" id="profileContainer">
     
                     </ul>
-                        
-    
                 </div>
             </nav>
     
     
         </header>
+        <div class="non-login-header"  style="width:100% !important;position:fixed;z-index:99999999;" >
+            <div class="row headroom-top-row bg-dark px-0 py-0" style="height: 35px;">
+                <div class="col-9">
+                    <h4 class="text-white pl-1">Sanathana Entrepreneurs Association</h4>
+                </div>
+                <div class="col-3 text-right">
+                    <div class="d-flex justify-content-around">
+                        <div class=" text-white">Contact Us</div>
+                        <!-- <div class=" text-right"> -->
+                        <span class="float-right">
+                  <div class="badge-light-info mx-auto  text-white  ">
+                  <i class="bx bxl-facebook-square font-medium-5"></i>
+                </div>
+              </span>
+                        <span class="float-right">
+                 
+                    <div class="badge-light-info mx-auto text-white ">
+                    <i class="bx bxl-twitter font-medium-5"></i>
+                  </div>
+                
+                </span>
+    
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- </section> -->
+    
+        <section>
+            <div class="bg-dark">
+                <div class="row align-items-center">
+                    <!-- Menu Area Start -->
+                    <div class="col-12">
+                        <div class="menu_area">
+                            <nav class="navbar navbar-expand-xl px-1 py-0">
+                                <!-- Logo -->
+                                <a href="#home"><img src="../../img/bg-img/logo-white.png" class="img-fluid logo-width" alt="Brand Logo" /></a>
+                                <a href="#home">
+                                    <h4 class="logo-font mt-2 ml-1 text-white">SEA</h4>
+                                </a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <!-- Menu Area -->
+                                <div class="navbar-collapse collapse" id="ca-navbar">
+                                    <ul class="nav navbar-nav ml-auto" id="nav">
+                                        <li class="nav-item"><a class="nav-link px-3 text-white" href="whysea.html" target="_blank">Why SEA</a></li>
+                                        <!-- <li class="nav-item"><a class="nav-link px-3" href="#features">Features</a></li> -->
+                                        <li class="nav-item"><a class="nav-link px-3 text-white" href="#applications">Blog</a></li>
+                                        <a class="" href="./login.html"> <button type="button" class="btn btn-light-warning  mr-1 mb-1" id="login-btn">Member Login</button></a>
+                                        <a class="" href="./businessProfiles.html"><button type="button" class="btn bg-white mr-1 mb-1">Search</button></a>
+    
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
     <!-- </section> -->
 
     <section>
@@ -107,7 +169,7 @@
             </div>
         </div>
     </section>
-    <div class="container main-section" style="margin-top: 2%;">
+    <div class="container main-section " style="padding-top:10%;">
         
         <div class="row">
             <div class="header-image">
@@ -273,7 +335,11 @@
                 userData = response;
                 console.log(userData);
                 if(userData.status == "Logged In")
+                {
+                    document.querySelector('.non-login-header').style.display = "none";
+                    document.querySelector('.headroom').style.display = "block";
                     auth();
+                }
                 loadProfiles();
             })
         }

@@ -9,7 +9,7 @@
     <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Admin</title>
+    <title>Main</title>
     <link rel="apple-touch-icon" href="../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
@@ -94,26 +94,29 @@
                             <h4 class="card-title text-white center-text">Code Of Growth</h4>
                         </div>
                         <div class="card-body">
-                            <div class="row mb-1">
-                                    <span class="material-icons">
-                                    check_box
-                                    </span>
+                            <div class="row mb-1 align-items-center">
+                                    <div class="livicon-evo" data-options="
+                                        name: check-alt.svg; 
+                                        size: 3rem
+                                    "></div>
                                     <span class="ml-1">
                                         Lorem ipsum dolor sit amet.
                                     </span>  
                             </div>
-                            <div class="row mb-1">
-                                    <span class="material-icons">
-                                    check_box
-                                    </span>
+                            <div class="row mb-1 align-items-center">
+                                    <div class="livicon-evo" data-options="
+                                        name: check-alt.svg; 
+                                        size: 3rem
+                                    "></div>
                                     <span class="ml-1">
                                         Lorem ipsum dolor sit amet.
                                     </span>  
                             </div>
-                            <div class="row mb-1">
-                                    <span class="material-icons">
-                                    check_box
-                                    </span>
+                            <div class="row mb-1 align-items-center">
+                                    <div class="livicon-evo" data-options="
+                                        name: check-alt.svg; 
+                                        size: 3rem
+                                    "></div>
                                     <span class="ml-1">
                                         Lorem ipsum dolor sit amet.
                                     </span>  
@@ -128,26 +131,29 @@
                             <h4 class="card-title text-white center-text">Code Of Growth</h4>
                         </div>
                         <div class="card-body">
-                            <div class="row mb-1">
-                                    <span class="material-icons ">
-                                    thumb_up
-                                    </span>
+                            <div class="row mb-1 align-items-center">
+                                    <div class="livicon-evo" data-options="
+                                        name: hand-right.svg; 
+                                        size: 3rem 
+                                    "></div>
                                     <span class="ml-1">
                                         Lorem ipsum dolor sit amet.
                                     </span>  
                             </div>
-                            <div class="row mb-1">
-                                    <span class="material-icons ">
-                                    thumb_up
-                                    </span>
+                            <div class="row mb-1 align-items-center">
+                                    <div class="livicon-evo" data-options="
+                                        name: hand-right.svg; 
+                                        size: 3rem 
+                                    "></div>
                                     <span class="ml-1">
                                         Lorem ipsum dolor sit amet.
                                     </span>  
                             </div>
-                            <div class="row mb-1">
-                                    <span class="material-icons ">
-                                    thumb_up
-                                    </span>
+                            <div class="row mb-1 align-items-center">
+                                    <div class="livicon-evo" data-options="
+                                        name: hand-right.svg; 
+                                        size: 3rem 
+                                    "></div>
                                     <span class="ml-1">
                                         Lorem ipsum dolor sit amet.
                                     </span>  
@@ -191,11 +197,17 @@
     <script src="../../app-assets/js/scripts/components.js"></script>
     <script src="../../app-assets/js/scripts/footer.js"></script>
     <script src="../../js/globalFuntions.js"></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js "></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js "></script>
+    <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js "></script>
     <script>
         var myHeaders = new Headers();
-        setTimeout(() => {
-            window.location = "./dashBoard.html";
-        }, 3000);
+        const params = (new URL(document.location)).searchParams;
+        if(params.get('flag')){
+            setTimeout(() => {
+                window.location = "./dashBoard.html";
+            }, 3000);
+        }
         auth();
     </script>
 

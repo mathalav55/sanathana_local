@@ -153,6 +153,10 @@
         background-color: #5a8eee6c;
         cursor: pointer;
     }
+    .row{
+    margin : 0;
+    }
+    
 </style>
 
 <!-- BEGIN: Body-->
@@ -160,7 +164,7 @@
 <body class="horizontal-layout navbar-static 2-columns footer-static pace-done menu-expanded horizontal-menu " data-open="hover " data-menu="horizontal-menu " data-col="2-columns ">
 
 
-    <header class="headroom " style="margin-bottom: 30px; ">
+    <header class="headroom " style="width:100% !important;position:fixed;z-index:99999999;" >
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
             <a href="./admin.html "><img src="../../images/emptystates/logo.jpg" class="img-fluid logo-width " alt="Brand Logo " /></a>
@@ -181,7 +185,7 @@
 
 
     </header>
-    <div class="container p-4">
+    <div class="container p-4" style="padding-top: 10% !important;">
       <div class="row justify-content-center mb-2">
           <div class="">
               <h3 class="card-title">Oppurtunities</h3>
@@ -378,14 +382,16 @@
                 userData.photo = "../../images/emptystates/female.png";
         }
         profileContainer.innerHTML = `<li class="dropdown dropdown-user nav-item float-right">
-                        <a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                          <div class="user-nav d-sm-flex d-none">
-                            <span class="user-name text-bold-600" style="color: #fff;">`+userData.name+`</span>
-                            
-                          </div>
-                          <span>
-                            <img class="round" src="`+userData.photo+`" alt="avatar" height="40" width="40">
-                          </span>
+                        <a class="" href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                            <div class="row align-items-center">
+                                <div class="user-nav d-sm-flex d-none">
+                                    <span class="user-name text-white">`+userData.name+`</span>
+                                </div>
+                                <div class="div p-1"></div>
+                                <span>
+                                    <img class="round" src="`+userData.photo+`" alt="avatar" height="40" width="40">
+                                </span>
+                            </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                           <a class="dropdown-item" href="javascript:void(0);">
@@ -491,7 +497,7 @@
     async function empty(section){
         section.innerHTML = "";
         var template = document.createElement('div');
-        template.innerHTML = `<div class="row">
+        template.innerHTML = `<div class="row justify-content-center">
                                 <div class="col-8">
                                     <div class="row justify-content-center">
                                         <img src="#" id="emptyImage" alt="">

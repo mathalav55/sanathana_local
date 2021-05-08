@@ -142,40 +142,45 @@
     .material-icons.inactive{
         color : #c7c7c7;
     }
+    .row{
+        margin: 0;
+    }
 </style>
 
 <!-- BEGIN: Body-->
 
 <body style="background-color:  #d4d4d473;">
 
-    <header class="headroom mb-4" >
+    <section class="header-bar" style="position:fixed;z-index:99999999;width: 100%;">
+        <header class="headroom mb-4" >
 
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-            <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
-            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
-        <span class="navbar-toggler-icon "></span>
-      </button>
-
-            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
-                <ul class="navbar-nav mr-auto " id="Tnavlist ">
-
-                </ul>
-                <ul class="navbar-nav nav float-right" id="profileContainer">
-
-                </ul>
-                    
-
-            </div>
-        </nav>
-
-
-    </header>
-
-
-
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
+                <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
+                <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
+            <span class="navbar-toggler-icon "></span>
+          </button>
+    
+                <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
+                    <ul class="navbar-nav mr-auto " id="Tnavlist ">
+    
+                    </ul>
+                    <ul class="navbar-nav nav float-right" id="profileContainer">
+    
+                    </ul>
+                        
+    
+                </div>
+            </nav>
+    
+    
+        </header>
+    </section>
 
 
-   <div id="dash-section" class="mt-4">
+
+
+
+   <div id="dash-section" style="padding-top: 10% ;" >
     <div class="row ">
         <div class="col-6 ">
             <div class="col-12 ">
@@ -212,7 +217,7 @@
                         </div>
                     </div>
                     <div class="row card-body pb-4">
-                        <div class="col p-1 m-1" style="background-color: #ff99f785;" >
+                        <div class="col p-1 m-1 badge-circle-light-success">
                             <div class="row justify-content-center">
                                 <h4 id="activeMembers">
                                     0
@@ -224,7 +229,7 @@
                                 </h4>
                             </div>
                         </div>
-                        <div class="col p-1 m-1" style="background-color: #99bdff85;" >
+                        <div class="col p-1 m-1 badge-circle-light-danger" >
                             <div class="row justify-content-center">
                                 <h4 id="inactiveMembers">
                                     0

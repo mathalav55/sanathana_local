@@ -69,7 +69,23 @@ function auth(){
     })
     .catch(error =>{console.log(error);});
  }
- 
+ async function countrycodes(){
+     console.log("called country codes")
+    var result = await fetch('../../js/countrycodes.json').then(response => response.json());
+    result = result.countries;
+    var countryCodes = document.getElementById('countryCode');         
+    result.forEach(item =>{
+        var option = document.createElement('option');
+        option.setAttribute('value',item.code);
+        option.innerText = item.name;
+        countryCodes.appendChild(option);
+    })   
+    var code = document.getElementById('countryCode');  
+    code.addEventListener('change' , ()=>{
+        console.log(code.value);
+    });
+      
+}
  function loadProfile(userData){
     console.log(userData);
     var profileContainer = document.getElementById('profileContainer');
@@ -168,4 +184,27 @@ function onlyAdmin(userData){
             item.parentNode.removeChild(item);
         })
     }
+}
+function remove(el){
+    var toast = el.parentNode.parentNode;
+    toast.remove();
+}
+function toast(message,bg){
+    var toastParent = document.createElement('div');
+    toastParent.innerHTML = `<div class="col card p-0">
+            <div class="row card-header `+bg+`">
+                <i class="ficon bx bx-bell bx-tada bx-flip-horizontal text-white"></i>
+                <span class="text-white">Message</span>
+                <div class="col"></div>
+                <div class="col"></div>
+                <a href="javascipt:void(0)" onclick="remove(this)">
+                    <i class="col bx bx-sm bx-x-circle text-white"  ></i>
+                </a>
+            </div>
+            <div class="row card-body p-1">
+                `+message+`
+            </div>
+        </div>`;
+    // document.querySelector('.toast-container').innerHTML = "";
+    document.querySelector('.toast-container').appendChild(toastParent.firstElementChild);
 }

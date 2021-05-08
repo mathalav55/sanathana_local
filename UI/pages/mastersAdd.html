@@ -521,29 +521,6 @@ function saveForm(){
         document.getElementById('save-btn').disabled = false;
     });
 }
-function remove(el){
-    var toast = el.parentNode.parentNode;
-    toast.remove();
-}
-function toast(message,bg){
-    var toastParent = document.createElement('div');
-    toastParent.innerHTML = `<div class="col card p-0">
-            <div class="row card-header `+bg+`">
-                <i class="ficon bx bx-bell bx-tada bx-flip-horizontal text-white"></i>
-                <span class="text-white">Message</span>
-                <div class="col"></div>
-                <div class="col"></div>
-                <a href="javascipt:void(0)" onclick="remove(this)">
-                    <i class="col bx bx-sm bx-x-circle text-white"  ></i>
-                </a>
-            </div>
-            <div class="row card-body p-1">
-                `+message+`
-            </div>
-        </div>`;
-    // document.querySelector('.toast-container').innerHTML = "";
-    document.querySelector('.toast-container').appendChild(toastParent.firstElementChild);
-}
 </script>
 <script>
     function loadScripts(){

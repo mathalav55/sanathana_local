@@ -182,7 +182,7 @@
                     <div class="row mb-4 card onlyAdmin">
                         <div class="row card-body pb-1 justify-content-between">
                             <div class="col-6 form-group">
-                                <select class="select2 form-control select2-hidden-accessible" id="oppurtunities" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <select class="select2 form-control select2-hidden-accessible"  id="oppurtunities" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                    
                                 </select>
                             </div>
@@ -227,25 +227,25 @@
                                 </div>
                             </div>
                             <div class="row card-body p-0 pb-3">
-                                <div class="col p-1 m-1" style="background-color: #ff99f785;">
+                                <div class="col p-1 m-1 badge-circle-light-danger">
                                     <div class="row justify-content-center">
-                                        <h4>
+                                        <h4 id="myopp">
                                             0
                                         </h4>
                                     </div>
-                                    <div class="row text-center">
+                                    <div class="row justify-content-center">
                                         <h4>
                                             My Oppurtunities
                                         </h4>
                                     </div>
                                 </div>
-                                <div class="col m-1 p-1" style="background-color: #99bdff85;">
+                                <div class="col m-1 p-1 badge-circle-light-success" >
                                     <div class="row justify-content-center">
-                                        <h4>
+                                        <h4 id="allopp">
                                             0
                                         </h4>
                                     </div>
-                                    <div class="row text-center">
+                                    <div class="row justify-content-center">
                                         <h4>
                                             All Oppurtunities
                                         </h4>
@@ -306,9 +306,9 @@
                                 </div>
                             </div>
                             <div class="row card-body p-0 pb-3">
-                                <div class="col p-1 m-1" style="background-color: #ff99f785;">
+                                <div class="col p-1 m-1 badge-circle-light-danger" >
                                     <div class="row justify-content-center" >
-                                        <h4>
+                                        <h4 id="inref">
                                             0
                                         </h4>
                                     </div>
@@ -318,9 +318,9 @@
                                         </h4>
                                     </div>
                                 </div>
-                                <div class="col m-1 p-1" style="background-color: #99bdff85;">
+                                <div class="col m-1 p-1 badge-circle-light-success" >
                                     <div class="row justify-content-center">
-                                        <h4>
+                                        <h4 id="outref">
                                             0
                                         </h4>
                                     </div>
@@ -369,7 +369,7 @@
     <script src="../../app-assets/js/scripts/footer.js "></script>
     <script src="../../js/globalFuntions.js"></script>
     <script src="../../app-assets/js/scripts/forms/select/form-select2.js"></script>    
-
+   
 
 
 
@@ -393,10 +393,28 @@
             console.log(result);
             userData = result;
             loadMembers();
+            loadOppurtunityData(userData.memberId);
+            loadRefferalData(userData.memberId);
+
         })
         .catch(error =>{console.log(error);});
     }  
     loadData();  
+    function loadOnchange(){
+        var $memberOptionsOne = $('#oppurtunities');
+        $memberOptionsOne.on("select2:select",function(e){
+            console.log(e.params.data.id);
+            var id = e.params.data.id;
+            loadOppurtunityData(id)
+        });
+        var $memberOptionsTwo = $('#refferals');
+        $memberOptionsTwo.on("select2:select",function(e){
+            id = e.params.data.id;
+            console.log(e.params.data.id);
+            loadRefferalData(id);
+        });
+        
+    }
     function loadMembers(){
         var memberdData = {
             load : "loadallMemdata"
@@ -424,18 +442,127 @@
             }
             memberOptionsOne.value = userData.memberId;
             memberOptionsTwo.value = userData.memberId;
+            loadOnchange();
         })
         .catch(error=>{console.log(error);});
     }
     auth();
-
+     
     //load data of admin by default
-    function loadOppurtunityData(){
+    async function loadOppurtunityData(id){
         //load numbers
-
+        //load all oppurtunties
+        var a = await allOppurnities();
+        var b = await myOppurtunities(id);
+        //get elements and add data to it
+        var myopp = document.getElementById('myopp');
+        myopp.innerText = a;
+        var allopp = document.getElementById('allopp');
+        allopp.innerText = b;
     }
-    function loadRefferalData(){
+    async function loadRefferalData(id){
         //load numbre
+        var a =await  inBoundRefferals(id);
+        var b =await outBoundRefferals(id); 
+        var inref = document.getElementById('inref');
+        var outref = document.getElementById('outref');
+        console.log(a+","+b);
+        inref.innerText = a;
+        outref.innerText = b;
+    }
+    async function allOppurnities(){
+        var data = {
+            load : "loadall"
+        }
+        data = JSON.stringify(data);
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        try{
+            var count = await fetch("../../ws/oppurtunities.php",requestOption).then(response => response.json())
+            .then(result =>{
+                console.log(result);
+                if(Array.isArray(result)){
+                    return result.length;
+                }else{
+                    return 0;
+                }
+            })
+            return count;
+        }
+        catch(error){
+            console.log(error);
+            return 0;
+        }
+    }
+    async function myOppurtunities(id){
+        var data = {
+            load : "loadinbound",
+            id
+        }
+        data = JSON.stringify(data);
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        try{
+            var count = await fetch("../../ws/oppurtunities.php",requestOption).then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if(Array.isArray(result)){
+                    return result.length;
+                }else{
+                    return 0;
+                }
+            });
+            return count;
+        }
+        catch(error){
+            console.log(error);
+            return 0;
+        }
+    }
+    async function inBoundRefferals(id){
+        var data = {
+            load: "loadinbound",
+            id : id
+        }
+        console.log(data);
+        data = JSON.stringify(data);
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        try{
+            var count = await fetch("../../ws/refferals.php",requestOption).then(response => response.json())
+            .then(result =>{
+                if(Array.isArray(result)){
+                    return result.length;
+                }else{
+                    return 0;
+                }
+            })
+            return count;
+        }
+        catch(error){
+            console.log(error);
+            return 0;
+        }
+    }
+    async function outBoundRefferals(id){
+        var data = {
+            load: "loadoutbound",
+            id : id
+        }
+        data = JSON.stringify(data);
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        try{
+            var count = await fetch("../../ws/refferals.php",requestOption).then(response => response.json())
+            .then(result =>{
+                if(Array.isArray(result)){
+                    return result.length;
+                }else{
+                    return 0;
+                }
+            })
+            return count;
+        }
+        catch(error){
+            console.log(error);
+            return 0;
+        }
     }
     function downloadData(name,el){
         console.log(name);

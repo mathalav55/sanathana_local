@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="../../css/components.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/dark-layout.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/semi-dark-layout.min.css">
+    <link rel="stylesheet" href="../../app-assets/vendors/css/forms/select/select2.css">
+
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
@@ -87,12 +89,12 @@
                 console.log(result);
                 if(result.status == "Logged In"){
                     //redirect to dashboard page
-                    window.open("./admin.html",'_self');
+                    window.location = "./admin.html";
                 }
             })
             .catch(error =>{console.log(error);});
         }
-        authFunction();
+        // authFunction();
     </script>
 </head>
 <!-- END: Head-->
@@ -123,14 +125,23 @@
                                     <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                                         <div class="card-header pb-1">
                                             <div class="card-title">
-                                                <h4 class="text-center mb-2">Welcome Back</h4>
+                                                <h4 class="text-center mb-2">Welcome </h4>
                                             </div>
                                         </div>
                                         <div class="card-body">
                                             <form>
-                                                <div class="form-group mb-50">
-                                                    <label class="text-bold-600" for="phoneNumber">Phone Number</label>
-                                                    <input  title="Please enter valid phone number" class="form-control" id="phoneNumber" placeholder="Phone Number"></div>
+                                                
+                                                <fieldset>
+                                                    <div class="input-group">
+                                                      <div class="input-group-prepend">
+                                                        <select class="select2 form-control select2-hidden-accessible " id="countryCode" data-select2-id="0" tabindex="-1" aria-hidden="true">
+                                                            
+
+                                                        </select>
+                                                      </div>
+                                                      <input type="text" id="phoneNumber" class="form-control" placeholder="Dropdown on left">
+                                                    </div>
+                                                  </fieldset>
                                                 <div class="form-group">
                                                     <label class="text-bold-600" for="inputPassword1">Password</label>
                                                     <input type="password" class="form-control" id="inputPassword" placeholder="Password">
@@ -181,6 +192,10 @@
     <script src="../../js/app.min.js"></script>
     <script src="../../js/components.min.js"></script>
     <script src="../../js/footer.min.js"></script>
+    <script src="../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
+    <script src="../../app-assets/js/scripts/forms/select/form-select2.js"></script> 
+    <script src="../../js/globalFuntions.js"></script>   
+
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
@@ -188,14 +203,16 @@
 
     <script>
         var myHeaders = new Headers();
+        countrycodes();
         var submitBtn = document.getElementById("submit-btn");
         submitBtn.addEventListener("click",(event)=>{
             event.preventDefault();
             authnetication();
         });
         function authnetication(){
+            var username =  document.getElementById('countryCode').value +` `+ document.getElementById("phoneNumber").value
             var formData = {
-                username : document.getElementById("phoneNumber").value,
+                username : username,
                 password : document.getElementById("inputPassword").value,
             }
             console.log(formData);
@@ -217,7 +234,7 @@
                     localStorage.setItem('name',name);
                     document.getElementById("error").innerHTML ="";
                     //open main page
-                    window.open("./admin.html",'_self');
+                    window.open("./admin.html?flag=true",'_self');
                 }else{
                     //login failure
                     //display loginError message

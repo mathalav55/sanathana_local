@@ -22,6 +22,7 @@
   <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
   <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
   <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../app-assets/vendors/css/forms/select/select2.css">
 
 
 
@@ -50,6 +51,9 @@
   <style>
     .hide{
       display: none;
+    }
+    .row{
+      margin: 0 !important;
     }
   </style>
 
@@ -80,8 +84,12 @@
 
 
 </header>
-
-  <main role="main" class="container">
+<div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+  <div class="col toast-container">
+      
+  </div>
+</div>
+  <div class="container">
 
     <div class="row mt-1" id="memberForm_one">
       <div class="col-8">
@@ -95,18 +103,29 @@
                   </div>
                   <div class="card-body">
                     <div class="row">
+                      
                       <div class="col-md-4">
-                        <label for="memberId">Mobile Number</label>
+                        <label for="name">Mobile Number</label>
                       </div>
-                      <div class="col-md-8 form-group">
-                        <input type="number" pattern="[0-9]{10}" id="memberId" class="form-control " name="fname" placeholder="Mobile Number" required>
+                      <div class="col-md-8">
+                        <div class="input-group form-group">
+                          <div class="input-group-prepend">
+                            <select class="select2" id="countryCode" >
+                                
+  
+                            </select>
+                          </div>
+                          <input type="text" id="phoneNumber" class="form-control" placeholder="Mobile Number">
+                        </div>
                         <span style="color : #f00" id="errorElement"></span>
                       </div>
+                      
+                      
                       <div class="col-md-4">
                         <label for="name">Name</label>
                       </div>
                       <div class="col-md-8 form-group">
-                        <input type="text" id="name" class="form-control" name="fname" placeholder="Name">
+                        <input type="text" id="name" class="form-control" name="fname" placeholder="Name" required>
                       </div>
                       <div class="col-md-4">
                         <label for="surname">Surname</label>
@@ -162,8 +181,8 @@
             
             <div class="row ">
               <div class="col-md-12 mb-2 col-12  d-flex justify-content-end ">
-                <button type="button" class="btn btn-primary mr-1" id="saveBtnOne">Save </button>
-                <button type="button" class="btn btn-warning" id="nextBtnOne" style="display: none;">Next</button>
+                <button type="submit" class="btn btn-primary mr-1" id="saveBtnOne">Save </button>
+                <button type="button" class="btn btn-warning" id="nextBtnOne" disabled>Next</button>
               </div>
             </div>
           </div>
@@ -287,9 +306,9 @@
       </div>
       <div class="row">
         <div class="col-12 mb-2 d-flex justify-content-end ">
-          <button type="button" class="btn btn-warning mr-1" id="nextBtnTwo">Next</button>
-          <button type="submit" class="btn btn-primary mr-1" id="saveBtnTwo">Save </button>
-          <button type="submit" class="btn btn-warning viewProfileBtn" id="">View Profile</button>
+          <button type="submit" class="btn btn-primary mr-1" id="saveBtnTwo">Save</button>
+          <button type="button" class="btn btn-warning mr-1" id="nextBtnTwo" disabled>Next</button>
+          <button type="button" class="btn btn-warning" onclick="viewProfile()" id="" disabled>View Profile</button>
         </div>
       </div>
     </div>
@@ -370,7 +389,7 @@
       </div>
     </div>
 
-
+  </div>
   <script src="js/jquery-2.2.4.min.js"></script>
 
   <script src="js/headroom.js"></script>
@@ -405,6 +424,8 @@
   <script src="../js/custom.js"></script>
   <script src="../../js/globalFuntions.js"></script>
   
+  <script src="../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
+  <script src="../../app-assets/js/scripts/forms/select/form-select2.js"></script> 
 
   <script>
     //fetch data from api
@@ -435,7 +456,6 @@
     var nextBtnTwo = document.getElementById("nextBtnTwo")
     var saveBtnTwo = document.getElementById("saveBtnTwo");
     var saveBtnThree = document.getElementById("saveBtnThree");
-    var viweProfileBtns = document.getElementsByClassName("viewProfileBtn");
     var memberId;
     if(action ===  "modify"){
       memberId = updateMemberId;
@@ -476,17 +496,19 @@
       event.preventDefault();
       saveForm3();
     });
-    viweProfileBtns = Array.from(viweProfileBtns);
-    viweProfileBtns.forEach(element => {
-      element.addEventListener("click" , (event)=>{
-        event.preventDefault();
-        //do view profile action
-      })
-    });
+    // viweProfileBtns = Array.from(viweProfileBtns);
+    // viweProfileBtns.forEach(element => {
+    //   element.addEventListener("click" , (event)=>{
+    //     event.preventDefault();
+    //     //do view profile action
+    //   })
+    // });
 
     
 
     //functions
+    
+    countrycodes();
     //scroll top function
     function scrollToTop(){
       document.body.scrollTop = 0;
@@ -499,7 +521,8 @@
       form1.classList.remove("hide");
       if(action == "modify"){
           //make member id text field disabled
-          document.getElementById("memberId").disabled = true;
+          document.getElementById("phoneNumber").disabled = true;
+          document.getElementById("countryCode").disabled = true;
           //fetch data from api and add it to form
           var dataBody = {
             load : "loadbynumber",
@@ -521,7 +544,9 @@
             var status  = (parseInt(result[0].status) == "1")? true : false;
             var admin = (parseInt(result[0].admin) == "1")? true : false;
             console.log(status);
-            document.getElementById("memberId").value = result[0].userid;
+            var userId = result[0].userid.split(" ");
+            document.getElementById("phoneNumber").value = userId[1];
+            document.getElementById("countryCode").innerHTML = `<option>`+userId[0]+`</option>`
             document.getElementById("name").value = result[0].Name;
             document.getElementById("surname").value = result[0].Surname;
             document.getElementById("dob").value = result[0].Dob;
@@ -798,7 +823,7 @@
                     <div class="col-8">
                       <div class="contactDetails">
                         <div class="row col-12">
-                            <div class="card col-12">
+                            <div class="card col-12 p-0">
                               <div class="card-header bg-primary row align-items-center justify-content-between">
                                 <h4 class="card-title text-white">
                                   Contact Details
@@ -817,43 +842,49 @@
                   </div>
                 </div>
               </div>`;
-      function cityOptions(){
-        //get available cities
-        var cityBody = {
-          load : "loadbyparent",
-          id : "chapters"
-        }
-        cityBody = JSON.stringify(cityBody);
-        var cityRequestOptions = {
-          method : "POST",
-          redirect : "follow",
-          body : cityBody,
-          headers : myHeaders
-        }
-        fetch("../../ws/Accessconfig.php",cityRequestOptions)
-        .then(response => response.json())
-        .then(result => {
-          console.log(result);
-          if(Array.isArray(result)){
-            var options = '';
-            result.forEach((city)=>{
-              options = options + `<option>`+city.ContentName+`</options>`
-            })
-            var businessCity = template.content.querySelector('#businessCity-cat');
-            businessCity.innerHTML = options;
+      async function cityOptions(template){
+          var businessOption = template.content.firstElementChild.querySelector('#businessCity-cat');
+          //get available cities
+          var cityBody = {
+            load : "loadbyparent",
+            id : "chapters"
           }
-        })
-        .catch(error =>{console.log(error);});
+          cityBody = JSON.stringify(cityBody);
+          var cityRequestOptions = {
+            method : "POST",
+            redirect : "follow",
+            body : cityBody,
+            headers : myHeaders
+          }
+          try{
+            var result = await fetch("../../ws/Accessconfig.php",cityRequestOptions).then(response => response.json());
+            if(Array.isArray(result))    {
+              var cityOptions = "";
+              result.forEach(item=>{
+                cityOptions += `<option value="`+item.ContentName+`">`+item.ContentName+`</option>`;
+              })
+              console.log(businessOption);
+              businessOption.innerHTML = cityOptions;
+            }               
+          }
+          catch(error){
+            console.log(error);
+          }
+            
+      
+       
       }
       function contactDetails(){
         var createBtn = template.content.querySelector(`#`+joinedHeading+`Create`);
+        console.log(createBtn);
         createBtn.addEventListener("click",()=>{
           console.log(joinedHeading);
           addContactElement(joinedHeading);
         });
       }
-      cityOptions();
+      cityOptions(template);
       contactDetails();
+
       //get parent element for catgories
       var businessDetailsForm = document.getElementById('businessDetailsForm');
       var form = template.content.firstChild;
@@ -926,7 +957,7 @@
           headers : myHeaders,
           body : contactBody
         }
-        fetch("../../ws/buinessprofile.php",contactRequestOptions)
+        fetch("../../ws/businessprofile.php",contactRequestOptions)
         .then(response => response.json())
         .then(result =>{
           console.log(result);
@@ -1160,8 +1191,8 @@
         load = "";
       }
       let formdata = new FormData();
+      memberId = document.getElementById('countryCode').value + ` `+ document.getElementById("phoneNumber").value ;
       //uploadig files if exists
-      memberId = document.getElementById("memberId").value;
       if(memberPhoto.files.length > 0){
           var date = new Date();
           date = date.getTime();
@@ -1209,7 +1240,8 @@
         redirect : "follow",
         body : profileData
       }
-      if(memberId != ""){
+      //form validation
+      if(document.getElementById("phoneNumber").value != ""){
         hideError();
         await validateID(memberId)
         .then(response =>{
@@ -1227,10 +1259,19 @@
             .then(response => response.json())
             .then(result =>{
               console.log(result);
-              openForm2();
+              // openForm2();
+              if(result.status == "Added Successfully" || result.status == "Updated Succesfully"){
+                toast(result.status,'bg-success');
+                nextBtnOne.disabled = false;
+                saveBtnOne.disabled = true;
+              }
+              else  
+                toast(result.status,'bg-warning');
+              
             })
             .catch(error =>{
               console.log(error);
+              toast("An Error Occured. Please try again",'bg-danger')
             });
           }
         });
@@ -1246,7 +1287,7 @@
       errorElement.innerHTML = "";
     }
     function displayError(message){
-      var idInputElement = document.getElementById('memberId');
+      var idInputElement = document.getElementById('phoneNumber');
       idInputElement.classList.add("is-invalid");
       var errorElement = document.getElementById('errorElement');
       errorElement.innerHTML = message;
@@ -1278,6 +1319,7 @@
       }
       catch(error){
         console.log(error);
+        return false;
       }
     }
     //save form 2 fucntion
@@ -1414,7 +1456,7 @@
           console.log(error);
         });
     }
-    function addBusinessData(category){
+   async function addBusinessData(category){
       console.log(category);
       //send business profile details
       var logo = "";
@@ -1461,7 +1503,7 @@
               })
           }
           else {
-            load = "add";
+            load = "addEntry";
           }
         })
         .then(()=>{
@@ -1470,6 +1512,7 @@
         .catch(error =>{console.log(error);});
         //if category matches then load is update else load is add
       }
+     
       function sendData(){
         if(category.querySelector('#businessPincode-cat').value != ""){
           pincode = parseInt(category.querySelector('#businessPincode-cat').value);
@@ -1498,7 +1541,7 @@
         fetch("../../ws/businessprofile.php",businessProfileRequestOptions)
         .then(response => response.json())
         .then(result =>{
-          console.log(result);
+          console.log(result);  
           var contactContainer = document.getElementById(category.id+`Contacts`);
           var contacts = contactContainer.children;
           contacts = Array.from(contacts);
