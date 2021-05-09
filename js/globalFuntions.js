@@ -1,6 +1,6 @@
 async function emptyState(section,pageName){
     var myheaders = new Headers();
-    console.log(pageName);
+    //console.log(pageName);
     //show empty state div and hide the rest of the content
     var emptyData = {
         load : "loadbyname",
@@ -16,15 +16,15 @@ async function emptyState(section,pageName){
     try{
         var result = await fetch("../../ws/Accessconfig.php",emptyRequestOptions)
         .then(response => response.json());
-        console.log(result);
-        console.log(section);
+        //console.log(result);
+        //console.log(section);
         var image = section.querySelector('#emptyImage');
-        console.log(image);
+        //console.log(image);
         image.setAttribute('src',result[0].	emptystateimg);
         return section;
     }
     catch(error){
-        console.log(error);
+        //console.log(error);
         return null;
     }
 }
@@ -45,13 +45,13 @@ function auth(){
     fetch("../../ws/auth.php",authRequestOptions)
     .then(response => response.json())
     .then(result => {
-    console.log(result);
+    //console.log(result);
     try{
         userData = result;
         onlyAdmin(userData);
     }
     catch(error){
-        console.log(error);
+        //console.log(error);
     }
     if(result.status === "Not Logged In"){
         //redirect to login screen
@@ -67,7 +67,7 @@ function auth(){
             
     }
     })
-    .catch(error =>{console.log(error);});
+    .catch(error =>{//console.log(error);});
  }
  async function countrycodes(){
      console.log("called country codes")

@@ -86,7 +86,7 @@
             fetch("../../ws/auth.php",authRequestOptions)
             .then(response => response.json()).
             then(result => {
-                console.log(result);
+                // console.log(result);
                 if(result.status == "Logged In"){
                     //redirect to dashboard page
                     window.location = "./admin.html";
@@ -215,7 +215,7 @@
                 username : username,
                 password : document.getElementById("inputPassword").value,
             }
-            console.log(formData);
+            // console.log(formData);
             formData = JSON.stringify(formData);
             var formRequestOptions = {
                 headers : myHeaders,
@@ -226,7 +226,7 @@
             fetch("../../ws/login.php",formRequestOptions)
             .then(response => response.json())
             .then( result =>{
-                console.log(result);
+                // console.log(result);
                 if( Array.isArray(result)){
                     var usrData = result[0];
                     var name = usrData.Name;
