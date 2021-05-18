@@ -83,65 +83,6 @@
         font-family: Arial, Helvetica, sans-serif;
     }
     /* The Modal (background) */
-    
-    .modal {
-        display: none;
-        /* Hidden by default */
-        position: fixed;
-        /* Stay in place */
-        z-index: 1;
-        /* Sit on top */
-        padding-top: 100px;
-        /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%;
-        /* Full width */
-        height: 100%;
-        /* Full height */
-        /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0);
-        /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Black w/ opacity */
-    }
-    /* Modal Content */
-    
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        height: 100%;
-    }
-    /* The Close Button */
-    
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-    #addForm{
-        display: none;
-    }
-    #list-view{
-        display: none;
-    }
-    .material-icons.active{
-        color: #5a8dee;
-    }
-    .material-icons.inactive{
-        color : #c7c7c7;
-    }
     .row{
         margin: 0;
     }
@@ -151,127 +92,33 @@
 
 <body style="background-color:  #d4d4d473;">
 
-    <section class="header-bar" style="position:fixed;z-index:99999999;width: 100%;">
-        <header class="headroom mb-4" >
-
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-                <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
-                <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
-            <span class="navbar-toggler-icon "></span>
-          </button>
-    
-                <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
-                    <ul class="navbar-nav mr-auto " id="Tnavlist ">
-    
-                    </ul>
-                    <ul class="navbar-nav nav float-right" id="profileContainer">
-    
-                    </ul>
-                        
-    
-                </div>
-            </nav>
-    
-    
-        </header>
-    </section>
+    <div id="navbar-container">
+        
+    </div>
 
 
 
 
 
-   <div id="dash-section" style="padding-top: 10% ;" >
-    <div class="row ">
-        <div class="col-6 ">
-            <div class="col-12 ">
-                <div class="card text-left " style="margin-bottom: 10px;">
-                    <div class="row card-header" style="margin-top : -6%;">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <a href="./member_form.html">
-                                        <div class="livicon-evo" data-options="
-                                        name: plus-alt.svg; 
-                                        size: 3rem; 
-                                        "></div>
-                                </a>
-                                </div>
-                                <div class="col">
-                                    <a href="./searchmembers.html">
-                                        <div class="livicon-evo" data-options="
-                                        name: thumbnails-big.svg; 
-                                        size: 3rem;
-                                        "></div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col text-right">
-                            <div class="row chip-primary chip">
-                                <div class="col chip-body">
-                                    <span class="chip-text" style="font-size: 1.2rem; padding: .4rem;">
-                                        Members
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row card-body pb-4">
-                        <div class="col p-1 m-1 badge-circle-light-success">
-                            <div class="row justify-content-center">
-                                <h4 id="activeMembers">
-                                    0
-                                </h4>
-                            </div>
-                            <div class="row justify-content-center">
-                                <h4>
-                                    Active
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="col p-1 m-1 badge-circle-light-danger" >
-                            <div class="row justify-content-center">
-                                <h4 id="inactiveMembers">
-                                    0
-                                </h4>
-                            </div>
-                            <div class="row justify-content-center">
-                                <h4>
-                                   In Active
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-        <div class="col-6 ">
-            <div id="dbFields " class="col-12 ">
-                <!-- <div class="row">
-                    <div class="col card">
-                        <div class="row card-header">
+   <section>
+    <div id="dash-section" style="padding-top: 10% ;" >
+        <div class="row ">
+            <div class="col-6 ">
+                <div class="col-12 ">
+                    <div class="card text-left " style="margin-bottom: 10px;">
+                        <div class="row card-header" style="margin-top : -6%;">
                             <div class="col">
-                                <div class="row chip chip-primary">
-                                    <div class="col chip-body">
-                                        <span class="chip-text" style="font-size: 1.2rem; padding: 0.4rem;">
-                                            no data
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="row ">
+                                <div class="row">
                                     <div class="col">
-                                        <a href="#" class="row justify-content-end">
+                                        <a href="./member_form.html">
                                             <div class="livicon-evo" data-options="
                                             name: plus-alt.svg; 
                                             size: 3rem; 
                                             "></div>
-                                        </a>
+                                    </a>
                                     </div>
                                     <div class="col">
-                                        <a href="#" class="">
+                                        <a href="./searchmembers.html">
                                             <div class="livicon-evo" data-options="
                                             name: thumbnails-big.svg; 
                                             size: 3rem;
@@ -280,150 +127,91 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col text-right">
+                                <div class="row chip-primary chip">
+                                    <div class="col chip-body">
+                                        <span class="chip-text" style="font-size: 1.2rem; padding: .4rem;">
+                                            Members
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row card-body pb-4">
+                            <div class="col p-1 m-1 badge-circle-light-success">
+                                <div class="row justify-content-center">
+                                    <h4 id="activeMembers">
+                                        0
+                                    </h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h4>
+                                        Active
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="col p-1 m-1 badge-circle-light-danger" >
+                                <div class="row justify-content-center">
+                                    <h4 id="inactiveMembers">
+                                        0
+                                    </h4>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h4>
+                                       In Active
+                                    </h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
+                
             </div>
-        </div>
-    </div>
-   </div>
-    <div id="addForm">
-        <section id="">
-            <div class="row match-height justify-content-center">
-              <div class="col-8">
-                <div class="card">
-                  <div class="card-header justify-content-center" id="form_heading">
-                    <h3 class="card-title"></h3>
-                  </div>
-                  <div class="card-body">
-                    <form class="form" id="form">
-                      <div class="form-body">
-                        <div class="row">
-                          <div class="col-md-6 col-12">
-                            <div class="form-label-group">
-                              <input type="text" id="contentName" class="form-control" placeholder="Content Name"
-                                >
-                              <label for="contentName">Content Name</label>
+            <div class="col-6 ">
+                <div id="dbFields " class="col-12 ">
+                    <!-- <div class="row">
+                        <div class="col card">
+                            <div class="row card-header">
+                                <div class="col">
+                                    <div class="row chip chip-primary">
+                                        <div class="col chip-body">
+                                            <span class="chip-text" style="font-size: 1.2rem; padding: 0.4rem;">
+                                                no data
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="row ">
+                                        <div class="col">
+                                            <a href="#" class="row justify-content-end">
+                                                <div class="livicon-evo" data-options="
+                                                name: plus-alt.svg; 
+                                                size: 3rem; 
+                                                "></div>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="#" class="">
+                                                <div class="livicon-evo" data-options="
+                                                name: thumbnails-big.svg; 
+                                                size: 3rem;
+                                                "></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <div class="form-label-group">
-                              <input type="text" id="aliasName" class="form-control" placeholder="Alias Name"
-                                >
-                              <label for="aliasName">Alias Name</label>
-                            </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <div class="form-label-group">
-                              <input type="text" id="urlColumn" class="form-control" placeholder="URl Redirection">
-                              <label for="urlColumn">URL Redirection</label>
-                            </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <div class="form-label-group">
-                              <input type="file" id="iconPath" class="form-control"
-                                placeholder="Upload Icon" name="iconUpload">
-                              <label for="iconPath">Icon</label>
-                            </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <div class="form-label-group">
-                              <input type="text" id="header" class="form-control" 
-                                placeholder="Header">
-                              <label for="header">Header</label>
-                            </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <div class="form-label-group">
-                              <input type="text" id="content" class="form-control" 
-                                placeholder="Content">
-                                <label for="content">Content</label>
-                            </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <div class="form-label-group">
-                                <input type="file" id="imagePath" class="form-control" 
-                                  placeholder="Upload Image" name="imageUpload">
-                                <label for="imagePath">Image</label>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <div class="form-label-group">
-                                <input type="file" id="emptyImagePath" class="form-control" 
-                                  placeholder="Upload Image" name="imageUpload">
-                                <label for="emptyImagePath">Empty Image</label>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <div class="form-label-group">
-                                <input type="file" id="videoPath" class="form-control" 
-                                  placeholder="Upload Video" name="videUpload">
-                                  <label for="videoPath">Video</label>
-                              </div>
-                          </div>
-                          <div class="col-md-6 col-12">
-                            <label for="">Status</label>
-                            <div class="form-label-group">
-                                <li class="d-inline-block mr-2 mb-1">
-                                    <fieldset>
-                                      <div class="radio">
-                                        <input type="radio" name="status" id="radio1" checked>
-                                        <label for="radio1">Active</label>
-                                      </div>
-                                    </fieldset>
-                                  </li>
-                                  <li class="d-inline-block mr-2 mb-1">
-                                    <fieldset>
-                                      <div class="radio">
-                                        <input type="radio" name="status" id="radio2">
-                                        <label for="radio2">Inactive</label>
-                                      </div>
-                                    </fieldset>
-                                  </li>
-                            </div>
-                          </div>
-                          
-                          <div class="col-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary mr-1" id="save-btn">Save</button>
-                            <button type="reset" class="btn btn-light-secondary" id="reset-btn" >Reset</button>
-                          </div>
                         </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div class="row justify-content-start">
-                    <button type="reset" class="btn btn-primary" onclick="openDashSection()">Back</button>
-                </div>
-              </div>
-            </div>
-          </section>    
-    </div>
-    </div>
-    <div id="list-view" class="row justify-content-center">
-        <div class="card-header row justify-content-center" id="list-view-title">
-            <h3 class="card-title">Header</h3>
-        </div>
-        <div class="row justify-content-center">
-        <div id="dbFieldData" class="col-md-6 col-12 justify-content-center">
-            <div class="card text-right " style="margin-bottom: 10px; ">
-                <div class="card-body py-1 ">
-                    <h3 style="display: inline; float: left ">No Data</h3>
-                    <a href="# " style="cursor: pointer; margin-left: 20px; ">
-                        <span class="material-icons ">
-                        edit
-                        </span></a>
+                    </div> -->
                 </div>
             </div>
         </div>
-        
-    </div>
-    <div class="row justify-content-center" >
-        <div class="col-md-6 col-12 ">
-            <button type="reset" class="btn btn-primary" onclick="openDashSection()">Back</button>
-        </div>
-    </div>
-    </div>
+       </div>
+      
+   </section>
+
+   
     <script src="../../js/jquery-2.2.4.min.js "></script>
 
     <script src="../../js/headroom.js "></script>
@@ -443,7 +231,7 @@
     <script src="../../app-assets/vendors/js/vendors.min.js "></script>
     
 
-    <script src="../../app-assets/vendors/js/ui/jquery.sticky.js "></script>
+    <!-- <script src="../../app-assets/vendors/js/ui/jquery.sticky.js "></script>    -->
 
     <script src="../../app-assets/js/scripts/configs/horizontal-menu.js "></script>
     <script src="../../app-assets/js/core/app-menu.js "></script>
@@ -451,7 +239,63 @@
     <script src="../../app-assets/js/scripts/components.js "></script>
     <script src="../../app-assets/js/scripts/footer.js "></script>
     <script src="../../js/globalFuntions.js"></script>
-    
+    <!-- nav bar script -->
+    <script>
+        $('#navbar-container').load('../components/navbar.html');
+        $(document).ready(function() {
+            var year = new Date().getFullYear();
+            $(".year").text(year);
+            // Select all links with hashes
+            $('a[href*="#"]')
+                // Remove links that don't actually link to anything
+                .not('[href="#"]')
+                .not('[href="#0"]')
+                .click(function(event) {
+                    // On-page links
+                    if (
+                        location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") &&
+                        location.hostname == this.hostname
+                    ) {
+                        // Figure out element to scroll to
+                        var target = $(this.hash);
+                        target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
+                        // Does a scroll target exist?
+                        if (target.length) {
+                            // Only prevent default if animation is actually gonna happen
+                            event.preventDefault();
+                            $("html, body").animate({
+                                    scrollTop: target.offset().top
+                                },
+                                1000,
+                                function() {
+                                    // Callback after animation
+                                    // Must change focus!
+                                    var $target = $(target);
+                                    $target.focus();
+                                    if ($target.is(":focus")) {
+                                        // Checking if the target was focused
+                                        return false;
+                                    } else {
+                                        $target.attr("tabindex", "-1"); // Adding tabindex for elements not focusable
+                                        $target.focus(); // Set focus again
+                                    }
+                                }
+                            );
+                        }
+                    }
+                });
+            // grab an element
+            var myElement = document.querySelector("header");
+            // construct an instance of Headroom, passing the element
+            var headroom = new Headroom(myElement);
+            // initialise
+            headroom.init();
+        });
+
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>     
 <script>
 var myHeaders = new Headers();
 // myHeaders.append("Content-Type ", "text/plain ");
@@ -496,6 +340,9 @@ var myHeaders = new Headers();
         if(result.length > 0){
             var HTMLData = "";
             result.forEach(item =>{
+                if(item.status == "0"){
+                    return
+                }
                 HTMLData +=  `<div class="row">
                     <div class="col card">
                         <div class="row card-header">

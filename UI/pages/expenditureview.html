@@ -76,28 +76,9 @@
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
-        <header class="headroom mb-4" style="position:fixed;z-index:99999999;width: 100%;">
+        <dvi id="navbar-container">
 
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-                <a href="./admin.html "><img src="../../images/emptystates/logo.jpg"class="img-fluid logo-width" alt="Brand Logo "/></a>
-                <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
-            <span class="navbar-toggler-icon "></span>
-          </button>
-    
-                <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
-                    <ul class="navbar-nav mr-auto " id="Tnavlist ">
-    
-                    </ul>
-                    <ul class="float-right navbar-nav" id="profileContainer">
-    
-                    </ul>
-                        
-    
-                </div>
-            </nav>
-    
-    
-        </header>
+        </dvi>
     <!-- </section> -->
 
     <section>
@@ -223,21 +204,21 @@
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
     <!-- Jquery-2.2.4 JS -->
-    <script src="../js/jquery-2.2.4.min.js"></script>
+    <script src="../../js/jquery-2.2.4.min.js"></script>
     <!-- Headroom js -->
-    <script src="../js/headroom.js"></script>
+    <script src="../../js/headroom.js"></script>
     <!-- Popper js -->
-    <script src="../js/popper.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
     <!-- Bootstrap-4 Beta JS -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
     <!-- All Plugins JS -->
-    <script src="js/plugins.js"></script>
+    <script src="j../../js/plugins.js"></script>
     <!-- Active JS -->
-    <script src="../js/active.js"></script>
+    <script src="../../js/active.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <script src="../../js/jquery.mobile.custom.min.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/main.js"></script>
+    <script src="../../js/main.js"></script>
 
     <script src="../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
@@ -258,7 +239,62 @@
     <script src="../../js/globalFuntions.js"></script>
     <!-- END: Theme JS-->
     <!-- Headroom -->
+    <script>
+        $('#navbar-container').load('../components/navbar.html');
+        $(document).ready(function() {
+            var year = new Date().getFullYear();
+            $(".year").text(year);
+            // Select all links with hashes
+            $('a[href*="#"]')
+                // Remove links that don't actually link to anything
+                .not('[href="#"]')
+                .not('[href="#0"]')
+                .click(function(event) {
+                    // On-page links
+                    if (
+                        location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") &&
+                        location.hostname == this.hostname
+                    ) {
+                        // Figure out element to scroll to
+                        var target = $(this.hash);
+                        target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
+                        // Does a scroll target exist?
+                        if (target.length) {
+                            // Only prevent default if animation is actually gonna happen
+                            event.preventDefault();
+                            $("html, body").animate({
+                                    scrollTop: target.offset().top
+                                },
+                                1000,
+                                function() {
+                                    // Callback after animation
+                                    // Must change focus!
+                                    var $target = $(target);
+                                    $target.focus();
+                                    if ($target.is(":focus")) {
+                                        // Checking if the target was focused
+                                        return false;
+                                    } else {
+                                        $target.attr("tabindex", "-1"); // Adding tabindex for elements not focusable
+                                        $target.focus(); // Set focus again
+                                    }
+                                }
+                            );
+                        }
+                    }
+                });
+            // grab an element
+            var myElement = document.querySelector("header");
+            // construct an instance of Headroom, passing the element
+            var headroom = new Headroom(myElement);
+            // initialise
+            headroom.init();
+        });
 
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script> 
     <script>
     var myHeaders = new Headers();
     var userData = {};

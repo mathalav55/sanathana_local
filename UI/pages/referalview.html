@@ -163,27 +163,9 @@
 <body class="horizontal-layout navbar-static 2-columns footer-static pace-done menu-expanded horizontal-menu " data-open="hover " data-menu="horizontal-menu " data-col="2-columns ">
 
 
-    <header class="headroom " style="position:fixed;z-index:99999999;width: 100%;">
+    <div id="navbar-container">
 
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-            <a href="./admin.html "><img src="../../images/emptystates/logo.jpg" class="img-fluid logo-width " alt="Brand Logo " /></a>
-            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
-        <span class="navbar-toggler-icon "></span>
-      </button>
-
-            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
-                <ul class="navbar-nav mr-auto " id="Tnavlist ">
-
-                </ul>
-                <ul class="float-right " id="profileContainer">
-                   
-                </ul>
-
-            </div>
-        </nav>
-
-
-    </header>
+    </div>
     <div class="container p-4" style="padding-top: 10% !important;">
       <div class="row justify-content-center mb-2">
           <div class="">
@@ -333,9 +315,62 @@
 
 
 
-</body>
+    <script>
+        $('#navbar-container').load('../components/navbar.html');
+        $(document).ready(function() {
+            var year = new Date().getFullYear();
+            $(".year").text(year);
+            // Select all links with hashes
+            $('a[href*="#"]')
+                // Remove links that don't actually link to anything
+                .not('[href="#"]')
+                .not('[href="#0"]')
+                .click(function(event) {
+                    // On-page links
+                    if (
+                        location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") &&
+                        location.hostname == this.hostname
+                    ) {
+                        // Figure out element to scroll to
+                        var target = $(this.hash);
+                        target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
+                        // Does a scroll target exist?
+                        if (target.length) {
+                            // Only prevent default if animation is actually gonna happen
+                            event.preventDefault();
+                            $("html, body").animate({
+                                    scrollTop: target.offset().top
+                                },
+                                1000,
+                                function() {
+                                    // Callback after animation
+                                    // Must change focus!
+                                    var $target = $(target);
+                                    $target.focus();
+                                    if ($target.is(":focus")) {
+                                        // Checking if the target was focused
+                                        return false;
+                                    } else {
+                                        $target.attr("tabindex", "-1"); // Adding tabindex for elements not focusable
+                                        $target.focus(); // Set focus again
+                                    }
+                                }
+                            );
+                        }
+                    }
+                });
+            // grab an element
+            var myElement = document.querySelector("header");
+            // construct an instance of Headroom, passing the element
+            var headroom = new Headroom(myElement);
+            // initialise
+            headroom.init();
+        });
 
-</body>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script> 
 <script>
     var myHeaders = new Headers();
     var userData = {};
@@ -383,7 +418,7 @@
                         <a class="" href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
                             <div class="row align-items-center">
                                 <div class="user-nav d-sm-flex d-none">
-                                    <span class="user-name text-white">`+userData.name+`</span>
+                                    <span class="user-name ">`+userData.name+`</span>
                                 </div>
                                 <div class="div p-1"></div>
                                 <span>
@@ -429,7 +464,7 @@
             }
             
             
-            document.getElementById("Tnavlist ").innerHTML = navhtml;
+            document.getElementById("Tnavlist").innerHTML = navhtml;
         })
         .catch(error => console.log('error', error));
     }
@@ -670,5 +705,5 @@
     auth();
     // loadNavItems();
 </script>
-
+</body>
 </html>

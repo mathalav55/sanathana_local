@@ -1,6 +1,10 @@
 {
   "countries": [
     {
+      "code": "+91",
+      "name": "India"
+    },
+    {
       "code": "+7840",
       "name": "Abkhazia"
     },
@@ -407,10 +411,6 @@
     {
       "code": "+354",
       "name": "Iceland"
-    },
-    {
-      "code": "+91",
-      "name": "India"
     },
     {
       "code": "+62",

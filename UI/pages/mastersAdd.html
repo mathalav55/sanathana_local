@@ -152,28 +152,9 @@
 
 <body style="background-color:  #d4d4d473;">
 
-    <header class="headroom mb-4" >
+    <div id="navbar-container">
 
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-            <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
-            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
-        <span class="navbar-toggler-icon "></span>
-      </button>
-
-            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
-                <ul class="navbar-nav mr-auto " id="Tnavlist ">
-
-                </ul>
-                <ul class="float-right navbar-nav" id="profileContainer">
-
-                </ul>
-                    
-
-            </div>
-        </nav>
-
-
-    </header>
+    </div>
 
 
 
@@ -185,7 +166,7 @@
                 </div>
         </div>
     
-        <div class="container">
+        <div class="container" style="padding-top: 10%;">
             <div class="row match-height justify-content-center">
                 <div class="col-8">
                   <div class="card">
@@ -323,7 +304,62 @@
     <script src="../../app-assets/js/scripts/components.js "></script>
     <script src="../../app-assets/js/scripts/footer.js "></script>
     <script src="../../js/globalFuntions.js"></script>
-    
+<script>
+        $('#navbar-container').load('../components/navbar.html');
+        $(document).ready(function() {
+            var year = new Date().getFullYear();
+            $(".year").text(year);
+            // Select all links with hashes
+            $('a[href*="#"]')
+                // Remove links that don't actually link to anything
+                .not('[href="#"]')
+                .not('[href="#0"]')
+                .click(function(event) {
+                    // On-page links
+                    if (
+                        location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") &&
+                        location.hostname == this.hostname
+                    ) {
+                        // Figure out element to scroll to
+                        var target = $(this.hash);
+                        target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
+                        // Does a scroll target exist?
+                        if (target.length) {
+                            // Only prevent default if animation is actually gonna happen
+                            event.preventDefault();
+                            $("html, body").animate({
+                                    scrollTop: target.offset().top
+                                },
+                                1000,
+                                function() {
+                                    // Callback after animation
+                                    // Must change focus!
+                                    var $target = $(target);
+                                    $target.focus();
+                                    if ($target.is(":focus")) {
+                                        // Checking if the target was focused
+                                        return false;
+                                    } else {
+                                        $target.attr("tabindex", "-1"); // Adding tabindex for elements not focusable
+                                        $target.focus(); // Set focus again
+                                    }
+                                }
+                            );
+                        }
+                    }
+                });
+            // grab an element
+            var myElement = document.querySelector("header");
+            // construct an instance of Headroom, passing the element
+            var headroom = new Headroom(myElement);
+            // initialise
+            headroom.init();
+        });
+
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>     
 <script>
 var myHeaders = new Headers();
 // myHeaders.append("Content-Type ", "text/plain ");
