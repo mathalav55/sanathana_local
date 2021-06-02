@@ -463,9 +463,83 @@
                             </div>
                         </div>
                         <div class="row justify-content-around"style="margin-top: -9%;">
-                            <button  class="btn btn-primary" style="color: #000 !important;">
+                            <button type="button" class="btn btn-primary block" data-toggle="modal" data-target="#exampleModalCenter">
                                 Contact Us
                             </button>
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" style="width: 50%;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalCenterTitle">Contact Us</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="bx bx-x"></i>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form form-horizontal">
+                                            <div class="form-body">
+                                              <div class="row">
+                                                <div class="col-md-4">
+                                                  <label>Name</label>
+                                                </div>
+                                                <div class="col-md-8 form-group ">
+                                                  <div class="position-relative has-icon-left">
+                                                    <input type="text" id="fname-icon" class="form-control" name="fname-icon" placeholder="First Name">
+                                                    <div class="form-control-position">
+                                                      <i class="bx bx-user"></i>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <label>Email</label>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                  <div class="position-relative has-icon-left">
+                                                    <input type="email" id="email-icon" class="form-control" name="email-id-icon" placeholder="Email">
+                                                    <div class="form-control-position">
+                                                      <i class="bx bx-mail-send"></i>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <label>Mobile</label>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                  <div class="position-relative has-icon-left">
+                                                    <input type="number" id="contact-icon" class="form-control" name="contact-icon" placeholder="Mobile">
+                                                    <div class="form-control-position">
+                                                      <i class="bx bx-mobile"></i>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>Message</label>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                    <div class="position-relative has-icon-left">
+                                                        <textarea class="form-control" name="contact-icon">
+                                                        </textarea>
+                                                        
+                                                    </div>
+                                                </div>
+                                                                                            
+                                              </div>
+                                            </div>
+                                          </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Close</span>
+                                      </button>
+                                      <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Send Message</span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
                             <a href="./pages/businessProfiles.html" class="btn btn-warning">
                                 Search Our Member Directory
                             </a>
@@ -690,6 +764,7 @@
     <script src="../app-assets/js/core/app.js"></script>
     <script src="../app-assets/js/scripts/components.js"></script>
     <script src="../app-assets/js/scripts/footer.js"></script>
+    <script src="../app-assets/js/scripts/modal/components-modal.min.js"></script>
     <!-- END: Theme JS-->
     <!-- Headroom -->
     <script>
