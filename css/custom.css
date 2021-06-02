@@ -642,7 +642,7 @@ hr {
     z-index: 99;
 }
 .header_area.headroom--top {
-    background-color: #fff !important;
+    background-color: #d4d4d400 !important;
     position: fixed;
     top: 0;
     z-index: 99;
