@@ -484,7 +484,7 @@
                                                 </div>
                                                 <div class="col-md-8 form-group ">
                                                   <div class="position-relative has-icon-left">
-                                                    <input type="text" id="fname-icon" class="form-control" name="fname-icon" placeholder="First Name">
+                                                    <input type="text" id="name" class="form-control" name="fname-icon" placeholder="First Name">
                                                     <div class="form-control-position">
                                                       <i class="bx bx-user"></i>
                                                     </div>
@@ -495,7 +495,7 @@
                                                 </div>
                                                 <div class="col-md-8 form-group">
                                                   <div class="position-relative has-icon-left">
-                                                    <input type="email" id="email-icon" class="form-control" name="email-id-icon" placeholder="Email">
+                                                    <input type="email" id="email" class="form-control" name="email-id-icon" placeholder="Email">
                                                     <div class="form-control-position">
                                                       <i class="bx bx-mail-send"></i>
                                                     </div>
@@ -506,7 +506,7 @@
                                                 </div>
                                                 <div class="col-md-8 form-group">
                                                   <div class="position-relative has-icon-left">
-                                                    <input type="number" id="contact-icon" class="form-control" name="contact-icon" placeholder="Mobile">
+                                                    <input type="number" id="phone" class="form-control" name="contact-icon" placeholder="Mobile">
                                                     <div class="form-control-position">
                                                       <i class="bx bx-mobile"></i>
                                                     </div>
@@ -516,8 +516,8 @@
                                                     <label>Message</label>
                                                 </div>
                                                 <div class="col-md-8 form-group">
-                                                    <div class="position-relative has-icon-left">
-                                                        <textarea class="form-control" name="contact-icon">
+                                                    <div class="position-relative ">
+                                                        <textarea class="form-control" id="message" rows="5" name="contact-icon">
                                                         </textarea>
                                                         
                                                     </div>
@@ -528,10 +528,6 @@
                                           </form>
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                                        <i class="bx bx-x d-block d-sm-none"></i>
-                                        <span class="d-none d-sm-block">Close</span>
-                                      </button>
                                       <button type="button" onclick="sendMessage(this)" class="btn btn-primary ml-1">
                                         <span class="d-none d-sm-block">Send Message</span>
                                       </button>
@@ -762,6 +758,7 @@
     <script src="../app-assets/js/scripts/footer.js"></script>
     <script src="../app-assets/js/scripts/modal/components-modal.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+    <script src="../js/globalFuntions.js"></script>
     <!-- END: Theme JS-->
     <!-- Headroom -->
     <script>
@@ -1109,12 +1106,56 @@
       }
       //auth();
       function sendMessage(btn){
-          //get send messga button and add event listener
-          //make send button loading
-          //show modal content as send tick mark
-          btn.parentNode.parentNode.style = "width : fit-content;"
-          btn.parentNode.parentNode.innerHTML =  `<lottie-player src="https://assets7.lottiefiles.com/datafiles/OhIfcxnkLsj1Jxj/data.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    autoplay loop></lottie-player> <h3 class="text-center card-title">Sent!</h3>`;
+          var flag = true;
+          var data = {
+              name : "",
+              email : "",
+              message : "",
+              phone : ""
+          }
+          var parentNode = btn.parentNode.parentNode;
+          var mailElement = parentNode.querySelector('#email');
+          var phoneElement = parentNode.querySelector('#phone');
+          var msgElement = parentNode.querySelector('#message');
+          var nameElement = parentNode.querySelector('#name');
+          function formValidation(){
+            console.log("validation started")
+            if(!validateEmail(mailElement.value)){
+                console.log("email validation started")
+                showError(mailElement,"Please enter a valid email address");
+                flag = false;
+            }else{
+                removeError(mailElement);
+            }
+            if(!validatePhone(phoneElement.value)){
+                showError(phoneElement,"Please enter a valid phone number");
+                flag = false;
+            }else{
+                removeError(phoneElement);
+            }
+            if(!validate(nameElement.value)){
+                showError(nameElement,"This field cannot be empty");
+                flag = false;
+            }else{
+                removeError(nameElement);
+            }
+            return flag;
+          }
+
+          //if form validation is true
+          if(formValidation()){
+            btn.innerHTML = `<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>`;
+            btn.classList.remove('btn-primary');
+            btn.classList.add('btn-warning');
+            setTimeout(successs,3000);
+          }
+          //if message is successfully sent
+          function successs(){
+            btn.parentNode.parentNode.style = "width : fit-content;"
+            btn.parentNode.parentNode.innerHTML =  `<lottie-player src="https://assets7.lottiefiles.com/datafiles/OhIfcxnkLsj1Jxj/data.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    autoplay></lottie-player> <h3 class="text-center card-title">Sent!</h3>`;
+          }
       }
+      
       loadVideoCarousel();
       loadCarousel();
       dataInit();

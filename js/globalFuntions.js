@@ -1,3 +1,25 @@
+const phoneRegEx =  /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+function showError(element,message){
+    var parentNode = element.parentNode;
+    element.classList.add('is-invalid');
+    var errorELement = document.createElement('span');
+    errorELement.setAttribute('class', 'error');
+    errorELement.setAttribute('style' , 'color : #f00');
+    errorELement.innerText = message;
+    if(parentNode.querySelectorAll('.error').length == 0){
+        parentNode.appendChild(errorELement);
+    }
+    
+}
+function removeError(element){
+    var parentNode = element.parentNode;
+    if(parentNode.querySelectorAll('.error').length > 0){
+        element.classList.remove('is-invalid');
+        var errorELement = parentNode.querySelector('.error');
+        parentNode.removeChild(errorELement);
+    }  
+}
 async function emptyState(section,pageName){
     var myheaders = new Headers();
     console.log(pageName);
@@ -34,6 +56,30 @@ function noConnection(){
     window.location="../../UI/pages/emptyPage.html";
 }
 
+function validateEmail(value){
+    if(validate(value)){
+        if(value.match(emailRegEx)) 
+            return true;
+        else    
+            return false;
+    }
+    return false;
+}
+function validatePhone(value){
+    if(validate(value)){
+        if(value.match(phoneRegEx))
+            return true;
+        else    
+            return false;
+    }
+    return false;
+}
+function validate(value){
+    if(value.length > 0){
+        return true;
+    }
+    return false;
+}
 function auth(){
     var userData = {};
     var authRequestOptions = {
