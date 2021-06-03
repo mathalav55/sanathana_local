@@ -272,7 +272,7 @@ a {
 }
 
 .card {
-    /* border: none !important; */
+    border: none !important;
 }
 
 ul,

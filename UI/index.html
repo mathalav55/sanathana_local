@@ -467,8 +467,8 @@
                                 Contact Us
                             </button>
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" style="width: 50%;">
-                                <div class="modal-content">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" style="width: 50%">
+                                <div class="modal-content justify-content-center">
                                     <div class="modal-header">
                                       <h5 class="modal-title" id="exampleModalCenterTitle">Contact Us</h5>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -532,8 +532,7 @@
                                         <i class="bx bx-x d-block d-sm-none"></i>
                                         <span class="d-none d-sm-block">Close</span>
                                       </button>
-                                      <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
-                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                      <button type="button" onclick="sendMessage(this)" class="btn btn-primary ml-1">
                                         <span class="d-none d-sm-block">Send Message</span>
                                       </button>
                                     </div>
@@ -553,9 +552,6 @@
         </div>
     </section>
 
-   
-
-    
     <section class="bg-grey pb-150" id="components" style="padding-top:2rem;padding-bottom:2rem">
         <div class="container-fluid">
             <div class="section-heading text-center">
@@ -598,7 +594,7 @@
                 
 
 
-
+            
             </div>
         </div>
     </section>
@@ -765,6 +761,7 @@
     <script src="../app-assets/js/scripts/components.js"></script>
     <script src="../app-assets/js/scripts/footer.js"></script>
     <script src="../app-assets/js/scripts/modal/components-modal.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
     <!-- END: Theme JS-->
     <!-- Headroom -->
     <script>
@@ -1111,7 +1108,13 @@
         })
       }
       //auth();
-     
+      function sendMessage(btn){
+          //get send messga button and add event listener
+          //make send button loading
+          //show modal content as send tick mark
+          btn.parentNode.parentNode.style = "width : fit-content;"
+          btn.parentNode.parentNode.innerHTML =  `<lottie-player src="https://assets7.lottiefiles.com/datafiles/OhIfcxnkLsj1Jxj/data.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    autoplay loop></lottie-player> <h3 class="text-center card-title">Sent!</h3>`;
+      }
       loadVideoCarousel();
       loadCarousel();
       dataInit();
