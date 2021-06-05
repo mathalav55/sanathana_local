@@ -1107,36 +1107,40 @@
       //auth();
       function sendMessage(btn){
           var flag = true;
-          var data = {
-              name : "",
-              email : "",
-              message : "",
-              phone : ""
-          }
+          
           var parentNode = btn.parentNode.parentNode;
           var mailElement = parentNode.querySelector('#email');
           var phoneElement = parentNode.querySelector('#phone');
           var msgElement = parentNode.querySelector('#message');
           var nameElement = parentNode.querySelector('#name');
+          var data = {
+              name : "",
+              email : "",
+              message : msgElement.value,
+              phone : ""
+          }
           function formValidation(){
-            console.log("validation started")
+            console.log("validation started");
             if(!validateEmail(mailElement.value)){
                 console.log("email validation started")
                 showError(mailElement,"Please enter a valid email address");
                 flag = false;
             }else{
+                data.email = mailElement.value;
                 removeError(mailElement);
             }
             if(!validatePhone(phoneElement.value)){
                 showError(phoneElement,"Please enter a valid phone number");
                 flag = false;
             }else{
+                data.email = phoneElement.value;
                 removeError(phoneElement);
             }
             if(!validate(nameElement.value)){
                 showError(nameElement,"This field cannot be empty");
                 flag = false;
             }else{
+                data.name = nameElement.value;
                 removeError(nameElement);
             }
             return flag;
@@ -1147,9 +1151,34 @@
             btn.innerHTML = `<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>`;
             btn.classList.remove('btn-primary');
             btn.classList.add('btn-warning');
-            setTimeout(successs,3000);
+            console.log(data);
+            data = JSON.stringify(data);
+
+            var requestOptions = {
+                method : "POST",
+                headers : myHeaders,
+                redirect : "follow",
+                body : data
+            }
+            console.log(requestOptions);
+            //add data to data object
+            fetch("../ws/sendMail.php",requestOptions).then(response => response.json()).then(result => {
+                console.log(result);
+                if(result.code == "200"){
+                    removeError(btn);
+                    successs();
+                }
+                showError(btn,"Unable to send mail try again");
+                btn.innerHTML = `Try Again`;
+                btn.classList.remove('btn-primary');
+            }).catch(error =>{
+                btn.innerHTML = `Try Again`;
+                btn.classList.remove('btn-primary');
+                console.log(error);
+            })
           }
           //if message is successfully sent
+          
           function successs(){
             btn.parentNode.parentNode.style = "width : fit-content;"
             btn.parentNode.parentNode.innerHTML =  `<lottie-player src="https://assets7.lottiefiles.com/datafiles/OhIfcxnkLsj1Jxj/data.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    autoplay></lottie-player> <h3 class="text-center card-title">Sent!</h3>`;
