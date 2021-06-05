@@ -21,7 +21,7 @@
   <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
   <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
   <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
-  <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../css/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../../app-assets/vendors/css/forms/select/select2.css">
 
 
@@ -42,12 +42,12 @@
   <link rel="icon" href="img/core-img/favicon.png" />
 
 
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="../../css/responsive.css" />
 
-  <link rel="stylesheet" type="text/css" href="css/custom.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 
 
-  <script src="js/modernizr.js"></script>
+  <script src="../../js/modernizr.js"></script>
   <style>
     .hide{
       display: none;
@@ -62,34 +62,15 @@
 <body>
 
 
-  <header class="headroom mb-4" >
+  <div id="navbar-container">
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-        <a href="./admin.html "><img src="../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
-        <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
-    <span class="navbar-toggler-icon "></span>
-  </button>
-
-        <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
-            <ul class="navbar-nav mr-auto " id="Tnavlist ">
-
-            </ul>
-            <ul class="float-right navbar-nav" id="profileContainer">
-
-            </ul>
-                
-
-        </div>
-    </nav>
-
-
-</header>
+  </div>
 <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
   <div class="col toast-container">
       
   </div>
 </div>
-  <div class="container">
+  <div class="container " style="margin-top: 7%;" >
 
     <div class="row mt-1" id="memberForm_one">
       <div class="col-8">
@@ -105,7 +86,7 @@
                     <div class="row">
                       
                       <div class="col-md-4">
-                        <label for="name">Mobile Number</label>
+                        <label for="name" class="required">Mobile Number</label>
                       </div>
                       <div class="col-md-8">
                         <div class="input-group form-group">
@@ -117,22 +98,23 @@
                           </div>
                           <input type="text" id="phoneNumber" class="form-control" placeholder="Mobile Number">
                         </div>
-                        <span style="color : #f00" id="errorElement"></span>
                       </div>
                       
                       
                       <div class="col-md-4">
-                        <label for="name">Name</label>
+                        <label for="name" class="required">Name</label>
                       </div>
                       <div class="col-md-8 form-group">
                         <input type="text" id="name" class="form-control" name="fname" placeholder="Name" required>
                       </div>
+
                       <div class="col-md-4">
                         <label for="surname">Surname</label>
                       </div>
                       <div class="col-md-8 form-group">
                         <input type="text" id="surname" class="form-control" name="fname" placeholder="Surname">
                       </div>
+
                       <div class="col-md-4">
                         <label for="dob">DOB</label>
                       </div>
@@ -140,8 +122,9 @@
                         <input type="date" id="dob" class="form-control format-picker picker__input picker__input--active"
                           placeholder="DOB">
                       </div>
+
                       <div class="col-md-4">
-                        <label >Gender</label>
+                        <label class="required">Gender</label>
                       </div>
                       <div class="col-md-8 form-group">
                         <fieldset class="form-group">
@@ -152,12 +135,14 @@
                           </select>
                         </fieldset>
                       </div>
+
                       <div class="col-md-4">
                         <label for="gotram">Gotram</label>
                       </div>
                       <div class="col-md-8 form-group">
                         <input type="text" id="gotram" class="form-control" name="fname" placeholder="Gothram">
                       </div>
+
                       <div class="col-md-4">
                         <label for="memberPhoto">member photo</label>
                       </div>
@@ -167,12 +152,14 @@
                           <label class="input-group-text" for="inputGroupFile02">Upload</label>
                         </div>
                       </div>
+
                       <div class="col-md-4">
                         <label for="referredBy">referred by</label>
                       </div>
                       <div class="col-md-8 form-group">
                         <input type="text" id="referredBy" class="form-control" name="contact" placeholder="Refreed By">
                       </div> 
+
                     </div>
                   </div>
                 </div>
@@ -390,21 +377,21 @@
     </div>
 
   </div>
-  <script src="js/jquery-2.2.4.min.js"></script>
+  <script src="../../js/jquery-2.2.4.min.js"></script>
 
-  <script src="js/headroom.js"></script>
+  <script src="../../js/headroom.js"></script>
 
-  <script src="js/popper.min.js"></script>
+  <!-- <script src="../../js/popper.min.js"></script> -->
 
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../../js/bootstrap.min.js"></script>
 
-  <script src="js/plugins.js"></script>
+  <script src="../../js/plugins.js"></script>
 
-  <script src="js/active.js"></script>
+  <script src="../../js/active.js"></script>
 
-  <script src="js/jquery.mobile.custom.min.js"></script>
+  <script src="../../js/jquery.mobile.custom.min.js"></script>
 
-  <script src="js/main.js"></script>
+  <script src="../../js/main.js"></script>
 
   <script src="../../app-assets/vendors/js/vendors.min.js"></script>
   <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
@@ -421,12 +408,67 @@
   <script src="../../app-assets/js/scripts/components.js"></script>
   <script src="../../app-assets/js/scripts/footer.js"></script>
   <script src="../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
-  <script src="../js/custom.js"></script>
+  <script src="../../js/custom.js"></script>
   <script src="../../js/globalFuntions.js"></script>
   
   <script src="../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
   <script src="../../app-assets/js/scripts/forms/select/form-select2.js"></script> 
+  <script>
+    $('#navbar-container').load('../components/navbar.html');
+    $(document).ready(function() {
+        var year = new Date().getFullYear();
+        $(".year").text(year);
+        // Select all links with hashes
+        $('a[href*="#"]')
+            // Remove links that don't actually link to anything
+            .not('[href="#"]')
+            .not('[href="#0"]')
+            .click(function(event) {
+                // On-page links
+                if (
+                    location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") &&
+                    location.hostname == this.hostname
+                ) {
+                    // Figure out element to scroll to
+                    var target = $(this.hash);
+                    target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        $("html, body").animate({
+                                scrollTop: target.offset().top
+                            },
+                            1000,
+                            function() {
+                                // Callback after animation
+                                // Must change focus!
+                                var $target = $(target);
+                                $target.focus();
+                                if ($target.is(":focus")) {
+                                    // Checking if the target was focused
+                                    return false;
+                                } else {
+                                    $target.attr("tabindex", "-1"); // Adding tabindex for elements not focusable
+                                    $target.focus(); // Set focus again
+                                }
+                            }
+                        );
+                    }
+                }
+            });
+        // grab an element
+        var myElement = document.querySelector("header");
+        // construct an instance of Headroom, passing the element
+        var headroom = new Headroom(myElement);
+        // initialise
+        headroom.init();
+    });
 
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script> 
   <script>
     //fetch data from api
     var myHeaders = new Headers();

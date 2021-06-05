@@ -633,7 +633,6 @@ hr {
 /* stcicky css */
 
 .header_area.headroom--not-top {
-    background-color: #252e4a !important;
     box-shadow: 0px 4px 25px 0px #00000050;
     /* height: 75px;
     padding-top: 2px; */
@@ -642,7 +641,7 @@ hr {
     z-index: 99;
 }
 .header_area.headroom--top {
-    background-color: #d4d4d400 !important;
+    background-color: #252e4a !important;
     position: fixed;
     top: 0;
     z-index: 99;
@@ -1356,7 +1355,7 @@ div.show-image:hover img {
     right: -95%;
     top: -260px;
 }
-
+label.required::after {content: "* ";color: #f00;}
 .visionBox_bottom {
     width: 40%;
     position: relative;

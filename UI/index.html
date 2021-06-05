@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="../app-assets/css/core/menu/menu-types/horizontal-menu.css">
     <link rel="stylesheet" type="text/css" href="../app-assets/css/pages/dashboard-ecommerce.css">
-
+    <link rel="stylesheet" href="../css/animate.css">
 
 
 
@@ -704,7 +704,7 @@
     </script>
     <!-- End of Async Drift Code -->
     <!-- ***** App Screenshots Area End *****====== -->
-    <script>
+    <!-- <script>
         (function(i, s, o, g, r, a, m) {
             i["GoogleAnalyticsObject"] = r;
             (i[r] =
@@ -721,6 +721,15 @@
 
         ga("create", "UA-96096445-4", "auto");
         ga("send", "pageview");
+    </script> -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S580WRNSVG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-S580WRNSVG');
     </script>
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
@@ -1107,7 +1116,6 @@
       //auth();
       function sendMessage(btn){
           var flag = true;
-          
           var parentNode = btn.parentNode.parentNode;
           var mailElement = parentNode.querySelector('#email');
           var phoneElement = parentNode.querySelector('#phone');
@@ -1167,13 +1175,12 @@
                 if(result.code == "200"){
                     removeError(btn);
                     successs();
-                }
-                showError(btn,"Unable to send mail try again");
-                btn.innerHTML = `Try Again`;
-                btn.classList.remove('btn-primary');
+                }else{
+                    showError(btn,"Unable to send mail try again");
+                    btn.innerHTML = `Try Again`;
+                } 
             }).catch(error =>{
                 btn.innerHTML = `Try Again`;
-                btn.classList.remove('btn-primary');
                 console.log(error);
             })
           }
