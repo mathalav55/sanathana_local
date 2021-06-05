@@ -3,7 +3,7 @@
     $data = json_decode($jsondata);
     
     $toEmail = "matalav55@gmail.com";
-    $fromEmail = "noreply@gmail.com";
+    $fromEmail = "matalav55@gmail.com";
 
     $to = $toEmail;
     $subject = $data -> name;
@@ -36,7 +36,6 @@
 			</body>
 			</html>';
     $result = mail($to, $subject, $body, $headers);
-    echo $result;
     if($result){
         $jsonresponse = array('code' => '200', 'status' => 'success');
         echo json_encode($jsonresponse);
