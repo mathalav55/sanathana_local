@@ -69,8 +69,6 @@ else if($rcvData == "addEntry")
 else if($rcvData == "logindetchange")
 {
   $id = $data['id'];  
-  $pwd = $data['pwd'];
-  $newid = $data['newid'];  
   $newpwd = $data['newpwd'];
   logindet_change($conn);
 }
@@ -98,7 +96,7 @@ function load_allMemdata($conn)
   } 
   else 
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Nodata');
+    $jsonresponse = array('code' => '404', 'status' => 'Nodata');
     echo json_encode($jsonresponse);
   }
 }
@@ -114,7 +112,7 @@ function load_singlememdata($conn)
   } 
   else 
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Nodata');
+    $jsonresponse = array('code' => '404', 'status' => 'Nodata');
     echo json_encode($jsonresponse);
   }
 }
@@ -130,7 +128,7 @@ function load_memchapters($conn)
   } 
   else 
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Nodata');
+    $jsonresponse = array('code' => '404', 'status' => 'Nodata');
     echo json_encode($jsonresponse);
   }
 }
@@ -146,7 +144,7 @@ function load_memgroups($conn)
   } 
   else 
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Nodata');
+    $jsonresponse = array('code' => '404', 'status' => 'Nodata');
     echo json_encode($jsonresponse);
   }
 }
@@ -163,7 +161,7 @@ function insert_memchapters($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added');
     echo json_encode($jsonresponse);
   }
 }
@@ -180,7 +178,7 @@ function insert_memgroups($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added');
     echo json_encode($jsonresponse);
   }
 }
@@ -201,7 +199,7 @@ function update_memchapters($conn)
     }
     else
     {
-      $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+      $jsonresponse = array('code' => '500', 'status' => 'Not Added');
       echo json_encode($jsonresponse);
     }
   }
@@ -228,7 +226,7 @@ function update_memgroups($conn)
     }
     else
     {
-      $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+      $jsonresponse = array('code' => '500', 'status' => 'Not Added');
       echo json_encode($jsonresponse);
     }
   }
@@ -261,7 +259,7 @@ function insert_member($conn)
       }
       else
       {
-        $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+        $jsonresponse = array('code' => '500', 'status' => 'Not Added');
         echo json_encode($jsonresponse);
       }
     } 
@@ -273,7 +271,7 @@ function insert_member($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added');
     echo json_encode($jsonresponse);
   }
 }
@@ -295,21 +293,21 @@ function update_memprofile($conn)
     }
     else
     {
-      $jsonresponse = array('code' => '200', 'status' => 'Updated Failure');
+      $jsonresponse = array('code' => '500', 'status' => 'Updated Failure');
       echo json_encode($jsonresponse);
     }
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Check If Content Exists');
+    $jsonresponse = array('code' => '404', 'status' => 'Check If Content Exists');
     echo json_encode($jsonresponse);
   }
 }
 
 function logindet_change($conn)
 {
-  global  $id, $pwd, $newid, $newpwd;
-  $sqlQuery ="Update `memberlogin` SET `userid`='$newid',`password`='$newpwd' WHERE `id` = (SELECT `id` FROM `memberlogin` WHERE `userid` = '$id' and `password` =  '$pwd')";
+  global  $id, $newpwd;
+  $sqlQuery ="Update `memberlogin` SET `userid`='$id',`password`='$newpwd' WHERE `id` = (SELECT `id` FROM `memberlogin` WHERE `userid` = '$id' )";
   $returndata = setData($conn, $sqlQuery);
   if($returndata == "Record created")
   {
@@ -318,7 +316,7 @@ function logindet_change($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Updated Failure');
+    $jsonresponse = array('code' => '500', 'status' => 'Updated Failure');
     echo json_encode($jsonresponse);
   }
 }

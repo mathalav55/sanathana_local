@@ -62,6 +62,10 @@ else if($rcvData == "delproducts")
   $prodvideo = $data['prodvideo'];
   clear_products($conn);
 }
+else if($rcvData == "delprofile"){
+  $id = $data['id'];
+  delete_businessprofile($conn);
+}
 else if($rcvData == "addEntry")
 {
   $id = $data['id'];
@@ -101,7 +105,7 @@ function load_allMembusinessdata($conn)
   } 
   else 
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Nodata');
+    $jsonresponse = array('code' => '500', 'status' => 'Nodata');
     echo json_encode($jsonresponse);
   }
 }
@@ -117,7 +121,7 @@ function load_singlemembusinessdata($conn)
   } 
   else 
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Nodata');
+    $jsonresponse = array('code' => '500', 'status' => 'Nodata');
     echo json_encode($jsonresponse);
   }
 }
@@ -133,7 +137,7 @@ function load_memcontacts($conn)
   } 
   else 
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Nodata');
+    $jsonresponse = array('code' => '500', 'status' => 'Nodata');
     echo json_encode($jsonresponse);
   }
 }
@@ -150,7 +154,7 @@ function insert_memcontacts($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added');
     echo json_encode($jsonresponse);
   }
 }
@@ -167,7 +171,7 @@ function clear_memcontacts($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Cleared');
     echo json_encode($jsonresponse);
   }
 }
@@ -183,7 +187,7 @@ function load_products($conn)
   } 
   else 
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Nodata');
+    $jsonresponse = array('code' => '500', 'status' => 'Nodata');
     echo json_encode($jsonresponse);
   }
 }
@@ -200,7 +204,7 @@ function insert_products($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added');
     echo json_encode($jsonresponse);
   }
 }
@@ -217,7 +221,7 @@ function clear_products($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added');
     echo json_encode($jsonresponse);
   }
 }
@@ -225,7 +229,7 @@ function clear_products($conn)
 function insert_businessprofile($conn)
 {
   global $id,$Name,$desc,$Address,$pincode,$City,$category,$status,$logo,$banner;
-  $insertUpdateQuery = "Insert INTO `businessprofile`(`Name`, `Description`, `Address`, `pincode`, `city`, `Memberid`, `categories`, `status`, `logo`, `banner`)  VALUES ('$Name','$desc','$Address','$pincode','$City',(SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id'),(select `id` from `acessconfig` where `ContentName` = '$category'),'$status','$logo','$banner')";
+  $insertUpdateQuery = "Insert INTO `businessprofile`(`Name`, `Description`, `Address`, `pincode`, `city`, `Memberid`, `categories`, `status`, `logo`, `banner`)  VALUES ('$Name', '$desc','$Address','$pincode','$City',(SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id'),(select `id` from `acessconfig` where `ContentName` = '$category'),'$status','$logo','$banner')";
   $returndata = setData($conn, $insertUpdateQuery);
   if($returndata == "Record created")
   {
@@ -234,11 +238,25 @@ function insert_businessprofile($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added');
     echo json_encode($jsonresponse);
   }
 }
-
+function delete_businessprofile($conn){
+  global $id;
+  $sqlQuery = "Delete  FROM `businessprofile` WHERE `Memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
+  $returndata = setData($conn, $sqlQuery);
+  if($returndata == "Record created")
+  {
+    $jsonresponse = array('code' => '200', 'status' => 'Data Cleared');
+    echo json_encode($jsonresponse);
+  }
+  else
+  {
+    $jsonresponse = array('code' => '500', 'status' => 'Not Cleared Data');
+    echo json_encode($jsonresponse);
+  }
+}
 function update_businessprofile($conn)
 {
   global $id,$Name,$desc,$Address,$pincode,$City,$category,$status,$logo,$banner;
@@ -256,7 +274,7 @@ function update_businessprofile($conn)
     }
     else
     {
-      $jsonresponse = array('code' => '200', 'status' => 'Updated Failure');
+      $jsonresponse = array('code' => '500', 'status' => 'Updated Failure');
       echo json_encode($jsonresponse);
     }
   }

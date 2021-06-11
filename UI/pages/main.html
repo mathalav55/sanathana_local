@@ -73,7 +73,29 @@
     <link href="../../css/custom.css"rel=" stylesheet ">
 
     <script src="../../js/modernizr.js "></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAaX52IZbaEg3gYnMeHRWh5bi-pLEw2-c4",
+            authDomain: "sanathana-1558e.firebaseapp.com",
+            projectId: "sanathana-1558e",
+            storageBucket: "sanathana-1558e.appspot.com",
+            messagingSenderId: "69696836774",
+            appId: "1:69696836774:web:4edf184e3cfe3608679067",
+            measurementId: "G-DRHZRFBMLY"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 
 </head>
 <!-- END: Head-->
@@ -95,10 +117,6 @@
     <div id="navbar-container">
         
     </div>
-
-
-
-
 
    <section>
     <div id="dash-section" style="padding-top: 10% ;" >
@@ -169,41 +187,7 @@
             </div>
             <div class="col-6 ">
                 <div id="dbFields " class="col-12 ">
-                    <!-- <div class="row">
-                        <div class="col card">
-                            <div class="row card-header">
-                                <div class="col">
-                                    <div class="row chip chip-primary">
-                                        <div class="col chip-body">
-                                            <span class="chip-text" style="font-size: 1.2rem; padding: 0.4rem;">
-                                                no data
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="row ">
-                                        <div class="col">
-                                            <a href="#" class="row justify-content-end">
-                                                <div class="livicon-evo" data-options="
-                                                name: plus-alt.svg; 
-                                                size: 3rem; 
-                                                "></div>
-                                            </a>
-                                        </div>
-                                        <div class="col">
-                                            <a href="#" class="">
-                                                <div class="livicon-evo" data-options="
-                                                name: thumbnails-big.svg; 
-                                                size: 3rem;
-                                                "></div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                    
                 </div>
             </div>
         </div>

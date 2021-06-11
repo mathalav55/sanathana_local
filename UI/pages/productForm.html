@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
-    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome-4.7.0/css/font-awesome.min.css">
 
 
 
@@ -35,64 +35,59 @@
 
 
 
-    <link rel="icon" href="../img/core-img/favicon.png" />
+    <link rel="icon" href="../../img/core-img/favicon.png" />
 
 
-    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../../css/responsive.css" />
 
-    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 
 
-    <script src="../js/modernizr.js"></script>
+    <script src="../../js/modernizr.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAaX52IZbaEg3gYnMeHRWh5bi-pLEw2-c4",
+            authDomain: "sanathana-1558e.firebaseapp.com",
+            projectId: "sanathana-1558e",
+            storageBucket: "sanathana-1558e.appspot.com",
+            messagingSenderId: "69696836774",
+            appId: "1:69696836774:web:4edf184e3cfe3608679067",
+            measurementId: "G-DRHZRFBMLY"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
     <style>
-        .banner{
-            height: 200px;
-            width: 100%;
+        .row{
+          margin : 0;
         }
     </style>
 </head>
 
-<body>
+<body class="bg-grey">
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
-    <header class="headroom">
-
-
-        <div class="row headroom-top-row bg-primary px-0 py-0" style="height: 35px;">
-            <div class="col-9">
-                <h4 class="text-white pl-1">Sanathana Entrepreneurs Association</h4>
-            </div>
-            <div class="col-3 text-right">
-                <div class="d-flex justify-content-around">
-                    <div class=" text-white">Contact Us</div>
-                    <!-- <div class=" text-right"> -->
-                    <span class="float-right">
-              <div class="badge-light-info mx-auto  text-white  ">
-              <i class="bx bxl-facebook-square font-medium-5"></i>
-            </div>
-          </span>
-                    <span class="float-right">
-             
-                <div class="badge-light-info mx-auto text-white ">
-                <i class="bx bxl-twitter font-medium-5"></i>
-              </div>
-            
-            </span>
-
-                    <!-- </div> -->
-                </div>
-            </div>
-        </div>
-
-
-    </header>
-    <!-- </section> -->
-    <div class="row mt-3">
+    <div id="navbar-container">
 
     </div>
-    <div class="row mt-1 justify-content-center" id="memberForm_one">
+    <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+      <div class="col toast-container">
+          
+      </div>
+    </div>
+    <!-- </section> -->
+    <div class="row justify-content-center " style="padding-top : 10%;height: fit-content;">
         <div class="col-6">
           <form class="form form-horizontal">
             <div class="form-body">
@@ -105,7 +100,7 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-4">
-                          <label for="name">Product Name</label>
+                          <label for="name" class="required">Product Name</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <input type="text" id="name" class="form-control" name="fname" placeholder="Product Name">
@@ -117,7 +112,7 @@
                           <textarea type="text" id="desc" class="form-control" name="fname" placeholder="Description"></textarea>
                         </div>
                         <div class="col-md-4">
-                          <label for="doc">Document</label>
+                          <label for="doc" class="required">Document</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <div class="input-group">
@@ -132,7 +127,7 @@
                           <input type="text" id="videoUrl" class="form-control" name="video" placeholder="URL">
                         </div> 
                         <div class="col-md-12 mb-2 col-12  d-flex justify-content-end ">
-                            <button type="button" class="btn btn-primary mr-1" id="saveBtn" onclick="saveProduct()">Save </button>
+                            <button type="button" class="btn btn-primary mr-1" id="saveBtn" onclick="saveProduct(this)">Save </button>
                         </div>
                       </div>
                     </div>
@@ -205,22 +200,20 @@
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
     <!-- Jquery-2.2.4 JS -->
-    <script src="../js/jquery-2.2.4.min.js"></script>
+    <script src="../../js/jquery-2.2.4.min.js"></script>
     <!-- Headroom js -->
-    <script src="../js/headroom.js"></script>
+    <script src="../../js/headroom.js"></script>
     <!-- Popper js -->
-    <script src="../js/popper.min.js"></script>
     <!-- Bootstrap-4 Beta JS -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
     <!-- All Plugins JS -->
-    <script src="js/plugins.js"></script>
+    <script src="../../js/plugins.js"></script>
     <!-- Active JS -->
-    <script src="../js/active.js"></script>
+    <script src="../../js/active.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <script src="../../js/jquery.mobile.custom.min.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/main.js"></script>
-    <script src=""></script>
+    <script src="../../js/main.js"></script>
     <script src="../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
     <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
@@ -228,7 +221,7 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="./app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -237,11 +230,68 @@
     <script src="../../app-assets/js/core/app.js"></script>
     <script src="../../app-assets/js/scripts/components.js"></script>
     <script src="../../app-assets/js/scripts/footer.js"></script>
+    <script src="../../js/globalFuntions.js"></script>
     <!-- END: Theme JS-->
     <!-- Headroom -->
+    <script>
+      $('#navbar-container').load('../components/navbar.html');
+      $(document).ready(function() {
+          var year = new Date().getFullYear();
+          $(".year").text(year);
+          // Select all links with hashes
+          $('a[href*="#"]')
+              // Remove links that don't actually link to anything
+              .not('[href="#"]')
+              .not('[href="#0"]')
+              .click(function(event) {
+                  // On-page links
+                  if (
+                      location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") &&
+                      location.hostname == this.hostname
+                  ) {
+                      // Figure out element to scroll to
+                      var target = $(this.hash);
+                      target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
+                      // Does a scroll target exist?
+                      if (target.length) {
+                          // Only prevent default if animation is actually gonna happen
+                          event.preventDefault();
+                          $("html, body").animate({
+                                  scrollTop: target.offset().top
+                              },
+                              1000,
+                              function() {
+                                  // Callback after animation
+                                  // Must change focus!
+                                  var $target = $(target);
+                                  $target.focus();
+                                  if ($target.is(":focus")) {
+                                      // Checking if the target was focused
+                                      return false;
+                                  } else {
+                                      $target.attr("tabindex", "-1"); // Adding tabindex for elements not focusable
+                                      $target.focus(); // Set focus again
+                                  }
+                              }
+                          );
+                      }
+                  }
+              });
+          // grab an element
+          var myElement = document.querySelector("header");
+          // construct an instance of Headroom, passing the element
+          var headroom = new Headroom(myElement);
+          // initialise
+          headroom.init();
+      });
+
+      $(document).ready(function() {
+          $('[data-toggle="tooltip"]').tooltip();
+      });
+  </script>  
    <script>
      //get business profile id and category from url
-     var myheaders = new Headers();
+     var myHeaders = new Headers();
      var category = "";
      var memberid = "";
      function getUrlData(){
@@ -255,8 +305,13 @@
           console.log(memberid);
         }
      }
+     auth();
      getUrlData();
-     async function saveProduct(){
+     async function saveProduct(btn){
+        btn.innerHTML = `<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>`;
+        btn.classList.remove("bg-primary");
+        btn.classList.add("bg-warning");
+        btn.disabled = true;
         var prodcutDetails = {
            name : "",
            desc : "",
@@ -270,7 +325,7 @@
           var newFileName = date + productDoc.files[0].name;
           var formdata = new FormData();
           formdata.set("file" , productDoc.files[0] , newFileName);
-          await fetch("../../upload.php" , {method : "POST" , body : formdata});
+          await fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
           prodcutDetails.doc = `../../uploads/`+ newFileName;
         }
         prodcutDetails.name =  document.getElementById('name').value;
@@ -291,16 +346,54 @@
         var productRequestOptions = {
           method : "POST",
           redirect : "follow",
-          headers : myheaders,
+          headers : myHeaders,
           body : prodData
         }
-        fetch("../../ws/businessprofile.php",productRequestOptions)
-        .then(response => response.json())
-        .then(result => {
-          console.log(result);
-          location.reload();
-        })
-        .catch(error =>{console.log(error);});
+        if(validateForm()){
+          fetch("../../ws/businessprofile.php",productRequestOptions)
+          .then(response => response.json())
+          .then(result => {
+            console.log(result);
+            if(result.code == "200"){
+              toast(result.status,"bg-success");
+              setTimeout(() => {
+                  var temp = memberid.slice(1);
+                  window.open(`./viewBusinessProfile.html?category=`+category+`&memberid=%2B`+temp,'_self');
+              }, 1000);
+            }else{
+              toast(result.status,"bg-warning");
+            }
+            // location.reload();
+          })
+          .catch(
+            error =>{console.log(error);
+            toast("An Error occured<br>Please try agian","bg-warning");
+          });
+        }else{
+          toast("Please fill required fields","bg-warning");
+          btn.disabled = false;
+          btn.innerHTML = "Save";
+          btn.classList.remove("bg-warning");
+          btn.classList.add("bg-primary");
+        } 
+     }
+     function validateForm(){
+        var valid = true;
+        var nameElement = document.getElementById('name');
+        var documentElement = document.getElementById('productDoc');
+        if(validate(nameElement.value)){
+            removeError(nameElement);
+        }else{
+            showError(nameElement,"Please fill this filed");
+            valid = false;
+        }
+        if(documentElement.files[0]){
+          removeError(documentElement.parentNode);
+        }else{
+          showError(documentElement.parentNode,"Plase upload a document");
+          valid = false;
+        }
+        return valid;
      }
    </script>
 </body>

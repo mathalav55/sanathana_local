@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
-    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome-4.7.0/css/font-awesome.min.css">
 
 
 
@@ -35,20 +35,52 @@
 
 
 
-    <link rel="icon" href="../img/core-img/favicon.png" />
+    <link rel="icon" href="../../img/core-img/favicon.png" />
 
 
-    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../../css/responsive.css" />
 
-    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 
 
-    <script src="../js/modernizr.js"></script>
+    <script src="../../js/modernizr.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAaX52IZbaEg3gYnMeHRWh5bi-pLEw2-c4",
+            authDomain: "sanathana-1558e.firebaseapp.com",
+            projectId: "sanathana-1558e",
+            storageBucket: "sanathana-1558e.appspot.com",
+            messagingSenderId: "69696836774",
+            appId: "1:69696836774:web:4edf184e3cfe3608679067",
+            measurementId: "G-DRHZRFBMLY"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
     <style>
         .banner{
             height: 200px;
             width: 100%;
+        }
+        .row{
+            margin : 0;
+        }
+        .products{
+            height: 30vh;
+            overflow-y: scroll;
+        }
+        .products::-webkit-scrollbar{
+            display: none;
         }
     </style>
 </head>
@@ -57,63 +89,48 @@
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
- 
+        <div id="navbar-container" style="display: none;">
 
-
-        <div class="row headroom-top-row bg-primary px-0 py-0" style="height: 35px;">
-            <div class="col-9">
-                <h4 class="text-white pl-1">Sanathana Entrepreneurs Association</h4>
-            </div>
-            <div class="col-3 text-right">
-                <div class="d-flex justify-content-around">
-                    <div class=" text-white">Contact Us</div>
-                    <!-- <div class=" text-right"> -->
-                    <span class="float-right">
-              <div class="badge-light-info mx-auto  text-white  ">
-              <i class="bx bxl-facebook-square font-medium-5"></i>
-            </div>
-          </span>
-                    <span class="float-right">
-             
-                <div class="badge-light-info mx-auto text-white ">
-                <i class="bx bxl-twitter font-medium-5"></i>
-              </div>
-            
-            </span>
-
-                    <!-- </div> -->
-                </div>
-            </div>
         </div>
-
-
-
-    <header class="headroom mb-4" >
-
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-            <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
-            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
-        <span class="navbar-toggler-icon "></span>
-      </button>
-
-            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
-                <ul class="navbar-nav mr-auto " id="Tnavlist ">
-
-                </ul>
-                <ul class="float-right navbar-nav" id="profileContainer">
-
-                </ul>
-                    
-
-            </div>
-        </nav>
-
-
-    </header>
+        <div class="non-login-header">
+            <section>
+                <header class=" float-left header_area headroom headroom--not-bottom headroom--pinned headroom--top" style="position: fixed;z-index: 999999;">
+                   
+                    <div class="row align-items-center py-1">
+                        <!-- Menu Area Start -->
+                        <div class="col-12">
+                            <div class="menu_area">
+                                <nav class="navbar navbar-expand-xl px-1 py-0">
+                                    <!-- Logo -->
+                                    <a href="../index.html"><img src="../../img/bg-img/logo.png" class="img-fluid logo-width" alt="Brand Logo" /></a>
+                                    <a href="#home">
+                                        <h4 class="logo-font  ml-1 ">Sanathana Entrepreneurs Association</h4>
+                                    </a>
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <!-- Menu Area -->
+                                    <div class="navbar-collapse collapse" id="ca-navbar">
+                                        <ul class="nav navbar-nav ml-auto" id="nav">
+                                            <li class="nav-item"><a class="nav-link px-3 " href="whysea.html" target="_blank">Why SEA</a></li>
+                                            <!-- <li class="nav-item"><a class="nav-link px-3" href="#features">Features</a></li> -->
+                                            <li class="nav-item"><a class="nav-link px-3 " href="#applications">Blog</a></li>
+                                            <a class="" href="./login.html"> <button type="button" class="btn btn-light-warning  mr-1 mb-1" id="login-btn">Member Login</button></a>
+                                            <a class="" href="./businessProfiles.html"><button type="button" class="btn badge-circle-light-danger mr-1 mb-1">Search</button></a>
+        
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            </section>
+        </div>
     <!-- </section> -->
 
-    <section>
-        <div class="container-fluid bg-white float-left" style="width:100% !important;">
+    <section style=" margin-top:10%">
+        <div class="container-fluid float-left" style="width:100% !important;">
             
             <div class="row align-items-center">
                 <!-- Menu Area Start -->
@@ -125,17 +142,17 @@
             </div>
         </div>
     </section>
-    <div class="container main-section" style="margin-top: 2%;">
+    <div class="container main-section bg-grey" style="margin-top: 2%;">
         <div class="row">
             <div class="col-12">
-                <img src="../images/emptystates/banner.jpg" alt="" class="banner" id="bannerImage">
+                <img src="../../images/emptystates/banner.jpg" alt="" class="banner" id="bannerImage">
             </div>
         </div>
         <div class="row justify-content-between align-items-center" style="margin-top: -5%;">
             <div class="col-2 ml-2 card" >
-                <img src="../images/emptystates/logo.jpg" alt=""  class="logo" id="logoImage">
+                <img src="../../images/emptystates/logo.jpg" alt=""  class="logo" id="logoImage">
             </div>
-            <div class="col-8">
+            <div class="col-8" id="editProfileSection restrict">
                 <div class="row justify-content-end onlyAdmin">
                     <button class="btn btn-primary mr-1" data-toggle="modal" data-target="#businessForm" >Edit Profile</button>
                     <div class="modal fade text-left" id="businessForm" tabindex="-1"  aria-hidden="true" style="display: none; width:50% ; top : 25%; left:25%">
@@ -164,7 +181,7 @@
                           </div>
                         </div>
                     </div>
-                    <button onclick="prodcutForm()" class="btn btn-primary mr-1 onlyAdmin">Add Products</button>
+                    <button onclick="prodcutForm()" class="btn btn-primary mr-1">Add Products</button>
                 </div>
             </div>
         </div>
@@ -286,6 +303,9 @@
                 </div>
             </div>
         </div>
+        <div class="row other-business">
+
+        </div>
     </div>
     <!-- ***** Footer Area End ***** -->
     <!-- Start of Async Drift Code -->
@@ -346,22 +366,21 @@
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
     <!-- Jquery-2.2.4 JS -->
-    <script src="../js/jquery-2.2.4.min.js"></script>
+    <script src="../../js/jquery-2.2.4.min.js"></script>
     <!-- Headroom js -->
-    <script src="../js/headroom.js"></script>
+    <script src="../../js/headroom.js"></script>
     <!-- Popper js -->
-    <script src="../js/popper.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
     <!-- Bootstrap-4 Beta JS -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
     <!-- All Plugins JS -->
-    <script src="js/plugins.js"></script>
+    <script src="../../js/plugins.js"></script>
     <!-- Active JS -->
-    <script src="../js/active.js"></script>
+    <script src="../../js/active.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <script src="../../js/jquery.mobile.custom.min.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/main.js"></script>
-    <script src=""></script>
+    <script src="../../js/main.js"></script>
     <script src="../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
     <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
@@ -369,7 +388,7 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="./app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -382,10 +401,10 @@
     <!-- END: Theme JS-->
     <!-- Headroom -->
     <script>
-        var myHeaders = new Headers();
-        //fetch this data from url
-        var memberId;
+        const myHeaders = new Headers();
         var category;
+        var profileList = [];
+        
         var userData = {}
         async function profile(){
             var authRequestOptions = {
@@ -403,9 +422,17 @@
                 profile().then(response =>{
                     userData = response;
                     console.log(userData);
-                    onlyAdmin(userData);
                     if(userData.status == "Logged In")
+                    {
+                        document.querySelector('.non-login-header').style.display = "none";
+                        document.querySelector('#navbar-container').style.display = "block";
+                        $('#navbar-container').load('../components/navbar.html');
+                        if(userData.admin == "0")
+                            restrict();
                         auth();
+                    }else{
+                        restrict();
+                    }
                 })
             }
             catch(error){
@@ -413,7 +440,17 @@
             }
         }
         loadData();
+        //loading profile
         getUrlData();
+        function restrict(){
+            console.log("restricting")
+            var restrictedElements = document.querySelectorAll('.restrict');
+            restrictedElements = Array.from(restrictedElements);
+            restrictedElements.forEach(element=>{
+                var temp = element;
+                element.parentNode.removeChild(temp);
+            });
+        }
         function getUrlData(){
             const params = (new URL(document.location)).searchParams;
             if(params.get('category')){
@@ -428,7 +465,8 @@
             loadProducts();
         }
         function prodcutForm(){
-            var url = `./productform.html?category=`+category+`&memberid=`+memberId+``;
+            var temp = memberId.slice(1);
+            var url = `./productform.html?category=`+category+`&memberid=%2B`+temp+``;
             window.location=url;
         }
         function loadProducts(){
@@ -503,6 +541,7 @@
                 id : memberId
             }
             profileBody = JSON.stringify(profileBody);
+            console.log(profileBody);
             var profileRequestOptions = {
                 method : "POST",
                 redirect : "follow",
@@ -512,6 +551,7 @@
             fetch("../../ws/Memberprofile.php",profileRequestOptions)
             .then(response => response.json())
             .then((result)=>{
+                console.log(result);
                 if(Array.isArray(result)){
                     var basicDetails = result[0];
                     console.log(basicDetails)

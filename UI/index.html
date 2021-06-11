@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="../app-assets/vendors/css/charts/apexcharts.css">
     <link rel="stylesheet" type="text/css" href="../app-assets/vendors/css/extensions/swiper.min.css">
     <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../app-assets/vendors/css/forms/select/select2.css">
+
 
 
 
@@ -42,14 +44,28 @@
 
     <link rel="stylesheet" type="text/css" href="../css/custom.css" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S580WRNSVG"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 
-    gtag('config', 'G-S580WRNSVG');
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAaX52IZbaEg3gYnMeHRWh5bi-pLEw2-c4",
+            authDomain: "sanathana-1558e.firebaseapp.com",
+            projectId: "sanathana-1558e",
+            storageBucket: "sanathana-1558e.appspot.com",
+            messagingSenderId: "69696836774",
+            appId: "1:69696836774:web:4edf184e3cfe3608679067",
+            measurementId: "G-DRHZRFBMLY"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
     </script>
 
     <script src="../js/modernizr.js"></script>
@@ -114,7 +130,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="row align-items-center py-2">
+            <div class="row align-items-center py-1">
                 <!-- Menu Area Start -->
                 <div class="col-12">
                     <div class="menu_area">
@@ -122,7 +138,7 @@
                             <!-- Logo -->
                             <a href="#home"><img src="../img/bg-img/logo.png" class="img-fluid logo-width" alt="Brand Logo" /></a>
                             <a href="#home">
-                                <h4 class="logo-font  ml-1 ">Sanathana Entrepreneurs Association</h4>
+                                <h4 class="logo-font  ml-1 text-white">Sanathana Entrepreneurs Association</h4>
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -147,9 +163,9 @@
     <!-- ***** Header Area End ***** -->
     <!-- ***** Wellcome Area Start ***** -->
     <section >
-        <div class="container" >
-            <div class="row  align-items-center justify-content-between" style="height: 100vh;">
-                <div class="col-lg-6 col-md-12 w-m-100 px-4">
+        <div class="container px-4" >
+            <div class="row  align-items-center justify-content-between" style="height :100vh">
+                <div class="col-lg-6 col-md-12 w-m-100 ">
                     <div class="wellcome-heading">
                         <h2 class="mb-0 title-font-lg wow bounceInLeft">Grow Your Business
                         </h2>
@@ -208,21 +224,21 @@
                     </h2>
                 </div>
                 <div class="">
-                    <button class="btn btn-warning px-4 py-1" style="font-size: 1.5rem;">
+                    <a href="./pages/businessProfiles.html" class="btn btn-warning px-4 py-1 text-white" style="font-size: 1.5rem;">
                         Find Our Products & Services
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
     <!-- ***** Demos End ***** -->
     <!-- ***** Awesome Features Start ***** -->
-    <section class="mission-section px-4 py-2">
+    <section class="mission-section px-4 py-2" style="background-color: #f7f7f7;">
             <div class="row p-4" style="margin-left:0px !important;background: url('../images/sea_horizontal_1.png') no-repeat center; background-size: 60% 40%;">
                     <div class="col-lg-6 col-sm-12" >
                         <div class="row align-items-center px-4 py-2" style="background : url('../images/vertical_1.png') no-repeat;background-size: contain;">
                             <div class="col" >
-                                <h1>
+                                <h1 style="margin-left: -6%;">
                                     WE ARE
                                 </h1>
                                 <ul>
@@ -288,11 +304,11 @@
     <!-- ***** Awesome Features End ***** -->
     <!-- ***** Applications ***** -->
     <section >
-       <div class="col container-fluid network-section mt-4 mb-4    " style="height : 100vh">
-            <div class="row justify-content-center py-5">
-                <h1 class="text-primary">
+       <div class="col px-4 network-section mt-4 mb-4">
+            <div class="row justify-content-center pb-2 wellcome-heading">
+                <h2 class="text-primary">
                     NEWTWORKING IS THE KEY
-                </h1>
+                </h2>
             </div>
             <div class="row px-1">
                 <p>
@@ -320,7 +336,7 @@
 
                         </p>
                     </div>
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <h3 class="text-primary">
                             It’s  a fun, yet a serious way to grow your business	
                         </h3>                        
@@ -513,14 +529,17 @@
                                                 <div class="col-md-4">
                                                   <label>Mobile</label>
                                                 </div>
-                                                <div class="col-md-8 form-group">
-                                                  <div class="position-relative has-icon-left">
-                                                    <input type="number" id="phone" class="form-control" name="contact-icon" placeholder="Mobile">
-                                                    <div class="form-control-position">
-                                                      <i class="bx bx-mobile"></i>
+                                                <div class="col-md-8">
+                                                    <div class="input-group form-group">
+                                                      <div class="input-group-prepend">
+                                                        <select class="select2" id="countryCode" >
+                                                            
+                              
+                                                        </select>
+                                                      </div>
+                                                      <input type="text" id="phone" class="form-control" placeholder="Mobile Number">
                                                     </div>
                                                   </div>
-                                                </div>
                                                 <div class="col-md-4">
                                                     <label>Message</label>
                                                 </div>
@@ -711,30 +730,7 @@
         drift.SNIPPET_VERSION = "0.3.1";
         drift.load("6ashbsefxhx7");
     </script>
-    <!-- End of Async Drift Code -->
-    <!-- ***** App Screenshots Area End *****====== -->
-    <!-- <script>
-        (function(i, s, o, g, r, a, m) {
-            i["GoogleAnalyticsObject"] = r;
-            (i[r] =
-                i[r] ||
-                function() {
-                    (i[r].q = i[r].q || []).push(arguments);
-                }),
-            (i[r].l = 1 * new Date());
-            (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m);
-        })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
-
-        ga("create", "UA-96096445-4", "auto");
-        ga("send", "pageview");
-    </script> -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
-    <!-- Jquery-2.2.4 JS -->
+     <!-- Jquery-2.2.4 JS -->
     <script src="../js/jquery-2.2.4.min.js"></script>
     <!-- Headroom js -->
     <script src="../js/headroom.js"></script>
@@ -769,6 +765,8 @@
     <script src="../app-assets/js/scripts/modal/components-modal.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
     <script src="../js/globalFuntions.js"></script>
+    <script src="../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
+    <script src="../app-assets/js/scripts/forms/select/form-select2.js"></script> 
     <!-- END: Theme JS-->
     <!-- Headroom -->
     <script>
@@ -1139,11 +1137,11 @@
                 removeError(mailElement);
             }
             if(!validatePhone(phoneElement.value)){
-                showError(phoneElement,"Please enter a valid phone number");
+                showError(phoneElement.parentNode,"Please enter a valid phone number");
                 flag = false;
             }else{
                 data.email = phoneElement.value;
-                removeError(phoneElement);
+                removeError(phoneElement.parentNode);
             }
             if(!validate(nameElement.value)){
                 showError(nameElement,"This field cannot be empty");
@@ -1196,7 +1194,7 @@
       loadVideoCarousel();
       loadCarousel();
       dataInit();
-      
+      countrycodes();
     </script>
 </body>
 

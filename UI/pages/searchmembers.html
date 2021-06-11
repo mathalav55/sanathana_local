@@ -22,7 +22,7 @@
   <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
   <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
   <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
-  <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../css/font-awesome-4.7.0/css/font-awesome.min.css">
 
 
 
@@ -39,16 +39,42 @@
 
 
 
-  <link rel="icon" href="img/core-img/favicon.png" />
+  <link rel="icon" href="../../img/core-img/favicon.png" />
 
 
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="../../css/responsive.css" />
 
-  <link rel="stylesheet" type="text/css" href="css/custom.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 
 
-  <script src="js/modernizr.js"></script>
+  <script src="../../js/modernizr.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+  <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+          apiKey: "AIzaSyAaX52IZbaEg3gYnMeHRWh5bi-pLEw2-c4",
+          authDomain: "sanathana-1558e.firebaseapp.com",
+          projectId: "sanathana-1558e",
+          storageBucket: "sanathana-1558e.appspot.com",
+          messagingSenderId: "69696836774",
+          appId: "1:69696836774:web:4edf184e3cfe3608679067",
+          measurementId: "G-DRHZRFBMLY"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+  </script>
   <style>
+    .row{
+        margin : 0;
+    }
     .hide{
       display: none;
     }
@@ -66,29 +92,10 @@
 <body>
 
 
-    <header class="headroom mb-4" >
-
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-            <a href="./admin.html"><img src="../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
-            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
-        <span class="navbar-toggler-icon "></span>
-      </button>
-
-            <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
-                <ul class="navbar-nav mr-auto " id="Tnavlist ">
-
-                </ul>
-                <ul class="float-right navbar-nav" id="profileContainer">
-
-                </ul>
-                    
-
-            </div>
-        </nav>
-
-
-    </header>
-  <div class="body-container">
+    <div id="navbar-container">
+        
+    </div>
+  <div class="body-container" style="margin-top : 10%;">
       <!-- row 1 search box -->
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4 col-12 ">
@@ -111,21 +118,21 @@
   </div>
 
 
-  <script src="js/jquery-2.2.4.min.js"></script>
+  <script src="../../js/jquery-2.2.4.min.js"></script>
 
-  <script src="js/headroom.js"></script>
+  <script src="../../js/headroom.js"></script>
 
-  <script src="js/popper.min.js"></script>
+  <script src="../../js/popper.min.js"></script>
 
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../../js/bootstrap.min.js"></script>
 
-  <script src="js/plugins.js"></script>
+  <script src="../../js/plugins.js"></script>
 
-  <script src="js/active.js"></script>
+  <script src="../../js/active.js"></script>
 
-  <script src="js/jquery.mobile.custom.min.js"></script>
+  <script src="../../js/jquery.mobile.custom.min.js"></script>
 
-  <script src="js/main.js"></script>
+  <script src="../../js/main.js"></script>
 
   <script src="../../app-assets/vendors/js/vendors.min.js"></script>
   <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
@@ -142,6 +149,62 @@
   <script src="../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
   <script src="../index.html"></script>
   <script src="../../js/globalFuntions.js"></script>
+  <script>
+    $('#navbar-container').load('../components/navbar.html');
+    $(document).ready(function() {
+        var year = new Date().getFullYear();
+        $(".year").text(year);
+        // Select all links with hashes
+        $('a[href*="#"]')
+            // Remove links that don't actually link to anything
+            .not('[href="#"]')
+            .not('[href="#0"]')
+            .click(function(event) {
+                // On-page links
+                if (
+                    location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") &&
+                    location.hostname == this.hostname
+                ) {
+                    // Figure out element to scroll to
+                    var target = $(this.hash);
+                    target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        $("html, body").animate({
+                                scrollTop: target.offset().top
+                            },
+                            1000,
+                            function() {
+                                // Callback after animation
+                                // Must change focus!
+                                var $target = $(target);
+                                $target.focus();
+                                if ($target.is(":focus")) {
+                                    // Checking if the target was focused
+                                    return false;
+                                } else {
+                                    $target.attr("tabindex", "-1"); // Adding tabindex for elements not focusable
+                                    $target.focus(); // Set focus again
+                                }
+                            }
+                        );
+                    }
+                }
+            });
+        // grab an element
+        var myElement = document.querySelector("header");
+        // construct an instance of Headroom, passing the element
+        var headroom = new Headroom(myElement);
+        // initialise
+        headroom.init();
+    });
+
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>   
   <script>
     //fetch data from api
     var myHeaders = new Headers();
@@ -186,16 +249,16 @@
                 profileList = response;
                 displayMembers(response);
             }
-            else{
-                loadEmptyState();
+            else{ 
+                loadEmptyState(document.querySelector('.body-container'));
             }
         }  
         catch(error){
             console.log(error);
         }      
     }
-    async function loadEmptyState(){
-        var mainSection = document.querySelector('.body-container');
+    async function loadEmptyState(element){
+        var mainSection = element;
         var empty = document.createElement('div');
         var button = `<div class="col-6 text-center">
                         <a href="./main.html" class="btn btn-primary">Add members</a>
@@ -208,86 +271,91 @@
                         </div>
                         `+button+`
                 </div>`;
-        empty = await emptyState(empty,myHeaders);
+        empty = await emptyState(empty,"member-list");
         mainSection.innerHTML = "";
         mainSection.appendChild(empty);
     }
     function displayMembers(profiles){
         console.log(profiles);
-        //get profile card body
-        const cardHtml = (profiles)
-            .map((profile) =>{
-                if(profile.photo == ""){
-                    if(profile.gender === "Male"){
-                        profile.photo = "../../images/emptystates/male.png"
-                    }else{
-                        profile.photo = "../../images/emptystates/female.png"
+        if(profiles.length > 0){
+            //get profile card body
+            const cardHtml = (profiles)
+                .map((profile) =>{
+                    if(profile.photo == ""){
+                        if(profile.gender === "Male"){
+                            profile.photo = "../../images/emptystates/male.png"
+                        }else{
+                            profile.photo = "../../images/emptystates/female.png"
+                        }
                     }
-                }
-                var status = "bg-success";
-                if(profile.status == 0){
-                    status = "bg-warning"
-                }
-                var id = profile.userid.replace("+","%2b");
-                return `
-                <div class="col-md-4">
-            <div class="card text-right" style="margin-bottom: 10px; ">
-                <div class="card-header col `+status+`">
-                        <div class="row justify-content-between mr-2 ml-2">
-                            <h4 class="card-title text-white text-left">
-                                `+profile.Name+`
-                            </h4>
-                            <a href="./member_form.html?action=modify&memberId=`+id+`">
-                                <span class="material-icons onlyAdmin" style="color:#fff">
-                                        edit
-                                </span>
-                            </a>
-                        </div>
-                </div>
-                <div class="card-body py-1 ">
-                    <div class="row justify-content-between mb-1">
-                      <img src="`+profile.photo+`" alt="" height="100px" width="100px">
+                    var status = "bg-success";
+                    if(profile.status == 0){
+                        status = "bg-warning"
+                    }
+                    var id = profile.userid.replace("+","%2b");
+                    return `
+                    <div class="col-md-4">
+                <div class="card text-right" style="margin-bottom: 10px; ">
+                    <div class="card-header col `+status+`">
+                            <div class="row justify-content-between mr-2 ml-2">
+                                <h4 class="card-title text-white text-left">
+                                    `+profile.Name+`
+                                </h4>
+                                <a href="./member_form.html?action=modify&memberId=`+id+`">
+                                    <span class="material-icons onlyAdmin" style="color:#fff">
+                                            edit
+                                    </span>
+                                </a>
+                            </div>
+                    </div>
+                    <div class="card-body py-1 ">
+                        <div class="row justify-content-between mb-1">
+                        <img src="`+profile.photo+`" alt="" height="100px" width="100px">
 
-                      </div>
-                      <div class="row col-md-12 mb-1 justify-content-between">
-                          <span class="material-icons">
-                              phone
-                          </span></a>
-                          <span>
-                              `+profile.userid+`
-                          </span>
-                    </div>
-                    <div class="row col-md-12 mb-1 justify-content-between">
-                        <span class="">
-                            Gender
-                        </span>
-                        <span>
-                            `+profile.gender+`
-                        </span>
-                    </div>
-                    <div class="row col-md-12 mb-1  justify-content-between">
-                        <span class="">
-                            Gothram
-                        </span>
-                        <span>
-                            `+profile.gothram+`
-                        </span>
-                    </div>
-                    <div class="row col-md-12 justify-content-between">
-                        <span class="">
-                            Date Of Birth
-                        </span>
-                        <span>
-                            `+profile.Dob+`
-                        </span>
+                        </div>
+                        <div class="row col-md-12 mb-1 justify-content-between">
+                            <span class="material-icons">
+                                phone
+                            </span></a>
+                            <span>
+                                `+profile.userid+`
+                            </span>
+                        </div>
+                        <div class="row col-md-12 mb-1 justify-content-between">
+                            <span class="">
+                                Gender
+                            </span>
+                            <span>
+                                `+profile.gender+`
+                            </span>
+                        </div>
+                        <div class="row col-md-12 mb-1  justify-content-between">
+                            <span class="">
+                                Gothram
+                            </span>
+                            <span>
+                                `+profile.gothram+`
+                            </span>
+                        </div>
+                        <div class="row col-md-12 justify-content-between">
+                            <span class="">
+                                Date Of Birth
+                            </span>
+                            <span>
+                                `+profile.Dob+`
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-            `;   
-        }).join('');
-        var memberCard = document.getElementById('memberCard');
-        memberCard.innerHTML = cardHtml;
+                `;   
+            }).join('');
+            var memberCard = document.getElementById('memberCard');
+            memberCard.innerHTML = cardHtml;
+        }else{
+            loadEmptyState(document.getElementById('memberCard'));
+        }
+        
     }
     </Script>
 

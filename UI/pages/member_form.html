@@ -48,6 +48,29 @@
 
 
   <script src="../../js/modernizr.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+  <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+          apiKey: "AIzaSyAaX52IZbaEg3gYnMeHRWh5bi-pLEw2-c4",
+          authDomain: "sanathana-1558e.firebaseapp.com",
+          projectId: "sanathana-1558e",
+          storageBucket: "sanathana-1558e.appspot.com",
+          messagingSenderId: "69696836774",
+          appId: "1:69696836774:web:4edf184e3cfe3608679067",
+          measurementId: "G-DRHZRFBMLY"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+  </script>
   <style>
     .hide{
       display: none;
@@ -71,7 +94,6 @@
   </div>
 </div>
   <div class="container " style="margin-top: 7%;" >
-
     <div class="row mt-1" id="memberForm_one">
       <div class="col-8">
         <form class="form form-horizontal">
@@ -84,7 +106,6 @@
                   </div>
                   <div class="card-body">
                     <div class="row">
-                      
                       <div class="col-md-4">
                         <label for="name" class="required">Mobile Number</label>
                       </div>
@@ -96,11 +117,9 @@
   
                             </select>
                           </div>
-                          <input type="text" id="phoneNumber" class="form-control" placeholder="Mobile Number">
+                          <input type="number" id="phoneNumber" class="form-control" placeholder="Mobile Number">
                         </div>
                       </div>
-                      
-                      
                       <div class="col-md-4">
                         <label for="name" class="required">Name</label>
                       </div>
@@ -114,9 +133,9 @@
                       <div class="col-md-8 form-group">
                         <input type="text" id="surname" class="form-control" name="fname" placeholder="Surname">
                       </div>
-
+                     
                       <div class="col-md-4">
-                        <label for="dob">DOB</label>
+                        <label for="dob" class="required">DOB</label>
                       </div>
                       <div class="col-md-8 form-group">
                         <input type="date" id="dob" class="form-control format-picker picker__input picker__input--active"
@@ -124,7 +143,7 @@
                       </div>
 
                       <div class="col-md-4">
-                        <label class="required">Gender</label>
+                        <label class="">Gender</label>
                       </div>
                       <div class="col-md-8 form-group">
                         <fieldset class="form-group">
@@ -151,6 +170,8 @@
                           <input  type="file" class="form-control" id="memberPhoto">
                           <label class="input-group-text" for="inputGroupFile02">Upload</label>
                         </div>
+                        <img src="" alt="" id="profilePreview" style="width: 10rem;">
+
                       </div>
 
                       <div class="col-md-4">
@@ -165,7 +186,72 @@
                 </div>
               </div>
             </div>
-            
+            <div class="col-12">
+              <div class="form form-horizontal">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-header bg-primary">
+                          <h4 class="card-title text-white text-right">Chapter / Group / Category</h4>
+                        </div>
+                        <div class="card-body">
+                          <h4>Primary Chapter</h4>
+                          <div class="row">
+                            <div class="col-md-8 form-group">
+                              <ul class="list-unstyled mb-0" id="chapterRadios">
+                                <li class="d-inline-block mr-2 mb-1">
+                                  <fieldset>
+                                    <div class="radio">
+                                      <input type="radio" class="radio-input" id="radio1">
+                                      <label for="radio1" name="chapterRadios">no data</label>
+                                    </div>
+                                  </fieldset>
+                                </li>  
+                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <h4>Secondary Chapter</h4>
+                          <div class="row"> 
+                            <div class="col-md-8 form-group">
+                              <ul class="list-unstyled mb-0" id="chapterCheckBoxes">
+                                <li class="d-inline-block mr-2 mb-1">
+                                  <fieldset>
+                                    <div class="checkbox">
+                                      <input type="checkbox" class="checkbox-input" id="checkbox1" >
+                                      <label for="checkbox1">no data</label>
+                                    </div>
+                                  </fieldset>
+                                </li>
+                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <h4>Group</h4>
+                          <div class="row">
+                            <div class="col-md-8 form-group">
+                              <ul class="list-unstyled mb-0" id="groupCheckBoxes">
+                                <li class="d-inline-block mr-2 mb-1">
+                                  <fieldset>
+                                    <div class="checkbox">
+                                      <input type="checkbox" class="checkbox-input" id="checkbox1">
+                                      <label for="checkbox1">no data</label>
+                                    </div>
+                                  </fieldset>
+                                </li>  
+                               </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+            </div>
             <div class="row ">
               <div class="col-md-12 mb-2 col-12  d-flex justify-content-end ">
                 <button type="submit" class="btn btn-primary mr-1" id="saveBtnOne">Save </button>
@@ -209,6 +295,7 @@
                     </div>
                   </div>
                 </form>
+                <button class="btn btn-warning" onclick="resetPassword()">Reset Password</button>
               </div>
             </div>
           </div>
@@ -235,7 +322,7 @@
                             <fieldset>
                               <div class="radio">
                                 <input type="radio" name="activeStatus" id="nonadmin" checked>
-                                <label for="nonadmin">Not Admin</label>
+                                <label for="nonadmin">User</label>
                               </div>
                             </fieldset>
                           </li>
@@ -294,8 +381,7 @@
       <div class="row">
         <div class="col-12 mb-2 d-flex justify-content-end ">
           <button type="submit" class="btn btn-primary mr-1" id="saveBtnTwo">Save</button>
-          <button type="button" class="btn btn-warning mr-1" id="nextBtnTwo" disabled>Next</button>
-          <button type="button" class="btn btn-warning" onclick="viewProfile()" id="" disabled>View Profile</button>
+          <button type="button" class="btn btn-warning" onclick="viewProfile()" id="viewProfileBtn" disabled>View Profile</button>
         </div>
       </div>
     </div>
@@ -368,12 +454,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12 mb-2 d-flex justify-content-end ">
-          <button type="submit" class="btn btn-primary mr-1" id="saveBtnThree">Save </button>
-          <button type="submit" class="btn btn-warning viewProfileBtn" id="">View Profile</button>
-        </div>
-      </div>
+      
     </div>
 
   </div>
@@ -503,6 +584,7 @@
       memberId = updateMemberId;
     }
     openForm1();
+    profilePreview();
     nextBtnOne.addEventListener("click" , (event)=>{
       event.preventDefault();
       openForm2();
@@ -510,13 +592,7 @@
     });
     
 
-    nextBtnTwo.addEventListener("click" , (event) =>{
-      event.preventDefault();
-      openForm3();
-      scrollToTop();
-      //fetch groups and chapter from api and build checkboxees and radios
-      //call save form2 function
-    });
+    
 
    
 
@@ -534,10 +610,7 @@
       saveForm2();
     });
 
-    saveBtnThree.addEventListener("click", (event)=>{
-      event.preventDefault();
-      saveForm3();
-    });
+    
     // viweProfileBtns = Array.from(viweProfileBtns);
     // viweProfileBtns.forEach(element => {
     //   element.addEventListener("click" , (event)=>{
@@ -601,13 +674,23 @@
           })
           .catch(error =>{
             console.log(error);
-          })
-
+          });
       }else{
         //do normal action
       }
+      chaptersGroups();
+      
     }
-   
+    function profilePreview(){
+      var profileUploadElement = document.getElementById("memberPhoto");
+      profileUploadElement.addEventListener('change',()=>{
+        const file = profileUploadElement.files[0];
+        if(file){
+          document.getElementById("profilePreview").src = URL.createObjectURL(file);
+        }
+      })
+    }
+    
     function addContactElement(category){
         var repeaterItem = document.createElement("div");
         var repeaterItemRow = document.createElement("div");
@@ -723,7 +806,9 @@
           var categories = [];
           var catHtml = "";
           for(var i in result){
-            categories.push(result[i].ContentName);
+            if(result[i].status != "0"){
+              categories.push(result[i].ContentName);
+            }
           }
           for(var i in categories){
             catHtml = catHtml + `<li class="d-inline-block mr-2 mb-1">
@@ -773,6 +858,7 @@
       //remove child
       businessDetailsForm.removeChild(child);
     }
+    
     function addCategoryElement(category){
       var template = document.createElement('template');
       var heading = category;
@@ -788,7 +874,7 @@
                         <div class="card-body">
                           <div class="row">
                             <div class="col-md-4">
-                              <label>Business Name</label>
+                              <label class="required">Business Name</label>
                             </div>
                             <div class="col-md-8 form-group">
                               <input type="text" id="businessName-cat" class="form-control" name="fname" placeholder="Business Name">
@@ -802,7 +888,7 @@
                             </fieldset>
                             </div>
                             <div class="col-md-4">
-                              <label>Communication Address</label>
+                              <label class="required">Communication Address</label>
                             </div>
                             <div class="col-md-8 form-group">
                               <fieldset class="form-group">
@@ -810,19 +896,18 @@
                             </fieldset>
                             </div>
                             <div class="col-md-4">
-                              <label>Pincode</label>
+                              <label class="required">Pincode</label>
                             </div>
                             <div class="col-md-8 form-group">
-                              <input type="text" id="businessPincode-cat"class="form-control" name="fname" placeholder="Pincode">
+                              <input type="number" id="businessPincode-cat"class="form-control" name="fname" placeholder="Pincode">
                             </div>
                             <div class="col-md-4">
                               <label>City</label>
                             </div>
                             <div class="col-md-8 form-group">
                               <fieldset class="form-group">
-                                <select class="form-control" id="businessCity-cat">
-                                  <option>No Options</option>
-                                </select>
+                              <input type="text" id="businessCity-cat" class="form-control" name="fname" placeholder="City">
+                                
                               </fieldset>
                             </div>
                           </div>
@@ -846,6 +931,7 @@
                                         <input  type="file" class="form-control" id="memberBanner-cat">
                                         <label class="input-group-text" for="memberBanner-cat">Upload</label>
                                       </div>
+                                      <img src="" alt="" id="bannerPreview" style="width: 10rem;">
                                     </div>
                                     <div class="col-md-6">
                                       <label for="memberLogo-cat">Logo</label>
@@ -855,6 +941,7 @@
                                         <input  type="file" class="form-control" id="memberLogo-cat">
                                         <label class="input-group-text" for="memberLogo-cat">Upload</label>
                                       </div>
+                                      <img src="" alt="" id="logoPreview" style="width: 10rem;">
                                     </div>
                                   </div>
                               </div>
@@ -924,13 +1011,35 @@
           addContactElement(joinedHeading);
         });
       }
-      cityOptions(template);
+      function bannerPreview(){
+        var profileUploadElement = template.content.querySelector("#memberBanner-cat");
+        var image = template.content.querySelector("#bannerPreview");
+        profileUploadElement.addEventListener('change',()=>{
+          const file = profileUploadElement.files[0];
+          if(file){
+            image.src = URL.createObjectURL(file);
+          }
+        })
+      }
+      function logoPreview(){
+        var profileUploadElement = template.content.querySelector("#memberLogo-cat");
+        var image = template.content.querySelector("#logoPreview");
+        profileUploadElement.addEventListener('change',()=>{
+          const file = profileUploadElement.files[0];
+          if(file){
+            image.src = URL.createObjectURL(file);
+          }
+        })
+      }
+      // cityOptions(template);
       contactDetails();
-
+      bannerPreview();
+      logoPreview();
       //get parent element for catgories
       var businessDetailsForm = document.getElementById('businessDetailsForm');
       var form = template.content.firstChild;
       businessDetailsForm.appendChild(form);
+      
     }
     function loadForm2(){
         console.log('load function called');
@@ -1025,10 +1134,7 @@
           console.log(error);
         })
     }
-    function openForm3(){
-      form3.classList.remove("hide");
-      form2.classList.add("hide");
-
+    function chaptersGroups(){
       //load chapters
       var chapterBody ={
         load : "loadbyparent",
@@ -1220,14 +1326,41 @@
 
       
     }
+    async function resetPassword(){
+      //call api with the data
+      var data = {
+        load : "logindetchange",
+        id : "nkk",
+        newpwd : "seal123$$"
+      }
+      data = JSON.stringify(data);
+      console.log(data);
+      var requestOptions = {
+        method : "POST",
+        redirect : "follow",
+        headers : myHeaders,
+        body : data
+      }
+      try{
+        var result = await fetch('../../ws/Memberprofile.php',requestOptions).then(response => response.json());
+        console.log(result);
+        if(result.code == "200"){
+          toast("Password Reset Successfull!","bg-success");
+        }else{
+          toast("Unable to reset password","bg-warning");
+        }
+      }catch(error){
+        console.log(error);
+        toast("Unable to reset password","bg-danger");
+      }
+    }
     //save form 1 function
     async function saveForm1(){
+      document.getElementById("saveBtnOne").disabled = true;
+
       //prepare data object for form1
       var photo="";
-      var errors = {
-        empty : "This field cannot be empty",
-        exists : "This number already exists"
-      };
+      var password = "seal123$$";
       var load = "addEntry";
       if( action === "modify"){
         load = "";
@@ -1245,7 +1378,7 @@
       }
       var status = (document.getElementById("active").checked)? 1 : 0;
       var admin = (document.getElementById("admin").checked)? 1 : 0;
-
+      
       if(document.getElementById("name").value){
         name = document.getElementById("name").value;
       }
@@ -1272,90 +1405,98 @@
           photo : photo,
           admin : admin,
           status : status,
-          pwd : "seal123$$"
+          pwd : password
       }
       console.log(profileData);
       profileData = JSON.stringify(profileData);
-      var profileRequestOptions = {
-        method : "POST",
-        headers : myHeaders,
-        redirect : "follow",
-        body : profileData
-      }
-      //form validation
-      if(document.getElementById("phoneNumber").value != ""){
-        hideError();
-        await validateID(memberId)
-        .then(response =>{
-          console.log(response);
-          if(action === "modify"){
-            response = false;
-          }
-          if(response){
-            //display exits error message
-            displayError(errors.exists);
-          }
-          else{
-            //send data to api
-            fetch("../../ws/Memberprofile.php", profileRequestOptions)
-            .then(response => response.json())
-            .then(result =>{
-              console.log(result);
-              // openForm2();
-              if(result.status == "Added Successfully" || result.status == "Updated Succesfully"){
-                toast(result.status,'bg-success');
-                nextBtnOne.disabled = false;
-                saveBtnOne.disabled = true;
+      if(validateForm1()){
+        //check mobile number existence
+        if( action == "add"){
+          var response = await exists(memberId);
+          if(!response){
+            removeError(document.getElementById("phoneNumber").parentNode);
+            //send data to database
+            var response = await sendBasicData(profileData);
+            if(response){
+              //send groups and chapters data
+              response = await saveChaptersGroups();
+              if(response){
+                //show success info toast
+                toast("Saved successfully","bg-success");
+                document.getElementById('nextBtnOne').disabled = false;
+                document.getElementById('saveBtnOne').disabled = true;
+              }else{
+                //show failure info toast
+                toast("Error saving data", "bg-danger");
+                document.getElementById("saveBtnOne").disabled = false;
+                //delete member record created and chapters if exists
               }
-              else  
-                toast(result.status,'bg-warning');
-              
-            })
-            .catch(error =>{
-              console.log(error);
-              toast("An Error Occured. Please try again",'bg-danger')
-            });
+            }            
+          }else{
+            toast("The mobile number exists","bg-warning");
+            showError(document.getElementById("phoneNumber").parentNode,"This Number Exists");
+            document.getElementById("saveBtnOne").disabled = false;
           }
-        });
-      }
-      else{
-        //show empty error
-        displayError(errors.empty);
-      }
-      
+        }else{
+          var response = await  sendBasicData(profileData);
+          if(response){
+            //send groups and chapters data
+            response = await saveChaptersGroups();
+            if(response){
+              //show success info
+              toast("Updated successfully","bg-success");
+              document.getElementById('nextBtnOne').disabled = false;
+              document.getElementById('saveBtnOne').disabled = true;
+            }else{
+              //show failure info do not delete any data
+              toast("Updated Failed","bg-success");
+              document.getElementById('saveBtnOne').disabled = false;
+            }
+          }
+        }
+      }else{
+        toast("Please check the values and try again","bg-warning")
+        document.getElementById("saveBtnOne").disabled = false;
+      } 
     }
-    function hideError(){
-      var errorElement = document.getElementById('errorElement');
-      errorElement.innerHTML = "";
-    }
-    function displayError(message){
-      var idInputElement = document.getElementById('phoneNumber');
-      idInputElement.classList.add("is-invalid");
-      var errorElement = document.getElementById('errorElement');
-      errorElement.innerHTML = message;
-    }
-    async function validateID(memberId){
-      var memberBody = {
-        load : "loadbynumber",
-        id : memberId
-      }
-      console.log(memberBody);
-      
-      memberBody = JSON.stringify(memberBody);
-
-      var memeberRequestOptions = {
+    async function sendBasicData(data){
+      var requestOptions = {
         method : "POST",
         redirect : "follow",
         headers : myHeaders,
-        body  : memberBody
+        body : data
+      }
+      try {
+        var result = await fetch("../../ws/Memberprofile.php",requestOptions).then(response => response.json());
+        console.log(result);
+        if(result.code == "200"){ 
+          return true;
+        }else{
+          return false;
+        }  
+      }
+      catch(error){
+        console.log(error);
+        return false;
+      }
+    }
+    async function exists(number){
+      var data = {
+        load : "loadbynumber",
+        id : number
+      }
+      data = JSON.stringify(data);
+      var requestOptions = {
+        method : "POST",
+        redirect : "follow",
+        header : myHeaders,
+        body : data
       }
       try{
-        var result = await fetch("../../ws/Memberprofile.php", memeberRequestOptions).then(response=> response.json());
-        console.log(result);
+        var result = await fetch("../../ws/Memberprofile.php",requestOptions).then(response => response.json());
         if(Array.isArray(result)){
           return true;
-        }
-        else{
+        }else{
           return false;
         }
       }
@@ -1364,18 +1505,124 @@
         return false;
       }
     }
+    function validateForm1(){
+      var valid = true;
+      var phoneElement = document.getElementById("phoneNumber");
+      var nameElement = document.getElementById("name");
+      var dobElement = document.getElementById("dob");
+      //get primary chapters 
+      var chapter="";
+      var primaryChapters = document.getElementsByClassName("radio-input-chapters");
+      var chapterParent = document.getElementById("chapterRadios");
+      primaryChapters = Array.from(primaryChapters);
+      primaryChapters.forEach((item)=>{
+        if(item.checked){
+          chapter = item.nextSibling.nextSibling.innerHTML;
+        }
+      });
+
+      //get groups for validation
+      var groupParent = document.getElementById("groupCheckBoxes");
+      var groups = document.getElementsByClassName("checkbox-input-groups");
+      var groupItems = []
+      groups = Array.from(groups);
+      groups.forEach((item)=>{
+          if(item.checked)
+            groupItems.push(item.nextSibling.nextSibling.innerHTML);
+      });
+
+      if(groupItems.length > 0){
+        removeError(groupParent);
+      }else{
+        showError(groupParent , "Please Select a Group");
+        valid = false;
+      }
+      if(chapter != ""){
+        removeError(chapterParent);
+      }else{
+        showError(chapterParent,"Please Select a Chapter");
+        valid = false;
+      }
+      //validate them
+      if( validatePhone(phoneElement.value)){
+        removeError(phoneElement.parentNode);
+      }else{
+        removeError(phoneElement.parentNode);
+        showError(phoneElement.parentNode,"Please enter a valid phone number");
+        valid = false;
+      }
+      if( validate(nameElement.value)){
+        removeError(nameElement);
+      }else{
+        valid = false;
+        showError(nameElement,"This field cannot be empty");
+      }
+      if(validate(dobElement.value)){
+        removeError(dobElement);
+      }else{
+        valid = false;
+        showError(dobElement,"This field cannot be empty");
+      }
+      return valid;
+    }
+    
+    
     //save form 2 fucntion
-    function saveForm2(){
+    async function saveForm2(){
       //call in loop
+      var saveBtn = document.getElementById("saveBtnTwo");
+      saveBtn.disabled = true;
+      
       var categoryForm = document.getElementsByClassName("businessCategoryForm");
       //for eacg form call add business data form
       categoryForm = Array.from(categoryForm);
-      categoryForm.forEach((form)=>{
-        addBusinessData(form);
-      })
+      if(categoryForm.length > 0){
+        for(var i in categoryForm){
+          var response = await addBusinessData(categoryForm[i]);
+          if(response == true){
+            toast("Successfully added details", "bg-success");
+            document.getElementById("viewProfileBtn").disabled = false;
+          }else if(response == "hold"){
+            toast("Please fill requied fields","bg-warning");
+            document.getElementById('saveBtnTwo').disabled = false;
+            return 
+          }else{
+            saveBtn.disabled = false;
+            toast("An Error occured while saving your details!<br> Please try again!","bg-danger");
+            if(action == "add"){
+              var msg = await deleteBusiness();
+            }
+          }
+        }
+      }else{
+        toast("Please select atleast one category to continue!","bg-warning");
+        saveBtn.disabled = false;
+        return
+      }
+      
     }
-    //save form 3 function
-    function saveForm3(){
+    async function deleteBusiness(){
+      var data = {
+        load : "delprofile",
+        id : memberId
+      }
+      data = JSON.stringify(data);
+      var requestOptions = {
+        method : "POST",
+        redirect : "follow",
+        headers : myHeaders,
+        body : data
+      }
+      try{
+        var result = await fetch("../../ws/businessprofile.php",requestOptions).then(response => response.json());
+        console.log(result);
+      }
+      catch(error){
+        console.log(error);
+      }
+      return true;
+    }
+    async function saveChaptersGroups(){
       //prepare data object for form3
       //get primary chapter
       var load = "addmemchapters";
@@ -1405,46 +1652,59 @@
         body : primaryBody
       };
       //send to api
-      fetch("../../ws/Memberprofile.php", primaryRequestOptions)
-      .then( response => response.json())
-      .then( result => {
-        console.log(result);
-      })
-      .catch( error =>{
-        console.log(error);
-      });
-
-      //get second chapter run loop
-      var secondaryChapters = document.getElementsByClassName("checkbox-input-chapters");
-      var chapters = [];
-      secondaryChapters = Array.from(secondaryChapters);
-      secondaryChapters.forEach((item)=>{
-          if(item.checked)
-            chapters.push(item.nextSibling.nextSibling.innerHTML);
-      })
-      chapters.forEach((item)=>{
-        addSecChapters(item);
-      })
       
-      //get group
-      var groups = document.getElementsByClassName("checkbox-input-groups");
-      var groupItems = []
-      groups = Array.from(groups);
-      groups.forEach((item)=>{
-          if(item.checked)
-            groupItems.push(item.nextSibling.nextSibling.innerHTML);
-      })
-      //run loop
-      groupItems.forEach((item)=>{
-        addGroups(item);
-      })
-      //send data to form3
-      setTimeout(()=>{
-          window.open("./main.html","_self");
-      },2000);
+      try{
+        var result =await fetch("../../ws/Memberprofile.php", primaryRequestOptions).then( response => response.json());
+        if(result.code == "200"){
+          console.log("added primary chapters successfully");
+          var secondaryChapters = document.getElementsByClassName("checkbox-input-chapters");
+          var chapters = [];
+          secondaryChapters = Array.from(secondaryChapters);
+          secondaryChapters.forEach((item)=>{
+              if(item.checked)
+                chapters.push(item.nextSibling.nextSibling.innerHTML);
+          })
+          if(chapters.length > 0){
+            for(var i in chapters){
+                var response = await addSecChapters(chapters[i]);
+                if(!response){
+                  console.log("returning false");
+                  return false;
+                }
+            }
+          }
+          
+          //get group
+          var groups = document.getElementsByClassName("checkbox-input-groups");
+          var groupItems = []
+          groups = Array.from(groups);
+          groups.forEach((item)=>{
+              if(item.checked)
+                groupItems.push(item.nextSibling.nextSibling.innerHTML);
+          });
+          //run loop
+          for(var i in groupItems){
+            response = await addGroups(groupItems[i]);
+            if(!response){
+              console.log("return false")
+              return false;
+            }
+          }
+
+          return true;
+        }
+        else{
+          console.log("retruning false");
+          return false;
+        }   
+      }
+      catch(error){
+        console.log(error);
+        return false;
+      }
     }
     
-    function addSecChapters(chapter){
+    async function addSecChapters(chapter){
         var load = "addmemchapters";
         if(action === "modify"){
           load = "updatememchapters";
@@ -1456,23 +1716,31 @@
           prime : 0
         }
         chapterBody = JSON.stringify(chapterBody);
+        console.log(chapterBody);
         var chapterRequestOptions = {
           method : "POST",
           headers : myHeaders,
           redirect : "follow",
           body : chapterBody
         }
-        fetch("../../ws/Memberprofile.php", chapterRequestOptions)
-        .then( response => response.json())
-        .then( result => {
+        
+        try{
+          var result = await fetch("../../ws/Memberprofile.php", chapterRequestOptions).then(response => response.json());
           console.log(result);
-        })
-        .catch( error =>{
+          if(result.code == "200"){
+            console.log("added secondary chapters successfully")
+            return true;
+          }else{
+            return false;
+          }
+        }
+        catch(errror){
           console.log(error);
-        });
+          return false;
+        }
     }
 
-    function addGroups(group){
+    async function addGroups(group){
       var load = "addmemgroups";
       if(action === "modfiy"){
         load = "updatememgroups";
@@ -1483,27 +1751,78 @@
         group : group
       }
       groupBody = JSON.stringify(groupBody);
+      console.log(groupBody);
       var groupRequestOptions = {
         method : "POST",
         redirect : "follow",
         headers : myHeaders,
         body : groupBody
       }
-      fetch("../../ws/Memberprofile.php", groupRequestOptions)
-        .then( response => response.json())
-        .then( result => {
-          console.log(result);
-        })
-        .catch( error =>{
-          console.log(error);
-        });
+      
+      try{
+        var result = await fetch("../../ws/Memberprofile.php", groupRequestOptions).then( response => response.json());
+        console.log(result);
+        if(result.code == "200"){
+          return true;
+        }else{
+          return false;
+        }
+      }
+      catch(error){
+        console.log(error);
+        return false;
+      }
     }
    async function addBusinessData(category){
       console.log(category);
+      var load = "addEntry";
       //send business profile details
+      if(action === "modify"){
+        //check for existence of business profile if not then load is add
+        //load by number all business profiles
+        var loadProfile = {
+          load : "loadbynumber",
+          id : memberId
+        }
+        loadProfile = JSON.stringify(loadProfile);
+        var loadRequestOptions = {
+          method :"POST",
+          redirect : "follow",
+          headers : myHeaders,
+          body : loadProfile
+        }
+        //if category matches then load is update else load is add
+        try{
+          var result = await fetch("../../ws/businessprofile.php",loadRequestOptions).then(response => response.json());
+          console.log(result);
+          if(Array.isArray(result)){
+              console.log("details found for update")
+              result.forEach(item =>{
+                if(item.category === category.dataset.category){
+                  load = "modify";
+                }
+              })
+          }
+          else {
+            load = "addEntry";
+          }
+          var response = await sendData(category,load);
+          return response;
+        }
+        catch(error){
+          console.log(error);
+          return false;
+        }
+      }
+      else{
+        var response  = await sendData(category,load);
+        console.log("returned "+response);
+        return response;
+      } 
+    }
+    async function sendData(category,load){
       var logo = "";
       var banner ="";
-      var load = "addEntry";
       var pincode = 0;
       let formdata = new FormData();
       //uploadig files if exists
@@ -1519,146 +1838,204 @@
           fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
           banner = `../../uploads/`+bannerElement.files[0].name;
       }
+      if(category.querySelector('#businessPincode-cat').value != ""){
+        pincode = parseInt(category.querySelector('#businessPincode-cat').value);
+      }
+      var businessProfileData = {
+        load : load,
+        id : memberId,
+        Name : category.querySelector('#businessName-cat').value,
+        desc : category.querySelector('#businessDescription-cat').value,
+        Address : category.querySelector('#businessCommAddress-cat').value,
+        pincode : pincode,
+        City : category.querySelector('#businessCity-cat').value,
+        category : category.dataset.category,
+        status : 1,
+        logo : logo,
+        banner : banner
+      };
+      console.log(businessProfileData);
+      businessProfileData = JSON.stringify(businessProfileData);
+      var businessProfileRequestOptions = {
+        method : "POST",
+        headers : myHeaders,
+        redirect : "follow",
+        body : businessProfileData
+      }
+      //sending data to Database
+      if(validateForm2(category)){
+        try{
+          var result = await fetch("../../ws/businessprofile.php",businessProfileRequestOptions).then(response => response.json());
+          console.log(result);  
+          if(result.code == "200"){
+            var contactContainer = document.getElementById(category.id+`Contacts`);
+            var contacts = contactContainer.children;
+            contacts = Array.from(contacts);
+            for(var i in contacts){
+              var response = await addContactDetails(contacts[i],category.dataset.category);
+              if(response != true)
+                return response;
+            }
+            return true;
+          }else{
+            return false;
+          }
+          
+        }
+        catch(error){
+          console.log(error);
+          return false;
+        }
+      }else{
+        return "hold";
+      }  
+    }
+    function validateForm2(category){
+      var valid = true;
+      var nameElement = category.querySelector('#businessName-cat');
+      var addressElement = category.querySelector('#businessCommAddress-cat');
+      var pinElement=  category.querySelector('#businessPincode-cat');
+      if(validate(nameElement.value)){
+        removeError(nameElement);
+      }
+      else{
+        showError(nameElement,"Please fill this field");
+        valid = false;
+      }
+      if(validate(addressElement.value)){
+        removeError(addressElement);
+      }
+      else{
+        showError(addressElement,"Please fill this field");
+        valid = false;
+      }
+      if(validate(pinElement.value)){
+        removeError(pinElement);
+      }
+      else{
+        showError(pinElement,"Please fill this field");
+        valid = false;
+      }
+      return valid;
+    }
+    async function addContactDetails(contact,category){
+      var response;
       if(action === "modify"){
-        //check for existence of business profile if not then load is add
-        //load by number all business profiles
-        var loadProfile = {
+        response = await updateContacts(contact,category);
+        return response;
+      }else{
+        response  = await insertContacts(contact,category);
+        return response;
+      }
+      
+    }
+    //updating existing contacts
+    async function updateContacts(contact,category){
+      //clear previous data
+      var clearData = {
+        load : "clearmemcontacts",
+        id : memberId,
+        category
+      }
+      console.log(clearData);
+      clearData = JSON.stringify(clearData);
+      var clearRequestOptions = {
+        method : "POST",
+        redirect : "follow",
+        headers : myHeaders,
+        body : clearData
+      }
+      try{
+        var result = await fetch("../../ws/businessprofile.php",clearRequestOptions).then(response => response.json());
+        console.log(result);
+        if(result.code == "200"){
+          var response = await insertContacts(contact,category);
+          return response;
+        }else{
+          return false;
+        }
+      }
+      catch(error){
+        console.log(error);
+        return false;
+      }
+      //clear prev data
+    }
+    //adding new contacts
+    async function insertContacts(contact,category){
+      var load = "addmemcontacts";
+      var contactElement = contact.querySelector('#contactDetail');
+      var contactData = {
+        load : load,
+        id : memberId,
+        contactdetails : contactElement.value,
+        contacttype : contact.querySelector('#contacttype').value,
+        category : category
+      };
+      console.log(contactData);
+      
+      contactData = JSON.stringify(contactData);
+      var contactRequestOptions = {
+        method : "POST",
+        headers : myHeaders,
+        redirect : "follow",
+        body : contactData
+      };
+      if(validate(contactElement.value)){
+        removeError(contactElement);
+        try{
+          var result = await fetch("../../ws/businessprofile.php", contactRequestOptions).then(response => response.json());
+          console.log(result);
+          if(result.code == "200"){
+            return true;
+          }else{
+            return false;
+          }
+        }
+        catch(error)
+        {
+          console.log(error);
+          return false;
+        }
+      }else{
+        showError(contactElement,"Please fill this field");
+        return "hold";
+      }
+    }
+    async function viewProfile(){
+        var category = "";
+        var btn = document.getElementById("viewProfileBtn");
+        btn.innerHTML = `<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>`;
+        var data = {
           load : "loadbynumber",
           id : memberId
         }
-        loadProfile = JSON.stringify(loadProfile);
-        var loadRequestOptions = {
-          method :"POST",
+        data = JSON.stringify(data);
+        console.log(data);
+        var requestOptions = {
+          method : "POST",
           redirect : "follow",
-          headers : myHeaders,
-          body : loadProfile
+          body : data,
+          headers : myHeaders
         }
-        fetch("../../ws/businessprofile.php",loadRequestOptions)
-        .then(response => response.json())
-        .then(result => {
+        try{
+          var result = await fetch("../../ws/businessprofile.php",requestOptions).then(response => response.json());
           console.log(result);
           if(Array.isArray(result)){
-              result.forEach(item =>{
-                if(item.category === category.dataset.category){
-                  load = "modify";
-                }
-              })
+            category = result[0].category;
+            var temp = memberId.slice(1);
+            window.open(`./viewBusinessProfile.html?category=`+category+`&memberid=%2B`+temp,'_self');
+          }else{
+            toast("Cannot view profile","bg-danger");
+            btn.innerHTML = "View Profile";
           }
-          else {
-            load = "addEntry";
-          }
-        })
-        .then(()=>{
-          sendData();
-        })
-        .catch(error =>{console.log(error);});
-        //if category matches then load is update else load is add
-      }
-     
-      function sendData(){
-        if(category.querySelector('#businessPincode-cat').value != ""){
-          pincode = parseInt(category.querySelector('#businessPincode-cat').value);
         }
-        var businessProfileData = {
-          load : load,
-          id : memberId,
-          Name : category.querySelector('#businessName-cat').value,
-          desc : category.querySelector('#businessDescription-cat').value,
-          Address : category.querySelector('#businessCommAddress-cat').value,
-          pincode : pincode,
-          City : category.querySelector('#businessCity-cat').value,
-          category : category.dataset.category,
-          status : 1,
-          logo : logo,
-          banner : banner
-        };
-        console.log(businessProfileData);
-        businessProfileData = JSON.stringify(businessProfileData);
-        var businessProfileRequestOptions = {
-          method : "POST",
-          headers : myHeaders,
-          redirect : "follow",
-          body : businessProfileData
-        }
-        fetch("../../ws/businessprofile.php",businessProfileRequestOptions)
-        .then(response => response.json())
-        .then(result =>{
-          console.log(result);  
-          var contactContainer = document.getElementById(category.id+`Contacts`);
-          var contacts = contactContainer.children;
-          contacts = Array.from(contacts);
-          contacts.forEach((contact)=>{
-            addContactDetails(contact,category.dataset.category);
-          })
-        })
-        .catch(error =>{
+        catch(error){
           console.log(error);
-        });
-      } 
+          toast("Cannot view profile","bg-danger");
+          btn.innerHTML = "View Profile";
+        }
     }
-    function addContactDetails(contact,category){
-      if(action === "modify"){
-        updateContacts();
-      }else{
-        insertContacts();
-      }
-      //updating existing contacts
-      function updateContacts(){
-        //clear previous data
-        var clearData = {
-          load : "clearmemcontacts",
-          id : memberId,
-          category
-        }
-        console.log(clearData);
-        clearData = JSON.stringify(clearData);
-        var clearRequestOptions = {
-          method : "POST",
-          redirect : "follow",
-          headers : myHeaders,
-          body : clearData
-        }
-        fetch("../../ws/businessprofile.php",clearRequestOptions)
-        .then(response => response.json())
-        .then(result => {
-          console.log(result);
-          insertContacts();
-        })
-        .catch(error =>{console.log(error);});
-        //clear prev data
-      }
-      //adding new contacts
-      function insertContacts(){
-        var load = "addmemcontacts";
-        if( action === "modify"){
-          laod = "updatememcontacts";
-        }
-        var contactData = {
-          load : load,
-          id : memberId,
-          contactdetails : contact.querySelector('#contactDetail').value,
-          contacttype : contact.querySelector('#contacttype').value,
-          category : category
-        };
-        console.log(contactData);
-        contactData = JSON.stringify(contactData);
-        var contactRequestOptions = {
-          method : "POST",
-          headers : myHeaders,
-          redirect : "follow",
-          body : contactData
-        };
-        fetch("../../ws/businessprofile.php", contactRequestOptions)
-        .then(response => response.json())
-        .then( result => {
-          console.log(result);
-        })
-        .catch(error =>{
-          console.log(error);
-        });
-      }
-    }
-    
   </script>
 
 </body>

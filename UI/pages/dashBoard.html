@@ -75,84 +75,74 @@
 
     <script src="../../js/modernizr.js "></script>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
 
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyAaX52IZbaEg3gYnMeHRWh5bi-pLEw2-c4",
+        authDomain: "sanathana-1558e.firebaseapp.com",
+        projectId: "sanathana-1558e",
+        storageBucket: "sanathana-1558e.appspot.com",
+        messagingSenderId: "69696836774",
+        appId: "1:69696836774:web:4edf184e3cfe3608679067",
+        measurementId: "G-DRHZRFBMLY"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
 
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .row{
+            margin: 0 ;
+        }
+        /* The Modal (background) */
+        
+        
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #addForm{
+            display: none;
+        }
+        #list-view{
+            display: none;
+        }
+        .material-icons.active{
+            color: #5a8dee;
+        }
+        .material-icons.inactive{
+            color : #c7c7c7;
+        }
+    </style>
 </head>
 <!-- END: Head-->
 
-<style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    .row{
-        margin: 0 ;
-    }
-    /* The Modal (background) */
-    
-    .modal {
-        display: none;
-        /* Hidden by default */
-        position: fixed;
-        /* Stay in place */
-        z-index: 1;
-        /* Sit on top */
-        padding-top: 100px;
-        /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%;
-        /* Full width */
-        height: 100%;
-        /* Full height */
-        /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0);
-        /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Black w/ opacity */
-    }
-    /* Modal Content */
-    
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        height: 100%;
-    }
-    /* The Close Button */
-    
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-    #addForm{
-        display: none;
-    }
-    #list-view{
-        display: none;
-    }
-    .material-icons.active{
-        color: #5a8dee;
-    }
-    .material-icons.inactive{
-        color : #c7c7c7;
-    }
-</style>
+
 
 <!-- BEGIN: Body-->
 
-<body style="background-color: #d4d4d473;">
+<body style="background-color: #d4d4d473; height : fit-content" >
 
         <div id="navbar-container">
 
@@ -425,6 +415,12 @@
             loadMembers();
             loadOppurtunityData(userData.memberId);
             loadRefferalData(userData.memberId);
+            setInterval(() => {
+                loadMembers();
+                loadOppurtunityData(userData.memberId);
+                loadRefferalData(userData.memberId);
+            }, 3000);
+            
 
         })
         .catch(error =>{console.log(error);});
@@ -461,7 +457,7 @@
         .then(result => {
             var memberOptionsOne = document.getElementById('refferals');
             var memberOptionsTwo = document.getElementById('oppurtunities');
-            console.log(result);
+            // console.log(result);
             if(Array.isArray(result)){
                 var options = "";
                 result.forEach((member)=>{

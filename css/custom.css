@@ -479,7 +479,7 @@ hr {
 
 .menu_area #nav .nav-item .nav-link {
     cursor: pointer;
-    color: #475F7B;
+    color: #fff;
     display: block;
     font-size: 16px;
     border-radius: 30px;
@@ -634,6 +634,7 @@ hr {
 
 .header_area.headroom--not-top {
     box-shadow: 0px 4px 25px 0px #00000050;
+    background-color: #252e4a !important;
     /* height: 75px;
     padding-top: 2px; */
     position: fixed;
@@ -646,7 +647,10 @@ hr {
     top: 0;
     z-index: 99;
 }
-.header_area.headroom--not-top .menu_area #nav .nav-link{
+.header_area.headroom--not-top .menu_area  .nav-link{
+    color: #fff;
+}
+.header_area.headroom--top .menu_area  .nav-link{
     color: #fff;
 }
 .header_area.headroom--not-top {
