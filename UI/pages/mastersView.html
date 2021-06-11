@@ -476,8 +476,10 @@ function changeStatus(id,status){
             if(response.status == "Updated Succesfully"){
                 if(status == 0){
                     toast("Updated status",'bg-warning');
+                    auth();
                 }else{
                     toast("Updated status",'bg-success');
+                    auth();
                 }
             }else{
                  toast("Unable to update status",'bg-danger');  

@@ -526,12 +526,6 @@ function saveForm(){
         fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
         emptyImageUrl = `../../uploads/`+newEmptyImageName;
     }
-    if(videoPath.files.length > 0){
-        var newVideoName = date + videopath.files[0].name;
-        formdata.set("file" , videoPath.files[0] , newVideoName);
-        fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
-        videoUrl = `../../uploads/`+newVideoName;
-    }
     if(iconPath.files.length > 0){
         var newIconName = date + iconPath.files[0].name;
         formdata.set("file" , iconPath.files[0] , newIconName);
@@ -577,10 +571,14 @@ function saveForm(){
     .then(result =>{
         console.log(result);
         document.getElementById('save-btn').disabled = true;
-        if(result.status == "Added Successfully")
-            toast(result.status,"bg-success");
+        if(result.status == "Added Successfully"){
+          toast(result.status,"bg-success");
+          auth();
+        }
         else if(result.status == "Updated Succesfully"){
-            toast(result.status,"bg-info")
+            toast(result.status,"bg-info");
+          document.getElementById('save-btn').disabled = false;
+            auth();
         }else{
             toast(result.status,"bg-danger")
         }

@@ -218,7 +218,7 @@ function update_memgroups($conn)
   if($returndata == "Record created")
   {
     $sqlQuery1 = "Insert INTO `membergroups`(`Groupid`, `memberid`) VALUES  ((select `id` from `acessconfig` where `ContentName` = '$group'),(SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id'))";
-    $returndata1 = setData($conn, $sqlQuery);
+    $returndata1 = setData($conn, $sqlQuery1);
     if($returndata1 == "Record created")
     {
       $jsonresponse = array('code' => '200', 'status' => 'Updated Successfully');

@@ -823,6 +823,7 @@ hr {
 
 .card-header {
     margin-bottom: -1px;
+    padding: 0.7rem 1.7rem;
     /*background-color: rgba(0, 0, 0, 0.01);*/
     border-bottom: none;
 }

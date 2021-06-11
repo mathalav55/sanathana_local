@@ -82,7 +82,7 @@
 
 </head>
 
-<body>
+<body >
 
 
   <div id="navbar-container">
@@ -93,7 +93,7 @@
       
   </div>
 </div>
-  <div class="container " style="margin-top: 7%;" >
+  <div class="container bg-grey" style="padding-top: 7%;" >
     <div class="row mt-1" id="memberForm_one">
       <div class="col-8">
         <form class="form form-horizontal">
@@ -170,7 +170,6 @@
                           <input  type="file" class="form-control" id="memberPhoto">
                           <label class="input-group-text" for="inputGroupFile02">Upload</label>
                         </div>
-                        <img src="" alt="" id="profilePreview" style="width: 10rem;">
 
                       </div>
 
@@ -333,6 +332,18 @@
             </div>
           </div>
         </div>  
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <h4 class="card-title text-white">Profile Image</h4>
+              </div>
+              <div class="card-body">
+                <img src="" id="profilePreview" style="width: 5rem;" alt="">
+              </div>
+            </div>
+          </div>
+        </div> 
       </div>
       
     </div>
@@ -380,6 +391,7 @@
       </div>
       <div class="row">
         <div class="col-12 mb-2 d-flex justify-content-end ">
+          <button type="submit" class="btn btn-primary mr-1 hide" id="previousBtn">Previous</button>
           <button type="submit" class="btn btn-primary mr-1" id="saveBtnTwo">Save</button>
           <button type="button" class="btn btn-warning" onclick="viewProfile()" id="viewProfileBtn" disabled>View Profile</button>
         </div>
@@ -555,7 +567,7 @@
     var myHeaders = new Headers();
   // myHeaders.append("Content-Type ", "text/plain ");
   // myHeaders.append("Cookie ", "PHPSESSID=a147dbe2815c8b7145c6f2ca214f3716 ");
-  auth();
+  auth("admin");
     //end fetch nav data from api
     
     //fetch data from url
@@ -579,24 +591,37 @@
     var nextBtnTwo = document.getElementById("nextBtnTwo")
     var saveBtnTwo = document.getElementById("saveBtnTwo");
     var saveBtnThree = document.getElementById("saveBtnThree");
+    var previousBtn = document.getElementById("previousBtn");
+    previousBtn.addEventListener("click",(event)=>{
+      event.preventDefault();
+      openForm1();
+      scrollToTop();
+    })
     var memberId;
     if(action ===  "modify"){
+      if(!sessionStorage.getItem('page')){
+        sessionStorage.setItem('page',1);
+        openForm1();
+      }else{
+        console.log(sessionStorage.getItem('page'))
+        if(sessionStorage.getItem('page') == 1){
+          openForm1();
+        }else{
+          openForm2();
+        }
+      }
       memberId = updateMemberId;
+      nextBtnOne.disabled = false;
+      previousBtn.classList.remove('hide');
+    }else{
+      openForm1();
     }
-    openForm1();
     profilePreview();
     nextBtnOne.addEventListener("click" , (event)=>{
       event.preventDefault();
       openForm2();
       scrollToTop();
     });
-    
-
-    
-
-   
-
-    
     
     saveBtnOne.addEventListener("click", (event)=>{
       event.preventDefault();
@@ -631,6 +656,7 @@
     }
     //open form1 function
     function openForm1(){
+      sessionStorage.setItem('page',1);
       console.log(action);
       form2.classList.add("hide");
       form1.classList.remove("hide");
@@ -671,6 +697,7 @@
             document.getElementById("inactive").checked = !status;
             document.getElementById("admin").checked = admin;
             document.getElementById("nonadmin").checked = !admin;
+            document.getElementById("profilePreview").src = result[0].photo;
           })
           .catch(error =>{
             console.log(error);
@@ -780,12 +807,9 @@
         })
     }
     function openForm2(){
+      sessionStorage.setItem('page',2);
       form2.classList.remove("hide");
-      if(form3.classList.contains("hide")){
-        form1.classList.add("hide");
-      }else{
-        form3.classList.add("hide");
-      }
+      form1.classList.add('hide');
       //fetch data form api and add build the form
       var categoryData = {
         load : "loadbyparent",
@@ -803,6 +827,7 @@
       .then( function (result){
         console.log(result);
         if(Array.isArray(result)){
+          document.getElementById("viewProfileBtn").disabled = false;
           var categories = [];
           var catHtml = "";
           for(var i in result){
@@ -1083,6 +1108,8 @@
                   form.querySelector('#businessCommAddress-cat').value = result[i].Address;
                   form.querySelector('#businessPincode-cat').value = result[i].pincode;
                   form.querySelector('#businessCity-cat').value = result[i].city;
+                  form.querySelector('#bannerPreview').src = result[i].banner;
+                  form.querySelector('#logoPreview').src = result[i].logo;
                   loadContacts(temp);
                 }
               }
@@ -1364,6 +1391,7 @@
       var load = "addEntry";
       if( action === "modify"){
         load = "";
+        photo = (document.getElementById("profilePreview").src) ? document.getElementById("profilePreview").src : "";
       }
       let formdata = new FormData();
       memberId = document.getElementById('countryCode').value + ` `+ document.getElementById("phoneNumber").value ;
@@ -1445,11 +1473,12 @@
             if(response){
               //show success info
               toast("Updated successfully","bg-success");
+              auth();
               document.getElementById('nextBtnOne').disabled = false;
-              document.getElementById('saveBtnOne').disabled = true;
+              document.getElementById('saveBtnOne').disabled = false;
             }else{
               //show failure info do not delete any data
-              toast("Updated Failed","bg-success");
+              toast("Updated Failed","bg-danger");
               document.getElementById('saveBtnOne').disabled = false;
             }
           }
@@ -1580,10 +1609,17 @@
         for(var i in categoryForm){
           var response = await addBusinessData(categoryForm[i]);
           if(response == true){
-            toast("Successfully added details", "bg-success");
-            document.getElementById("viewProfileBtn").disabled = false;
+            if(action == "modify"){
+              toast("Successfully updated details", "bg-success");
+              saveBtn.disabled = false;
+            }else{
+              toast("Successfully updated details", "bg-success");
+              saveBtnOne.disabled = true;
+              document.getElementById('viewProfileBtn').disabled = false;
+            }
+            
           }else if(response == "hold"){
-            toast("Please fill requied fields","bg-warning");
+            toast("Please check all fields","bg-warning");
             document.getElementById('saveBtnTwo').disabled = false;
             return 
           }else{
@@ -1742,7 +1778,7 @@
 
     async function addGroups(group){
       var load = "addmemgroups";
-      if(action === "modfiy"){
+      if(action === "modify"){
         load = "updatememgroups";
       }
       var groupBody = {
@@ -1825,16 +1861,25 @@
       var banner ="";
       var pincode = 0;
       let formdata = new FormData();
+      var date = new Date();
+      date = date.getTime();
+      var newFileName = date;
       //uploadig files if exists
       var logoElement = category.querySelector('#memberLogo-cat');
+      if(load == "modify"){
+        banner = (category.querySelector('#bannerPreview').src) ? document.querySelector('#bannerPreview').src : "";
+        logo = (category.querySelector('#logoPreview').src) ? document.querySelector('#logoPreview').src : "";
+      }
       var bannerElement = category.querySelector('#memberBanner-cat');
       if(logoElement.files.length > 0){
-          formdata.set("file" , logoElement.files[0]);
+          newFileName = date + logoElement.files[0].name;
+          formdata.set("file" , logoElement.files[0] , newlogoName);
           fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
           logo = `../../uploads/`+logoElement.files[0].name;
       }
       if(bannerElement.files.length > 0){
-          formdata.set("file" , bannerElement.files[0]);
+          newFileName = date + bannerElement.files[0].name;
+          formdata.set("file" , bannerElement.files[0] , bannerElement);
           fetch("../../ws/upload.php" , {method : "POST" , body : formdata});
           banner = `../../uploads/`+bannerElement.files[0].name;
       }
@@ -1973,16 +2018,16 @@
         category : category
       };
       console.log(contactData);
+
       
-      contactData = JSON.stringify(contactData);
       var contactRequestOptions = {
         method : "POST",
         headers : myHeaders,
         redirect : "follow",
-        body : contactData
+        body : JSON.stringify(contactData)
       };
-      if(validate(contactElement.value)){
-        removeError(contactElement);
+      
+      if(validateContacts()){
         try{
           var result = await fetch("../../ws/businessprofile.php", contactRequestOptions).then(response => response.json());
           console.log(result);
@@ -1998,9 +2043,44 @@
           return false;
         }
       }else{
-        showError(contactElement,"Please fill this field");
         return "hold";
       }
+      function validateContacts(){
+        var valid = true;
+        if(contactData.contacttype == "Email"){
+          if( validateEmail(contactElement.value) ){
+            console.log("here treu");
+            removeError(contactElement);
+          }else{
+            showError(contactElement,"Not Valid");
+            console.log("here");
+            valid = false;
+          }
+        }else if(contactData.contacttype == "Phone Number"){
+          if(validatePhone(contactElement.value)){
+            console.log("here treu");
+            removeError(contactElement);
+          }else{
+            showError(contactElement,"Not valid");
+            console.log("here");
+            valid = false;
+          }
+          console.log("here");
+        }else{
+          if(validate(contactElement.value)){
+            console.log("here treu");
+            removeError(contactElement);
+          }else{
+            showError(contactElement,"Please fill this field");
+            console.log("here");
+            valid = false;
+          }
+        }
+        return valid;
+      }
+      
+        
+      
     }
     async function viewProfile(){
         var category = "";

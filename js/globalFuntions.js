@@ -1028,7 +1028,10 @@ function validate(value){
     }
     return false;
 }
-function auth(){
+function auth(...args){
+    if(args.length == 0){
+      sessionStorage.clear();
+    }
     var userData = {};
     var authRequestOptions = {
     method : "POST",
@@ -1050,11 +1053,11 @@ function auth(){
     if(result.status === "Not Logged In"){
         //redirect to login screen
         window.open("./login.html","_self");
-    }else{
+    }else if(result.status === "Logged In"){
             userData.admin = parseInt(userData.admin);
-            // if(userData.admin == 0){
-            //     window.open("http://localhost/sea_dev/ui/admin/dashBoard.html","_self");
-            // }
+            if(args[0]=="admin" && result.admin != 1){
+                window.open("./dashboard.html","_self");
+            }
             // onlyAdmin();
             loadProfile(userData);
             loadNavItems(userData);
@@ -1081,32 +1084,50 @@ function auth(){
 }
  function loadProfile(userData){
     console.log(userData);
-    var profileContainer = document.getElementById('profileContainer');
-    if(userData.photo === ""){
-        if(userData.gender === "Male")
-            userData.photo = "../../images/emptystates/male.png";
-        else
-            userData.photo = "../../emptystates/female.png";
+    var data = {
+      load : "loadbynumber",
+      id : userData.memberId
     }
-    profileContainer.innerHTML = `<li class="dropdown dropdown-user nav-item">
-                                    <a class="" href="javascript:void(0);" data-toggle="dropdown">
-                                        <div class="row align-items-center">
-                                            <div class="user-nav d-sm-flex d-none">
-                                                <span class="user-name text-white">`+userData.name+`</span>
-                                            </div>
-                                            <div class="div p-1"></div>
-                                            <span>
-                                                <img class="round" src="`+userData.photo+`" alt="avatar" height="40" width="40">
-                                            </span>
-                                        </div>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right pb-0">
-                                        <a class="dropdown-item" href="javascript:void(0);">
-                                            <i class="bx bx-power-off mr-50"></i>
-                                            <span onclick="logOut()"> Logout</span>
-                                        </a> 
-                                    </div>
-                                </li>`;
+    data = JSON.stringify(data);
+    var requestOptions = {
+      method : "POST",
+      headers : myHeaders,
+      redirect : "follow",
+      body : data
+    }
+
+    fetch('../../ws/Memberprofile.php',requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result);
+      userData = Array.from(result)[0];
+      var profileContainer = document.getElementById('profileContainer');
+      if(userData.photo === ""){
+          if(userData.gender === "Male")
+              userData.photo = "../../images/emptystates/male.png";
+          else
+              userData.photo = "../../emptystates/female.png";
+      }
+      profileContainer.innerHTML = `<li class="dropdown dropdown-user nav-item">
+                                      <a class="" href="javascript:void(0);" data-toggle="dropdown">
+                                          <div class="row align-items-center">
+                                              <div class="user-nav d-sm-flex d-none">
+                                                  <span class="user-name text-white">`+userData.Name+`</span>
+                                              </div>
+                                              <div class="div p-1"></div>
+                                              <span>
+                                                  <img class="round" src="`+userData.photo+`" alt="avatar" height="40" width="40">
+                                              </span>
+                                          </div>
+                                      </a>
+                                      <div class="dropdown-menu dropdown-menu-right pb-0">
+                                          <a class="dropdown-item" href="javascript:void(0);">
+                                              <i class="bx bx-power-off mr-50"></i>
+                                              <span onclick="logOut()"> Logout</span>
+                                          </a> 
+                                      </div>
+                                  </li>`;
+    }).catch(error=>{console.log(error)})
 }
 function loadNavItems(userData){
     var rawMenu = "{\"load\":\"loadbyparent\",\"id\":\"Menu\"} ";

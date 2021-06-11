@@ -1,0 +1,6 @@
+#ignore test.html
+/UI/pages/test.html
+#ignore files inside uploads
+/uploads/*
+#file to keep in uploads
+!/uploads/.gitkeep
