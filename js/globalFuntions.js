@@ -1106,7 +1106,7 @@ function auth(...args){
           if(userData.gender === "Male")
               userData.photo = "../../images/emptystates/male.png";
           else
-              userData.photo = "../../emptystates/female.png";
+              userData.photo = "../../images/emptystates/female.png";
       }
       profileContainer.innerHTML = `<li class="dropdown dropdown-user nav-item">
                                       <a class="" href="javascript:void(0);" data-toggle="dropdown">
