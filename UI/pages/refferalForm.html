@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/charts/apexcharts.css">
     <link rel="stylesheet" type="text/css" href="../../app-assets/vendors/css/extensions/swiper.min.css">
-    <link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome-4.7.0/css/font-awesome.min.css">
 
 
 
@@ -38,12 +38,12 @@
     <link rel="icon" href="../img/core-img/favicon.png" />
 
 
-    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../../css/responsive.css" />
 
-    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 
 
-    <script src="../js/modernizr.js"></script>
+    <script src="../../js/modernizr.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 
@@ -68,9 +68,8 @@
         firebase.analytics();
     </script>
     <style>
-        .banner{
-            height: 200px;
-            width: 100%;
+        .row{
+            margin : 0
         }
     </style>
 </head>
@@ -82,7 +81,7 @@
       <header class="headroom " style="margin-bottom: 30px; ">
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-            <a href="./admin.html "><img src="../images/emptystates/logo.jpg" class="img-fluid logo-width " alt="Brand Logo " /></a>
+            <a href="./admin.html "><img src="../../img/bg-img/logo.png" class="img-fluid logo-width " alt="Brand Logo " /></a>
             <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
         <span class="navbar-toggler-icon "></span>
       </button>
@@ -244,21 +243,21 @@
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
     <!-- Jquery-2.2.4 JS -->
-    <script src="../js/jquery-2.2.4.min.js"></script>
+    <script src="../../js/jquery-2.2.4.min.js"></script>
     <!-- Headroom js -->
-    <script src="../js/headroom.js"></script>
+    <script src="../../js/headroom.js"></script>
     <!-- Popper js -->
-    <script src="../js/popper.min.js"></script>
+    <!-- <script src="../../js/popper.min.js"></script> -->
     <!-- Bootstrap-4 Beta JS -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
     <!-- All Plugins JS -->
-    <script src="js/plugins.js"></script>
+    <script src="../../js/plugins.js"></script>
     <!-- Active JS -->
-    <script src="../js/active.js"></script>
+    <script src="../../js/active.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <script src="../../js/jquery.mobile.custom.min.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/main.js"></script>
+    <script src="../../js/main.js"></script>
     <script src=""></script>
     <script src="../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
@@ -267,7 +266,7 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="./app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -328,14 +327,16 @@
                 userData.photo = "../../images/emptystates/female.png";
         }
         profileContainer.innerHTML = `<li class="dropdown dropdown-user nav-item float-right">
-                        <a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                          <div class="user-nav d-sm-flex d-none">
-                            <span class="user-name text-bold-600" style="color: #fff;">`+userData.name+`</span>
-                            
-                          </div>
-                          <span>
-                            <img class="round" src="`+userData.photo+`" alt="avatar" height="40" width="40">
-                          </span>
+                        <a class="" href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                          <div class="row align-items-center">
+                                <div class="user-nav d-sm-flex d-none">
+                                    <span class="user-name text-white">`+userData.name+`</span>
+                                </div>
+                                <div class="div p-1"></div>
+                                <span>
+                                    <img class="round" src="`+userData.photo+`" alt="avatar" height="40" width="40">
+                                </span>
+                            </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                           <a class="dropdown-item" href="javascript:void(0);">
