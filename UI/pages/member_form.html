@@ -646,7 +646,6 @@
             console.log(result);
             var status  = (parseInt(result[0].status) == "1")? true : false;
             var admin = (parseInt(result[0].admin) == "1")? true : false;
-            console.log(status);
             var userId = result[0].userid.split(" ");
             document.getElementById("phoneNumber").value = userId[1];
             document.getElementById("countryCode").innerHTML = `<option>`+userId[0]+`</option>`
@@ -847,11 +846,15 @@
     }
     
     function addCategoryElement(category){
+      console.log("adding card")
       var template = document.createElement('template');
       var heading = category;
       var joinedHeading = heading.split(" ");
       joinedHeading = joinedHeading.join("");
-      template.innerHTML = `<div class="row businessCategoryForm" id="`+joinedHeading+`" data-category="`+category+`">
+      var exist = document.querySelectorAll(`#${joinedHeading}`);
+      console.log(exist)
+      if(exist.length < 1){
+        template.innerHTML = `<div class="row businessCategoryForm" id="`+joinedHeading+`" data-category="`+category+`">
                   <div class="row">
                     <div class="col-8">
                       <div class="card">
@@ -958,6 +961,8 @@
                   </div>
                 </div>
               </div>`;
+      }
+      
       async function cityOptions(template){
           var businessOption = template.content.firstElementChild.querySelector('#businessCity-cat');
           //get available cities
@@ -1057,22 +1062,24 @@
               var searchId = result[i].category;
               for(var box in checkBoxes){
                 if(searchId == checkBoxes[box].dataset.category){
-                  checkBoxes[box].click();
-                  var category = checkBoxes[box].dataset.category;
-                  var temp = category;
-                  category = category.split(" ");
-                  category = category.join("");
-                  //get form container
-                  var form = document.getElementById(category);
-                  //add values to form
-                  form.querySelector('#businessName-cat').value = result[i].Name;
-                  form.querySelector('#businessDescription-cat').value = result[i].Description;
-                  form.querySelector('#businessCommAddress-cat').value = result[i].Address;
-                  form.querySelector('#businessPincode-cat').value = result[i].pincode;
-                  form.querySelector('#businessCity-cat').value = result[i].city;
-                  form.querySelector('#bannerPreview').src = result[i].banner;
-                  form.querySelector('#logoPreview').src = result[i].logo;
-                  loadContacts(temp);
+                  if(!checkBoxes[box].checked){
+                    checkBoxes[box].click();
+                    var category = checkBoxes[box].dataset.category;
+                    var temp = category;
+                    category = category.split(" ");
+                    category = category.join("");
+                    //get form container
+                    var form = document.getElementById(category);
+                    //add values to form
+                    form.querySelector('#businessName-cat').value = result[i].Name;
+                    form.querySelector('#businessDescription-cat').value = result[i].Description;
+                    form.querySelector('#businessCommAddress-cat').value = result[i].Address;
+                    form.querySelector('#businessPincode-cat').value = result[i].pincode;
+                    form.querySelector('#businessCity-cat').value = result[i].city;
+                    form.querySelector('#bannerPreview').src = result[i].banner;
+                    form.querySelector('#logoPreview').src = result[i].logo;
+                    loadContacts(temp);
+                  }
                 }
               }
             }
@@ -1116,6 +1123,11 @@
             for(var i in result){
               contacts[i].querySelector('#contacttype').value = result[i].ContentName;
               contacts[i].querySelector('#contactDetail').value = result[i].contactdetails;
+            }
+            for(var i in contacts){
+              if(contacts[i].querySelector('#contactDetail').value == ""){
+                  contactForm.removeChild(contacts[i]);
+              }
             }
           }
         })

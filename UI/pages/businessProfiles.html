@@ -591,6 +591,9 @@
             if(Array.isArray(result)){
                 var filterOptions = "";
                 result.forEach(element => {
+                    if(element.status == "0"){
+                        return;
+                    }
                     filterOptions = filterOptions+ `<div class="row m-2">
                                                         <div class="checkbox">
                                                             <input type="checkbox" class="checkbox-input" id="`+element.ContentName+`" name="`+filter+`filter" value="`+element.ContentName+`">
