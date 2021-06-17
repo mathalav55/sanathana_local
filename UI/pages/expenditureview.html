@@ -68,39 +68,36 @@
         firebase.analytics();
     </script>
     <style>
-        .main-section{
-            height: 100vh;
+        .radio label::before{
+            background-color: #fff;
         }
-        .profile-cards{
-            height: 80vh;
-            overflow-y: scroll;
-        }
-        .active{
-            color: #5a8dee;
-        }
-        #business-image{
-            width: auto;
-            height: 100px;
-        }
-        .profile-cards::-webkit-scrollbar{
-            display: none;
-        }
-        .search-background{
-            height: 200px;
-        }
+        
         .row{
             margin: 0;
         }
+        .report-cards{
+            height: 86vh;
+            overflow: scroll;
+        }
+        .report-cards::-webkit-scrollbar{
+            display: none;
+        }
+        
     </style>
 </head>
 
-<body>
+ <body class="bg-grey">
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
         <dvi id="navbar-container">
 
         </dvi>
+        <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+            <div class="col toast-container">
+                
+            </div>
+        </div>
     <!-- </section> -->
 
     <section>
@@ -109,17 +106,32 @@
             
         </div>
     </section>
-    <div class="main-section ml-4 mr-4" style="padding-top: 10%;"> 
+    <div class="main-section ml-4 mr-4" style="padding-top: 5%;">
+        <div class="row justify-content-center py-3">
+            <h1 class="display-4 text-bold-600 primary">
+                Reports
+            </h1>
+        </div> 
         <div class="row">
-            <div class="col-md-4" style="height: 100vh;">
-                <div class="side-bar card">
+            <div class="col-md-4" >
+                <div class="side-bar card bg-primary" style="height: 100vh;">
                     <div class="card-body">
                         <div class="card-header">
-                            <h3 class="">
+                            <div class="row chip-success chip">
+                                <div class="avatar bg-success " style="padding-top : 0.3rem">
+                                    <span class="material-icons " >
+                                        summarize
+                                    </span>
+                                </div>
+                                <div class="chip-body">
+                                    <span class="chip-text text-bold-500" style="font-size: 1.5rem; padding: .4rem;">
+                                        Available Reports
+                                    </span>
+                                </div>
                                 
-                            </h3>
+                            </div>
                         </div>
-                        <div class="col" id="menuContainer">
+                        <div class="col text-white" id="menuContainer">
                             <a href="" class="btn btn-warning">No menu available</a>
                         </div>
                         
@@ -145,7 +157,6 @@
                             </div>
                             <div class="col-4">
                                 <div class="row justify-content-end">
-                                    
                                     <div class="col" id="newbtn">
                                         <a href="./expenditureForm.html?action=add&">
                                             <button type="button" class="btn btn-primary mr-1" id="leftmenuvalue">no data</button>
@@ -324,13 +335,12 @@
                     }
                     options += `<div class="row m-2 ">
                                     <div class="radio">
-                                        <input type="radio" class="btn btn-primary left-item" id="`+item.ContentName+`"  value="`+item.ContentName+`" name="left-item">
-                                        <label for="`+item.ContentName+`"><h4>`+item.ContentName+`</h3></label>
+                                        <input type="radio" class="bg-white left-item" id="`+item.ContentName+`"  value="`+item.ContentName+`" name="left-item">
+                                        <label " for="`+item.ContentName+`"><h5 class="text-bold-500 text-white">`+item.ContentName+`</h5></label>
                                     </div>
                                 </div>`
                 })
                 menuContainer.innerHTML = options;
-
             }
         })
         .then(()=>{
@@ -346,7 +356,12 @@
                     if(option.checked){
                         // console.log(option.value);
                         btn = `<a href="./expenditureForm.html?action=add&leftmenu=`+option.value+`">
-                                            <button type="button" class="btn btn-primary mr-1" id="leftmenuvalue">Add `+option.value+`</button>
+                                            <button type="button" class="btn btn-info mr-1" id="leftmenuvalue">
+                                                <i class="bx bx-plus">
+                                                
+                                                </i>
+                                                Add `+option.value+`
+                                            </button>
                                 </a>`;
                         newbtn.innerHTML = btn; 
                     }
@@ -365,8 +380,7 @@
     // loadEmptyState();
     loadLeftMenu();
     function loadReports(){
-        //call this function after left menu is loaded
-        
+        //call this function after left menu is loaded  
         var data = {
             load : "loadall"
         }
@@ -389,13 +403,6 @@
     function changeStatus(id){
         var status = 1;
         var element = document.getElementById(`active-`+id);
-        if(element.classList.contains('active')){
-            element.classList.remove('active');
-            status = 0;
-        }else{
-            element.classList.add('active');
-            status = 1;
-        }
         var data = {
             "load": "changestatus",
             "id" : id,
@@ -407,9 +414,25 @@
         .then(response => response.json())
         .then(result => {
             console.log(result);
-            alert("status updated");
-        }).catch(error =>{console.log(error);});
-        
+            if(result.code == "200"){
+                colorChange();
+                toast("updated status","bg-success");
+            }
+            // alert("status updated");
+        }).catch(error =>{
+            toast("unable to update status","bg-danger");
+            console.log(error);
+        });
+        function colorChange(){
+            console.log("called color change")
+            if(element.classList.contains('primary')){
+                element.classList.remove('primary');
+                status = 0;
+            }else{
+                element.classList.add('primary');
+                status = 1;
+            }
+        }
     }
     function leftFilter(leftmenuid){
         console.log(leftmenuid);
@@ -461,64 +484,67 @@
             })
             nonFilteredReports = result;
         }
-            var data = {
-                load : "loadmemgroups",
-                id : userData.memberId
-            }
-            data = JSON.stringify(data);
-            var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
-            fetch("../../ws/Memberprofile.php", requestOption )
-            .then(response => response.json()).
-            then(result => {
-                console.log(result);
-                var userGroups = [];
-                if(Array.isArray(result)){
-                    for(var i in result){
-                        userGroups[i] = result[i].ContentName;
-                    }
-                    console.log(userGroups);
-                    result = nonFilteredReports.filter(report =>{
-                        var reportGroups = report.visibility.split(',');
-                        var flag = false;
-                        reportGroups.forEach(group=>{
-                            if(userGroups.includes(group)){
-                                flag = true;
-                            }
-                        })
-                        return flag;
-                    })
-                    nonFilteredReports = result;
-                    console.log(result);
-                    //add event listener for left filter
-                    var leftItems = document.querySelectorAll('.left-item');
-                    leftItems = Array.from(leftItems);
-                    leftItems.forEach(item =>{
-                        item.addEventListener('click',()=>{
-                            if(item.checked){
-                                leftFilter(item.value);
-                            }
-                        })
-                    });
-                    document.querySelector('.left-item').click();
-                    //date filter
-                    var date = document.getElementById('date');
-                    date.addEventListener('change',()=>{
-                        console.log("change");
-                        dateFilter(date.value);
-                    });
-                    //active filter
-                    var active = document.getElementById('active');
-                    active.addEventListener('change',()=>{
-                        var status = (active.value == "Active") ? "1" : "0";
-                        activeFilter(status);
-                    })
-                    // showReports(nonFilteredReports);
-                    
-                }else{
-                    alert('You must be in atleast one group to view reports');
-                    window.location = './dashBoard.html';
+        var data = {
+            load : "loadmemgroups",
+            id : userData.memberId
+        }
+        data = JSON.stringify(data);
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        fetch("../../ws/Memberprofile.php", requestOption )
+        .then(response => response.json()).
+        then(result => {
+            console.log(result);
+            var userGroups = [];
+            if(Array.isArray(result)){
+                for(var i in result){
+                    userGroups[i] = result[i].ContentName;
                 }
-            }).catch(error =>{console.log(error);});
+                console.log(userGroups);
+                result = nonFilteredReports.filter(report =>{
+                    var reportGroups = report.visibility.split(',');
+                    console.log(reportGroups);
+                    var flag = false;
+                    reportGroups.forEach(group=>{
+                        if(userGroups.includes(group)){
+                            flag = true;
+                        }
+                    })
+                    return flag;
+                })
+                if(userData.admin == "0"){
+                    nonFilteredReports = result;
+                }
+                console.log(result);
+                //add event listener for left filter
+                var leftItems = document.querySelectorAll('.left-item');
+                leftItems = Array.from(leftItems);
+                leftItems.forEach(item =>{
+                    item.addEventListener('click',()=>{
+                        if(item.checked){
+                            leftFilter(item.value);
+                        }
+                    })
+                });
+                document.querySelector('.left-item').click();
+                //date filter
+                var date = document.getElementById('date');
+                date.addEventListener('change',()=>{
+                    console.log("change");
+                    dateFilter(date.value);
+                });
+                //active filter
+                var active = document.getElementById('active');
+                active.addEventListener('click',()=>{
+                    var status = (active.value == "Active") ? "1" : "0";
+                    activeFilter(status);
+                })
+                // showReports(nonFilteredReports);
+                
+            }else{
+                alert('You must be in atleast one group to view reports');
+                window.location = './dashBoard.html';
+            }
+        }).catch(error =>{console.log(error);});
         
     }
     function showReports(reports){
@@ -529,14 +555,14 @@
             var cardHtml = "";
             reports.forEach(report =>{
                 var adminIcon = "";
-                var active = "active";
+                var active = "primary";
                 if(report.document == ""){
                     report.document = "javascript:nodoc()";
                 }
                 if(report.admin == "1"){
                             
                     adminIcon = `<div class="col">
-                        <span class="material-icons active">
+                        <span class="material-icons info">
                                                 security
                                             </span>
                         </div>`;
@@ -549,13 +575,23 @@
                 cardHtml += `<div class="card">
                         <div class="row card-body align-items-center">
                             <div class="col">
+                                <h6 class="text-bold-500 primary">
                                 `+report.Name+`
+                                </h6>
                             </div>
                             <div class="col">
-                                `+report.createddate+`
+                                <div class="row chip-warning chip">
+                                <div class="avatar bg-warning">
+                                    <span class="material-icons " style="font-size: 1rem; padding-top:0.2rem">
+                                        calendar_today
+                                    </span>
+                                </div>
+                                <div class="chip-body">
+                                    <span class="chip-text" style="font-size: 1rem; padding: .4rem;">
+                                        `+report.createddate+`
+                                    </span>
+                                </div>
                             </div>
-                            <div class="col">
-                                `+report.Description+`
                             </div>
                             <div class="col text-center">
                                 <label style="font-weight:bold">Created by</label>
@@ -594,16 +630,25 @@
         }
     }
     async function empty(section){
+        var options = document.querySelectorAll('.left-item');
+        options = Array.from(options);
+        var type;
+        options.forEach(option =>{
+            if(option.checked){
+                type = option.value;
+            }
+        })
         section.innerHTML = "";
         var template = document.createElement('div');
         template.innerHTML = `<div class="row justify-content-center">
                                 <div class="col-8">
                                     <div class="row justify-content-center">
-                                        <img src="#" id="emptyImage" alt="" style="width:50%">
+                                        <h4 class="text-bold-500 text-center">There is no `+type+` reports that have been updated here</h4>
                                     </div>
                                     <div class="row justify-content-center">
-                                        <h4 >No Reports</h4>
+                                        <img src="#" id="emptyImage" alt="" style="width:80%">
                                     </div>
+                                    
                                 </div>
                             </div>`;
         template = await emptyState(template,"Reports");

@@ -39,7 +39,7 @@ else if($rcvData == "update"){
     $name = $data['name'];
     update_oppurtunity($conn);
 }else{
-    $jsonresponse = array('code' => '200', 'status' => 'Not Valid Option');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Valid Option');
     echo json_encode($jsonresponse);
 }
 
@@ -58,7 +58,7 @@ function load_bynumber($conn){
     } 
     else 
     {
-        $jsonresponse = array('code' => '200', 'status' => 'No Refferals');
+        $jsonresponse = array('code' => '500', 'status' => 'No Opportunities');
         echo json_encode($jsonresponse);
     }
 }
@@ -71,17 +71,17 @@ function update_oppurtunity($conn){
         $conQuery = "update `contactlists_master` SET `contactname`='$name' WHERE `referralid` = '$id'";
         $response = setData($conn, $conQuery);
         if($response == "Record created"){
-            $jsonresponse = array('code' => '200', 'status' => 'Updated Refferal ');
+            $jsonresponse = array('code' => '200', 'status' => 'Updated Opportunity ');
             echo json_encode($jsonresponse);
         }else{
-            $jsonresponse = array('code' => '200', 'status' => 'Unable to update refferal');
+            $jsonresponse = array('code' => '400', 'status' => 'Unable to update Opportunity');
             echo json_encode($jsonresponse);
         }    
         
       } 
       else 
       {
-          $jsonresponse = array('code' => '200', 'status' => 'Unable to update refferal');
+          $jsonresponse = array('code' => '500', 'status' => 'Unable to update refferal');
           echo json_encode($jsonresponse);
       }
   
@@ -110,7 +110,7 @@ function insert_oppurtunity($conn)
             if(count($table) > 0){
                 $masterid = $table[0]['id'];
                 //return contact master id as json response
-                $jsonresponse = array('code' => '200', 'status' => 'Added Refferal Sucessfully', 'masterid' => $masterid);
+                $jsonresponse = array('code' => '200', 'status' => 'Added Opportunity Sucessfully', 'masterid' => $masterid);
                 echo json_encode($jsonresponse);
             }
         }
@@ -121,7 +121,7 @@ function insert_oppurtunity($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added Refferal');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added Opportutnoty');
     echo json_encode($jsonresponse);
   }
 }
@@ -134,7 +134,7 @@ function load_inbound($conn){
     } 
     else 
     {
-        $jsonresponse = array('code' => '200', 'status' => 'No Refferals');
+        $jsonresponse = array('code' => '500', 'status' => 'No Oppurtunities');
         echo json_encode($jsonresponse);
     }
 }
@@ -148,7 +148,7 @@ function load_all($conn){
     } 
     else 
     {
-        $jsonresponse = array('code' => '200', 'status' => 'No Oppurtunities');
+        $jsonresponse = array('code' => '500', 'status' => 'No Oppurtunities');
         echo json_encode($jsonresponse);
     }
 }
@@ -162,7 +162,7 @@ function load_outbound($conn){
     } 
     else 
     {
-        $jsonresponse = array('code' => '200', 'status' => 'No Refferals');
+        $jsonresponse = array('code' => '500', 'status' => 'No Opportinities');
         echo json_encode($jsonresponse);
     }
 }

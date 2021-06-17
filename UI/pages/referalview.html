@@ -173,7 +173,7 @@
     }
     .stat:hover{
         background-color: #5a8eee6c;
-        cursor: pointer;
+        /* cursor: pointer; */
     }
     .row{
         margin : 0; 
@@ -188,19 +188,30 @@
     <div id="navbar-container">
 
     </div>
-    <div class="container p-4" style="padding-top: 10% !important;">
+    <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+        <div class="col toast-container">
+            
+        </div>
+      </div>
+    <div class="container p-4 bg-grey" style="padding-top: 10% !important;">
       <div class="row justify-content-center mb-2">
           <div class="">
-              <h3 class="card-title">Referrals</h3>
+              <h1 class="display-4 card-title primary text-bold-600">
+                  Referrals
+                </h1>
           </div>
       </div>
       <div class="row  align-items-center p-2" id="memdropdown">
             <div class="col-6 ">
-                <div class="row justify-content-between">
-                    <div class="col-6">
-                        <select class="form-control" id="options">
+                <div class="row">
+                    <span class="material-icons card px-0  mr-1 align-middle text-white bg-info" style="font-size: 2.5rem;">
+                        person
+                    </span>
+                    <div class="col-6 px-0 card">
+                        <select class="form-control text-bold-500" id="options">
                             
                         </select>
+                        
                     </div>
                     
                 </div>
@@ -212,32 +223,44 @@
             
             <div class="row justify-content-between align-items-center p-2">
                 <div class="col-6">
-                    <h4>In Bound Referrals</h4>
+                    <div class="row chip-success chip">
+                        <div class="avatar bg-success">
+                            <span class="material-icons " >
+                                arrow_downward
+                            </span>
+                        </div>
+                        <div class="col chip-body">
+                            <span class="chip-text" style="font-size: 1.2rem; padding: .4rem;">
+                                
+                                In Bound Referrals
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 
             </div>
             <div class="row in">
                 <div class="col">
                     <div class="card stat pt-3 pl-3 pr-3 pb-1 text-center">
-                        <h6>Total</h6>
+                        <h6 class="text-bold-500">Total</h6>
                         <h3>0</h3>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card  stat pt-3 pl-3 pr-3 pb-1 text-center">
-                        <h6>Done</h6>
+                        <h6 class="text-bold-500">Done</h6>
                         <h3>0</h3>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card stat pt-3 pb-1 pl-2 pr-2 text-center">
-                        <h6>Not Done</h6>
+                        <h6 class="text-bold-500">Not Done</h6>
                         <h3>0</h3>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card stat pt-3 pb-1 pl-2 pr-2 text-center">
-                        <h6>In Progress</h6>
+                        <h6 class="text-bold-500">In Progress</h6>
                         <h3>0</h3>
                     </div>
                 </div>
@@ -250,15 +273,31 @@
                      
                  </div>
              </div>
-            
           </div>
+          <span class="col-divider">
+
+          </span>
           <div class="col">
             <div class="row justify-content-between align-items-center p-2">
                 <div class="col-6">
-                    <h4>Out Bound Refrrals</h4>
+                    <div class="row chip-warning chip">
+                        <div class="avatar bg-warning">
+                            <span class="material-icons " >
+                                arrow_upward    
+                            </span>
+                        </div>
+                        <div class="col chip-body">
+                            <span class="chip-text" style="font-size: 1.2rem; padding: .4rem;">
+                                Out Bound Referrals
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="./refferalForm.html" class="btn btn-primary text-white" type="button">
+                    <a href="./refferalForm.html" class="btn btn-info text-white" type="button">
+                        <span class="material-icons  align-middle">
+                            add
+                        </span>
                         Create New Referral
                     </a>
                 </div>
@@ -266,25 +305,25 @@
             <div class="row out">
                 <div class="col">
                     <div class="card stat pt-3 pl-3 pr-3 pb-1 text-center">
-                        <h6>Total</h6>
+                        <h6 class="text-bold-500">Total</h6>
                         <h3>0</h3>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card stat pt-3 pl-3 pr-3 pb-1 text-center">
-                        <h6>Done</h6>
+                        <h6 class="text-bold-500">Done</h6>
                         <h3>0</h3>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card stat pt-3 pb-1 pl-2 pr-2 text-center">
-                        <h6>Not Done</h6>
+                        <h6 class="text-bold-500">Not Done</h6>
                         <h3>0</h3>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card stat pt-3 pb-1 pl-2 pr-2 text-center">
-                        <h6>In Progress</h6>
+                        <h6 class="text-bold-500">In Progress</h6>
                         <h3>0</h3>
                     </div>
                 </div>
@@ -410,10 +449,14 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="javascript:void(0);">
-                            <i class="bx bx-power-off mr-50"></i>
-                            <span onclick="logOut()"> Logout</span>
-                          </a>
+                            <a class="dropdown-item" onclick="logOut()">
+                                <i class="bx bx-power-off mr-50"></i>
+                                <span> Logout</span>
+                            </a> 
+                            <a class="dropdown-item" onclick="addResetModal('`+userData.memberId+`')">
+                                <i class="bx bx-key mr-50"></i>
+                                <span > Change Password</span>
+                            </a> 
                         </div>
                       </li>`;
     }
@@ -470,7 +513,7 @@
             if(Array.isArray(result)){
                 var optionHtml = "";
                 result.forEach((member)=>{
-                    optionHtml = optionHtml + `<option value="`+member.userid+`">`+member.Name+`</option>`;
+                    optionHtml = optionHtml + `<option  value="`+member.userid+`">`+member.Name+`</option>`;
                 })
                 options.innerHTML = optionHtml;
             }
@@ -510,17 +553,22 @@
             alert("There was an error loggin you out Please try again")
             });
     }
-    async function empty(section){
+    async function empty(section,place){
+        var contents = [
+            "No Inbound Referrals. Focus on building relationships and networking and Fly",
+            "You have not made any references to your peers.Time to extend an helping hand"
+        ];
+        var content = (place == "in") ? contents[0] : contents[1];
         section.innerHTML = "";
         var template = document.createElement('div');
         template.innerHTML = `<div class="row justify-content-center">
-                                <div class="col-8">
+                                <div class="col-9">
+                                    <div class="row text-center" >
+                                        <h5 class="text-bold-500">`+content+`</h5>
+                                    </div>
                                     <div class="row justify-content-center">
                                         <img src="#" id="emptyImage" alt="">
-                                    </div>
-                                    <div class="row justify-content-center">
-                                        <h4 >No Refferals</h4>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>`;
         template = await emptyState(template,"Refferals");
@@ -558,20 +606,28 @@
                     var card = document.createElement('div');
                     card.innerHTML= `<div class="col">
                     <div class="card">
-                        <div class="row card-body justify-content-between align-items-center">
-                            <div class="col-md-3 text-left">
-                                `+item.contactname+`
+                        <div class="row card-body align-items-center">
+                            <div class="col-md-2 text-left">
+                                <h5 class="text-bold-500">
+                                    `+item.contactname+`
+                                </h5>  
                             </div>
-                            <div class="col text-center">
-                                <button type="button" class="btn btn-secondary">`+item.status+`</button>
+                            <div class="col  text-center">
+                                <div class="row chip-success chip">
+                                    <div class="col chip-body">
+                                        <span class="chip-text" >
+                                            `+item.status+`
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-3 text-center">
-                                RS `+item.finalamnt+`
+                            <div class="col-md-3 text-center text-bold-500">
+                                &#8377 `+item.finalamnt+`
                             </div>
-                            <div class="col text-center">
+                            <div class="col-md-2 text-center">
                                 data
                             </div>
-                            <div class="col text-right">
+                            <div class="col-md-1 text-right">
                                 <a href="./refferalForm.html?id=`+item.id+`&action=update">
                                     <span class="material-icons">
                                         edit
@@ -585,7 +641,7 @@
                 })
                 //show data
             }else{
-                empty(inSection);
+                empty(inSection,"in");
             }
             return count;
         })
@@ -639,29 +695,37 @@
                     var card = document.createElement('div');
                     card.innerHTML= `<div class="col">
                             <div class="card">
-                                <div class="row card-body justify-content-between align-items-center">
-                                    <div class="col-md-3 text-left">
-                                        `+item.contactname+`
+                                <div class="row card-body">
+                                    <div class="col-md-2 text-left">
+                                        <div class="col-md-2 text-left">
+                                            <h5 class="text-bold-500">
+                                                `+item.contactname+`
+                                            </h5>  
+                                        </div>
                                     </div>
                                     <div class="col text-center">
-                                        <button type="button" class="btn btn-secondary">`+item.status+`</button>
+                                        <div class="row chip-warning chip">
+                                                <div class="col chip-body">
+                                                    <span class="chip-text" >
+                                                        `+item.status+`
+                                                    </span>
+                                                </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4 text-center">
-                                        RS `+item.finalamnt+`
+                                    <div class="col-md-3 text-bold-500 text-center">
+                                        &#8377; `+item.finalamnt+`
                                     </div>
-                                    <div class="col text-center">
+                                    <div class="col-md-1 text-center">
                                         data
                                     </div>
-                                    <div class="col text-right">
-                                        
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>`;
                     outSection.appendChild(card.firstChild);
                 })
             }else{
-                empty(outSection);    
+                empty(outSection,"out");    
             }
             return count;
         })

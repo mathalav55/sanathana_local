@@ -56,7 +56,7 @@ else if($rcvData == "update"){
     $name = $data['name'];
     update_refferal($conn);
 }else{
-    $jsonresponse = array('code' => '200', 'status' => 'Not Valid Option');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Valid Option');
     echo json_encode($jsonresponse);
 }
 function clear_contacts($conn){
@@ -67,7 +67,7 @@ function clear_contacts($conn){
         $jsonresponse = array('code' => '200', 'status' => 'Cleared all contacts');
         echo json_encode($jsonresponse);
     }else{
-        $jsonresponse = array('code' => '200', 'status' => 'Unable to clear contacts');
+        $jsonresponse = array('code' => '500', 'status' => 'Unable to clear contacts');
         echo json_encode($jsonresponse);
     }
 }
@@ -84,14 +84,14 @@ function update_refferal($conn){
             $jsonresponse = array('code' => '200', 'status' => 'Updated Refferal ');
             echo json_encode($jsonresponse);
         }else{
-            $jsonresponse = array('code' => '200', 'status' => 'Unable to update refferal');
+            $jsonresponse = array('code' => '500', 'status' => 'Unable to update refferal');
             echo json_encode($jsonresponse);
         }    
         
       } 
       else 
       {
-          $jsonresponse = array('code' => '200', 'status' => 'Unable to update refferal');
+          $jsonresponse = array('code' => '500', 'status' => 'Unable to update refferal');
           echo json_encode($jsonresponse);
       }
   
@@ -106,7 +106,7 @@ function load_all($conn){
     } 
     else 
     {
-        $jsonresponse = array('code' => '200', 'status' => 'No Refferals');
+        $jsonresponse = array('code' => '500', 'status' => 'No Refferals');
         echo json_encode($jsonresponse);
     }
 }
@@ -119,7 +119,7 @@ function load_contacts($conn){
     if(count($datatable) > 0){
         echo json_encode($datatable);
     }else{
-        $jsonresponse = array('code' => '200', 'status' => 'No Contacts Available');
+        $jsonresponse = array('code' => '500', 'status' => 'No Contacts Available');
         echo json_encode($jsonresponse);
     }
 }
@@ -136,7 +136,7 @@ function add_leadcontacts($conn){
             $jsonresponse = array('code' => '200', 'status' => 'Added Contact');
             echo json_encode($jsonresponse);
         }else{
-            $jsonresponse = array('code' => '200', 'status' => 'Not Added Contact ddup');
+            $jsonresponse = array('code' => '500', 'status' => 'Not Added Contact ddup');
             echo json_encode($jsonresponse);
         }
     }else{
@@ -146,7 +146,7 @@ function add_leadcontacts($conn){
             $jsonresponse = array('code' => '200', 'status' => 'Added Contact');
             echo json_encode($jsonresponse);
         }else{
-            $jsonresponse = array('code' => '200', 'status' => 'Not Added Contact');
+            $jsonresponse = array('code' => '500', 'status' => 'Not Added Contact');
             echo json_encode($jsonresponse);
         }
     }
@@ -168,7 +168,7 @@ function load_bynumber($conn){
     } 
     else 
     {
-        $jsonresponse = array('code' => '200', 'status' => 'No Refferals');
+        $jsonresponse = array('code' => '500', 'status' => 'No Refferals');
         echo json_encode($jsonresponse);
     }
 }
@@ -205,7 +205,7 @@ function insert_refferal($conn)
   }
   else
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added Refferal');
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added Refferal');
     echo json_encode($jsonresponse);
   }
 }
@@ -219,7 +219,7 @@ function load_inbound($conn){
     } 
     else 
     {
-        $jsonresponse = array('code' => '200', 'status' => 'No Refferals');
+        $jsonresponse = array('code' => '500', 'status' => 'No Refferals');
         echo json_encode($jsonresponse);
     }
 }
@@ -233,7 +233,7 @@ function load_outbound($conn){
     } 
     else 
     {
-        $jsonresponse = array('code' => '200', 'status' => 'No Refferals');
+        $jsonresponse = array('code' => '500', 'status' => 'No Refferals');
         echo json_encode($jsonresponse);
     }
 }

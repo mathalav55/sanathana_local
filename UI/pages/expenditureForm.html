@@ -38,12 +38,12 @@
     <link rel="icon" href="../img/core-img/favicon.png" />
 
 
-    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../../css/responsive.css" />
 
-    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 
 
-    <script src="../js/modernizr.js"></script>
+    <script src="../../js/modernizr.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
 
@@ -69,27 +69,26 @@
     </script>
 
     <style>
-        .banner{
-            height: 200px;
-            width: 100%;
+        .row{
+          margin: 0;
         }
     </style>
 </head>
 
-<body>
+ <body class="bg-grey">
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
       <header class="headroom mb-4" >
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
-            <a href="./admin.html "><img src="../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
+            <a href="./admin.html "><img src="../../img/bg-img/logo.png " class="img-fluid logo-width " alt="Brand Logo " /></a>
             <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarsExampleDefault " aria-controls="navbarsExampleDefault " aria-expanded="false " aria-label="Toggle navigation ">
         <span class="navbar-toggler-icon "></span>
       </button>
 
             <div class="collapse navbar-collapse " id="navbarsExampleDefault ">
-                <ul class="navbar-nav mr-auto " id="Tnavlist ">
+                <ul class="navbar-nav mr-auto " id="Tnavlist">
 
                 </ul>
                 <ul class="float-right navbar-nav" id="profileContainer">
@@ -102,6 +101,11 @@
 
 
     </header>
+    <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+      <div class="col toast-container">
+          
+      </div>
+    </div>
     <!-- </section> -->
     <div class="row mt-1 justify-content-center" id="memberForm_one">
         <div class="col-6 ">
@@ -109,14 +113,15 @@
             <div class="form-body">
               <div class="row">
                 <div class="col-12">
-                  <div class="card">
-                    <div class="card-header bg-primary">
-                      <h4 class="card-title text-white text-center" id="reportname">Report</h4>
+                  <div class="card col px-0">
+                    <div class="row justify-content-center card-header bg-primary">
+                      <h4 class="text-white text-bold-500 text-center" id="reportname">Report</h4>
+                      <i class="bx bxs-edit text-white  mr-50"></i>
                     </div>
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-4">
-                          <label for="name">Report Name</label>
+                          <label for="name" class="required">Report Name</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <input type="text" id="name" class="form-control" name="fname" placeholder="Report Name">
@@ -128,7 +133,7 @@
                           <textarea type="text" id="desc" class="form-control" name="fname" placeholder="Description"></textarea>
                         </div>
                         <div class="col-md-4">
-                          <label for="doc">Upload Document</label>
+                          <label for="doc" class="required">Upload Document</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <div class="input-group">
@@ -137,7 +142,7 @@
                           </div>
                         </div>
                         <div class="col-md-4">
-                          <label for="">Status</label>
+                          <label for="" class="required">Status</label>
                         </div>
                         <div class="col-md-8">
                           <ul class="list-unstyled mb-0">
@@ -160,34 +165,25 @@
                           </ul>
                         </div>
                         <div class="col-md-4">
-                          <label for="">Admin</label>
+                          <label for="" class="required">Visibility</label>
                         </div>
                         <div class="col-md-8">
                           <ul class="list-unstyled mb-0">
                             <li class="d-inline-block mr-2 mb-1">
                               <fieldset>
-                                <div class="radio">
-                                  <input type="radio" name="admin" id="admin" >
-                                  <label for="admin">Yes</label>
-                                </div>
-                              </fieldset>
-                            </li>
-                            <li class="d-inline-block mr-2 mb-1">
-                              <fieldset>
-                                <div class="radio">
-                                  <input type="radio" name="admin" id="nonadmin">
-                                  <label for="nonadmin">No</label>
+                                <div class="checkbox">
+                                  <input type="checkbox" name="admin" id="admin" >
+                                  <label for="admin">Admin</label>
                                 </div>
                               </fieldset>
                             </li>
                           </ul>
                         </div>
                         <div class="col-md-4">
-                          <label for="status">Groups</label>
+                          <label for="" class="required">Groups</label>
                         </div>
-                        <div class="col-md-8 ">
+                        <div class="col-md-8 " id="groupSelection">
                           <ul class="list-unstyled mb-0 groups">
-                            
                             
                           </ul>
                         </div>
@@ -265,22 +261,21 @@
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <!-- <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d9fa1af7a79649"></script> -->
     <!-- Jquery-2.2.4 JS -->
-    <script src="../js/jquery-2.2.4.min.js"></script>
+    <script src="../../js/jquery-2.2.4.min.js"></script>
     <!-- Headroom js -->
-    <script src="../js/headroom.js"></script>
+    <script src="../../js/headroom.js"></script>
     <!-- Popper js -->
-    <script src="../js/popper.min.js"></script>
+    <!-- <script src="../js/popper.min.js"></script> -->
     <!-- Bootstrap-4 Beta JS -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
     <!-- All Plugins JS -->
-    <script src="js/plugins.js"></script>
+    <script src="../../js/plugins.js"></script>
     <!-- Active JS -->
-    <script src="../js/active.js"></script>
+    <script src="../../js/active.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/jquery.mobile.custom.min.js"></script>
+    <script src="../../js/jquery.mobile.custom.min.js"></script>
     <!-- Resource jQuery -->
-    <script src="../js/main.js"></script>
-    <script src=""></script>
+    <script src="../../js/main.js"></script>
     <script src="../../app-assets/vendors/js/vendors.min.js"></script>
     <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
     <script src="../../app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
@@ -288,7 +283,7 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="./app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -352,12 +347,16 @@
       groupvalues = Array.from(groupvalues);
       groupvalues.forEach(group =>{
         if(group.checked){
+          // console.log(pushed);
           visibilityList.push(group.value);
         }
       })
+      var data = visibilityList;
+      // console.log(data);
       var d = new Date();
-      var date = ``+d.getFullYear()+`-`+d.getMonth()+`-`+d.getDate()+``;
+      var date = ``+d.getFullYear()+`-`+(d.getMonth()+1)+`-`+d.getDate()+``;
       visibilityList = visibilityList.join(',');
+      visibilityList = visibilityList.toString();
       console.log(visibilityList);
       var data = {
         "load" : "add",
@@ -375,14 +374,46 @@
       console.log(data);
       data = JSON.stringify(data);
       
-      var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
-      fetch("../../ws/reports.php", requestOption )
-      .then(response => response.json())
-      .then(result => {
-        console.log(result);
-        window.location = "./expenditureview.html";
-      }).catch(error =>{console.log(error);});
-       //save data
+      if(validateForm()){
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        fetch("../../ws/reports.php", requestOption )
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          if(result.code == "200"){
+            toast("Added successfully","bg-success");
+          }else{
+            toast("Error Adding","bg-danger");
+          }
+          // window.location = "./expenditureview.html";
+        }).catch(error =>{
+          console.log(error);
+          toast("Erro Adding","bg-success");
+        });
+      }else{
+        toast("Please check all fields","bg-warning")
+      }
+      //validation functoin
+      function validateForm(){
+        var valid = true;
+        var nameElement = document.querySelector('#name');
+        var docElement = document.querySelector('#doc');
+        var docElementValue = docpath;
+        if(validate(nameElement.value)){
+          removeError(nameElement);
+        }else{
+          showError(nameElement,"This filed is required");
+          valid = false
+        }
+        if(validate(docElementValue)){
+          removeError(docElement);
+        }else{
+          showError(docElement,"This filed is required");
+          valid = false
+        }
+        return valid;
+      }
+
      }
      function init(){
         getURLData();

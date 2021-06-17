@@ -68,6 +68,7 @@
     firebase.analytics();
     </script>
     <style>
+
         .main-section{
             height: 100vh;
         }
@@ -76,8 +77,10 @@
             overflow-y: scroll;
         }
         #business-image{
-            width: auto;
+            width: 100px;
             height: 100px;
+            border-radius: 50%;
+            border : 1px solid rgba(0, 0, 0, 0.1);
         }
         .profile-cards::-webkit-scrollbar{
             display: none;
@@ -91,7 +94,7 @@
     </style>
 </head>
 
-<body>
+ <body class="bg-grey">
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
@@ -99,6 +102,11 @@
         <div id="navbar-container" style="display: none;">
 
         </div>
+        <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+            <div class="col toast-container">
+                
+            </div>
+          </div>
         <div class="non-login-header">
             <section>
                 <header class=" float-left header_area headroom headroom--not-bottom headroom--pinned headroom--top" style="position: fixed;z-index: 999999;">
@@ -171,21 +179,24 @@
             </div>
         </div>
     </section>
-    <div class="container main-section bg-grey" style="padding-top:10%;height: fit-content;">
+    <div class="container main-section bg-grey" style="padding-top:4%;height: fit-content;">
         
         <div class="row">
-            <div class="header-image" style="z-index: 0;margin-bottom: -10%;">
-                <img src="../../images/emptystates/banner.jpg" alt="" class="search-background">
+            <div class="header-image" style="z-index: 0;margin-bottom: -8%;">
+                <img src="../../images/search_img.jpg" alt="" style="width: 60%;height: auto;" class="search-background">
             </div>
         </div>
         <div class="row">
             <div class="col-md-3" >
                 <div class="side-bar card">
-                    <div class="card-body">
+                    <div class="card-body bg-primary ">
                         <div class="card-header">
-                            <h3 class="">
+                            <h2 class="text-white text-bold-600">
                                 Filters
-                            </h3>
+                                <span class="material-icons">
+                                    filter_alt
+                                </span>
+                            </h2>
                         </div>
                         <div class="col" id="filter-container">
                             
@@ -463,10 +474,21 @@
                     var editBtn = "";
                     var referBtn = "";
                     if(userData.status === "Logged In"){
-                        referBtn = `<button class="btn btn-primary mr-1">Refer</button>`;
+                        var temp = profile.userid.slice(1);
+                        referBtn = `<a class="btn btn-warning mr-1 text-white" href="./refferalForm.html?action=bussiness&id=%2B`+temp+`">
+                                <span class="material-icons  align-middle">
+                                    people
+                                </span>
+                                Refer
+                                </a>`;
                         if(userData.admin == 1){
                             var temp = profile.userid.slice(1);
-                            editBtn = `<a class="btn btn-primary mr-1 text-white" href="./member_form.html?action=modify&memberId=%2B`+temp+`">Edit Profile</a>`;
+                            editBtn = `<a class="btn btn-primary mr-1 text-white" href="./member_form.html?action=modify&memberId=%2B`+temp+`">
+                                <span class="material-icons  align-middle">
+                                    edit
+                                </span>
+                                Edit Profile
+                                </a>`;
                         }
                     }
                     if(profile.logo === ""){
@@ -479,13 +501,18 @@
                                 <div class="col">
                                     <div class="row ">
                                         <div class="col-md-4 col-12 ">
-                                            <span>`+profile.BusinessName+`</span>
+                                            <h3 class="text-bold-500 text-primary">`+profile.BusinessName+`</h3>
+                                        </div>
+                                        <div class="col-md-4  col-12">
+                                            <h5 class="text-bold-500">`+profile.Name+`</h5>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            <span>`+profile.Name+`</span>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <span>`+profile.ContentName+`</span>
+                                            <div class="chip chip-primary" >
+                                                <span class="chip-text text-white" style="font-size: .9rem; padding: 0.2rem;">
+                                                    `+ profile.ContentName +`
+                                                </span>
+                                            </div>
+                                
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -494,7 +521,7 @@
                                         </div>
                                         <div class="col-md-4 col-12" >
                                             <div class="row mb-2">
-                                                <span class="material-icons mr-1">
+                                                <span class="material-icons mr-1 info">
                                                     phone
                                                 </span>
                                                 <span >
@@ -502,7 +529,7 @@
                                                 </span>
                                             </div>
                                             <div class="row">
-                                                <span class="material-icons mr-1">
+                                                <span class="material-icons mr-1 info">
                                                     mail
                                                 </span>
                                                 <span>
@@ -511,13 +538,24 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            `+profile.Address+`
+                                            <span class="row material-icons danger">
+                                                place
+                                            </span>
+                                            <span class="row ">
+                                                `+profile.Address+`
+                                            </span>
+                                            
                                         </div>
                                     </div>
                                     <div class="card-footer" style="margin-bottom:-7%">
                                         <div class="row justify-content-end">
                                             `+editBtn+`
-                                            <button class="btn btn-primary mr-1" onclick="viewProfile('`+profile.ContentName+`','`+profile.userid+`')">View Profile</button>
+                                            <button class="btn btn-primary mr-1" onclick="viewProfile('`+profile.ContentName+`','`+profile.userid+`')">
+                                                <span class="material-icons  align-middle">
+                                                    visibility
+                                                </span>
+                                                View Profile
+                                            </button>
                                             `+referBtn+`
                                         </div>
                                     </div>
@@ -595,9 +633,9 @@
                         return;
                     }
                     filterOptions = filterOptions+ `<div class="row m-2">
-                                                        <div class="checkbox">
+                                                        <div class="checkbox" >
                                                             <input type="checkbox" class="checkbox-input" id="`+element.ContentName+`" name="`+filter+`filter" value="`+element.ContentName+`">
-                                                            <label for="`+element.ContentName+`">`+element.ContentName+`</label>
+                                                            <label for="`+element.ContentName+`" class="text-white">`+element.ContentName+`</label>
                                                         </div>
                                                     </div>`;
                 });
@@ -623,7 +661,7 @@
         filterNames.forEach((filter)=>{
             //create filter element
             div.innerHTML = `<div class="row ml-1">
-                                <h5>`+filter+`</h5>
+                                <h4 class="text-white text-bold-500" style="text-transform: capitalize;">`+filter+`</h5>
                             </div>
                             <div id="`+filter+`-filters" >
 

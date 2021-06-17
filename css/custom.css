@@ -685,7 +685,52 @@ hr {
     border-width: .53rem .535rem 0;
     border-top-color: #5A8DEE !important;
 }
-
+/* --------------------------
+:: Modal CSS
+-------------------------- */
+.reset-modal {
+    display: block; 
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  .dropdown-item{
+      padding: 1rem;
+  }
+  .col-divider{
+      width: 0;
+      border: 0.005rem solid rgba(0, 0, 0, 0.2);
+  }
+  /* Modal Content */
+  .reset-modal-content {
+    position: absolute;
+    right : 0;
+    margin: auto;
+    padding: 20px;
+    width: 25%;
+  }
+  
+  /* The Close Button */
+  .reset-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .reser-close:hover,
+  .reset-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
 /* --------------------------
 :: 3.0 Wellcome Area CSS
 -------------------------- */
@@ -1360,14 +1405,16 @@ div.show-image:hover img {
     right: -95%;
     top: -260px;
 }
-label.required::after {content: "* ";color: #f00;}
+label.required::after {content: "**";color: #f00;}
 .visionBox_bottom {
     width: 40%;
     position: relative;
     right: -570px;
     bottom: 50px;
 }
-
+.row-divider{
+    border : 0.005rem rgba(0, 0, 0, 0.1) solid;
+}
 .verticalSea_box {
     width: 30%;
     position: absolute;

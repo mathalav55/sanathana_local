@@ -68,6 +68,13 @@
         firebase.analytics();
     </script>
     <style>
+        #business-image{
+            height: 100px;
+            width: 100px;
+        }
+        .chip-text{
+            font-weight: 500;
+        }
         .banner{
             height: 200px;
             width: 100%;
@@ -92,6 +99,11 @@
         <div id="navbar-container" style="display: none;">
 
         </div>
+        <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+            <div class="col toast-container">
+                
+            </div>
+          </div>
         <div class="non-login-header">
             <section>
                 <header class=" float-left header_area headroom headroom--not-bottom headroom--pinned headroom--top" style="position: fixed;z-index: 999999;">
@@ -129,7 +141,7 @@
         </div>
     <!-- </section> -->
 
-    <section style=" margin-top:10%">
+    <section class="bg-grey" style=" padding-top:10%">
         <div class="container-fluid float-left" style="width:100% !important;">
             
             <div class="row align-items-center">
@@ -142,46 +154,19 @@
             </div>
         </div>
     </section>
-    <div class="container main-section bg-grey" style="margin-top: 2%;">
+    <div class="container bg-grey main-section " style="padding-top: 2%;">
         <div class="row">
-            <div class="col-12">
-                <img src="../../images/emptystates/banner.jpg" alt="" class="banner" id="bannerImage">
+            <div class="col-12" style="position : relative">
+                <img src="../../images/emptystates/banner.jpg"  alt="" class="banner" id="bannerImage">
             </div>
         </div>
-        <div class="row justify-content-between align-items-center" style="margin-top: -5%;">
+        <div class="row justify-content-between align-items-center" style="margin-top : -5%">
             <div class="col-2 ml-2 card" >
                 <img src="../../images/emptystates/logo.jpg" alt=""  class="logo" id="logoImage">
             </div>
             <div class="col-8" id="editProfileSection restrict">
                 <div class="row justify-content-end onlyAdmin">
-                    <button class="btn btn-primary mr-1" data-toggle="modal" data-target="#businessForm" >Edit Profile</button>
-                    <div class="modal fade text-left" id="businessForm" tabindex="-1"  aria-hidden="true" style="display: none; width:50% ; top : 25%; left:25%">
-                        <div class="modal-dialog modal-dialog-scrollable">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h3 class="modal-title">Edit Business Profile</h3>
-                              <button type="button" class="close rounded-pill" data-dismiss="modal" aria-label="Close">
-                                <i class="bx bx-x"></i>
-                              </button>
-                            </div>
-                            <div class="col modal-body">
-                              <div class="formgroup">
-                                  
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-light-primary" data-dismiss="modal">
-                                <i class="bx bx-x d-block d-sm-none"></i>
-                                <span class="d-none d-sm-block">Close</span>
-                              </button>
-                              <button type="button" class="btn btn-primary ml-1">
-                                <span class="d-none d-sm-block">Accept</span>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                    <button onclick="prodcutForm()" class="btn btn-primary mr-1">Add Products</button>
+                    <button onclick="prodcutForm()" class="btn btn-warning mr-1"><i class="bx bx-plus" style="background-color: rgba(255, 255, 255, 0.425);color: #fff;border-radius: 100%;padding : 0.2rem;"></i> Add Products</button>
                 </div>
             </div>
         </div>
@@ -190,10 +175,12 @@
                 <div class="row" >
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header bg-primary">
-                                <h4 class="card-title text-white">
-                                    Chapters
-                                </h4>
+                            <div class="card-header" style="margin-top : -8%; margin-left: -2%; padding-left: 0;">
+                                <div class="chip chip-primary">
+                                    <span class="chip-text text-white" style="font-size: 1.2rem; padding: 0.4rem;">
+                                        Chapters
+                                    </span>
+                                </div>   
                             </div>
                             <div class="card-body" id="chaptersData">
                                 <div class="row">
@@ -206,10 +193,12 @@
                 <div class="row" >
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header bg-primary">
-                                <h4 class="card-title text-white">
-                                    Groups
-                                </h4>
+                            <div class="row justify-content-start card-header" style="margin-top : -8%; margin-left: -2%; padding-left: 0;">
+                                <div class="chip chip-primary">
+                                    <span class="chip-text text-white" style="font-size: 1.2rem; padding: 0.4rem;">
+                                        Groups
+                                    </span>
+                                </div>   
                             </div>
                             <div class="card-body" id="groupsData">
                                 <div class="row">
@@ -222,16 +211,25 @@
             </div>
             <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header bg-primary">
-                            <h4 class="card-title text-white">
-                                About
-                            </h4>
+                        <div class="row justify-content-center card-header"  style="margin-top: -5%;">
+                            <div class="chip chip-primary">
+                                <span class="chip-text text-white" style="font-size: 1.2rem; padding: 0.4rem;" id="businessTitle">
+                                    About
+                                </span>
+                            </div>   
                         </div>
                         <div class="card-body">
                             <span id="businessDescription">
 
                             </span>
                         </div>
+                    </div>
+                    <div class="row pt-3 pb-1 justify-content-center card-header"  style="margin-top: -5%;">
+                        <div class="chip chip-primary">
+                            <span class="chip-text text-white" style="font-size: 1.2rem; padding: 0.4rem;" id="businessTitle">
+                                Product Catalog
+                            </span>
+                        </div>   
                     </div>
                     <div class="products col">
                         
@@ -280,10 +278,12 @@
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header bg-primary">
-                        <h4 class="card-title text-white">
-                            Connect
-                        </h4>
+                    <div class="row justify-content-end card-header" style="margin-top : -8%; margin-right: -2%; padding-right: 0;">
+                        <div class="chip chip-primary">
+                            <span class="chip-text text-white" style="font-size: 1.2rem; padding: 0.4rem;">
+                                Connect
+                            </span>
+                        </div>   
                     </div>
                     <div class="card-body" id="connectBody">
                         <div class="row">
@@ -292,10 +292,12 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-primary">
-                        <h4 class="card-title text-white">
-                            Details
-                        </h4>
+                    <div class="card-header row justify-content-end"  style="margin-top : -8%; margin-right: -2%; padding-right: 0;">
+                        <div class="chip chip-primary">
+                            <span class="chip-text text-white" style="font-size: 1.2rem; padding: 0.4rem;">
+                                Details
+                            </span>
+                        </div>   
                     </div>
                     <div class="card-body" id="detailsBody">
                         
@@ -303,8 +305,58 @@
                 </div>
             </div>
         </div>
-        <div class="row other-business">
+        <div class="row row-divider">
 
+        </div>
+        <div class="row py-2 justify-content-center">
+            <div class="chip chip-warning">
+                <span class="chip-text text-bold-500 text-white" style="font-size: 1.5rem; padding: 0.4rem;">
+                    Other Business
+                </span>
+            </div> 
+        </div>
+        <div class="container row justify-content-center">
+            <div class="col-9 other-business">
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- <div class="col-12 card px-0">
+                <div class="card-header bg-primary">
+                    <h2 class="card-title text-white">
+                        change password
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <form action="" class="form-horizontal">
+                        <div class="row form-body">
+                            <div class="col-12">
+                                <label for="contentName">Old Password</label>
+                                <div class="form-group">
+                                    <input type="password" id="oldPassword" class="form-control" placeholder="oldPassword">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="contentName">New Password</label>
+                                <div class="form-group">
+                                    <input type="password" id="oldPassword" class="form-control" placeholder="oldPassword">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="contentName">Confirm New Password</label>
+                                <div class="form-group">
+                                    <input type="password" id="oldPassword" class="form-control" placeholder="oldPassword">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="btn btn-primary">
+                                    <span class="d-none d-sm-block">Reset Password</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> -->
         </div>
     </div>
     <!-- ***** Footer Area End ***** -->
@@ -370,7 +422,7 @@
     <!-- Headroom js -->
     <script src="../../js/headroom.js"></script>
     <!-- Popper js -->
-    <script src="../../js/popper.min.js"></script>
+    <!-- <script src="../../js/popper.min.js"></script> -->
     <!-- Bootstrap-4 Beta JS -->
     <script src="../../js/bootstrap.min.js"></script>
     <!-- All Plugins JS -->
@@ -505,14 +557,19 @@
                         productCard +=  `<div class="card">
                             <div class="row card-body justify-content-between">
                                     <div class="col text-left">
-                                        `+item.Name+`
+                                        <div class="chip chip-primary" >
+                                            <span class="chip-text text-white" style="font-size: .9rem; padding: 0.2rem;">
+                                                `+item.Name+`
+                                            </span>
+                                        </div>
+                                        
                                     </div>
                                     <div class="col-4 text-center">
                                         `+item.Description+`
                                     </div>
                                     <div class="col text-right">
                                         <a href="`+broucher+`">
-                                            <span class="material-icons">
+                                            <span class="material-icons danger">
                                                 picture_as_pdf
                                             </span>
                                         </a>
@@ -529,7 +586,14 @@
                     });
                     productsSection.innerHTML = productCard;
                 }else{
-                    productsSection.innerHTML = "";
+                    productsSection.innerHTML = `<div class="card">
+                    <div class="col-8 card-body" id=" restrict">
+                <div class="row justify-content-between onlyAdmin align-items-center">
+                    <h5  class="text-warning">No products yet!</h5>
+                    <button onclick="prodcutForm()" class="btn btn-warning mr-1"><i class="bx bx-plus" style="background-color: rgba(255, 255, 255, 0.425);color: #fff;border-radius: 100%;padding : 0.2rem;"></i> Add Products</button>
+                </div>
+            </div>
+            </div>`;
                 }
             })
             .catch(error =>{console.log(error);});
@@ -560,17 +624,31 @@
                     var connectBody = document.getElementById('connectBody');
                     var detailsBody = document.getElementById('detailsBody');
                     var businessDescription = document.getElementById('businessDescription');
+                    var businessTitle = document.getElementById('businessTitle');
                     var bannerImage = document.getElementById('bannerImage');
                     var logoImage = document.getElementById('logoImage');
                     detailsBody.innerHTML = `
-                        <div class="row">
-                            `+basicDetails.Name+`
+                        <h3 class="row pb-2 text-bold-500 text-primary">
+                            <span>` +basicDetails.Name+`</span>
+                        </h3>
+                        <div class="row pb-1">
+                            <span class="material-icons mr-1 text-primary">
+                                    `+ basicDetails.gender.toLowerCase()+`
+                            </span>
+                            <span>` +basicDetails.gender+`</span>
                         </div>
-                        <div class="row">
-                            `+basicDetails.gothram+`
+                        <div class="row pb-1 ">
+                            
+                            <span class="material-icons mr-1 text-primary">
+                                self_improvement
+                            </span>
+                            <span>` +basicDetails.gothram+` Gothram</span>
                         </div>
-                        <div class="row">
-                            `+basicDetails.gender+`
+                        <div class="row pb-1">
+                            <span class="material-icons mr-1 text-primary   ">
+                                    cake
+                            </span>
+                            <span>` +basicDetails.Dob+`</span>
                         </div>
                         `; 
                     //load profile details
@@ -603,7 +681,8 @@
                                 profile.logo = "../../images/emptystates/logo.jpg";
                             }
                             bannerImage.setAttribute('src',profile.banner);
-                            logoImage.setAttribute('src',profile.logo)
+                            logoImage.setAttribute('src',profile.logo);
+                            businessTitle.innerText = `About ${profile.Name}`;
                             if(profile.Description != ""){
                                 businessDescription.innerHTML = profile.Description;
                             }
@@ -672,7 +751,7 @@
                             }
                             chaptersData.innerHTML = chapterHtml;
                         }else{
-                            chaptersData.innerHTML = "No chapters available for this group"
+                            chaptersData.innerHTML = "No chapters available "
                         }
 
                     })
@@ -695,11 +774,13 @@
                     .then(result => {
                         console.log(result);
                         if(Array.isArray(result)){
-                            var contactHtml = '';
+                            var contactHtml = `<h3 class="row pb-1 text-bold-500 text-primary">
+                            `+basicDetails.Name+`
+                        </h3>`;
                             for(var i in result){
                                 contactHtml = contactHtml + `
                                 <div class="row">
-                                <span class="material-icons mr-1">
+                                <span class="material-icons mr-1 text-primary">
                                     contact_page
                                 </span>
                                 <span>
@@ -724,6 +805,213 @@
             });
         }
         
+        async function loadProfiles(){
+        var businessBody = {
+          load : "loadbynumber",
+          id : memberId
+        }
+        businessBody = JSON.stringify(businessBody);
+        var businessRequestOptions = {
+          method : "POST",
+          headers : myHeaders,
+          redirect : "follow",
+          body : businessBody
+        }
+        fetch("../../ws/businessprofile.php",businessRequestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            if(Array.isArray(result)){
+                profileList = result;
+                profileList.forEach(profile=>{
+                    var loadContactsBody = {
+                        load : "loadmemcontacts",
+                        id : memberId,
+                        category : profile.category
+                    }
+                    loadContactsBody = JSON.stringify(loadContactsBody);
+                    var loadContactsOptions = {
+                        method : "POST",
+                        redirect : "follow",
+                        headers : myHeaders,
+                        body : loadContactsBody
+                    }
+                    fetch("../../ws/businessprofile.php",loadContactsOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result);
+                        var email = "no email";
+                        var phoneNumber = "no number";
+                        if(Array.isArray(result)){
+                            result.forEach(item=>{
+                                if(item.ContentName === "Phone Number"){
+                                    phoneNumber = item.contactdetails;
+                                }else if(item.ContentName === "Email"){
+                                    email = item.contactdetails
+                                }
+                            });
+                        }
+                        var inedx = profileList.indexOf(profile);
+                        profile.email = email;
+                        profile.phoneNumber  = phoneNumber;
+                        console.log(profileList[inedx]);
+                        profileList[inedx] = profile;
+                        console.log(profile);
+                    })
+                    .then(()=>{
+                        displayMembers(profileList);
+                    })
+                    .catch(error =>{
+                        // noConnection();
+                        console.log(error);
+                    });
+                })
+            }
+            else{
+                console.log("hello");
+                var mainSection = document.querySelector('.main-section');
+                mainSection.innerHTML  = "";
+                var button = `<div class="col-6 text-center">
+                                    <a href="./main.html" class="btn btn-primary">Add Profiles</a>
+                                </div>`;
+                if(userData.admin == 0){
+                    button = "";
+                }
+                var businessProfiles = document.createElement('div');
+                businessProfiles.innerHTML = `<div class="row align-items-center justify-content-around">
+                                                <div class="col-4">
+                                                    <img src="#" alt="" id="emptyImage">
+                                                    <h4 class="text-center">No Profiles</h4>
+                                                </div>
+                                                `+button+`
+                                            </div>`;
+                //make a template for the empty state;
+                //call empty state function with business profile template as argument
+                emptyState(businessProfiles,myHeaders).then((result)=>{
+                    mainSection.appendChild(result.firstChild);
+                })
+            }
+        })
+        .catch(error =>{console.log(error);});    
+    }
+    function displayMembers(profiles){
+        console.log(profiles);
+        var profileCards = document.querySelector('.other-business');
+        if(profiles.length > 0){
+            console.log(profiles);
+            const cardHtml = (profiles)
+                .map((profile) =>{
+                    if(profile.category == category){
+                        return
+                    }
+                    var editBtn = "";
+                    var referBtn = "";
+                    if(userData.status === "Logged In"){
+                        referBtn = `<button class="btn btn-warning mr-1">
+                            <span class="material-icons  align-middle">
+                                people
+                            </span>
+                            Refer
+                        </button>`;
+                        if(userData.admin == 1){
+                            var temp = memberId.slice(1);
+                            editBtn = `<a class="btn btn-primary mr-1 text-white" href="./member_form.html?action=modify&memberId=%2B`+temp+`">
+                                <span class="material-icons  align-middle">
+                                    edit
+                                </span>
+                                Edit Profile
+                                </a>`;
+                        }
+                    }
+                    if(profile.logo === ""){
+                        profile.logo = "../../images/emptystates/logo.jpg";
+                    }
+                    var card = document.createElement("div");
+                    card.innerHTML = `<div class="col-md-12 profile-card">
+                        <div class="card " style="margin-bottom: 5%;">
+                            <div class="card-body py-1 m-1">
+                                <div class="col">
+                                    <div class="row ">
+                                        <div class="col-md-4 col-12 ">
+                                            <h3 class="text-bold-500 text-primary">`+profile.BusinessName+`</h3>
+                                        </div>
+                                        <div class="col-md-4  col-12">
+                                            <h5 class="text-bold-500">`+profile.Name+`</h5>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="chip chip-primary" >
+                                                <span class="chip-text text-white" style="font-size: .9rem; padding: 0.2rem;">
+                                                    `+ profile.category +`
+                                                </span>
+                                            </div>
+                                
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-4 col-12">
+                                            <img src="`+profile.logo+`" id="business-image" alt="business image">
+                                        </div>
+                                        <div class="col-md-4 col-12" >
+                                            <div class="row mb-2">
+                                                <span class="material-icons mr-1 info">
+                                                    phone
+                                                </span>
+                                                <span >
+                                                    `+profile.phoneNumber+`
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="material-icons mr-1 info">
+                                                    mail
+                                                </span>
+                                                <span>
+                                                    `+profile.email+`
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <span class="row material-icons danger">
+                                                place
+                                            </span>
+                                            <span class="row ">
+                                                `+profile.Address+`
+                                            </span>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="card-footer" style="margin-bottom:-7%">
+                                        <div class="row justify-content-end">
+                                            `+editBtn+`
+                                            <button class="btn btn-primary mr-1" onclick="viewProfile('`+profile.category+`','`+memberId+`')">
+                                                <span class="material-icons  align-middle">
+                                                    visibility
+                                                </span>
+                                                View Profile
+                                            </button>
+                                            `+referBtn+`
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;  
+                
+                
+                return card.innerHTML; 
+            }).join('');
+            profileCards.innerHTML = cardHtml;
+        }else{
+            empty(profileCards);
+        }
+
+        
+    }
+    loadProfiles();
+    function viewProfile(category,memberid){
+        memberid = memberid.slice(1);
+        window.open(`./viewBusinessProfile.html?category=`+category+`&memberid=%2B`+memberid,'_self');
+    }
     </script>
 </body>
 

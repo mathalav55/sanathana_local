@@ -74,11 +74,11 @@
     </style>
 </head>
 
-<body>
+ <body class="bg-grey">
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
-      <header class="headroom " style="margin-bottom: 30px; ">
+      <header class="headroom " >
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top ">
             <a href="./admin.html "><img src="../../img/bg-img/logo.png" class="img-fluid logo-width " alt="Brand Logo " /></a>
@@ -99,8 +99,13 @@
 
 
     </header>
+    <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+      <div class="col toast-container">
+          
+      </div>
+    </div>
     <!-- </section> -->
-    <div class="row mt-1 justify-content-center" id="memberForm_one">
+    <div class="row bg-grey justify-content-center" style="padding-top: 2%;" id="memberForm_one">
         <div class="col-6 ">
           <form class="form form-horizontal">
             <div class="form-body">
@@ -108,7 +113,12 @@
                 <div class="col-12">
                   <div class="card">
                     <div class="card-header bg-primary">
-                      <h4 class="card-title text-white text-center">Referral Form</h4>
+                      <h3 class="card-title  text-white text-center ">
+                        <span class="text-bold-600">
+                          Referral Form
+                        </span>
+                        <i class="bx bxs-edit mr-50"></i>
+                      </h3>
                     </div>
                     <div class="card-body">
                       <div class="row">
@@ -128,7 +138,7 @@
                         </div>
                         
                         <div class="col-md-4">
-                          <label for="leadname">Lead Name</label>
+                          <label for="leadname" class="required">Lead Name</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <input type="" list="leads" id="leadname" class="form-control" name="fname" placeholder="Name" autocomplete="off">
@@ -137,7 +147,7 @@
                         </div>
                         <!-- lead contact repeater -->
                         <div class="col-md-4">
-                          <label for="leadname">Lead Contact Details</label>
+                          <label for="leadname" >Lead Contact Details</label>
                         </div>
                         <div class="col-md-6" id="contacts">
 
@@ -146,13 +156,13 @@
                           <button type="button" class="btn-primary btn" id="addcontact" onclick="addContactElement()">Add</button>
                         </div>
                         <div class="col-md-4">
-                          <label for="amt">Amount</label>
+                          <label for="amt" class="required">Amount</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <input type="number" id="amt" class="form-control" name="fname" placeholder="Amount">
                         </div>
                         <div class="col-md-4">
-                          <label for="ptamt">Potential Amount</label>
+                          <label for="ptamt" class="required">Potential Amount</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <input type="number" id="ptamt" class="form-control" name="fname" placeholder="Amount">
@@ -275,6 +285,7 @@
     <script src="../../app-assets/js/core/app.js"></script>
     <script src="../../app-assets/js/scripts/components.js"></script>
     <script src="../../app-assets/js/scripts/footer.js"></script>
+    <script src="../../js/globalFuntions.js"></script>
     <!-- END: Theme JS-->
     <!-- Headroom -->
    <script>
@@ -312,7 +323,6 @@
                 loadProfile();
                 loadMembers();
                 loadNavItems();
-                loadForm();
         }
         })
         .catch(error =>{console.log(error);});
@@ -339,10 +349,14 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="javascript:void(0);">
-                            <i class="bx bx-power-off mr-50"></i>
-                            <span onclick="logOut()"> Logout</span>
-                          </a>
+                          <a class="dropdown-item" onclick="logOut()">
+                              <i class="bx bx-power-off mr-50"></i>
+                              <span> Logout</span>
+                          </a> 
+                          <a class="dropdown-item" onclick="addResetModal('`+userData.memberId+`')">
+                              <i class="bx bx-key mr-50"></i>
+                              <span > Change Password</span>
+                          </a> 
                         </div>
                       </li>`;
     }
@@ -368,6 +382,7 @@
                     optionHtml = optionHtml + `<option value="`+member.userid+`">`+member.Name+`</option>`;
                 })
                 options.innerHTML = optionHtml;
+                loadForm();
             }
         })
         .catch(error =>{console.log(error);});
@@ -375,6 +390,11 @@
     function loadForm(){
       //disable refer by from always refer by is name of login person
       var saveBtn = document.getElementById('saveBtn');
+      if(action == "bussiness"){
+        var referto = document.getElementById('referto');
+        referto.value = id;
+        referto.disabled = true;
+      }
       if(action === "update"){
         //get refferal data from the db
         //load it into form
@@ -475,45 +495,78 @@
       var data = {
         id: parseInt(id),
         load : load,
-        referid : parseInt(userData.memberId),
-        referto : parseInt(document.getElementById("referto").value),
+        referid : userData.memberId,
+        referto : document.getElementById("referto").value,
         name : document.getElementById("leadname").value,
         refferalamnt : parseInt(document.getElementById("amt").value),
         finalamnt : parseInt(document.getElementById("ptamt").value),
         status : document.getElementById("status").value,
         website : 1
       }
-      console.log(data);
       data = JSON.stringify(data);
-      var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
-      fetch("../../ws/refferals.php",requestOption)
-      .then(response => response.json())
-      .then(result => {
-        console.log(result);
-        // window.location = "./referalview.html";
-        if(action == "update"){
-          result.masterid = masterid;
-        }
-        return result.masterid;
-      })
-      .then((idmaster)=>{
-        //get the data and run loop for adding contact details
-        var contacts = document.querySelectorAll('.repeaterItem');
-        console.log(contacts);
-        contacts = Array.from(contacts);
-        if(contacts.length > 0){
-          var flag = false;
-          for(var i in contacts){
-            if( i == (contacts.length - 1)){
-              flag = true;
-            }
-            addContactDetails(idmaster,contacts[i],flag);
+      console.log(data);
+      if(validateRefferal()){
+        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+        fetch("../../ws/refferals.php",requestOption)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          if(action == "update"){
+            result.masterid = masterid;
           }
+          return result.masterid;
+        })
+        .then((idmaster)=>{
+          //get the data and run loop for adding contact details
+          var contacts = document.querySelectorAll('.repeaterItem');
+          console.log(contacts);
+          contacts = Array.from(contacts);
+          if(contacts.length > 0){
+            var flag = false;
+            for(var i in contacts){
+              if( i == (contacts.length - 1)){
+                flag = true;
+              }
+              addContactDetails(idmaster,contacts[i],flag);
+            }
+          }else{
+            toast("Added Successfully","bg-success");
+          }
+        })
+        .catch(error =>{
+          console.log(error);
+          toast("Error Adding","bg-danger");
+        });
+      }else{
+        toast("Please checl all the values","bg-warning")
+      }
+      
+      function validateRefferal(){
+        var valid = true;
+        var nameElement = document.getElementById("leadname");
+        var amountElement = document.getElementById("amt");
+        var finalamtElement = document.getElementById("ptamt");
+        if(validate(nameElement.value)){
+          removeError(nameElement)
         }else{
-          window.location = "./referalview.html";
+          valid = false;
+          showError(nameElement,"This field cannot be empty")
         }
-      })
-      .catch(error =>{console.log(error);});
+        if(validate(amountElement.value)){
+          removeError(amountElement)
+        }else{
+          valid = false;
+          showError(amountElement,"This field cannot be empty")
+        }
+        if(validate(finalamtElement.value)){
+          removeError(finalamtElement)
+        }else{
+          valid = false;
+          showError(finalamtElement,"This field cannot be empty")
+        }
+
+        return valid;
+      }
     }
     function addContactDetails(id,contact,flag){
       console.log(id);
@@ -537,16 +590,39 @@
           contacttype : contact.querySelector('#contacttype').value
         }
         data = JSON.stringify(data);
-        var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
-        fetch("../../ws/refferals.php",requestOption)
-        .then(response => response.json())
-        .then(result => {
-          console.log(result);
-          if(flag){
-            window.location = "./referalview.html";
+        if(validateContact()){
+          var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
+          fetch("../../ws/refferals.php",requestOption)
+          .then(response => response.json())
+          .then(result => {
+            console.log(result);
+            if(flag){
+              // window.location = "./referalview.html";
+              if(result.code == 200){
+                toast("Added Successfuly","bg-success");
+              }else{
+                toast("Error Adding","bg-danger");
+              }
+            }
+          })
+          .catch(error =>{
+            console.log(error);
+            toast("Error Adding","bg-danger");
+          });
+        }else{
+          toast("Please check details","bg-warning")
+        }
+        function validateContact(){
+          var valid = true;
+          var ContactElement = contact.querySelector('#contactDetail');
+          if(validate(ContactElement.value)){
+            removeError(ContactElement);
+          }else{
+            valid = false;
+            showError(ContactElement,"This field is required");
           }
-        })
-        .catch(error =>{console.log(error);});
+          return valid;
+        }
       }
     }
     async function clearContacts(id){
@@ -669,9 +745,10 @@
         var buttonIcon = document.createElement("i");
         //add attributes to each element
         repeaterItem.setAttribute('class',`repeaterItem`);
-        repeaterItemRow.setAttribute('class','row justify-content-between');
+        repeaterItemRow.setAttribute('class','justify-content-between');
         textBoxContainer.setAttribute('class','col-md-6 col-sm-12 form-group');
         textBoxLabel.setAttribute('for','contactDetail');
+        textBoxLabel.setAttribute('class','required');
         textBoxLabel.innerHTML = "Contact Detail";
         textBox.setAttribute('type','text');
         textBox.setAttribute('class','form-control');

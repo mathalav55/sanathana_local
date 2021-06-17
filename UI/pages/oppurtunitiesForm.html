@@ -78,11 +78,11 @@
     </style>
 </head>
 
-<body>
+<body class="bg-grey">
 
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
-      <header class="headroom " style="margin-bottom: 30px; ">
+      <header class="headroom " >
 
         <nav class="navbar  navbar-expand-md navbar-dark bg-dark sticky ">
             <a href="./admin.html "><img src="../../img/bg-img/logo.png" class="img-fluid logo-width " alt="Brand Logo " /></a>
@@ -103,8 +103,13 @@
 
 
     </header>
+    <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+      <div class="col toast-container">
+          
+      </div>
+    </div>
     <!-- </section> -->
-    <div class="row mt-1 justify-content-center" id="memberForm_one">
+    <div class="row   justify-content-center" style="padding-top: 2%;" id="memberForm_one">
         <div class="col-6 ">
           <form class="form form-horizontal">
             <div class="form-body">
@@ -112,12 +117,17 @@
                 <div class="col-12">
                   <div class="card">
                     <div class="card-header bg-primary">
-                      <h4 class="card-title text-white text-center">Oppurtunity Form</h4>
+                      <h4 class="card-title text-white text-center">
+                        <span class="text-bold-500">
+                        Oppurtunity Form
+                        </span>
+                        <i class="bx bxs-edit mr-50"></i>
+                      </h4>
                     </div>
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-4">
-                          <label for="desc">Refer By</label>
+                          <label for="desc" >Refer By</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <input type="text" id="referby" class="form-control" name="fname" placeholder="Name">
@@ -131,7 +141,7 @@
                           </select>
                         </div> -->
                         <div class="col-md-4">
-                          <label for="leadname">Lead Name</label>
+                          <label for="leadname" class="required">Lead Name</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <input type="" list="leads" id="leadname" class="form-control" name="fname" placeholder="Name" autocomplete="off">
@@ -148,13 +158,13 @@
                           <button type="button" class="btn-primary btn" id="addcontact" onclick="addContactElement()">Add</button>
                         </div>
                         <div class="col-md-4">
-                          <label for="amt">Amount</label>
+                          <label for="amt" class="required">Amount</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <input type="number" id="amt" class="form-control" name="fname" placeholder="Amount">
                         </div>
                         <div class="col-md-4">
-                          <label for="ptamt">Potential Amount</label>
+                          <label for="ptamt" class="required">Potential Amount</label>
                         </div>
                         <div class="col-md-8 form-group">
                           <input type="number" id="ptamt" class="form-control" name="fname" placeholder="Amount">
@@ -277,6 +287,7 @@
     <script src="../../app-assets/js/core/app.js"></script>
     <script src="../../app-assets/js/scripts/components.js"></script>
     <script src="../../app-assets/js/scripts/footer.js"></script>
+    <script src="../../js/globalFuntions.js"></script>
     <!-- END: Theme JS-->
     <!-- Headroom -->
    <script>
@@ -341,10 +352,14 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="javascript:void(0);">
-                            <i class="bx bx-power-off mr-50"></i>
-                            <span onclick="logOut()"> Logout</span>
-                          </a>
+                          <a class="dropdown-item" onclick="logOut()">
+                              <i class="bx bx-power-off mr-50"></i>
+                              <span> Logout</span>
+                          </a> 
+                          <a class="dropdown-item" onclick="addResetModal('`+userData.memberId+`')">
+                              <i class="bx bx-key mr-50"></i>
+                              <span > Change Password</span>
+                          </a> 
                         </div>
                       </li>`;
     }
@@ -439,7 +454,7 @@
     function saveOppurtunity(id,masterid){
       //get form data 
       //make an object ready
-      console.log('saving refferal');
+      console.log('saving Opportunity');
       var load =  "addentry";
       if(action === "update"){
         load = "update";
@@ -456,49 +471,81 @@
       console.log(data);
       data = JSON.stringify(data);
       var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
-      fetch("../../ws/oppurtunities.php",requestOption)
-      .then(response => response.json())
-      .then(result => {
-        console.log(result);
-        // window.location = "./oppurtunityView.html";
-        if(action == "update"){
-          result.masterid = masterid;
-        }
-        return result.masterid;
-      })
-      .then((idmaster)=>{
-        //add contacts  in loop
-        var contacts = document.querySelectorAll('.repeaterItem');
-        console.log(contacts);
-        contacts = Array.from(contacts);
-        if(contacts.length > 0){
-          var flag = false;
-          for(var i in contacts){
-            if( i == (contacts.length - 1)){
-              flag = true;
-            }
-            addContactDetails(idmaster,contacts[i],flag);
+      if(validateOpportuntiy()){
+        fetch("../../ws/oppurtunities.php",requestOption)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          // window.location = "./oppurtunityView.html";
+          if(action == "update"){
+            result.masterid = masterid;
           }
+          return result.masterid;
+        })
+        .then((idmaster)=>{
+          //add contacts  in loop
+          var contacts = document.querySelectorAll('.repeaterItem');
+          console.log(contacts);
+          contacts = Array.from(contacts);
+          if(contacts.length > 0){
+            var flag = false;
+            for(var i in contacts){
+              if( i == (contacts.length - 1)){
+                flag = true;
+              }
+              addContactDetails(idmaster,contacts[i],flag);
+            }
+          }else{
+              toast("Added Successfully","bg-success");
+              // window.location = "./oppurtunityView.html";
+          }
+        })
+        .catch(error =>{
+          console.log(error);
+          toast("Unable to add data","bg-danger");
+        });
+      }else{
+        toast("Please check all details","bg-warning");
+      }
+      function validateOpportuntiy(){
+        var valid = true;
+        var nameElement = document.getElementById("leadname");
+        var amountElement = document.getElementById("amt");
+        var ptAmountElement = document.getElementById("ptamt");
+        if(validate(nameElement.value)){
+          removeError(nameElement);
         }else{
-            window.location = "./oppurtunityView.html";
+          valid = false;
+          showError(nameElement,"This field is required");
         }
-      })
-      .catch(error =>{console.log(error);});
-      
+        if(validate(amountElement.value)){
+          removeError(amountElement);
+        }else{
+          valid = false;
+          showError(amountElement,"This field is required");
+        }
+        if(validate(ptAmountElement.value)){
+          removeError(ptAmountElement);
+        }else{
+          valid = false;
+          showError(ptAmountElement,"This field is required");
+        }
+        return valid;
+      }
     }
-    function addContactDetails(id,contact,flag){
+    async function addContactDetails(id,contact,flag){
       console.log(id);
       //get id
       //clear existing contats in case of update
       if(action == "update"){
-        clearContacts(id).then(result =>{
-          if(result){
-            addContact();
+          try{
+            await clearContacts(id);
           }
-        })
-      }else{
-        addContact();
+          catch(erorr){
+            console.log(error);
+          }
       }
+      addContact();
       //add new contacts given
       function addContact(){
         var data = {
@@ -509,15 +556,32 @@
         }
         data = JSON.stringify(data);
         var requestOption = { method: 'POST', headers: myHeaders,redirect: 'follow',body : data};
-        fetch("../../ws/refferals.php",requestOption)
-        .then(response => response.json())
-        .then(result => {
-          console.log(result);
-          if(flag){
-            window.location = "./oppurtunityView.html";
-          }
-        })
-        .catch(error =>{console.log(error);});
+        if(validateContact()){
+          fetch("../../ws/refferals.php",requestOption)
+          .then(response => response.json())
+          .then(result => {
+            console.log(result);
+            if(flag){
+              // window.location = "./oppurtunityView.html";
+              toast("Added Successfully","bg-success");
+            }
+          })
+          .catch(error =>{
+            console.log(error);
+            toast("Unable to add data","bg-danger");
+          });
+        }
+      }
+      function validateContact(){
+        var valid = true;
+        var contactElement = contact.querySelector('#contactDetail');
+        if(validate(contactElement.value)){
+          removeError(contactElement);
+        }else{
+          valid = false;
+          showError(contactElement,"This field is required");
+        }
+        return valid;
       }
     }
     async function clearContacts(id){
@@ -666,9 +730,10 @@
         var buttonIcon = document.createElement("i");
         //add attributes to each element
         repeaterItem.setAttribute('class',`repeaterItem`);
-        repeaterItemRow.setAttribute('class','row justify-content-between');
+        repeaterItemRow.setAttribute('class','justify-content-between');
         textBoxContainer.setAttribute('class','col-md-6 col-sm-12 form-group');
         textBoxLabel.setAttribute('for','contactDetail');
+        textBoxLabel.setAttribute('class','required');
         textBoxLabel.innerHTML = "Contact Detail";
         textBox.setAttribute('type','text');
         textBox.setAttribute('class','form-control');

@@ -82,7 +82,7 @@
 
 </head>
 
-<body >
+ <body class="bg-grey" >
 
 
   <div id="navbar-container">
@@ -156,7 +156,7 @@
                       </div>
 
                       <div class="col-md-4">
-                        <label for="gotram">Gotram</label>
+                        <label for="gotram " class="required">Gotram</label>
                       </div>
                       <div class="col-md-8 form-group">
                         <input type="text" id="gotram" class="form-control" name="fname" placeholder="Gothram">
@@ -194,8 +194,8 @@
                         <div class="card-header bg-primary">
                           <h4 class="card-title text-white text-right">Chapter / Group / Category</h4>
                         </div>
-                        <div class="card-body">
-                          <h4>Primary Chapter</h4>
+                        <div class="card-body ">
+                          <h4 class="text-bold-500">Primary Chapter</h4>
                           <div class="row">
                             <div class="col-md-8 form-group">
                               <ul class="list-unstyled mb-0" id="chapterRadios">
@@ -212,7 +212,7 @@
                           </div>
                         </div>
                         <div class="card-body">
-                          <h4>Secondary Chapter</h4>
+                          <h4 class="text-bold-500">Secondary Chapter</h4>
                           <div class="row"> 
                             <div class="col-md-8 form-group">
                               <ul class="list-unstyled mb-0" id="chapterCheckBoxes">
@@ -229,7 +229,7 @@
                           </div>
                         </div>
                         <div class="card-body">
-                          <h4>Group</h4>
+                          <h4 class="text-bold-500">Group</h4>
                           <div class="row">
                             <div class="col-md-8 form-group">
                               <ul class="list-unstyled mb-0" id="groupCheckBoxes">
@@ -659,6 +659,7 @@
             document.getElementById("admin").checked = admin;
             document.getElementById("nonadmin").checked = !admin;
             document.getElementById("profilePreview").src = result[0].photo;
+            chaptersGroups();
           })
           .catch(error =>{
             console.log(error);
@@ -666,7 +667,6 @@
       }else{
         //do normal action
       }
-      chaptersGroups();
       
     }
     function profilePreview(){
@@ -921,7 +921,7 @@
                                         <input  type="file" class="form-control" id="memberBanner-cat">
                                         <label class="input-group-text" for="memberBanner-cat">Upload</label>
                                       </div>
-                                      <img src="" alt="" id="bannerPreview" style="width: 10rem;">
+                                      <img src="" alt="" id="bannerPreview" style="height: 8rem;">
                                     </div>
                                     <div class="col-md-6">
                                       <label for="memberLogo-cat">Logo</label>
@@ -931,7 +931,7 @@
                                         <input  type="file" class="form-control" id="memberLogo-cat">
                                         <label class="input-group-text" for="memberLogo-cat">Upload</label>
                                       </div>
-                                      <img src="" alt="" id="logoPreview" style="width: 10rem;">
+                                      <img src="" alt="" id="logoPreview" style="height: 8rem;">
                                     </div>
                                   </div>
                               </div>
@@ -960,7 +960,8 @@
                     </div>
                   </div>
                 </div>
-              </div>`;
+                <div class="row-divider"></div>              
+              `;
       }
       
       async function cityOptions(template){
@@ -1330,9 +1331,8 @@
     async function resetPassword(){
       //call api with the data
       var data = {
-        load : "logindetchange",
-        id : "nkk",
-        newpwd : "seal123$$"
+        load : "passwordreset",
+        id : memberId
       }
       data = JSON.stringify(data);
       console.log(data);
@@ -1358,7 +1358,6 @@
     //save form 1 function
     async function saveForm1(){
       document.getElementById("saveBtnOne").disabled = true;
-
       //prepare data object for form1
       var photo="";
       var password = "seal123$$";
@@ -1432,6 +1431,7 @@
                 toast("Error saving data", "bg-danger");
                 document.getElementById("saveBtnOne").disabled = false;
                 //delete member record created and chapters if exists
+                await deleteProfile();
               }
             }            
           }else{
@@ -1461,6 +1461,26 @@
         toast("Please check the values and try again","bg-warning")
         document.getElementById("saveBtnOne").disabled = false;
       } 
+    }
+    async function deleteProfile(){
+      var data = {
+        "load": "deletemember"
+      };
+      var requestOptions = {
+        method : "POST",
+        redirect : "follow",
+        headers : myHeaders,
+        body : data
+      }
+      try{
+        var result =await fetch('../../Memberprofile.php'.requestOptions).then(response => response.json());
+        console.log(result);
+        return true
+      }
+      catch(error){
+        return false;
+      }
+      return false;
     }
     async function sendBasicData(data){
       var requestOptions = {
@@ -1513,6 +1533,7 @@
       var phoneElement = document.getElementById("phoneNumber");
       var nameElement = document.getElementById("name");
       var dobElement = document.getElementById("dob");
+      var gothramElement = document.getElementById("gotram");
       //get primary chapters 
       var chapter="";
       var primaryChapters = document.getElementsByClassName("radio-input-chapters");
@@ -1565,6 +1586,13 @@
       }else{
         valid = false;
         showError(dobElement,"This field cannot be empty");
+      }
+
+      if(validate(gothramElement.value)){
+        removeError(gothramElement);
+      }else{
+        valid = false;
+        showError(gothramElement,"This field cannot be empty")
       }
       return valid;
     }

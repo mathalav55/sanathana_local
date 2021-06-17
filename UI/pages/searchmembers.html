@@ -72,6 +72,10 @@
       firebase.analytics();
   </script>
   <style>
+    .desc-text{
+        color : #000;
+        font-weight: bold;
+    }
     .row{
         margin : 0;
     }
@@ -89,12 +93,17 @@
 
 </head>
 
-<body>
+ <body class="bg-grey">
 
 
     <div id="navbar-container">
         
     </div>
+    <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+        <div class="col toast-container">
+            
+        </div>
+      </div>
   <div class="body-container" style="margin-top : 10%;">
       <!-- row 1 search box -->
         <div class="row justify-content-center align-items-center">
@@ -288,60 +297,91 @@
                             profile.photo = "../../images/emptystates/female.png"
                         }
                     }
-                    var status = "bg-success";
+                    var status = "success";
                     if(profile.status == 0){
-                        status = "bg-warning"
+                        status = "danger"
                     }
+                    var profileStatus = (profile.status == 0) ? "In Active" : "Active";
+                    var privilige = (profile.admin == "1") ? "admin" : "user";
+                    var icon = (profile.admin == "1") ? "admin_panel_settings" : "person";
+                    var adminColor = (profile.admin == "1") ? "primary" : "warning"
                     var id = profile.userid.replace("+","%2b");
                     return `
                     <div class="col-md-4">
-                <div class="card text-right" style="margin-bottom: 10px; ">
-                    <div class="card-header col `+status+`">
-                            <div class="row justify-content-between mr-2 ml-2">
-                                <h4 class="card-title text-white text-left">
-                                    `+profile.Name+`
-                                </h4>
-                                <a href="./member_form.html?action=modify&memberId=`+id+`">
-                                    <span class="material-icons onlyAdmin" style="color:#fff">
-                                            edit
-                                    </span>
-                                </a>
-                            </div>
-                    </div>
+                <div class="card py-2   text-right" style="margin-bottom: 5%; ">
+                    
                     <div class="card-body py-1 ">
                         <div class="row justify-content-between mb-1">
-                        <img src="`+profile.photo+`" alt="" height="100px" width="100px">
-
+                            <img src="`+profile.photo+`" alt="" height="100px" width="100px" style="border-radius : 50%">
+                            <div >
+                                <h3 class=" pl-0 text-secondary">
+                                    `+profile.Name+`
+                                    <a href="./member_form.html?action=modify&memberId=`+id+`">
+                                        <span class="material-icons onlyAdmin">
+                                                edit
+                                        </span>
+                                    </a>
+                                </h3>
+                                <div class="chip chip-`+adminColor+`" >
+                                        <div class="avatar bg-`+adminColor+`">
+                                            <span class="material-icons " style="font-size : 1rem">
+                                                `+icon +`
+                                            </span>
+                                        </div>
+                                    <span class="chip-text text-white" style="font-size: .7rem; padding: 0.2rem;">
+                                        `+ privilige +`
+                                    </span>
+                                </div>
+                                <div class="chip chip-`+status+`" >
+                                        
+                                    <span class="chip-text text-white" style="font-size: .7rem; padding: 0.2rem;">
+                                        `+ profileStatus +`
+                                    </span>
+                                </div>
+                                
+                            </div>
                         </div>
                         <div class="row col-md-12 mb-1 justify-content-between">
-                            <span class="material-icons">
-                                phone
-                            </span></a>
-                            <span>
+                            <span class="desc-text">
+                                Phone
+                            </span>
+                            <span >
+                                <span class="material-icons mr-1 align-middle info">
+                                    local_phone
+                                </span>
                                 `+profile.userid+`
                             </span>
                         </div>
                         <div class="row col-md-12 mb-1 justify-content-between">
-                            <span class="">
+                            <span class="desc-text">
                                 Gender
                             </span>
                             <span>
+                                <span class="material-icons mr-1 align-middle info">
+                                    `+ profile.gender.toLowerCase() +`
+                                </span>
                                 `+profile.gender+`
                             </span>
                         </div>
                         <div class="row col-md-12 mb-1  justify-content-between">
-                            <span class="">
+                            <span class="desc-text">
                                 Gothram
                             </span>
                             <span>
+                                <span class="material-icons mr-1 align-middle info">
+                                    self_improvement
+                                </span>
                                 `+profile.gothram+`
                             </span>
                         </div>
                         <div class="row col-md-12 justify-content-between">
-                            <span class="">
+                            <span class="desc-text">
                                 Date Of Birth
                             </span>
-                            <span>
+                            <span class="row align-items-end">
+                                <span class="material-icons mr-1 info">
+                                cake
+                                </span>
                                 `+profile.Dob+`
                             </span>
                         </div>

@@ -1082,6 +1082,142 @@ function auth(...args){
     });
       
 }
+function addResetModal(memberId){
+    var modal =  document.createElement('div');
+    var modalContent = document.createElement('div');
+    var body = document.querySelector('body');
+
+    modal.setAttribute('class','reset-modal');
+    modalContent.setAttribute('class','reset-modal-content');
+
+    modalContent.innerHTML = `<div class="col-12 card px-0">
+    <div class="card-header bg-primary">
+        <h2 class="card-title text-white">
+            change password
+        </h2>
+    </div>
+    <div class="card-body">
+        <form action="" class="form-horizontal">
+            <div class="row form-body">
+                <div class="col-12">
+                    <label for="contentName" class="required">Old Password</label>
+                    <div class="form-group">
+                        <input type="password" id="oldPassword" class="form-control" placeholder="Old Password">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="contentName" class="required">New Password</label>
+                    <div class="form-group">
+                        <input type="password" id="newPassword" class="form-control" placeholder="New Password">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="contentName" class="required">Confirm New Password</label>
+                    <div class="form-group">
+                        <input type="password" id="confirmNewPassword" class="form-control" placeholder="New Password">
+                    </div>
+                </div>
+                <div class="col-12" id="resetPasswordBtn">
+                    <button type="button" class="btn btn-primary">
+                        <span class="d-none d-sm-block" >Change Password</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>`;
+
+    modal.appendChild(modalContent);
+    body.insertBefore(modal,body.firstChild);
+    // close when clicked on window
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    // getting modal content
+    var oldPassword = modal.querySelector('#oldPassword');
+    var newPassword = modal.querySelector('#newPassword');
+    var confirmNewPassword = modal.querySelector('#confirmNewPassword');
+    var resetPasswordBtn = modal.querySelector('#resetPasswordBtn')
+
+    function passwordValidate(){
+      var valid = true;
+      if(validate(oldPassword.value)){
+        removeError(oldPassword);
+
+      }else{
+        showError(oldPassword,"enter password");
+        valid = false;
+      }
+      if(validate(newPassword.value)){
+        removeError(newPassword);
+      }else{
+        showError(newPassword,"enter password");
+        valid = false;
+      }
+      if(validate(confirmNewPassword.value)){
+        removeError(confirmNewPassword);
+      }else{
+        showError(confirmNewPassword,"enter password");
+        valid = false;
+      }
+      return valid;
+    }
+    function passwordMatch(){
+      var valid = true;
+      if(newPassword.value === confirmNewPassword.value){
+        removeError(newPassword);
+        removeError(confirmNewPassword);
+      }else{
+        valid = false;
+        showError(newPassword,"Passwords donot match");
+        showError(confirmNewPassword,"Passwords donot match");
+      }
+      return valid;
+    }
+    resetPasswordBtn.addEventListener('click',reset);
+    function reset(){
+      if(passwordValidate()){
+        if(passwordMatch()){
+          var data = {
+            load : "logindetchange",
+            id : memberId,
+            newpwd : newPassword.value,
+            oldpwd : oldPassword.value
+          }
+          console.log(data)
+          data = JSON.stringify(data);
+          var requestOptions ={
+            redirect : "follow",
+            method : "POST",
+            body : data,
+            headers : myHeaders
+          }
+          fetch('../../ws/memberprofile.php',requestOptions).then(response => response.json())
+          .then(result =>{
+            console.log(result);
+            if(result.code == "200"){
+                toast("password reset succesfull","bg-success")
+            }else if(result.code == "300"){
+                showError(newPassword,"Please enter a new password")
+            }
+            else if(result.code == "400"){
+                showError(oldPassword,"Incorrect Password");
+            }
+          })
+          .catch(error =>{
+            console.log(error);
+            toast("passowrd reset failed","bg-danger");
+          })
+        }
+      }
+    }
+    
+    
+    
+}
+// addResetModal();
  function loadProfile(userData){
     console.log(userData);
     var data = {
@@ -1112,7 +1248,7 @@ function auth(...args){
                                       <a class="" href="javascript:void(0);" data-toggle="dropdown">
                                           <div class="row align-items-center">
                                               <div class="user-nav d-sm-flex d-none">
-                                                  <span class="user-name text-white">`+userData.Name+`</span>
+                                                  <span class="user-name text-white text-bold-500">`+userData.Name+`</span>
                                               </div>
                                               <div class="div p-1"></div>
                                               <span>
@@ -1120,10 +1256,14 @@ function auth(...args){
                                               </span>
                                           </div>
                                       </a>
-                                      <div class="dropdown-menu dropdown-menu-right pb-0">
-                                          <a class="dropdown-item" href="javascript:void(0);">
+                                      <div class="dropdown-menu dropdown-menu-right p-0">
+                                          <a class="dropdown-item" onclick="logOut()">
                                               <i class="bx bx-power-off mr-50"></i>
-                                              <span onclick="logOut()"> Logout</span>
+                                              <span> Logout</span>
+                                          </a> 
+                                          <a class="dropdown-item" onclick="addResetModal('`+userData.userid+`')">
+                                              <i class="bx bx-key mr-50"></i>
+                                              <span > Change Password</span>
                                           </a> 
                                       </div>
                                   </li>`;

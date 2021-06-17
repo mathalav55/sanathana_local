@@ -16,6 +16,10 @@ else if($rcvData == "loadbynumber")
   $id = $data['id'];
   load_singlememdata($conn);
 }
+else if($rcvData == "deletemember")
+{
+  delete_member($conn);
+}
 else if($rcvData == "loadmemchapters")
 {
   $id = $data['id'];
@@ -68,9 +72,15 @@ else if($rcvData == "addEntry")
 }
 else if($rcvData == "logindetchange")
 {
-  $id = $data['id'];  
+  $id = $data['id']; 
+  $oldpwd = $data['oldpwd'];
   $newpwd = $data['newpwd'];
   logindet_change($conn);
+}
+else if($rcvData == "passwordreset")
+{
+  $id = $data['id']; 
+  password_reset($conn);
 }
 else
 {
@@ -88,7 +98,7 @@ else
 
 function load_allMemdata($conn)
 {
-  $sqlQuery = "Select `memberlogin`.`userid`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`, `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id`";
+  $sqlQuery = "Select `memberlogin`.`userid`, `memberlogin`.`memberid`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`, `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id`";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {
@@ -236,6 +246,23 @@ function update_memgroups($conn)
     echo json_encode($jsonresponse);
   }
 }
+function delete_member($conn){
+  $sqlQuery = "Select `id` FROM `memberprofile` ORDER BY `id` DESC";
+  $datatable = getdata($conn, $sqlQuery);
+  $delid = $datatable[0]['id'];
+  $delquery = "Delete FROM `memberprofile` where `id` = '$delid'";
+  $returndata = setdata($conn,$delquery);
+  if($returndata == "Record created")
+  {
+    $jsonresponse = array('code' => '200', 'status' => 'Data Cleared');
+    echo json_encode($jsonresponse);
+  }
+  else
+  {
+    $jsonresponse = array('code' => '500', 'status' => 'Not Cleared Data');
+    echo json_encode($jsonresponse);
+  }
+}
 function insert_member($conn)
 {
   global $id,$Name,$surName,$dob,$gender,$Gothram,$photo,$admin,$status,$pwd;
@@ -303,16 +330,41 @@ function update_memprofile($conn)
     echo json_encode($jsonresponse);
   }
 }
-
-function logindet_change($conn)
-{
-  global  $id, $newpwd;
-  $sqlQuery ="Update `memberlogin` SET `userid`='$id',`password`='$newpwd' WHERE `id` = (SELECT `id` FROM `memberlogin` WHERE `userid` = '$id' )";
+function password_reset($conn){
+  global  $id;
+  $sqlQuery ="Update `memberlogin` SET `password`='seal123$$' WHERE `id` = (SELECT `id` FROM `memberlogin` WHERE `userid` = '$id')";
   $returndata = setData($conn, $sqlQuery);
   if($returndata == "Record created")
   {
-    $jsonresponse = array('code' => '200', 'status' => 'Updated Succesfully');
+    $jsonresponse = array('code' => '200', 'status' => 'Reset Succesful');
     echo json_encode($jsonresponse);
+  }
+  else
+  {
+    $jsonresponse = array('code' => '500', 'status' => 'Reset Failure');
+    echo json_encode($jsonresponse);
+  }
+}
+function logindet_change($conn)
+{
+  global  $id, $newpwd,$oldpwd;
+  $sqlQuery ="Update `memberlogin` SET `password`='$newpwd' WHERE `id` = (SELECT `id` FROM `memberlogin` WHERE `userid` = '$id' AND `password` = '$oldpwd')";
+  $returndata = setData($conn, $sqlQuery);
+  if($returndata == "Record created")
+  {
+    if(mysqli_affected_rows($conn)>0){
+      $jsonresponse = array('code' => '200', 'status' => 'Updated Succesfully');
+      echo json_encode($jsonresponse);
+    }else{
+      if( $oldpwd == $newpwd){
+        $jsonresponse = array('code' => '300', 'status' => 'Updated Failure');
+        echo json_encode($jsonresponse);
+      }else{
+        $jsonresponse = array('code' => '400', 'status' => 'Updated Failure');
+        echo json_encode($jsonresponse);
+      }
+    }
+    
   }
   else
   {

@@ -113,7 +113,7 @@ function load_allMembusinessdata($conn)
 function load_singlemembusinessdata($conn)
 {
   global $id;
-  $sqlQuery = "Select `businessprofile`.`Name`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `acessconfig`.`ContentName` AS `category` FROM `businessprofile` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` WHERE `Memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
+  $sqlQuery = "Select `businessprofile`.`Name`, `businessprofile`.`Name` AS `BusinessName` , `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `acessconfig`.`ContentName` AS `category` FROM `businessprofile` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` WHERE `Memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {
