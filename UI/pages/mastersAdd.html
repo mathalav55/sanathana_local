@@ -204,14 +204,14 @@
                         <div class="form-body">
                           <div class="row">
                             <div class="col-md-6 col-12">
-                              <label for="contentName">Content Name</label>
+                              <label for="contentName" class="required">Content Name</label>
                               <div class="form-group">
                                 <input type="text" id="contentName" class="form-control" placeholder="Content Name"
                                   >
                               </div>
                             </div>
                             <div class="col-md-6 col-12">
-                              <label for="aliasName">Alias Name</label>
+                              <label for="aliasName" class="required">Alias Name</label>
                               <div class="form-group">
                                 <input type="text" id="aliasName" class="form-control" placeholder="Alias Name"
                                   >
@@ -533,29 +533,51 @@ function saveForm(){
         redirect: 'follow',
         body : data
     }
-    fetch("../../ws/Accessconfig.php",requestOptions).then(response => response.json())
-    .then(result =>{
-        console.log(result);
-        document.getElementById('save-btn').disabled = true;
-        if(result.status == "Added Successfully"){
-          toast(result.status,"bg-success");
-          auth();
-        }
-        else if(result.status == "Updated Succesfully"){
-            toast(result.status,"bg-info");
-          document.getElementById('save-btn').disabled = false;
+    if(validateForm()){
+      fetch("../../ws/Accessconfig.php",requestOptions).then(response => response.json())
+      .then(result =>{
+          console.log(result);
+          document.getElementById('save-btn').disabled = true;
+          if(result.status == "Added Successfully"){
+            toast(result.status,"bg-success");
             auth();
-        }else{
-            toast(result.status,"bg-danger")
-        }
-        //show toast green  
-    }).
-    catch(error =>{
-        console.log(error);
-        //show toast red
-        toast("An Error occured please try again","bg-danger");
-        document.getElementById('save-btn').disabled = false;
-    });
+          }
+          else if(result.status == "Updated Succesfully"){
+              toast(result.status,"bg-info");
+            document.getElementById('save-btn').disabled = false;
+              auth();
+          }else{
+              toast(result.status,"bg-danger")
+          }
+          //show toast green  
+      }).
+      catch(error =>{
+          console.log(error);
+          //show toast red
+          toast("An Error occured please try again","bg-danger");
+          document.getElementById('save-btn').disabled = false;
+      });
+    }else{
+      toast("Please check the values","bg-warning");
+    }
+    function validateForm(){
+      var valid = true;
+      var nameElement = document.getElementById("contentName");
+      var aliasNameELement = document.getElementById("aliasName");
+      if(validate(nameElement.value)){
+        removeError(nameElement);
+      }else{
+        showError(nameElement,"This field is required");
+        valid = false;
+      }
+      if(validate(aliasNameELement.value)){
+        removeError(aliasNameELement);
+      }else{
+        showError(aliasNameELement,"This field is requied");
+        valid = false;
+      }
+      return valid;
+    }
 }
 </script>
 <script>
