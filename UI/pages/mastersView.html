@@ -354,7 +354,11 @@ function showData(){
             document.querySelector('.data-cards').innerHTML = html;
 
         }
-    }).catch(error =>{console.log(error);});
+    })
+    .then(()=>{
+        loadScripts();
+    })
+    .catch(error =>{console.log(error);});
 }
 function changeStatus(id,status){
     console.log(status);
