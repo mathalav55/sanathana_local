@@ -384,9 +384,6 @@
             loadOppurtunityData(userData.memberId);
             loadRefferalData(userData.memberId);
             setInterval(() => {
-                if( userData.admin != "0"){
-                    loadMembers();
-                }
                 loadOppurtunityData(userData.memberId);
                 loadRefferalData(userData.memberId);
             }, 3000);
@@ -429,6 +426,10 @@
             var memberOptionsTwo = document.getElementById('oppurtunities');
             // console.log(result);
             if(Array.isArray(result)){
+                result = result.sort(function(a, b) {
+                    return a.Name.localeCompare(b.Name);
+                });
+                console.log(result);
                 var options = "";
                 result.forEach((member)=>{
                     options = options + `<option value="`+member.userid+`">`+member.Name+`</option>`;
