@@ -681,7 +681,7 @@
       })
     }
     
-    function addContactElement(category){
+    async function addContactElement(category){
         var repeaterItem = document.createElement("div");
         var repeaterItemRow = document.createElement("div");
         var textBoxContainer = document.createElement("div");
@@ -691,37 +691,7 @@
         var textBox = document.createElement("input");
         var selectorLabel = document.createElement("label");
         var selector = document.createElement("select");
-        function createSelectorOptions(){
-            //fetch types names form api
-            var contactData = {
-              load : "loadbyparent",
-              id : "contacttypes"
-            }
-            contactData = JSON.stringify(contactData);
-            var contactRequestOptions =  {
-              method :"POST",
-              redirect : "follow",
-              headers : myHeaders,
-              body : contactData
-            }
-            fetch("../../ws/Accessconfig.php",contactRequestOptions).
-            then(response => response.json())
-            .then(result => {
-              console.log(result);
-              if(Array.isArray(result)){
-                    result.forEach((type)=>{
-                        var selectorOption = document.createElement("option");
-                        selectorOption.innerHTML = type.ContentName;
-                        selectorOption.value = type.ContentName;
-                        selector.appendChild(selectorOption);
-                    });
-              }else{
-                console.log("no data");
-              }
-            })
-            .catch(error =>{console.log(error);}); 
-            
-        }
+      
         var button = document.createElement("button");
         var buttonIcon = document.createElement("i");
         //add attributes to each element
@@ -739,7 +709,37 @@
         selector.setAttribute('name','contactType');
         selector.setAttribute('id','contacttype');
         selector.setAttribute('class','form-control');
-        createSelectorOptions();
+        //async code here
+
+        try{
+          var contactData = {
+            load : "loadbyparent",
+            id : "contacttypes"
+          }
+          contactData = JSON.stringify(contactData);
+          var contactRequestOptions =  {
+            method :"POST",
+            redirect : "follow",
+            headers : myHeaders,
+            body : contactData
+          }
+          var result = await fetch("../../ws/Accessconfig.php",contactRequestOptions).then(response => response.json());
+          console.log(result);
+          if(Array.isArray(result)){
+                result.forEach((type)=>{
+                    var selectorOption = document.createElement("option");
+                    selectorOption.innerHTML = type.ContentName;
+                    selectorOption.value = type.ContentName;
+                    selector.appendChild(selectorOption);
+                });
+          }else{
+            console.log("no data");
+          }
+
+        }
+        catch(error){
+          console.log(error);
+        }
         deleteBtnContainer.setAttribute('class','col-md-2 col-sm-12 form-group d-flex align-items-center pt-2');
         button.setAttribute('class','btn btn-danger text-nowrap px-1');
         button.setAttribute('type','button');
@@ -1092,7 +1092,7 @@
           });
         }
       }
-    function loadContacts(category){
+    async function loadContacts(category){
         //get contacts container
         var contactBody = {
           load : "loadmemcontacts",
@@ -1107,18 +1107,24 @@
           headers : myHeaders,
           body : contactBody
         }
-        fetch("../../ws/businessprofile.php",contactRequestOptions)
-        .then(response => response.json())
-        .then(result =>{
-          console.log(result);
-          if(Array.isArray(result)){
+        try {
+          var result = await fetch("../../ws/businessprofile.php",contactRequestOptions).then(response => response.json());
+        } catch (error) {
+          console.log(error);
+        }
+        if(Array.isArray(result)){
             //get add button for the category
             category = category.split(" ");
             category = category.join("");
             var contactForm = document.getElementById(category+`Contacts`);
             var createBtn = document.getElementById(category+`Create`);
-            for(var i in result){
-              createBtn.click();
+            
+            try {
+              for(var i in result){
+                await addContactElement(category);
+              }
+            } catch (error) {
+              console.log(error);
             }
             //run loop for contact elemets
             var contacts = contactForm.children;
@@ -1133,10 +1139,9 @@
               }
             }
           }
-        })
-        .catch((error)=>{
-          console.log(error);
-        })
+       
+          
+        
     }
     function chaptersGroups(){
       //load chapters
