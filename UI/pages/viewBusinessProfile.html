@@ -305,10 +305,8 @@
                 </div>
             </div>
         </div>
-        <div class="row row-divider">
-
-        </div>
-        <div class="row py-2 justify-content-center">
+        
+        <div class="row py-2 justify-content-center other-buisness-section">
             <div class="chip chip-warning">
                 <span class="chip-text text-bold-500 text-white" style="font-size: 1.5rem; padding: 0.4rem;">
                     Other Business
@@ -568,7 +566,7 @@
                                         `+item.Description+`
                                     </div>
                                     <div class="col text-right">
-                                        <a href="`+broucher+`">
+                                        <a href="`+broucher+`" target="_blank">
                                             <span class="material-icons danger">
                                                 picture_as_pdf
                                             </span>
@@ -897,7 +895,7 @@
     function displayMembers(profiles){
         console.log(profiles);
         var profileCards = document.querySelector('.other-business');
-        if(profiles.length > 0){
+        if(profiles.length > 1){
             console.log(profiles);
             const cardHtml = (profiles)
                 .map((profile) =>{
@@ -1002,7 +1000,8 @@
             }).join('');
             profileCards.innerHTML = cardHtml;
         }else{
-            empty(profileCards);
+            // empty(profileCards);
+            document.querySelector('.other-buisness-section').style.display = "none";
         }
 
         
