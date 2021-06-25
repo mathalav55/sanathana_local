@@ -1922,6 +1922,7 @@
           var result = await fetch("../../ws/businessprofile.php",businessProfileRequestOptions).then(response => response.json());
           console.log(result);  
           if(result.code == "200"){
+            clearContacts(category.dataset.category);
             var contactContainer = document.getElementById(category.id+`Contacts`);
             var contacts = contactContainer.children;
             contacts = Array.from(contacts);
@@ -1972,19 +1973,7 @@
       }
       return valid;
     }
-    async function addContactDetails(contact,category){
-      var response;
-      if(action === "modify"){
-        response = await updateContacts(contact,category);
-        return response;
-      }else{
-        response  = await insertContacts(contact,category);
-        return response;
-      }
-      
-    }
-    //updating existing contacts
-    async function updateContacts(contact,category){
+    async function clearContacts(category){
       //clear previous data
       var clearData = {
         load : "clearmemcontacts",
@@ -2003,8 +1992,7 @@
         var result = await fetch("../../ws/businessprofile.php",clearRequestOptions).then(response => response.json());
         console.log(result);
         if(result.code == "200"){
-          var response = await insertContacts(contact,category);
-          return response;
+          return true;
         }else{
           return false;
         }
@@ -2015,6 +2003,13 @@
       }
       //clear prev data
     }
+    async function addContactDetails(contact,category){
+      var response;
+      response = await insertContacts(contact,category);
+      return response;
+    }
+    //updating existing contacts
+    
     //adding new contacts
     async function insertContacts(contact,category){
       var load = "addmemcontacts";
