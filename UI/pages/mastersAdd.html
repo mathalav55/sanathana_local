@@ -470,6 +470,18 @@ function openDashSection(){
 function goBack(){
     window.history.back();
 }
+function fillAlias(){
+  if(action != "modify"){
+    var nameElement = document.getElementById("contentName");
+    var aliasElement = document.getElementById("aliasName");
+    nameElement.addEventListener('change',()=>{
+      console.log(nameElement.value)
+      aliasElement.value = nameElement.value;
+      console.log(aliasElement.value)
+    });
+  }
+}
+fillAlias();
 function saveForm(){
     //date
     var load = "";
