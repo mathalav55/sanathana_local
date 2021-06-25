@@ -68,7 +68,9 @@
     firebase.analytics();
     </script>
     <style>
-
+        .filter-types{
+            cursor: pointer;
+        }
         .main-section{
             height: 100vh;
         }
@@ -185,14 +187,7 @@
             <div class="col-md-3" >
                 <div class="side-bar card">
                     <div class="card-body bg-primary ">
-                        <div class="card-header">
-                            <h2 class="text-white text-bold-600">
-                                Filters
-                                <span class="material-icons">
-                                    filter_alt
-                                </span>
-                            </h2>
-                        </div>
+                        
                         <div class="col" id="filter-container">
                             
                         </div>
@@ -655,19 +650,33 @@
         var filterContainer= document.getElementById('filter-container');
         filterNames.forEach((filter)=>{
             //create filter element
-            div.innerHTML = `<div class="row ml-1">
+            div.innerHTML = `<div class="row ml-1 filter-types filter-types`+filter+`">
                                 <h4 class="text-white text-bold-500" style="text-transform: capitalize;">`+filter+`</h5>
                             </div>
-                            <div id="`+filter+`-filters" >
+                            <div id="`+filter+`-filters" style="display:none">
 
                             </div>`;
             filterContainer.appendChild(div.firstChild);
             filterContainer.appendChild(div.firstChild.nextSibling);
             loadFilter(filter);
+            openFilters(filter);
         })
         
     }
-    
+    function openFilters(filter){
+        var filterHeads = document.querySelectorAll(`.filter-types`+filter);
+        filterHeads = Array.from(filterHeads);
+        for(var i in filterHeads){
+            filterHeads[i].addEventListener('click',()=>{
+                var filters = filterHeads[i].nextElementSibling;
+                if(filters.style.display == "block"){
+                   filters.style.display = "none"
+                }else{
+                   filters.style.display = "block"
+                }
+            })
+        }
+    }
     loadFilters();
     async function empty(section){
         section.innerHTML = "";
