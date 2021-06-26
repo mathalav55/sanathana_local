@@ -629,6 +629,7 @@
       form2.classList.add("hide");
       form1.classList.remove("hide");
       loadSelectScript();
+
       if(action == "modify"){
           //make member id text field disabled
           document.getElementById("phoneNumber").disabled = true;
@@ -683,18 +684,35 @@
       //get primary chapters element
       var chapter="";
       var primaryChapters = document.getElementsByClassName("radio-input-chapters");
+      var secondaryChapters = document.getElementsByClassName("checkbox-input-chapters");
+
       primaryChapters = Array.from(primaryChapters);
-      
-      primaryChapters.addEventListener('change',()=>{
-        primaryChapters.forEach((item)=>{
+      secondaryChapters = Array.from(secondaryChapters);
+      //listen for change
+      primaryChapters.forEach((item)=>{
+        item.addEventListener('change',()=>{
           if(item.checked){
             chapter = item.nextSibling.nextSibling.innerHTML;
-          }
-        });
+            //get changed value
+             //get the matching value element from the secondary chapters
+            secondaryChapters.forEach((box)=>{
+              console.log(box.nextSibling.nextSibling.innerHTML);
+              if(box.nextSibling.nextSibling.innerHTML == chapter){
+                box.nextSibling.nextSibling.classList.add("hide");
+                console.log(box);
+              }
+                //hide the matching option in secondary chapters
+              else{
+                console.log(box);
+                if(box.nextSibling.nextSibling.classList.contains('hide')){
+                  box.nextSibling.nextSibling.classList.remove('hide');
+                }
+              }
+            });
+          }  
+        })
       })
-      //listen for change
-      //get chaged value
-      //hide the matching option in secondary chapters
+      
       
     }
     function profilePreview(){
@@ -1290,7 +1308,7 @@
               }
               document.getElementById("groupCheckBoxes").innerHTML = groupsHtml;
             }
-            
+            hideSecodary();  
           })
           .catch(error =>{
             console.log(error);
@@ -1337,8 +1355,12 @@
             chapterBox = Array.from(chapterBox);
             chapterBox.forEach((item)=>{
               console.log(item);
+              if(item.dataset.secchapter == primaryChapter){
+                item.nextSibling.nextSibling.classList.add('hide');
+              }
               secondaryChapters.forEach((element)=>{
                 if(item.dataset.secchapter == element){
+                  
                   item.checked = true;
                 }
                 else{
