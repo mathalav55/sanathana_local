@@ -106,6 +106,14 @@
                   </div>
                   <div class="card-body">
                     <div class="row">
+                      
+                      <div class="col-md-4">
+                        <label for="surname">Membership ID</label>
+                      </div>
+                      <div class="col-md-8 form-group">
+                        <input type="text" id="memershipid" class="form-control" name="fname" placeholder="Memership ID" disabled>
+                      </div>
+
                       <div class="col-md-4">
                         <label for="name" class="required">Mobile Number</label>
                       </div>
@@ -620,6 +628,7 @@
       console.log(action);
       form2.classList.add("hide");
       form1.classList.remove("hide");
+      loadSelectScript();
       if(action == "modify"){
           //make member id text field disabled
           document.getElementById("phoneNumber").disabled = true;
@@ -657,6 +666,8 @@
             document.getElementById("admin").checked = admin;
             document.getElementById("nonadmin").checked = !admin;
             document.getElementById("profilePreview").src = result[0].photo;
+            //get memership id and add it to the disabled field
+            document.getElementById("memershipid").value = result[0].membershipid;
             chaptersGroups();
           })
           .catch(error =>{
@@ -665,8 +676,25 @@
       }else{
         //do normal action
         chaptersGroups();
-
       }
+      
+    }
+    function hideSecodary(){
+      //get primary chapters element
+      var chapter="";
+      var primaryChapters = document.getElementsByClassName("radio-input-chapters");
+      primaryChapters = Array.from(primaryChapters);
+      
+      primaryChapters.addEventListener('change',()=>{
+        primaryChapters.forEach((item)=>{
+          if(item.checked){
+            chapter = item.nextSibling.nextSibling.innerHTML;
+          }
+        });
+      })
+      //listen for change
+      //get chaged value
+      //hide the matching option in secondary chapters
       
     }
     function profilePreview(){
@@ -1540,6 +1568,8 @@
           var result = await fetch('../../ws/Accessconfig.php',requestOptions).then(response => response.json());
           console.log(result);
           if(result.code == "200"){
+            //add id to the hidden field
+            document.getElementById("memershipid").value = result.memershipid;
             return true;
           }else{
             return false;

@@ -102,7 +102,7 @@ function create_membershipid($conn){
     $setMembershipIdQuery = "update `memberprofile` set `memberprofile`.`membershipid` = '$membershipId' WHERE `id` = (SELECT `memberid` from `memberlogin` WHERE `userid` ='$id')";
     setData($conn,$setMembershipIdQuery);
     if(mysqli_affected_rows($conn)>0){
-      $jsonresponse = array('code' => '200', 'status' => 'Updated Succesfully');
+      $jsonresponse = array('code' => '200', 'status' => 'Updated Succesfully' , "memershipid" => $membershipId);
       echo json_encode($jsonresponse);
     }else{
       $jsonresponse = array('code' => '400', 'status' => 'Updated Failure');

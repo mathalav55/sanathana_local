@@ -116,7 +116,7 @@ function load_allMemdata($conn)
 function load_singlememdata($conn)
 {
   global $id;
-  $sqlQuery = "Select `memberlogin`.`userid`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`, `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id` WHERE `userid` = '$id'";
+  $sqlQuery = "Select `memberlogin`.`userid`, `memberprofile`.`Name` , `memberprofile`.`membershipid`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,  `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id` WHERE `userid` = '$id'";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {
