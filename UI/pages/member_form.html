@@ -982,6 +982,23 @@
                                 
                               </fieldset>
                             </div>
+                            <div class="col-md-4">
+                              <label>State</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                              <fieldset class="form-group">
+                              <input type="text" id="businessState-cat" class="form-control" name="fname" placeholder="State">
+                                
+                              </fieldset>
+                            </div><div class="col-md-4">
+                              <label>Country</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                              <fieldset class="form-group">
+                              <input type="text" id="businessCountry-cat" class="form-control" name="fname" placeholder="Country">
+                                
+                              </fieldset>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1161,6 +1178,8 @@
                     form.querySelector('#businessCity-cat').value = result[i].city;
                     form.querySelector('#bannerPreview').src = result[i].banner;
                     form.querySelector('#logoPreview').src = result[i].logo;
+                    form.querySelector('#businessState-cat').value = result[i].state;
+                    form.querySelector('#businessCountry-cat').value = result[i].country;
                     loadContacts(temp);
                   }
                 }
@@ -2037,6 +2056,8 @@
         Address : category.querySelector('#businessCommAddress-cat').value,
         pincode : pincode,
         City : category.querySelector('#businessCity-cat').value,
+        state : category.querySelector('#businessState-cat').value ,
+        country : category.querySelector('#businessCountry-cat').value,
         category : category.dataset.category,
         status : 1,
         logo : logo,

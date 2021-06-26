@@ -78,6 +78,8 @@ else if($rcvData == "addEntry")
   $status = $data['status'];  
   $logo = $data['logo'];
   $banner = $data['banner'];
+  $country = $data['country'];
+  $state = $data['state'];
   insert_businessprofile($conn);
 }
 else
@@ -92,12 +94,14 @@ else
   $status = $data['status'];  
   $logo = $data['logo'];
   $banner = $data['banner'];
+  $country = $data['country'];
+  $state = $data['state'];
   update_businessprofile($conn);
 }
 
 function load_allMembusinessdata($conn)
 {
-  $sqlQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id`";
+  $sqlQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id`";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {
@@ -113,7 +117,7 @@ function load_allMembusinessdata($conn)
 function load_singlemembusinessdata($conn)
 {
   global $id;
-  $sqlQuery = "Select `businessprofile`.`Name`, `businessprofile`.`Name` AS `BusinessName` , `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `acessconfig`.`ContentName` AS `category` FROM `businessprofile` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` WHERE `Memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
+  $sqlQuery = "Select `businessprofile`.`Name`, `businessprofile`.`Name` AS `BusinessName` , `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`,`businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `acessconfig`.`ContentName` AS `category` FROM `businessprofile` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` WHERE `Memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {
@@ -228,8 +232,8 @@ function clear_products($conn)
 
 function insert_businessprofile($conn)
 {
-  global $id,$Name,$desc,$Address,$pincode,$City,$category,$status,$logo,$banner;
-  $insertUpdateQuery = "Insert INTO `businessprofile`(`Name`, `Description`, `Address`, `pincode`, `city`, `Memberid`, `categories`, `status`, `logo`, `banner`)  VALUES ('$Name', '$desc','$Address','$pincode','$City',(SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id'),(select `id` from `acessconfig` where `ContentName` = '$category'),'$status','$logo','$banner')";
+  global $id,$Name,$desc,$Address,$pincode,$City,$category,$status,$logo,$banner,$country,$state;
+  $insertUpdateQuery = "Insert INTO `businessprofile`(`Name`, `Description`, `Address`, `pincode`, `city`, `country` , `state` , `Memberid`, `categories`, `status`, `logo`, `banner`)  VALUES ('$Name', '$desc','$Address','$pincode','$City', '$country', '$state' ,(SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id'),(select `id` from `acessconfig` where `ContentName` = '$category'),'$status','$logo','$banner')";
   $returndata = setData($conn, $insertUpdateQuery);
   if($returndata == "Record created")
   {
@@ -259,13 +263,13 @@ function delete_businessprofile($conn){
 }
 function update_businessprofile($conn)
 {
-  global $id,$Name,$desc,$Address,$pincode,$City,$category,$status,$logo,$banner;
+  global $id,$Name,$desc,$Address,$pincode,$City,$category,$status,$logo,$banner,$country,$state;
 
   $slqry = "Select * FROM `businessprofile` WHERE `Memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id') and `categories` = (select `id` from `acessconfig` where `ContentName` = '$category')";
   $tempdata = getdata($conn, $slqry);
   if(count($tempdata) >0)
   {
-    $insertUpdateQuery = "Update `businessprofile` SET `Name`='$Name',`Description`='$desc',`Address`='$Address',`pincode`='$pincode',`city`='$City',`status`='$status',`logo`='$logo',`banner`='$banner' WHERE `Memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id') and `categories` = (select `id` from `acessconfig` where `ContentName` = '$category')";
+    $insertUpdateQuery = "Update `businessprofile` SET `Name`='$Name',`Description`='$desc',`Address`='$Address',`pincode`='$pincode',`city`='$City', `country` = '$country', `state` = '$state',`status`='$status',`logo`='$logo',`banner`='$banner' WHERE `Memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id') and `categories` = (select `id` from `acessconfig` where `ContentName` = '$category')";
     $returndata = setData($conn, $insertUpdateQuery);
     if($returndata == "Record created")
     {
