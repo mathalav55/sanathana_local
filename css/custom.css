@@ -464,7 +464,9 @@ hr {
 .menu_area .navbar-brand:focus {
     color: #fff;
 }
-
+.chip{
+    border-radius: 0;
+}
 
 @media (max-width: 991px) {
     .header_area.sticky {
@@ -1405,7 +1407,7 @@ div.show-image:hover img {
     right: -95%;
     top: -260px;
 }
-label.required::after {content: "**";color: #f00;}
+.required::after {content: "**";color: #f00;}
 .visionBox_bottom {
     width: 40%;
     position: relative;

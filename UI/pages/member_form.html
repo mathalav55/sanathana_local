@@ -195,7 +195,7 @@
                           <h4 class="card-title text-white text-right">Chapter / Group / Category</h4>
                         </div>
                         <div class="card-body ">
-                          <h4 class="text-bold-500">Primary Chapter</h4>
+                          <h4 class="text-bold-500 required">Primary Chapter</h4>
                           <div class="row">
                             <div class="col-md-8 form-group">
                               <ul class="list-unstyled mb-0" id="chapterRadios">
@@ -391,7 +391,7 @@
       </div>
       <div class="row">
         <div class="col-12 mb-2 d-flex justify-content-end ">
-          <button type="submit" class="btn btn-primary mr-1 hide" id="previousBtn">Previous</button>
+          <button type="submit" class="btn btn-primary mr-1" id="previousBtn">Previous</button>
           <button type="submit" class="btn btn-primary mr-1" id="saveBtnTwo">Save</button>
           <button type="button" class="btn btn-warning" onclick="viewProfile()" id="viewProfileBtn" disabled>View Profile</button>
         </div>
@@ -504,8 +504,7 @@
   <script src="../../js/custom.js"></script>
   <script src="../../js/globalFuntions.js"></script>
   
-  <script src="../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
-  <script src="../../app-assets/js/scripts/forms/select/form-select2.js"></script> 
+  
   <script>
     $('#navbar-container').load('../components/navbar.html');
     $(document).ready(function() {
@@ -574,7 +573,6 @@
       }
       memberId = updateMemberId;
       nextBtnOne.disabled = false;
-      previousBtn.classList.remove('hide');
     }else{
       openForm1();
     }
@@ -680,8 +678,17 @@
         }
       })
     }
-    
+    function loadSelectScript(){
+      var locations = ["../../app-assets/vendors/js/forms/select/select2.full.min.js","../../app-assets/js/scripts/forms/select/form-select2.js"];
+        locations.forEach(location =>{
+            var script = document.createElement('script');
+            script.src = location;
+            var ref = document.querySelector('body');
+            ref.appendChild(script);
+        });
+    }
     async function addContactElement(category){
+        
         var repeaterItem = document.createElement("div");
         var repeaterItemRow = document.createElement("div");
         var textBoxContainer = document.createElement("div");
@@ -740,6 +747,33 @@
         catch(error){
           console.log(error);
         }
+        //add event listener to select element to detect phone number type
+        selector.addEventListener('change',()=>{
+          var countryCodeInputElement = document.createElement('div');
+          countryCodeInputElement.innerHTML= `<div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <select class="select2 form-control select2-hidden-accessible " id="countryCode" data-select2-id="0" tabindex="-1" aria-hidden="true">
+                                                
+                                            </select>
+                                          </div>
+                                          <input type="number" id="phoneNumber" class="form-control" placeholder="Phone Number" autocomplete="off">
+                                        </div>`;
+          console.log(selector.value);
+          if(selector.value == "Phone Number"){
+            if(textBoxContainer.querySelector('input')){
+              textBoxContainer.removeChild(textBoxContainer.querySelector('input'));
+              textBoxContainer.appendChild(countryCodeInputElement.firstElementChild);
+              loadSelectScript();
+              countrycodes();
+            }  
+          }else{
+            if(textBoxContainer.querySelector('.input-group')){
+              textBoxContainer.removeChild(textBoxContainer.querySelector('.input-group'));
+            }  
+            textBoxContainer.appendChild(textBoxLabel);
+            textBoxContainer.appendChild(textBox);
+          }
+        })
         deleteBtnContainer.setAttribute('class','col-md-2 col-sm-12 form-group d-flex align-items-center pt-2');
         button.setAttribute('class','btn btn-danger text-nowrap px-1');
         button.setAttribute('type','button');
@@ -1432,7 +1466,11 @@
                 //show success info toast
                 toast("Saved successfully","bg-success");
                 document.getElementById('nextBtnOne').disabled = false;
-                document.getElementById('saveBtnOne').disabled = true;
+                document.getElementById('saveBtnOne').disabled = false;
+                action = "modify";
+                //make member id text field disabled
+                document.getElementById("phoneNumber").disabled = true;
+                document.getElementById("countryCode").disabled = true;
               }else{
                 //show failure info toast
                 toast("Error saving data", "bg-danger");
@@ -1440,7 +1478,10 @@
                 //delete member record created and chapters if exists
                 await deleteProfile();
               }
-            }            
+            }else{
+                toast("Error saving data", "bg-danger");
+                document.getElementById("saveBtnOne").disabled = false;
+            }          
           }else{
             toast("The mobile number exists","bg-warning");
             showError(document.getElementById("phoneNumber").parentNode,"This Number Exists");
@@ -1553,21 +1594,21 @@
       });
 
       //get groups for validation
-      var groupParent = document.getElementById("groupCheckBoxes");
-      var groups = document.getElementsByClassName("checkbox-input-groups");
-      var groupItems = []
-      groups = Array.from(groups);
-      groups.forEach((item)=>{
-          if(item.checked)
-            groupItems.push(item.nextSibling.nextSibling.innerHTML);
-      });
+      // var groupParent = document.getElementById("groupCheckBoxes");
+      // var groups = document.getElementsByClassName("checkbox-input-groups");
+      // var groupItems = []
+      // groups = Array.from(groups);
+      // groups.forEach((item)=>{
+      //     if(item.checked)
+      //       groupItems.push(item.nextSibling.nextSibling.innerHTML);
+      // });
 
-      if(groupItems.length > 0){
-        removeError(groupParent);
-      }else{
-        showError(groupParent , "Please Select a Group");
-        valid = false;
-      }
+      // if(groupItems.length > 0){
+      //   removeError(groupParent);
+      // }else{
+      //   showError(groupParent , "Please Select a Group");
+      //   valid = false;
+      // }
       if(chapter != ""){
         removeError(chapterParent);
       }else{

@@ -59,6 +59,8 @@ else if($rcvData == "updatememgroups")
 else if($rcvData == "addEntry")
 {
   $id = $data['id'];
+  // $chapter = $data['chapter'];
+  // $prime = $data['prime'];
   $Name = $data['Name'];
   $surName = $data['surName'];
   $dob = $data['dob'];
@@ -98,7 +100,7 @@ else
 
 function load_allMemdata($conn)
 {
-  $sqlQuery = "Select `memberlogin`.`userid`, `memberlogin`.`memberid`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`, `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id`";
+  $sqlQuery = "Select `memberlogin`.`userid`, `memberlogin`.`memberid`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`, `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id` order by `memberprofile`.`Name`";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {
@@ -281,6 +283,7 @@ function insert_member($conn)
       $returndata1 = setData($conn, $sqlQuery);
       if($returndata1 == "Record created")
       {
+
         $jsonresponse = array('code' => '200', 'status' => 'Added Successfully');
         echo json_encode($jsonresponse);
       }
