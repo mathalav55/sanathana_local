@@ -16,6 +16,11 @@ else if($rcvData == "loadbyparent")
   $id = $data['id'];
   load_masterdatabyparent($conn);
 }
+else if($rcvData == "creatememid"){
+  $id = $data['id'];
+  $chapter = $data['chapter'];
+  create_membershipid($conn);
+}
 else if($rcvData == "loadbyname")
 {
   $id = $data['id'];
@@ -78,7 +83,43 @@ function load_allmasterdata($conn)
     echo json_encode($jsonresponse);
   }
 }
+function create_membershipid($conn){
+  global $id,$chapter;
+  $sqlQuery = "select `count`, `Alias_Name` from `acessconfig` where `ContentName` = '$chapter'";
+  $tableData = getdata($conn,$sqlQuery);
+  $countValue = $tableData[0]['count'];
+  $Alias_Name = $tableData[0]['Alias_Name'];
 
+  $countValue = $countValue + 1; // value to be updated in the access config
+  $membershipId = $Alias_Name . '/' . $countValue;//id to be stored in the member profile table
+  // echo $membershipId;
+
+  //query to update the chapter count
+  $updateCountQuery = "update acessconfig set `count` = '$countValue' WHERE ContentName = '$chapter'";
+  $countResult = setData($conn,$updateCountQuery);
+  if(mysqli_affected_rows($conn)>0){
+    //query to set member id in memberprofile
+    $setMembershipIdQuery = "update `memberprofile` set `memberprofile`.`membershipid` = '$membershipId' WHERE `id` = (SELECT `memberid` from `memberlogin` WHERE `userid` ='$id')";
+    setData($conn,$setMembershipIdQuery);
+    if(mysqli_affected_rows($conn)>0){
+      $jsonresponse = array('code' => '200', 'status' => 'Updated Succesfully');
+      echo json_encode($jsonresponse);
+    }else{
+      $jsonresponse = array('code' => '400', 'status' => 'Updated Failure');
+      echo json_encode($jsonresponse);
+    }
+    
+  }else{
+      $jsonresponse = array('code' => '400', 'status' => 'Updated Failure');
+      echo json_encode($jsonresponse);
+  }
+
+
+
+
+
+
+}
 function load_masterdatabyparent($conn)
 {
   global $id;

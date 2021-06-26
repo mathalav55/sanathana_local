@@ -1462,7 +1462,8 @@
             if(response){
               //send groups and chapters data
               response = await saveChaptersGroups();
-              if(response){
+              var memidStatus = await createMembersihpId(memberId);
+              if(response && response){
                 //show success info toast
                 toast("Saved successfully","bg-success");
                 document.getElementById('nextBtnOne').disabled = false;
@@ -1498,6 +1499,7 @@
               auth();
               document.getElementById('nextBtnOne').disabled = false;
               document.getElementById('saveBtnOne').disabled = false;
+
             }else{
               //show failure info do not delete any data
               toast("Updated Failed","bg-danger");
@@ -1509,6 +1511,45 @@
         toast("Please check the values and try again","bg-warning")
         document.getElementById("saveBtnOne").disabled = false;
       } 
+    }
+    async function createMembersihpId(mobilenumber){
+      //get primary chapter selected
+      var chapter="";
+      var primaryChapters = document.getElementsByClassName("radio-input-chapters");
+      var chapterParent = document.getElementById("chapterRadios");
+      primaryChapters = Array.from(primaryChapters);
+      primaryChapters.forEach((item)=>{
+        if(item.checked){
+          chapter = item.nextSibling.nextSibling.innerHTML;
+        }
+      });
+      //sends data to api with mobile number and primary chapter selected
+      var data = {
+        load : "creatememid",
+        id : mobilenumber,
+        chapter : chapter
+      }
+      data = JSON.stringify(data);
+      var requestOptions = {
+        method : "POST",
+        redirect : "follow",
+        header : myHeaders,
+        body : data
+      }
+      try {
+          var result = await fetch('../../ws/Accessconfig.php',requestOptions).then(response => response.json());
+          console.log(result);
+          if(result.code == "200"){
+            return true;
+          }else{
+            return false;
+          }
+      } catch (error) {
+        console.log(error)
+        return false;
+      }
+      //membership id is created and returend to front end
+      //in case of failiure false is returned
     }
     async function deleteProfile(){
       var data = {
