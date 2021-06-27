@@ -387,7 +387,7 @@ if(params.get('action')){
         //redirect to login screen
         window.open("./login.html","_self");
     }else{
-            if(result.admin == "0"){
+            if(result.privilige != "Admin" || result.privilige != "Core Member"){
                 window.open("./dashBoard.html","_self");
             }
     }

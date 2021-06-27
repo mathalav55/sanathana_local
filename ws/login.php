@@ -19,7 +19,7 @@ if (count($datatable) > 0)
     $_SESSION['Name'] = $row['Name'];
     $_SESSION['id'] = $row['id'];
     $_SESSION['Surname'] = $row['Surname'];
-    $_SESSION['admin'] = $row['admin'];
+    $_SESSION['privilige'] = $row['privilige'];
     $_SESSION['photo'] = $row['photo'];
     $_SESSION['gender'] = $row['gender'];
     $_SESSION['memberId'] = $usrName;

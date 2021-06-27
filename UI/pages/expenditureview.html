@@ -475,7 +475,7 @@
     }
     function globalFilters(){
         //admin filter
-        if(userData.admin == "0"){
+        if(userData.privilige == "Admin" || userData.privilige == "Core Member"){
             var result = [];
             result = nonFilteredReports.filter(report =>{
                     return (
@@ -511,7 +511,7 @@
                     })
                     return flag;
                 })
-                if(userData.admin == "0"){
+                if(userData.privilige != "Admin" || userData.privilige != "Core Member"){
                     nonFilteredReports = result;
                 }
                 console.log(result);

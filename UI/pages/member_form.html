@@ -316,23 +316,8 @@
               <div class="card-body">
                 <form class="form form-horizontal">
                   
-                        <ul class="list-unstyled mb-0">
-                          <li class="d-inline-block mr-2 mb-1">
-                            <fieldset>
-                              <div class="radio">
-                                <input type="radio" name="activeStatus" id="admin">
-                                <label for="admin">Admin</label>
-                              </div>
-                            </fieldset>
-                          </li>
-                          <li class="d-inline-block mr-2 mb-1">
-                            <fieldset>
-                              <div class="radio">
-                                <input type="radio" name="activeStatus" id="nonadmin" checked>
-                                <label for="nonadmin">User</label>
-                              </div>
-                            </fieldset>
-                          </li>
+                        <ul class="list-unstyled mb-0 priviligeRadio">
+                          no data
                         </ul>
                      
                 </form>
@@ -623,13 +608,47 @@
       document.documentElement.scrollTop = 0;
     }
     //open form1 function
-    function openForm1(){
+    async function openForm1(){
       sessionStorage.setItem('page',1);
       console.log(action);
       form2.classList.add("hide");
       form1.classList.remove("hide");
       loadSelectScript();
-
+      //add options to user priviige
+      var data = {
+        load : "loadbyparent",
+        id : "privilige"
+      }
+      data = JSON.stringify(data);
+      console.log(data);
+      var requestOptions = {
+        method : "POST",
+        redirect: "follow",
+        headers : myHeaders,
+        body : data
+      }
+      try {
+        var result =await fetch("../../ws/Accessconfig.php",requestOptions).then(response => response.json());
+        console.log(result);
+        if(Array.isArray(result)){
+          var priviigeElement = document.querySelector('.priviligeRadio');
+          var priviigeHtml = "";
+          result.forEach(privilige =>{
+            priviigeHtml += `<li class="d-inline-block mr-2 mb-1">
+                            <fieldset>
+                              <div class="radio">
+                                <input type="radio" name="privilige" id="`+ privilige.ContentName +`" data-name="`+privilige.ContentName+`">
+                                <label for="`+privilige.ContentName+`">`+ privilige.ContentName +`</label>
+                              </div>
+                            </fieldset>
+                          </li>`;
+          });
+          priviigeElement.innerHTML = priviigeHtml;
+          priviigeElement.querySelector('input[name = privilige]').checked = true;          
+        }
+      } catch (error) {
+        
+      }
       if(action == "modify"){
           //make member id text field disabled
           document.getElementById("phoneNumber").disabled = true;
@@ -653,7 +672,6 @@
           .then(result =>{
             console.log(result);
             var status  = (parseInt(result[0].status) == "1")? true : false;
-            var admin = (parseInt(result[0].admin) == "1")? true : false;
             var userId = result[0].userid.split(" ");
             document.getElementById("phoneNumber").value = userId[1];
             document.querySelector(".countryCode").innerHTML = `<option>`+userId[0]+`</option>`
@@ -664,8 +682,15 @@
             document.getElementById("gotram").value = result[0].gothram;
             document.getElementById("active").checked = status;
             document.getElementById("inactive").checked = !status;
-            document.getElementById("admin").checked = admin;
-            document.getElementById("nonadmin").checked = !admin;
+            //get all the privilige fields
+            var privviligeFields = document.querySelectorAll('input[name = privilige]');
+            privviligeFields = Array.from(privviligeFields);
+            privviligeFields.forEach(filed =>{
+              if(result[0].privilige == filed.dataset.name){
+                filed.checked = true;
+              }
+            })
+            
             document.getElementById("profilePreview").src = result[0].photo;
             //get memership id and add it to the disabled field
             document.getElementById("memershipid").value = result[0].membershipid;
@@ -1504,7 +1529,15 @@
           photo = `../../uploads/`+ newFileName;
       }
       var status = (document.getElementById("active").checked)? 1 : 0;
-      var admin = (document.getElementById("admin").checked)? 1 : 0;
+      var privilige ="";
+      var priviligeElements = document.querySelectorAll('input[name = privilige]');
+      priviligeElements = Array.from(priviligeElements);
+      if(priviligeElements.length > 0){
+        priviligeElements.forEach(item =>{
+          if(item.checked)
+            privilige =item.dataset.name;
+        })
+      }
       
       if(document.getElementById("name").value){
         name = document.getElementById("name").value;
@@ -1530,7 +1563,7 @@
           gender : document.getElementById("gender").value,
           Gothram : gothram,
           photo : photo,
-          admin : admin,
+          privilige : privilige,
           status : status,
           pwd : password
       }
@@ -1837,6 +1870,8 @@
       return true;
     }
     async function saveChaptersGroups(){
+      //delete existing chapters
+      await deleteChapters();
       //prepare data object for form3
       //get primary chapter
       var load = "addmemchapters";
@@ -1848,9 +1883,6 @@
           chapter = item.nextSibling.nextSibling.innerHTML;
         }
       });
-      if(action === "modify"){
-        load  = "updatememchapters";
-      }
       var primaryBody ={
         load : load,
         id : memberId,
@@ -1917,12 +1949,36 @@
         return false;
       }
     }
-    
+    async function deleteChapters(){
+      var data  = {
+        load : "clearmemchapters",
+        id : memberId
+      }
+      data = JSON.stringify(data);
+      console.log(data);
+      var requestOptions = {
+        method :"POST",
+        redirect : "follow",
+        headers : myHeaders,
+        body : data
+      }
+      try {
+        var result = await fetch("../../ws/Memberprofile.php",requestOptions).then(response => response.json());
+        console.log(result);
+        if(result.status == "200"){
+          return true;
+        }
+        else{
+          return false;
+        }
+      } catch (error) {
+          console.log(error);
+          return false;
+      }
+    }
     async function addSecChapters(chapter){
         var load = "addmemchapters";
-        if(action === "modify"){
-          load = "updatememchapters";
-        }
+        
         var chapterBody ={
           load : load,
           id : memberId,
@@ -1948,7 +2004,7 @@
             return false;
           }
         }
-        catch(errror){
+        catch(error){
           console.log(error);
           return false;
         }

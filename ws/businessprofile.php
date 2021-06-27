@@ -101,7 +101,7 @@ else
 
 function load_allMembusinessdata($conn)
 {
-  $sqlQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id`";
+  $sqlQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`privilige`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id`";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {

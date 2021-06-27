@@ -37,18 +37,16 @@ else if($rcvData == "addmemchapters")
   $prime = $data['prime'];
   insert_memchapters($conn);
 }
+else if($rcvData == "clearmemchapters")
+{
+  $id = $data['id'];
+  delete_memchapters($conn);
+}
 else if($rcvData == "addmemgroups")
 {
   $id = $data['id'];
   $group = $data['group'];
   insert_memgroups($conn);
-}
-else if($rcvData == "updatememchapters")
-{
-  $id = $data['id'];
-  $chapter = $data['chapter'];
-  $prime = $data['prime'];
-  update_memchapters($conn);
 }
 else if($rcvData == "updatememgroups")
 {
@@ -67,7 +65,7 @@ else if($rcvData == "addEntry")
   $gender = $data['gender'];
   $Gothram = $data['Gothram'];
   $photo = $data['photo'];
-  $admin = $data['admin'];
+  $privilige = $data['privilige'];
   $status = $data['status'];  
   $pwd = $data['pwd'];
   insert_member($conn);
@@ -93,14 +91,14 @@ else
   $gender = $data['gender'];
   $Gothram = $data['Gothram'];
   $photo = $data['photo'];
-  $admin = $data['admin'];
+  $privilige = $data['privilige'];
   $status = $data['status'];
   update_memprofile($conn);
 }
 
 function load_allMemdata($conn)
 {
-  $sqlQuery = "Select `memberlogin`.`userid`, `memberlogin`.`memberid`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`, `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id` order by `memberprofile`.`Name`";
+  $sqlQuery = "Select `memberlogin`.`userid`, `memberlogin`.`memberid`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`, `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`privilige`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id` order by `memberprofile`.`Name`";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {
@@ -116,7 +114,7 @@ function load_allMemdata($conn)
 function load_singlememdata($conn)
 {
   global $id;
-  $sqlQuery = "Select `memberlogin`.`userid`, `memberprofile`.`Name` , `memberprofile`.`membershipid`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,  `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`admin`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id` WHERE `userid` = '$id'";
+  $sqlQuery = "Select `memberlogin`.`userid`, `memberprofile`.`Name` , `memberprofile`.`membershipid`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,  `memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`privilige`, `memberprofile`.`status` FROM `memberlogin` JOIN  `memberprofile` on `memberlogin`.`memberid` = `memberprofile`.`id` WHERE `userid` = '$id'";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {
@@ -177,6 +175,22 @@ function insert_memchapters($conn)
     echo json_encode($jsonresponse);
   }
 }
+function delete_memchapters($conn)
+{
+  global $id;
+  $sqlQuery = "delete FROM `memberchapters` WHERE `memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
+  $returndata = setData($conn, $sqlQuery);
+  if($returndata == "Record created")
+  {
+    $jsonresponse = array('code' => '200', 'status' => 'Deleted Successfully');
+    echo json_encode($jsonresponse);
+  }
+  else
+  {
+    $jsonresponse = array('code' => '500', 'status' => 'Not Added');
+    echo json_encode($jsonresponse);
+  }
+}
 
 function insert_memgroups($conn)
 {
@@ -195,32 +209,32 @@ function insert_memgroups($conn)
   }
 }
 
-function update_memchapters($conn)
-{
-  global $id,$chapter,$prime;
-  $sqlQuery = "Delete FROM `memberchapters` WHERE `memberid`= (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
-  $returndata = setData($conn, $sqlQuery);
-  if($returndata == "Record created")
-  {
-    $sqlQuery1 = "Insert INTO `memberchapters`(`chapter`, `prime`, `memberid`) VALUES  ((select `id` from `acessconfig` where `ContentName` = '$chapter'),'$prime',(SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id'))";
-    $returndata1 = setData($conn, $sqlQuery1);
-    if($returndata1 == "Record created")
-    {
-      $jsonresponse = array('code' => '200', 'status' => 'Updated Successfully');
-      echo json_encode($jsonresponse);
-    }
-    else
-    {
-      $jsonresponse = array('code' => '500', 'status' => 'Not Added');
-      echo json_encode($jsonresponse);
-    }
-  }
-  else
-  {
-    $jsonresponse = array('code' => '200', 'status' => 'Not Added');
-    echo json_encode($jsonresponse);
-  }
-}
+// function update_memchapters($conn)
+// {
+//   global $id,$chapter,$prime;
+//   $sqlQuery = "Delete FROM `memberchapters` WHERE `memberid`= (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
+//   $returndata = setData($conn, $sqlQuery);
+//   if($returndata == "Record created")
+//   {
+//     $sqlQuery1 = "Insert INTO `memberchapters`(`chapter`, `prime`, `memberid`) VALUES  ((select `id` from `acessconfig` where `ContentName` = '$chapter'),'$prime',(SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id'))";
+//     $returndata1 = setData($conn, $sqlQuery1);
+//     if($returndata1 == "Record created")
+//     {
+//       $jsonresponse = array('code' => '200', 'status' => 'Updated Successfully');
+//       echo json_encode($jsonresponse);
+//     }
+//     else
+//     {
+//       $jsonresponse = array('code' => '500', 'status' => 'Not Added');
+//       echo json_encode($jsonresponse);
+//     }
+//   }
+//   else
+//   {
+//     $jsonresponse = array('code' => '200', 'status' => 'Not Added');
+//     echo json_encode($jsonresponse);
+//   }
+// }
 
 function update_memgroups($conn)
 {
@@ -267,8 +281,8 @@ function delete_member($conn){
 }
 function insert_member($conn)
 {
-  global $id,$Name,$surName,$dob,$gender,$Gothram,$photo,$admin,$status,$pwd;
-  $insertUpdateQuery = "Insert INTO `memberprofile`(`Name`, `Surname`, `Dob`, `gender`, `gothram`, `photo`, `admin`, `status`) VALUES ('$Name','$surName','$dob','$gender','$Gothram','$photo','$admin','$status')";
+  global $id,$Name,$surName,$dob,$gender,$Gothram,$photo,$privilige,$status,$pwd;
+  $insertUpdateQuery = "Insert INTO `memberprofile`(`Name`, `Surname`, `Dob`, `gender`, `gothram`, `photo`, `privilige`, `status`) VALUES ('$Name','$surName','$dob','$gender','$Gothram','$photo','$privilige','$status')";
   $returndata = setData($conn, $insertUpdateQuery);
   //echo json_encode("Added Succesfully");
   if($returndata == "Record created")
@@ -308,13 +322,13 @@ function insert_member($conn)
 
 function update_memprofile($conn)
 {
-  global $id,$Name,$surName,$dob,$gender,$Gothram,$photo,$admin,$status;
+  global $id,$Name,$surName,$dob,$gender,$Gothram,$photo,$privilige,$status;
 
   $slqry = "Select * FROM `memberprofile` WHERE `id` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
   $tempdata = getdata($conn, $slqry);
   if(count($tempdata) >0)
   {
-    $insertUpdateQuery = "Update `memberprofile` SET `Name`='$Name',`Surname`='$surName',`Dob`='$dob',`gender`='$gender',`gothram`='$Gothram',`photo`='$photo',`admin`='$admin',`status`='$status' WHERE `id` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
+    $insertUpdateQuery = "Update `memberprofile` SET `Name`='$Name',`Surname`='$surName',`Dob`='$dob',`gender`='$gender',`gothram`='$Gothram',`photo`='$photo',`privilige`='$privilige',`status`='$status' WHERE `id` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
     $returndata = setData($conn, $insertUpdateQuery);
     if($returndata == "Record created")
     {

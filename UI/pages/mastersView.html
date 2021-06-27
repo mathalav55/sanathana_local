@@ -262,6 +262,9 @@ if(params.get('id')){
     id = params.get('id');
     if(params.get('parentId')){
         parentId = params.get('parentId');
+        if(id == "privilige"){
+            toast("Changing these vaues<br> may affect the site","bg-warning")
+        }
     }
 }else{
     window.location = "./main.html";
@@ -282,7 +285,7 @@ if(params.get('id')){
         //redirect to login screen
         window.open("./login.html","_self");
     }else{
-            if(result.admin == "0"){
+            if(result.privilige != "User" && result.privilige == "Core Member"){
                 window.open("./dashBoard.html","_self");
             }
     }

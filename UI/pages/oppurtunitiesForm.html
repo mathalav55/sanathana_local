@@ -622,7 +622,7 @@
                     // }
                     if(navData[i].status == "0")
                         continue;
-                    if(userData.admin == "0" && navData[i].ContentName == "Admin") continue
+                    if((userData.privilige != "Admin" || userData.privilige != "Core Member") && navData[i].ContentName == "Admin") continue
                     navhtml = navhtml + `<li class="nav-item active">
                                 <a class="nav-link " href="`+navData[i].urlredirection+`">` + navData[i].ContentName + `</a>
                             </li>`;

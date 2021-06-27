@@ -977,6 +977,7 @@ async function emptyState(section,pageName){
         id : pageName
     }
     emptyData = JSON.stringify(emptyData);
+    console.log(emptyData);
     var emptyRequestOptions = {
         method : "POST",
         redirect : "follow",
@@ -990,7 +991,7 @@ async function emptyState(section,pageName){
         console.log(section);
         var image = section.querySelector('#emptyImage');
         console.log(image);
-        image.setAttribute('src',result[0].	emptystateimg);
+        image.setAttribute('src',result[0].emptystateimg);
         return section;
     }
     catch(error){
@@ -1054,8 +1055,7 @@ function auth(...args){
         //redirect to login screen
         window.open("./login.html","_self");
     }else if(result.status === "Logged In"){
-            userData.admin = parseInt(userData.admin);
-            if(args[0]=="admin" && result.admin != 1){
+            if(args[0]=="admin" && (result.privilige != "Admin" && result.privilige != "Core Member")){
                 window.open("./dashboard.html","_self");
             }
             // onlyAdmin();
@@ -1224,6 +1224,7 @@ function addResetModal(memberId){
       id : userData.memberId
     }
     data = JSON.stringify(data);
+    console.log(data)
     var requestOptions = {
       method : "POST",
       headers : myHeaders,
@@ -1285,7 +1286,7 @@ function loadNavItems(userData){
         console.log(navData);
         var navhtml = '';
         for (var i in navData) {
-                if(userData.admin == 0){
+                if(userData.privilige != "Admin" && userData.privilige != "Core Member"){
                     if(navData[i].ContentName === "Admin"){
                         continue;
                     }
@@ -1327,7 +1328,7 @@ function logOut(){
 function onlyAdmin(userData){
     console.log(userData);
     console.log("called only admin");
-    if(userData.admin != 1){
+    if(userData.privilige != "Admin" && userData.privilige != "Core Member"){
         console.log("Is Not Admin")
         var items = document.querySelectorAll('.onlyAdmin');
         items = Array.from(items);

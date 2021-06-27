@@ -179,7 +179,7 @@
                                 <div class="col">
                                     <div class="row">
                                         <div class="col">
-                                            <a href="./oppurtunityView.html">
+                                            <a href="./oppurtunitiesForm.html">
                                                 <div class="livicon-evo" data-options="
                                                 name: plus-alt.svg; 
                                                 size: 3rem; 
@@ -187,7 +187,7 @@
                                             </a>
                                         </div>
                                         <div class="col">
-                                            <a href="./oppurtunitiesForm.html">
+                                            <a href="./oppurtunityView.html">
                                                 <div class="livicon-evo" data-options="
                                                 name: thumbnails-big.svg; 
                                                 size: 3rem;
@@ -378,7 +378,7 @@
         .then(result => {
             console.log(result);
             userData = result;
-            if( userData.admin != "0"){
+            if( userData.privilige == "Admin" || userData.privilige == "Core Member"){
                 loadMembers();
             }
             loadOppurtunityData(userData.memberId);
