@@ -120,7 +120,7 @@
                       <div class="col-md-8">
                         <div class="input-group form-group">
                           <div class="input-group-prepend">
-                            <select class="select2" id="countryCode" >
+                            <select class="select2 countryCode">
                                 
   
                             </select>
@@ -633,7 +633,7 @@
       if(action == "modify"){
           //make member id text field disabled
           document.getElementById("phoneNumber").disabled = true;
-          document.getElementById("countryCode").disabled = true;
+          document.querySelector(".countryCode").disabled = true;
           //fetch data from api and add it to form
           var dataBody = {
             load : "loadbynumber",
@@ -656,7 +656,7 @@
             var admin = (parseInt(result[0].admin) == "1")? true : false;
             var userId = result[0].userid.split(" ");
             document.getElementById("phoneNumber").value = userId[1];
-            document.getElementById("countryCode").innerHTML = `<option>`+userId[0]+`</option>`
+            document.querySelector(".countryCode").innerHTML = `<option>`+userId[0]+`</option>`
             document.getElementById("name").value = result[0].Name;
             document.getElementById("surname").value = result[0].Surname;
             document.getElementById("dob").value = result[0].Dob;
@@ -798,11 +798,11 @@
           var countryCodeInputElement = document.createElement('div');
           countryCodeInputElement.innerHTML= `<div class="input-group">
                                           <div class="input-group-prepend">
-                                            <select class="select2 form-control select2-hidden-accessible " id="countryCode" data-select2-id="0" tabindex="-1" aria-hidden="true">
+                                            <select class="select2 form-control select2-hidden-accessible countryCode" data-select2-id="0" tabindex="-1" aria-hidden="true">
                                                 
                                             </select>
                                           </div>
-                                          <input type="number" id="phoneNumber" class="form-control" placeholder="Phone Number" autocomplete="off">
+                                          <input type="number" id="contactDetail" class="form-control" placeholder="Phone Number" autocomplete="off">
                                         </div>`;
           console.log(selector.value);
           if(selector.value == "Phone Number"){
@@ -1230,7 +1230,23 @@
             contacts = Array.from(contacts);
             for(var i in result){
               contacts[i].querySelector('#contacttype').value = result[i].ContentName;
-              contacts[i].querySelector('#contactDetail').value = result[i].contactdetails;
+              // Create a new 'change' event
+              var event = new Event('change');
+              // Dispatch it.
+              contacts[i].querySelector('#contacttype').dispatchEvent(event);
+
+              if(contacts[i].querySelector('#contacttype').value == "Phone Number"){
+                //split the country code and numer
+                var codeandnumber = result[i].contactdetails;
+                codeandnumber = codeandnumber.split(" ")
+                var code = codeandnumber[0];
+                var number = codeandnumber[1]; 
+                //add it seperately to code and input
+                contacts[i].querySelector('#contactDetail').value = number;
+                contacts[i].querySelector('.countryCode').value = code;
+              }else{
+                contacts[i].querySelector('#contactDetail').value = result[i].contactdetails;
+              }
             }
             for(var i in contacts){
               if(contacts[i].querySelector('#contactDetail').value == ""){
@@ -1477,7 +1493,7 @@
         photo = (document.getElementById("profilePreview").src) ? document.getElementById("profilePreview").src : "";
       }
       let formdata = new FormData();
-      memberId = document.getElementById('countryCode').value + ` `+ document.getElementById("phoneNumber").value ;
+      memberId = document.querySelector('.countryCode').value + ` `+ document.getElementById("phoneNumber").value ;
       //uploadig files if exists
       if(memberPhoto.files.length > 0){
           var date = new Date();
@@ -1537,7 +1553,7 @@
                 toast("Saved successfully","bg-success");
                 document.getElementById('nextBtnOne').disabled = false;
                 document.getElementById('saveBtnOne').disabled = false;
-                action = "modify";
+                // action = "modify";
                 //make member id text field disabled
                 document.getElementById("phoneNumber").disabled = true;
                 document.getElementById("countryCode").disabled = true;
@@ -2169,10 +2185,17 @@
     async function insertContacts(contact,category){
       var load = "addmemcontacts";
       var contactElement = contact.querySelector('#contactDetail');
+      var data = contactElement.value;
+      console.log(contact);
+      if(contact.querySelector('#contacttype').value == "Phone Number"){
+        var countryCode = contact.querySelector('.countryCode').value;  
+        data = countryCode + " " + data;
+      }
+      
       var contactData = {
         load : load,
         id : memberId,
-        contactdetails : contactElement.value,
+        contactdetails : data,
         contacttype : contact.querySelector('#contacttype').value,
         category : category
       };

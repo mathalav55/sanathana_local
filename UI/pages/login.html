@@ -156,7 +156,7 @@
                                                 <fieldset>
                                                     <div class="input-group">
                                                       <div class="input-group-prepend">
-                                                        <select class="select2 form-control select2-hidden-accessible " id="countryCode" data-select2-id="0" tabindex="-1" aria-hidden="true">
+                                                        <select class="select2 form-control select2-hidden-accessible countryCode" data-select2-id="0" tabindex="-1" aria-hidden="true">
                                                             
                                                         </select>
                                                       </div>
@@ -228,7 +228,7 @@
             authnetication();
         });
         function authnetication(){
-            var username =  document.getElementById('countryCode').value +` `+ document.getElementById("phoneNumber").value
+            var username =  document.querySelector('.countryCode').value +` `+ document.getElementById("phoneNumber").value
             var formData = {
                 username : username,
                 password : document.getElementById("inputPassword").value,

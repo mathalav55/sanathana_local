@@ -1069,17 +1069,16 @@ function auth(...args){
  function countrycodes(){
     console.log("called country codes")
     var countryCodeElement = document.getElementById('countryCode'); 
+    var countryCodeElements = document.querySelectorAll('.countryCode');
     var result = countryCodes.countries;        
-    result.forEach(item =>{
-        var option = document.createElement('option');
-        option.setAttribute('value',item.code);
-        option.innerText = item.name;
-        countryCodeElement.appendChild(option);
-    })   
-    var code = document.getElementById('countryCode');  
-    code.addEventListener('change' , ()=>{
-        console.log(code.value);
-    });
+    countryCodeElements.forEach(element =>{
+      result.forEach(item =>{
+          var option = document.createElement('option');
+          option.setAttribute('value',item.code);
+          option.innerText = item.name;
+          element.appendChild(option);
+      });
+    })
       
 }
 function addResetModal(memberId){
