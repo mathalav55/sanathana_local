@@ -332,7 +332,7 @@
                 <h4 class="card-title text-white">Profile Image</h4>
               </div>
               <div class="card-body">
-                <img src="" id="profilePreview" style="width: 5rem;" alt="">
+                <img src=" " id="profilePreview" style="width: 5rem;" alt="">
               </div>
             </div>
           </div>
@@ -1045,7 +1045,7 @@
                                         <input  type="file" class="form-control" id="memberBanner-cat">
                                         <label class="input-group-text" for="memberBanner-cat">Upload</label>
                                       </div>
-                                      <img src="" alt="" id="bannerPreview" style="height: 8rem;">
+                                      <img src=" " alt="" id="bannerPreview" style="height: 8rem;">
                                     </div>
                                     <div class="col-md-6">
                                       <label for="memberLogo-cat">Logo</label>
@@ -1055,7 +1055,7 @@
                                         <input  type="file" class="form-control" id="memberLogo-cat">
                                         <label class="input-group-text" for="memberLogo-cat">Upload</label>
                                       </div>
-                                      <img src="" alt="" id="logoPreview" style="height: 8rem;">
+                                      <img src=" " alt="" id="logoPreview" style="height: 8rem;">
                                     </div>
                                   </div>
                               </div>
@@ -1581,15 +1581,15 @@
               //send groups and chapters data
               response = await saveChaptersGroups();
               var memidStatus = await createMembersihpId(memberId);
-              if(response && response){
+              if(response && memidStatus){
                 //show success info toast
                 toast("Saved successfully","bg-success");
                 document.getElementById('nextBtnOne').disabled = false;
-                document.getElementById('saveBtnOne').disabled = false;
+                // document.getElementById('saveBtnOne').disabled = false;
                 // action = "modify";
                 //make member id text field disabled
                 document.getElementById("phoneNumber").disabled = true;
-                document.getElementById("countryCode").disabled = true;
+                document.querySelector(".countryCode").disabled = true;
               }else{
                 //show failure info toast
                 toast("Error saving data", "bg-danger");
