@@ -477,7 +477,7 @@
                         document.querySelector('.non-login-header').style.display = "none";
                         document.querySelector('#navbar-container').style.display = "block";
                         $('#navbar-container').load('../components/navbar.html');
-                        if(userData.privilige != "Admin" && userData.privilige !="Core Memer")
+                        if(userData.privilige != "Admin" && userData.privilige !="Core Member")
                             restrict();
                         auth();
                     }else{
@@ -918,7 +918,7 @@
                             </span>
                             Refer
                         </button>`;
-                        if(userData.admin == 1){
+                        if(userData.privilige == "Admin" || userData.privilige == "Core Member"){
                             var temp = memberId.slice(1);
                             editBtn = `<a class="btn btn-primary mr-1 text-white" href="./member_form.html?action=modify&memberId=%2B`+temp+`">
                                 <span class="material-icons  align-middle">
