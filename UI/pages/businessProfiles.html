@@ -441,7 +441,7 @@
                                             </div>`;
                 //make a template for the empty state;
                 //call empty state function with business profile template as argument
-                emptyState(businessProfiles,myHeaders).then((result)=>{
+                emptyState(businessProfiles,"Search").then((result)=>{
                     mainSection.appendChild(result.firstChild);
                 })
             }
