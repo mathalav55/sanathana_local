@@ -101,40 +101,16 @@
     <!-- ***** Header Area Start ***** -->
     <!-- <section> -->
 
-        <div id="navbar-container" style="display: none;">
-
-        </div>
+        
         <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
             <div class="col toast-container">
                 
             </div>
           </div>
-        <div class="non-login-header">
+        <div class="">
             <section>
-                <header class=" float-left header_area headroom headroom--not-bottom headroom--pinned headroom--top" style="position: fixed;z-index: 999999;">
-                        <div class="col-9">
-                            <h4 class=" pl-1">Sanathana Entrepreneurs Association</h4>
-                        </div>
-                        <div class="col-3 text-right">
-                            <div class="d-flex justify-content-around">
-                                <div class="">Contact Us</div>
-                                
-                                <span class="float-right">
-                            <div class="badge-light-info mx-auto ">
-                                <i class="bx bxl-facebook-square font-medium-5"></i>
-                            </div>
-                      </span>
-                                <span class="float-right">
-                         
-                            <div class="badge-light-info mx-auto">
-                                <i class="bx bxl-twitter font-medium-5"></i>
-                            </div>
-                        
-                        </span>
-                            </div>
-                        </div>
-                    </div> -->
-                    <div class="row align-items-center py-1">
+                <header class=" float-left header_area headroom headroom--not-bottom headroom--pinned headroom--top">
+                    <div class="non-login-header row align-items-center py-1">
                         <!-- Menu Area Start -->
                         <div class="col-12">
                             <div class="menu_area">
@@ -162,6 +138,9 @@
                             </div>
                         </div>
                     </div>
+                    <div id="navbar-container" style="display: none;">
+
+                    </div>
                 </header>
             </section>
         </div>
@@ -180,9 +159,7 @@
             </div>
         </div>
     </section>
-    <div class="container main-section bg-grey" style="padding-top:4%;height: fit-content;">
-        
-       
+    <div class="container main-section bg-grey" style="padding-top:10%;height: fit-content;">
         <div class="row">
             <div class="col-md-3" >
                 <div class="side-bar card">
@@ -299,13 +276,31 @@
     <!-- END: Theme JS-->
     <!-- Headroom -->
     <script src="../../js/globalFuntions.js"></script>
-    
+    <script>
+        function headroomInit(){
+            $(document).ready(function() {
+                var year = new Date().getFullYear();
+                $(".year").text(year);
+                            // grab an element
+                var myElement = document.querySelector("header");
+                // construct an instance of Headroom, passing the element
+                var headroom = new Headroom(myElement);
+                // initialise
+                headroom.init();
+            });
+
+            $(document).ready(function() {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        }
+        
+    </script>
     <script>
     const myHeaders = new Headers();
     var profileList = [];
     var filteredProfiles = [];
-    
     var userData = {}
+    headroomInit()
     async function profile(){
         var authRequestOptions = {
         method : "POST",
@@ -692,22 +687,7 @@
         section.innerHTML = template.innerHTML;
     }
     </script>
-    <script>
-        $(document).ready(function() {
-            var year = new Date().getFullYear();
-            $(".year").text(year);
-                         // grab an element
-            var myElement = document.querySelector("header");
-            // construct an instance of Headroom, passing the element
-            var headroom = new Headroom(myElement);
-            // initialise
-            headroom.init();
-        });
-
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+    
 </body>
 
 </html>

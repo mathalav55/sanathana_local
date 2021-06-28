@@ -107,8 +107,7 @@
           </div>
         <div class="non-login-header">
             <section>
-                <header class=" float-left header_area headroom headroom--not-bottom headroom--pinned headroom--top" style="position: fixed;z-index: 999999;">
-                   
+                <header class=" float-left header_area headroom headroom--not-bottom headroom--pinned headroom--top" >
                     <div class="row align-items-center py-1">
                         <!-- Menu Area Start -->
                         <div class="col-12">
@@ -117,7 +116,7 @@
                                     <!-- Logo -->
                                     <a href="../index.html"><img src="../../img/bg-img/logo.png" class="img-fluid logo-width" alt="Brand Logo" /></a>
                                     <a href="#home">
-                                        <h4 class="logo-font  ml-1 ">Sanathana Entrepreneurs Association</h4>
+                                        <h4 class="logo-font  ml-1 text-white">Sanathana Entrepreneurs Association</h4>
                                     </a>
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
@@ -166,7 +165,7 @@
                 <img src="../../images/emptystates/logo.jpg" alt=""  class="logo" id="logoImage">
             </div>
             <div class="col-8" id="editProfileSection restrict">
-                <div class="row justify-content-end onlyAdmin">
+                <div class="row justify-content-end addProductsBtn">
                     <button onclick="prodcutForm()" class="btn btn-warning mr-1"><i class="bx bx-plus" style="background-color: rgba(255, 255, 255, 0.425);color: #fff;border-radius: 100%;padding : 0.2rem;"></i> Add Products</button>
                 </div>
             </div>
@@ -512,6 +511,9 @@
                 memberId = params.get('memberid');
                 console.log(memberId);
             }
+            if(userData.privilige != "Admin" && userData.privilige != "Core Member"){
+                document.querySelector('.addProductsBtn').style.display = "none";
+            }
             loadBasicProfile();
             loadProducts();
         }
@@ -584,15 +586,19 @@
                         </div>`;
                     });
                     productsSection.innerHTML = productCard;
-                }else{
+                }else{        
+                    var prodButton = `<button onclick="prodcutForm()" class="btn btn-warning mr-1"><i class="bx bx-plus" style="background-color: rgba(255, 255, 255, 0.425);color: #fff;border-radius: 100%;padding : 0.2rem;"></i> Add Products</button>`;
+                    if(userData.privilige != "Admin" && userData.privilige != "Core Member"){
+                        prodButton ="";
+                    }
                     productsSection.innerHTML = `<div class="card">
                     <div class="col-8 card-body" id=" restrict">
-                <div class="row justify-content-between onlyAdmin align-items-center">
-                    <h5  class="text-warning">No products yet!</h5>
-                    <button onclick="prodcutForm()" class="btn btn-warning mr-1"><i class="bx bx-plus" style="background-color: rgba(255, 255, 255, 0.425);color: #fff;border-radius: 100%;padding : 0.2rem;"></i> Add Products</button>
-                </div>
-            </div>
-            </div>`;
+                        <div class="row justify-content-between onlyAdmin align-items-center">
+                            <h5  class="text-warning">No products yet!</h5>
+                            `+prodButton+`
+                        </div>
+                    </div>
+                    </div>`;
                 }
             })
             .catch(error =>{console.log(error);});
@@ -650,6 +656,8 @@
                             <span>` +basicDetails.Dob+`</span>
                         </div>
                         `; 
+                    //hide or show add products btn
+                    
                     //load profile details
                     var businessBody = {
                         load : "loadbynumber",
