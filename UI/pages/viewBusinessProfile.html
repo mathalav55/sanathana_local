@@ -477,7 +477,7 @@
                         document.querySelector('.non-login-header').style.display = "none";
                         document.querySelector('#navbar-container').style.display = "block";
                         $('#navbar-container').load('../components/navbar.html');
-                        if(userData.admin == "0")
+                        if(userData.privilige != "Admin" && userData.privilige !="Core Memer")
                             restrict();
                         auth();
                     }else{
@@ -511,9 +511,7 @@
                 memberId = params.get('memberid');
                 console.log(memberId);
             }
-            if(userData.privilige != "Admin" && userData.privilige != "Core Member"){
-                document.querySelector('.addProductsBtn').style.display = "none";
-            }
+            
             loadBasicProfile();
             loadProducts();
         }
