@@ -472,8 +472,9 @@ function changeStatus(id,status){
 
 }
 function openAddForm(selfid,action){
+    var uriformat = encodeURI(id);
     if(action == "add"){
-        window.location = `./mastersAdd.html?id=`+id+`&action=add&parentId=`+parentId+``;
+        window.location = `./mastersAdd.html?id=`+uriformat+`&action=add&parentId=`+parentId+``;
     }else{
         window.location = `./mastersAdd.html?id=`+selfid+`&action=update`;
     }
