@@ -364,7 +364,7 @@ const params = (new URL(document.location)).searchParams;
 if(params.get('action')){
     action = params.get('action');
     if(params.get('id')){
-        id = params.get('id');
+        id = decodeURI(params.get('id'));
         loadForm();
     }
     if(params.get('parentId')){
