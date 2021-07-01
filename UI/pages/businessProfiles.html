@@ -87,6 +87,7 @@
         .profile-cards::-webkit-scrollbar{
             display: none;
         }
+        
         .search-background{
             height: 200px;
         }
@@ -199,10 +200,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="row profile-cards">
-                    <div class="row  col-md-12" id="profileCards" style="margin-top:30px">
-                        <!-- no pfoiles image -->
-                        <img src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png"  alt="">
+                <div class="row profile-cards py-1">
+                    <div class="col">
+                        <div class="row  col-md-12" id="profileCards" style="margin-top:30px">
+                            <!-- no pfoiles image -->
+                            <!-- <img src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png"  alt=""> -->
+                        </div>
+                        <div class="row page-numbers justify-content-center">
+                         
+                        </div>
                     </div>
                 </div>
             </div>
@@ -307,404 +313,440 @@
         
     </script>
     <script>
-    const myHeaders = new Headers();
-    var profileList = [];
-    var filteredProfiles = [];
-    var userData = {}
-    headroomInit()
-    async function profile(){
-        var authRequestOptions = {
-        method : "POST",
-        redirect : "follow",
-        headers : myHeaders,
-        body : ""
-        }
-        var result = await fetch("../../ws/auth.php",authRequestOptions)
-        .then(response => response.json());
-        return result;
-    }
-    search();
-    async function loadData(){
-        try{
-            profile().then(response =>{
-                userData = response;
-                console.log(userData);
-                if(userData.status == "Logged In")
-                {
-                    document.querySelector('.non-login-header').style.display = "none";
-                    document.querySelector('#navbar-container').style.display = "block";
-                    $('#navbar-container').load('../components/navbar.html');
-                    auth();
-                }
-                loadProfiles();
-            })
-        }
-        catch(error){
-            console.log(error);
-        }
-    }
-    loadData();
-    function search(){
-        var data = [];
-        
-        console.log(data);
-        var searchBar = document.getElementById('searchBar');
-        searchBar.addEventListener('keyup' , (e)=>{
-            if(filteredProfiles.length > 0){
-                console.log("filtered")
-                data = filteredProfiles;
-            }else{
-                console.log("non filtered")
-                data = profileList;
+        const myHeaders = new Headers();
+        var profileList = [];
+        var filteredProfiles = [];
+        var userData = {}
+        headroomInit()
+        async function profile(){
+            var authRequestOptions = {
+            method : "POST",
+            redirect : "follow",
+            headers : myHeaders,
+            body : ""
             }
-            console.log(e.target.value);
-            const searchString = e.target.value.toLowerCase();
-            const filteredData = data.filter( profile =>{
-                return (
-                    profile.ContentName.toLowerCase().includes(searchString) ||
-                    profile.Name.toLowerCase().includes(searchString) ||
-                    profile.BusinessName.toLowerCase().includes(searchString)
-                );
-            })
-            displayMembers(filteredData);
-        })
-    }
-
-
-    async function loadProfiles(){
-        var businessBody = {
-          load : "loadallMemdata"
+            var result = await fetch("../../ws/auth.php",authRequestOptions)
+            .then(response => response.json());
+            return result;
         }
-        businessBody = JSON.stringify(businessBody);
-        var businessRequestOptions = {
-          method : "POST",
-          headers : myHeaders,
-          redirect : "follow",
-          body : businessBody
-        }
-        fetch("../../ws/businessprofile.php",businessRequestOptions)
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            if(Array.isArray(result)){
-                profileList = result;
-                profileList.forEach(profile=>{
-                    var loadContactsBody = {
-                        load : "loadmemcontacts",
-                        id : profile.userid,
-                        category : profile.ContentName
+        search();
+        async function loadData(){
+            try{
+                profile().then(response =>{
+                    userData = response;
+                    console.log(userData);
+                    if(userData.status == "Logged In")
+                    {
+                        document.querySelector('.non-login-header').style.display = "none";
+                        document.querySelector('#navbar-container').style.display = "block";
+                        $('#navbar-container').load('../components/navbar.html');
+                        auth();
                     }
-                    loadContactsBody = JSON.stringify(loadContactsBody);
-                    var loadContactsOptions = {
-                        method : "POST",
-                        redirect : "follow",
-                        headers : myHeaders,
-                        body : loadContactsBody
-                    }
-                    fetch("../../ws/businessprofile.php",loadContactsOptions)
-                    .then(response => response.json())
-                    .then(result => {
-                        console.log(result);
-                        var email = "no email";
-                        var phoneNumber = "no number";
-                        if(Array.isArray(result)){
-                            result.forEach(item=>{
-                                if(item.ContentName === "Phone Number"){
-                                    phoneNumber = item.contactdetails;
-                                }else if(item.ContentName === "Email"){
-                                    email = item.contactdetails
-                                }
-                            });
-                        }
-                        var inedx = profileList.indexOf(profile);
-                        profile.email = email;
-                        profile.phoneNumber  = phoneNumber;
-                        console.log(profileList[inedx]);
-                        profileList[inedx] = profile;
-                        console.log(profile);
-                    })
-                    .then(()=>{
-                        displayMembers(profileList);
-                    })
-                    .catch(error =>{
-                        // noConnection();
-                        console.log(error);
-                    });
+                    loadProfiles();
                 })
             }
-            else{
-                console.log("hello");
-                var mainSection = document.querySelector('.main-section');
-                mainSection.innerHTML  = "";
-                var button = ``;
-                if(userData.privilige == "Admin" || userData.privilige == "Core Member"){
-                    button = `<div class="col-6 text-center">
-                                <a href="./main.html" class="btn btn-primary">Add Profiles</a>
-                            </div>`;
-                }
-                var businessProfiles = document.createElement('div');
-                businessProfiles.innerHTML = `<div class="row align-items-center justify-content-around">
-                                                <div class="col-4">
-                                                    <img src="#" alt="" id="emptyImage">
-                                                    <h4 class="text-center">No Profiles</h4>
-                                                </div>
-                                                `+button+`
-                                            </div>`;
-                //make a template for the empty state;
-                //call empty state function with business profile template as argument
-                emptyState(businessProfiles,"Search").then((result)=>{
-                    mainSection.appendChild(result.firstChild);
-                })
+            catch(error){
+                console.log(error);
             }
-        })
-        .catch(error =>{console.log(error);});    
-    }
-    function displayMembers(profiles){
-        console.log(profiles);
-        var profileCards = document.getElementById('profileCards');
-        if(profiles.length > 0){
+        }
+        loadData();
+        function search(){
+            var data = [];
             
-            console.log(profiles);
-            const cardHtml = (profiles)
-                .map((profile) =>{
-                    var editBtn = "";
-                    var referBtn = "";
-                    if(userData.status === "Logged In"){
-                        var temp = profile.userid.slice(1);
-                        referBtn = `<a class="btn btn-warning mr-1 text-white" href="./refferalForm.html?action=bussiness&id=%2B`+temp+`">
-                                <span class="material-icons  align-middle">
-                                    people
-                                </span>
-                                Refer
-                                </a>`;
-                        if(userData.privilige == "Admin"){
-                            var temp = profile.userid.slice(1);
-                            editBtn = `<a class="btn btn-primary mr-1 text-white" href="./member_form.html?action=modify&memberId=%2B`+temp+`">
-                                <span class="material-icons  align-middle">
-                                    edit
-                                </span>
-                                Edit Profile
-                                </a>`;
+            console.log(data);
+            var searchBar = document.getElementById('searchBar');
+            searchBar.addEventListener('keyup' , (e)=>{
+                if(filteredProfiles.length > 0){
+                    console.log("filtered")
+                    data = filteredProfiles;
+                }else{
+                    console.log("non filtered")
+                    data = profileList;
+                }
+                console.log(e.target.value);
+                const searchString = e.target.value.toLowerCase();
+                const filteredData = data.filter( profile =>{
+                    return (
+                        profile.ContentName.toLowerCase().includes(searchString) ||
+                        profile.Name.toLowerCase().includes(searchString) ||
+                        profile.BusinessName.toLowerCase().includes(searchString)
+                    );
+                })
+                displayMembers(filteredData);
+            })
+        }
+
+
+        async function loadProfiles(){
+            var page = 1;
+            //build page links
+            var data = {
+                load : "pageCount"
+            }
+            data = JSON.stringify(data);
+            var requestOptions = {
+                method :"POST",
+                redirect : "follow",
+                headers : myHeaders,
+                body : data
+            };
+            try {
+                var result = await fetch('../../ws/businessprofile.php',requestOptions).then(response => response.json());
+                console.log(result);
+                var count = result.count;
+                console.log(count);
+                console.log(pageElement);
+                for(var i = 1 ; i <= count ; i ++){
+                    var pageContainer = document.querySelector('.page-numbers');
+                    var pageElement = document.createElement('a');
+                    pageElement.setAttribute('class','mr-1 p-1 bg-primary text-white');
+                    pageElement.setAttribute('href',`?page=`+i)
+                    console.log(i);
+                    pageElement.innerText = i;
+                    pageContainer.appendChild(pageElement);
+                }
+            } catch (error) {
+                console.log(error)
+            }
+            const params = (new URL(document.location)).searchParams;
+            if(params.get('page')){
+                page = params.get('page');
+            }
+            var businessBody = {
+                load : "loadallMemdata",
+                page
+            }
+            businessBody = JSON.stringify(businessBody);
+            console.log(businessBody);
+            var businessRequestOptions = {
+            method : "POST",
+            headers : myHeaders,
+            redirect : "follow",
+            body : businessBody
+            }
+            fetch("../../ws/businessprofile.php",businessRequestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if(Array.isArray(result)){
+                    profileList = result;
+                    profileList.forEach(profile=>{
+                        var loadContactsBody = {
+                            load : "loadmemcontacts",
+                            id : profile.userid,
+                            category : profile.ContentName
                         }
+                        loadContactsBody = JSON.stringify(loadContactsBody);
+                        var loadContactsOptions = {
+                            method : "POST",
+                            redirect : "follow",
+                            headers : myHeaders,
+                            body : loadContactsBody
+                        }
+                        fetch("../../ws/businessprofile.php",loadContactsOptions)
+                        .then(response => response.json())
+                        .then(result => {
+                            console.log(result);
+                            var email = "no email";
+                            var phoneNumber = "no number";
+                            if(Array.isArray(result)){
+                                result.forEach(item=>{
+                                    if(item.ContentName === "Phone Number"){
+                                        phoneNumber = item.contactdetails;
+                                    }else if(item.ContentName === "Email"){
+                                        email = item.contactdetails
+                                    }
+                                });
+                            }
+                            var inedx = profileList.indexOf(profile);
+                            profile.email = email;
+                            profile.phoneNumber  = phoneNumber;
+                            console.log(profileList[inedx]);
+                            profileList[inedx] = profile;
+                            console.log(profile);
+                        })
+                        .then(()=>{
+                            displayMembers(profileList);
+                        })
+                        .catch(error =>{
+                            // noConnection();
+                            console.log(error);
+                        });
+                    })
+                }
+                else{
+                    console.log("hello");
+                    var mainSection = document.querySelector('.main-section');
+                    mainSection.innerHTML  = "";
+                    var button = ``;
+                    if(userData.privilige == "Admin" || userData.privilige == "Core Member"){
+                        button = `<div class="col-6 text-center">
+                                    <a href="./main.html" class="btn btn-primary">Add Profiles</a>
+                                </div>`;
                     }
-                    if(profile.logo === ""){
-                        profile.logo = "../../images/emptystates/logo.jpg";
-                    }
-                    var card = document.createElement("div");
-                    card.innerHTML = `<div class="col-md-12 profile-card">
-                        <div class="card " style="margin-bottom: 5%;">
-                            <div class="card-body py-1 m-1">
-                                <div class="col">
-                                    <div class="row ">
-                                        <div class="col-md-4 col-12 ">
-                                            <h3 class="text-bold-500 text-primary">`+profile.BusinessName+`</h3>
-                                        </div>
-                                        <div class="col-md-4  col-12">
-                                            <h5 class="text-bold-500">`+profile.Name+`</h5>
-                                        </div>
-                                        <div class="col-md-4 col-12">
-                                            <div class="chip chip-primary" >
-                                                <span class="chip-text text-white" style="font-size: .9rem; padding: 0.2rem;">
-                                                    `+ profile.ContentName +`
-                                                </span>
+                    var businessProfiles = document.createElement('div');
+                    businessProfiles.innerHTML = `<div class="row align-items-center justify-content-around">
+                                                    <div class="col-4">
+                                                        <img src="#" alt="" id="emptyImage">
+                                                        <h4 class="text-center">No Profiles</h4>
+                                                    </div>
+                                                    `+button+`
+                                                </div>`;
+                    //make a template for the empty state;
+                    //call empty state function with business profile template as argument
+                    emptyState(businessProfiles,"Search").then((result)=>{
+                        mainSection.appendChild(result.firstChild);
+                    })
+                }
+            })
+            .catch(error =>{console.log(error);});    
+        }
+        function displayMembers(profiles){
+            console.log(profiles);
+            var profileCards = document.getElementById('profileCards');
+            if(profiles.length > 0){
+                
+                console.log(profiles);
+                const cardHtml = (profiles)
+                    .map((profile) =>{
+                        var editBtn = "";
+                        var referBtn = "";
+                        if(userData.status === "Logged In"){
+                            var temp = profile.userid.slice(1);
+                            referBtn = `<a class="btn btn-warning mr-1 text-white" href="./refferalForm.html?action=bussiness&id=%2B`+temp+`">
+                                    <span class="material-icons  align-middle">
+                                        people
+                                    </span>
+                                    Refer
+                                    </a>`;
+                            if(userData.privilige == "Admin"){
+                                var temp = profile.userid.slice(1);
+                                editBtn = `<a class="btn btn-primary mr-1 text-white" href="./member_form.html?action=modify&memberId=%2B`+temp+`">
+                                    <span class="material-icons  align-middle">
+                                        edit
+                                    </span>
+                                    Edit Profile
+                                    </a>`;
+                            }
+                        }
+                        if(profile.logo === ""){
+                            profile.logo = "../../images/emptystates/logo.jpg";
+                        }
+                        var card = document.createElement("div");
+                        card.innerHTML = `<div class="col-md-12 profile-card">
+                            <div class="card " style="margin-bottom: 5%;">
+                                <div class="card-body py-1 m-1">
+                                    <div class="col">
+                                        <div class="row ">
+                                            <div class="col-md-4 col-12 ">
+                                                <h3 class="text-bold-500 text-primary">`+profile.BusinessName+`</h3>
                                             </div>
-                                
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-4 col-12">
-                                            <img src="`+profile.logo+`" id="business-image" alt="business image">
-                                        </div>
-                                        <div class="col-md-4 col-12" >
-                                            <div class="row mb-2">
-                                                <span class="material-icons mr-1 info">
-                                                    phone
-                                                </span>
-                                                <span >
-                                                    `+profile.phoneNumber+`
-                                                </span>
+                                            <div class="col-md-4  col-12">
+                                                <h5 class="text-bold-500">`+profile.Name+`</h5>
                                             </div>
-                                            <div class="row">
-                                                <span class="material-icons mr-1 info">
-                                                    mail
-                                                </span>
-                                                <span>
-                                                    `+profile.email+`
-                                                </span>
+                                            <div class="col-md-4 col-12">
+                                                <div class="chip chip-primary" >
+                                                    <span class="chip-text text-white" style="font-size: .9rem; padding: 0.2rem;">
+                                                        `+ profile.ContentName +`
+                                                    </span>
+                                                </div>
+                                    
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-12">
-                                            <span class="row material-icons danger">
-                                                place
-                                            </span>
-                                            <span class="row ">
-                                                `+profile.Address+`
-                                            </span>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="card-footer" style="margin-bottom:-7%">
-                                        <div class="row justify-content-end">
-                                            `+editBtn+`
-                                            <button class="btn btn-primary mr-1" onclick="viewProfile('`+profile.ContentName+`','`+profile.userid+`')">
-                                                <span class="material-icons  align-middle">
-                                                    visibility
+                                        <div class="row mt-2">
+                                            <div class="col-md-4 col-12">
+                                                <img src="`+profile.logo+`" id="business-image" alt="business image">
+                                            </div>
+                                            <div class="col-md-4 col-12" >
+                                                <div class="row mb-2">
+                                                    <span class="material-icons mr-1 info">
+                                                        phone
+                                                    </span>
+                                                    <span >
+                                                        `+profile.phoneNumber+`
+                                                    </span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="material-icons mr-1 info">
+                                                        mail
+                                                    </span>
+                                                    <span>
+                                                        `+profile.email+`
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-12">
+                                                <span class="row material-icons danger">
+                                                    place
                                                 </span>
-                                                View Profile
-                                            </button>
-                                            `+referBtn+`
+                                                <span class="row ">
+                                                    `+profile.Address+`
+                                                </span>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="card-footer" style="margin-bottom:-7%">
+                                            <div class="row justify-content-end">
+                                                `+editBtn+`
+                                                <button class="btn btn-primary mr-1" onclick="viewProfile('`+profile.ContentName+`','`+profile.userid+`')">
+                                                    <span class="material-icons  align-middle">
+                                                        visibility
+                                                    </span>
+                                                    View Profile
+                                                </button>
+                                                `+referBtn+`
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                `;  
-                
-                
-                return card.innerHTML; 
-            }).join('');
-            profileCards.innerHTML = cardHtml;
-        }else{
-            empty(profileCards);
-        }
-
-        
-    }
-    function viewProfile(category,memberid){
-        memberid = memberid.slice(1);
-        window.open(`./viewBusinessProfile.html?category=`+category+`&memberid=%2B`+memberid,'_self');
-    }
-    async function loadContactDetails(contactDiv,category,id){
-        return true;
-    }
-    function applyFilters(){
-        //target each set of radio buttons
-        var filteredData = [];
-        var categoryFilter = Array.from(document.querySelectorAll('input[name="categoriesfilter"]:checked'));
-        console.log(categoryFilter);
-        var groupFilter = Array.from(document.querySelectorAll('input[name="chaptersfilter"]:checked'));
-        var chapterFilter = Array.from(document.querySelectorAll('input[name="groupsfilter"]:checked'));
-        if(categoryFilter.length > 0){
-            categoryFilter.forEach(category =>{
-                var temp = profileList.filter( item =>{
-                    var searchId = category.defaultValue.toLowerCase();
-                    return(
-                        item.ContentName.toLowerCase() === searchId
-                    );
-                });
-                console.log(temp);
-                filteredData = filteredData.concat(temp);
-            })
-        }
-        if(groupFilter.length > 0){
-
-        }
-        if(chapterFilter.length > 0){
-
-        }
-        filteredProfiles = filteredData;
-        displayMembers(filteredData);
-    }
-    function loadFilter(filter){
-        var filterOptions = {
-            load : "loadbyparent",
-            id : filter
-        }
-        filterOptions = JSON.stringify(filterOptions);
-        var filterRequest = {
-            method : "POST",
-            redirect : "follow",
-            headers : myHeaders,
-            body : filterOptions
-        }
-        fetch("../../ws/Accessconfig.php",filterRequest)
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            var count = 0;
-            if(Array.isArray(result)){
-                var filterOptions = "";
-                result.forEach(element => {
-                    if(element.status == "0"){
-                        return;
-                    }
-                    count++;
-                    filterOptions = filterOptions+ `<div class="row py-1 px-2" style="border-bottom : 0.5px solid #c1c1c1">
-                                                        <span class="mx-1"></span>
-                                                        <div class="checkbox" >
-                                                            <input type="checkbox" class="checkbox-input" id="`+element.ContentName+`" name="`+filter+`filter" value="`+element.ContentName+`">
-                                                            <label for="`+element.ContentName+`" class="text-white">`+element.ContentName+`</label>
-                                                        </div>
-                                                    </div>`;
-                });
-                var filterContainer = document.getElementById(filter+`-filters`);
-                filterContainer.innerHTML = filterOptions;
-                //get filter count element and add length property to it
-                console.log(filterContainer);
-                var filterHead = document.querySelector(`.filter-types`+filter);
-                filterHead.querySelector('.filter-count').innerText = count;
+                    `;  
+                    
+                    
+                    return card.innerHTML; 
+                }).join('');
+                profileCards.innerHTML = cardHtml;
+            }else{
+                empty(profileCards);
             }
-        })
-        .then(()=>{
-            var options = document.querySelectorAll(`input[name="`+filter+`filter"]`);
-            options = Array.from(options);
-            options.forEach((option)=>{
-                option.addEventListener('click',()=>{
-                    applyFilters();
-                });
-            });
-        })
-        .catch(error =>{console.log(error);});
-    }
-    function loadFilters(){
-        var filterNames = ["categories","chapters", "groups"];
-        var div = document.createElement('div');
-        var filterContainer= document.getElementById('filter-container');
-        filterNames.forEach((filter)=>{
-            //create filter element
-            div.innerHTML = `<div class="row px-2 justify-content-between align-items-center py-1 filter-types filter-types`+filter+`" style="border-bottom : 0.5px solid #c1c1c1">
-                                <h4 class="text-white text-bold-500" style="text-transform: capitalize;">`+filter+`</h5>
-                                 <span class="badge-pill badge badge-white text-primary badge-round filter-count">0</span>  
-                            </div>
-                            <div id="`+filter+`-filters" style="display:none">
 
-                            </div>`;
-            filterContainer.appendChild(div.firstChild);
-            filterContainer.appendChild(div.firstChild.nextSibling);
-            loadFilter(filter);
-            openFilters(filter);
-        })
-        
-    }
-    function openFilters(filter){
-        var filterHeads = document.querySelectorAll(`.filter-types`+filter);
-        filterHeads = Array.from(filterHeads);
-        for(var i in filterHeads){
-            filterHeads[i].addEventListener('click',()=>{
-                var filters = filterHeads[i].nextElementSibling;
-                if(filters.style.display == "block"){
-                   filters.style.display = "none"
-                }else{
-                   filters.style.display = "block"
+            
+        }
+        function viewProfile(category,memberid){
+            memberid = memberid.slice(1);
+            window.open(`./viewBusinessProfile.html?category=`+category+`&memberid=%2B`+memberid,'_self');
+        }
+        async function loadContactDetails(contactDiv,category,id){
+            return true;
+        }
+        function applyFilters(){
+            //target each set of radio buttons
+            var filteredData = [];
+            var categoryFilter = Array.from(document.querySelectorAll('input[name="categoriesfilter"]:checked'));
+            console.log(categoryFilter);
+            var groupFilter = Array.from(document.querySelectorAll('input[name="chaptersfilter"]:checked'));
+            var chapterFilter = Array.from(document.querySelectorAll('input[name="groupsfilter"]:checked'));
+            if(categoryFilter.length > 0){
+                categoryFilter.forEach(category =>{
+                    var temp = profileList.filter( item =>{
+                        var searchId = category.defaultValue.toLowerCase();
+                        return(
+                            item.ContentName.toLowerCase() === searchId
+                        );
+                    });
+                    console.log(temp);
+                    filteredData = filteredData.concat(temp);
+                })
+            }
+            if(groupFilter.length > 0){
+
+            }
+            if(chapterFilter.length > 0){
+
+            }
+            filteredProfiles = filteredData;
+            displayMembers(filteredData);
+        }
+        function loadFilter(filter){
+            var filterOptions = {
+                load : "loadbyparent",
+                id : filter
+            }
+            filterOptions = JSON.stringify(filterOptions);
+            var filterRequest = {
+                method : "POST",
+                redirect : "follow",
+                headers : myHeaders,
+                body : filterOptions
+            }
+            fetch("../../ws/Accessconfig.php",filterRequest)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                var count = 0;
+                if(Array.isArray(result)){
+                    var filterOptions = "";
+                    result.forEach(element => {
+                        if(element.status == "0"){
+                            return;
+                        }
+                        count++;
+                        filterOptions = filterOptions+ `<div class="row py-1 px-2" style="border-bottom : 0.5px solid #c1c1c1">
+                                                            <span class="mx-1"></span>
+                                                            <div class="checkbox" style="cursor : pointer">
+                                                                <input type="checkbox" class="checkbox-input" id="`+element.ContentName+`" name="`+filter+`filter" value="`+element.ContentName+`">
+                                                                <label for="`+element.ContentName+`" class="text-white">`+element.ContentName+`</label>
+                                                            </div>
+                                                        </div>`;
+                    });
+                    var filterContainer = document.getElementById(filter+`-filters`);
+                    filterContainer.innerHTML = filterOptions;
+                    //get filter count element and add length property to it
+                    console.log(filterContainer);
+                    var filterHead = document.querySelector(`.filter-types`+filter);
+                    filterHead.querySelector('.filter-count').innerText = count;
                 }
             })
+            .then(()=>{
+                var options = document.querySelectorAll(`input[name="`+filter+`filter"]`);
+                options = Array.from(options);
+                options.forEach((option)=>{
+                    option.addEventListener('click',()=>{
+                        applyFilters();
+                    });
+                });
+            })
+            .catch(error =>{console.log(error);});
         }
-    }
-    loadFilters();
-    async function empty(section){
-        section.innerHTML = "";
-        var template = document.createElement('div');
-        template.innerHTML = `<div class="row justify-content-center">
-                                <div class="col-8">
-                                    <div class="row justify-content-center">
-                                        <img src="#" id="emptyImage" alt="" width="50%">
-                                    </div>
+        function loadFilters(){
+            var filterNames = ["categories","chapters", "groups"];
+            var div = document.createElement('div');
+            var filterContainer= document.getElementById('filter-container');
+            filterNames.forEach((filter)=>{
+                //create filter element
+                div.innerHTML = `<div class="row px-2 justify-content-between align-items-center py-1 filter-types filter-types`+filter+`" style="border-bottom : 0.5px solid #c1c1c1">
+                                    <h4 class="text-white text-bold-500" style="text-transform: capitalize;">`+filter+`</h5>
+                                    <span class="badge-pill badge badge-white text-primary badge-round filter-count">0</span>  
                                 </div>
-                            </div>`;
-        template = await emptyState(template,"Search");
-        section.innerHTML = template.innerHTML;
-    }
+                                <div id="`+filter+`-filters" style="display:none">
+
+                                </div>`;
+                filterContainer.appendChild(div.firstChild);
+                filterContainer.appendChild(div.firstChild.nextSibling);
+                loadFilter(filter);
+                openFilters(filter);
+            })
+            
+        }
+        function openFilters(filter){
+            var filterHeads = document.querySelectorAll(`.filter-types`+filter);
+            filterHeads = Array.from(filterHeads);
+            for(var i in filterHeads){
+                filterHeads[i].addEventListener('click',()=>{
+                    var filters = filterHeads[i].nextElementSibling;
+                    if(filters.style.display == "block"){
+                    filters.style.display = "none"
+                    }else{
+                    filters.style.display = "block"
+                    }
+                })
+            }
+        }
+        loadFilters();
+        async function empty(section){
+            section.innerHTML = "";
+            var template = document.createElement('div');
+            template.innerHTML = `<div class="row justify-content-center">
+                                    <div class="col-8">
+                                        <div class="row justify-content-center">
+                                            <img src="#" id="emptyImage" alt="" width="50%">
+                                        </div>
+                                    </div>
+                                </div>`;
+            template = await emptyState(template,"Search");
+            section.innerHTML = template.innerHTML;
+        }
     </script>
     
 </body>

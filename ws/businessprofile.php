@@ -9,7 +9,11 @@ $rcvData=$data['load'];
 
 if($rcvData == "loadallMemdata")
 {
+  $page = $data['page'];
 	load_allMembusinessdata($conn);
+}
+else if($rcvData == "pageCount"){
+  load_count($conn);
 }
 else if($rcvData == "loadbynumber")
 {
@@ -98,11 +102,26 @@ else
   $state = $data['state'];
   update_businessprofile($conn);
 }
-
-function load_allMembusinessdata($conn)
-{
+function load_count($conn){
   $sqlQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`privilige`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id`";
   $datatable = getdata($conn, $sqlQuery);
+  $totalRows = count($datatable);
+  // echo $totalRows;
+  $recordsPerPage = 2;
+  $pageCount = ceil($totalRows / $recordsPerPage);
+  $jsonresponse = array('count' => $pageCount);
+  echo json_encode($jsonresponse);
+}
+function load_allMembusinessdata($conn)
+{
+  global $page;
+  //
+  $startingRecord = ( $page - 1) * 2;
+  // echo $startingRecord;
+  $sqlQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`privilige`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id` LIMIT $startingRecord,2";
+  $datatable = getdata($conn, $sqlQuery);
+  $totalRows = count($datatable);
+  // echo $totalRows;
   if (count($datatable) > 0) 
   {
     echo json_encode($datatable);
