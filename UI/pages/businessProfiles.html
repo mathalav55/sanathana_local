@@ -93,6 +93,17 @@
         .row{
             margin: 0 ;
         }
+        #filter-container{
+            border : 1px solid #c1c1c1;
+            border-radius: 5px;
+            border-bottom: none;
+        }
+        /* .filter-count{
+            color : #000;
+           
+            background-color: #fff;
+            border-radius: 50%;
+        } */
     </style>
 </head>
 
@@ -165,7 +176,7 @@
                 <div class="side-bar card">
                     <div class="card-body bg-primary ">
                         
-                        <div class="col" id="filter-container">
+                        <div class="col p-0" id="filter-container">
                             
                         </div>
                         
@@ -611,13 +622,16 @@
         .then(response => response.json())
         .then(result => {
             console.log(result);
+            var count = 0;
             if(Array.isArray(result)){
                 var filterOptions = "";
                 result.forEach(element => {
                     if(element.status == "0"){
                         return;
                     }
-                    filterOptions = filterOptions+ `<div class="row m-2">
+                    count++;
+                    filterOptions = filterOptions+ `<div class="row py-1 px-2" style="border-bottom : 0.5px solid #c1c1c1">
+                                                        <span class="mx-1"></span>
                                                         <div class="checkbox" >
                                                             <input type="checkbox" class="checkbox-input" id="`+element.ContentName+`" name="`+filter+`filter" value="`+element.ContentName+`">
                                                             <label for="`+element.ContentName+`" class="text-white">`+element.ContentName+`</label>
@@ -626,6 +640,10 @@
                 });
                 var filterContainer = document.getElementById(filter+`-filters`);
                 filterContainer.innerHTML = filterOptions;
+                //get filter count element and add length property to it
+                console.log(filterContainer);
+                var filterHead = document.querySelector(`.filter-types`+filter);
+                filterHead.querySelector('.filter-count').innerText = count;
             }
         })
         .then(()=>{
@@ -645,8 +663,9 @@
         var filterContainer= document.getElementById('filter-container');
         filterNames.forEach((filter)=>{
             //create filter element
-            div.innerHTML = `<div class="row ml-1 filter-types filter-types`+filter+`">
+            div.innerHTML = `<div class="row px-2 justify-content-between align-items-center py-1 filter-types filter-types`+filter+`" style="border-bottom : 0.5px solid #c1c1c1">
                                 <h4 class="text-white text-bold-500" style="text-transform: capitalize;">`+filter+`</h5>
+                                 <span class="badge-pill badge badge-white text-primary badge-round filter-count">0</span>  
                             </div>
                             <div id="`+filter+`-filters" style="display:none">
 
