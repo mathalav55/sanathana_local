@@ -10,10 +10,10 @@ $rcvData=$data['load'];
 if($rcvData == "loadallMemdata")
 {
   $page = $data['page'];
+  $chapters = $data['chapters'];
+  $groups = $data['groups'];
+  $categories = $data['categories'];
 	load_allMembusinessdata($conn);
-}
-else if($rcvData == "pageCount"){
-  load_count($conn);
 }
 else if($rcvData == "loadbynumber")
 {
@@ -102,35 +102,76 @@ else
   $state = $data['state'];
   update_businessprofile($conn);
 }
-function load_count($conn){
-  $sqlQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`privilige`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id`";
-  $datatable = getdata($conn, $sqlQuery);
-  $totalRows = count($datatable);
-  // echo $totalRows;
-  $recordsPerPage = 2;
-  $pageCount = ceil($totalRows / $recordsPerPage);
-  $jsonresponse = array('count' => $pageCount);
-  echo json_encode($jsonresponse);
-}
+
 function load_allMembusinessdata($conn)
 {
-  global $page;
-  //
-  $startingRecord = ( $page - 1) * 2;
-  // echo $startingRecord;
-  $sqlQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`privilige`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id` LIMIT $startingRecord,2";
-  $datatable = getdata($conn, $sqlQuery);
-  $totalRows = count($datatable);
-  // echo $totalRows;
-  if (count($datatable) > 0) 
-  {
-    echo json_encode($datatable);
-  } 
-  else 
-  {
-    $jsonresponse = array('code' => '500', 'status' => 'Nodata');
-    echo json_encode($jsonresponse);
+  global $page,$chapters,$groups,$categories;
+  //starting record according to page numer
+  $recordsPerPage = 3;
+  $startingRecord = ( $page - 1) * $recordsPerPage;
+  
+  $baseQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`privilige`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id`";
+  $countQuery = "Select count(*) AS `count` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id`";
+  //filtered queries
+  $flag = false; //decide whether to add "and" or "where"
+  //categories filter
+  if(strlen($categories) > 0){
+    if(!$flag){
+     //append where to string 
+     $baseQuery  = $baseQuery . " WHERE ";
+     $countQuery = $countQuery . " WHERE ";
+     $flag = true;
+    }else{
+      //append and to string
+      $baseQuery  = $baseQuery . " and";
+      $countQuery = $countQuery . " and";
+    }
+    //append fiter to string
+    $baseQuery = $baseQuery . "`businessprofile`.`categories` in ($categories)";
+    $countQuery = $countQuery . "`businessprofile`.`categories` in ($categories)";
   }
+  //groups filter
+  if(strlen($groups) > 0){
+    if(!$flag){
+      //append where to string
+      $baseQuery  = $baseQuery . " WHERE ";
+      $countQuery = $countQuery . " WHERE "; 
+      $flag = true;
+     }else{
+       //append and to string
+      $baseQuery  = $baseQuery . " and ";
+      $countQuery = $countQuery . " and ";
+     }
+     //append fiter to string
+     $baseQuery = $baseQuery . "`businessprofile`.`memberid` in (SELECT DISTINCT `membergroups`.`memberid` FROM `membergroups` WHERE `GroupId` in ($groups))";
+     $countQuery = $countQuery . "`businessprofile`.`memberid` in (SELECT DISTINCT `membergroups`.`memberid` FROM `membergroups` WHERE `GroupId` in ($groups))";
+  }
+  //chapters filter
+  if(strlen($chapters) > 0){
+    if(!$flag){
+      //append where to string
+      $baseQuery  = $baseQuery . " WHERE ";
+      $countQuery = $countQuery . " WHERE ";
+      $flag = true;
+     }else{
+       //append and to string
+      $baseQuery  = $baseQuery . " and ";
+      $countQuery = $countQuery . " and ";
+     }
+     //append fiter to string
+    $baseQuery  = $baseQuery . "`businessprofile`.`memberid` in (SELECT distinct `memberchapters`.`memberid` FROM `memberchapters` WHERE chapter in ($chapters))";
+    $countQuery  = $countQuery . "`businessprofile`.`memberid` in (SELECT distinct `memberchapters`.`memberid` FROM `memberchapters` WHERE chapter in ($chapters))";
+  }
+  //add limit to the base query
+  $baseQuery = $baseQuery . "LIMIT $startingRecord, $recordsPerPage";
+  //run count query and select query
+  $data = getdata($conn,$baseQuery);
+  $count = getdata($conn,$countQuery);
+  $count[0]['count'] = ceil($count[0]['count'] / $recordsPerPage);
+  array_unshift($data,$count[0]);
+  echo json_encode($data);
+  //calucuate page count
+  //send it as and object in the result array
 }
 
 function load_singlemembusinessdata($conn)

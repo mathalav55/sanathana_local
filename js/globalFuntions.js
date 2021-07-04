@@ -1116,10 +1116,15 @@ function addResetModal(memberId){
                         <input type="password" id="confirmNewPassword" class="form-control" placeholder="New Password">
                     </div>
                 </div>
-                <div class="col-12" id="resetPasswordBtn">
-                    <button type="button" class="btn btn-primary">
-                        <span class="d-none d-sm-block" >Change Password</span>
-                    </button>
+                <div class="col-12" ">
+                    <div class= "row justify-content-between">
+                      <button type="button" class="btn btn-primary col-md-6" id="resetPasswordBtn>
+                          <span class="d-none d-sm-block"  >Change Password</span>
+                      </button>
+                      <button type="button" class="btn btn-warning col-md-4" id="cancelBtn">
+                          <span class="d-none d-sm-block" >Cancel</span>
+                      </button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -1133,6 +1138,9 @@ function addResetModal(memberId){
       if (event.target == modal) {
         modal.style.display = "none";
       }
+    }
+    modal.querySelector('#cancelBtn').onclick = ()=>{
+      modal.style.display = "none";
     }
     // getting modal content
     var oldPassword = modal.querySelector('#oldPassword');
@@ -1211,12 +1219,8 @@ function addResetModal(memberId){
           })
         }
       }
-    }
-    
-    
-    
+    }   
 }
-// addResetModal();
  function loadProfile(userData){
     console.log(userData);
     var data = {

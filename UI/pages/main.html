@@ -300,7 +300,7 @@ var myHeaders = new Headers();
                                 <div class="row chip chip-primary">
                                     <div class="col chip-body">
                                         <span class="chip-text" style="font-size: 1.2rem; padding: 0.4rem;">
-                                        `+item.ContentName+`
+                                        `+item.Alias_Name+`
                                         </span>
                                     </div>
                                 </div>
@@ -310,17 +310,123 @@ var myHeaders = new Headers();
                                     <div class="col">
                                         <a href="#" id="` + item.ContentName + `Btn " class="row justify-content-end" onclick="openAddForm('`+item.ContentName+`','`+item.id+`')">
                                             <div class="livicon-evo" data-options="
-                                            name: plus-alt.svg; 
-                                            size: 3rem; 
-                                            "></div>
+                                                name: plus-alt.svg; 
+                                                style: original; 
+                                                size: 3rem; 
+                                                strokeStyle: original; 
+                                                strokeWidth: original; 
+                                                tryToSharpen: true; 
+                                                rotate: none; 
+                                                flipHorizontal: false; 
+                                                flipVertical: false; 
+                                                strokeColor: #22A7F0; 
+                                                strokeColorAction: #b3421b; 
+                                                strokeColorAlt: #F9B32F; 
+                                                strokeColorAltAction: #ab69c6; 
+                                                fillColor: #91e9ff; 
+                                                fillColorAction: #ff926b; 
+                                                solidColor: #6C7A89; 
+                                                solidColorAction: #4C5A69; 
+                                                solidColorBgAction: #ffffff; 
+                                                solidColorBg: #ffffff; 
+                                                colorsOnHover: none; 
+                                                colorsHoverTime: 0.3; 
+                                                colorsWhenMorph: none; 
+                                                brightness: 0.1; 
+                                                saturation: 0.07; 
+                                                morphState: start; 
+                                                morphImage: none; 
+                                                allowMorphImageTransform: false; 
+                                                strokeWidthFactorOnHover: none; 
+                                                strokeWidthOnHoverTime: 0.3; 
+                                                keepStrokeWidthOnResize: false; 
+                                                animated: true; 
+                                                eventType: hover; 
+                                                eventOn: self; 
+                                                autoPlay: false; 
+                                                delay: 0; 
+                                                duration: default; 
+                                                repeat: default; 
+                                                repeatDelay: default; 
+                                                drawOnViewport: false; 
+                                                viewportShift: oneHalf; 
+                                                drawDelay: 0; 
+                                                drawTime: 1; 
+                                                drawStagger: 0.1; 
+                                                drawStartPoint: middle; 
+                                                drawColor: same; 
+                                                drawColorTime: 1; 
+                                                drawReversed: false; 
+                                                drawEase: Power1.easeOut; 
+                                                eraseDelay: 0; 
+                                                eraseTime: 1; 
+                                                eraseStagger: 0.1; 
+                                                eraseStartPoint: middle; 
+                                                eraseReversed: true; 
+                                                eraseEase: Power1.easeOut; 
+                                                touchEvents: false 
+                                                "></div>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a href="#" id="` + item.ContentName + `Btn0 " onclick="openListView('`+ item.ContentName+`','`+item.id+`')" class="row justify-content-end">
                                             <div class="livicon-evo" data-options="
-                                            name: thumbnails-big.svg; 
-                                            size: 3rem;
-                                            "></div>
+                                                name: thumbnails-big.svg; 
+                                                style: original; 
+                                                size: 3rem; 
+                                                strokeStyle: original; 
+                                                strokeWidth: original; 
+                                                tryToSharpen: true; 
+                                                rotate: none; 
+                                                flipHorizontal: false; 
+                                                flipVertical: false; 
+                                                strokeColor: #22A7F0; 
+                                                strokeColorAction: #b3421b; 
+                                                strokeColorAlt: #F9B32F; 
+                                                strokeColorAltAction: #ab69c6; 
+                                                fillColor: #91e9ff; 
+                                                fillColorAction: #ff926b; 
+                                                solidColor: #6C7A89; 
+                                                solidColorAction: #4C5A69; 
+                                                solidColorBgAction: #ffffff; 
+                                                solidColorBg: #ffffff; 
+                                                colorsOnHover: none; 
+                                                colorsHoverTime: 0.3; 
+                                                colorsWhenMorph: none; 
+                                                brightness: 0.1; 
+                                                saturation: 0.07; 
+                                                morphState: start; 
+                                                morphImage: none; 
+                                                allowMorphImageTransform: false; 
+                                                strokeWidthFactorOnHover: none; 
+                                                strokeWidthOnHoverTime: 0.3; 
+                                                keepStrokeWidthOnResize: false; 
+                                                animated: true; 
+                                                eventType: hover; 
+                                                eventOn: self; 
+                                                autoPlay: false; 
+                                                delay: 0; 
+                                                duration: default; 
+                                                repeat: default; 
+                                                repeatDelay: default; 
+                                                drawOnViewport: false; 
+                                                viewportShift: oneHalf; 
+                                                drawDelay: 0; 
+                                                drawTime: 1; 
+                                                drawStagger: 0.1; 
+                                                drawStartPoint: middle; 
+                                                drawColor: same; 
+                                                drawColorTime: 1; 
+                                                drawReversed: false; 
+                                                drawEase: Power1.easeOut; 
+                                                eraseDelay: 0; 
+                                                eraseTime: 1; 
+                                                eraseStagger: 0.1; 
+                                                eraseStartPoint: middle; 
+                                                eraseReversed: true; 
+                                                eraseEase: Power1.easeOut; 
+                                                touchEvents: false 
+                                                "></div>
                                         </a>
                                     </div>
                                 </div>
@@ -401,7 +507,7 @@ function openAddForm(id,parentId){
             ref.appendChild(script);
         });
     }
-    loadScripts()
+    loadScripts();
 </script>
 </body>
 </html>

@@ -71,9 +71,6 @@
         .filter-types{
             cursor: pointer;
         }
-        .main-section{
-            height: 100vh;
-        }
         .profile-cards{
             /* height: 80vh; */
             overflow-y: scroll;
@@ -99,6 +96,20 @@
             border-radius: 5px;
             border-bottom: none;
         }
+        input[name="pageNumber"]{
+            display: none;
+        }
+        .pageNumber{
+            margin: 0.2rem;
+            padding: 1rem;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #5a8dee;
+            cursor: pointer;
+        }
+        .pageNumber:hover{
+            background-color: #86b1ff;
+        }
         /* .filter-count{
             color : #000;
            
@@ -114,7 +125,7 @@
     <!-- <section> -->
 
         
-        <div class=" row p-1" style="position: fixed;bottom:0;z-index: 999999;">
+        <div class="row p-1" style="position: fixed;bottom:0;z-index: 999999;">
             <div class="col toast-container">
                 
             </div>
@@ -158,22 +169,13 @@
         </div>
     <!-- </section> -->
 
-    <section>
-        <div class="container-fluid float-left" style="width:100% !important;">
-            
-            <div class="row align-items-center">
-                <!-- Menu Area Start -->
-                <div class="col-md-12">
-                    <div class="menu_area">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="container main-section bg-grey" style="padding-top:10%;height: fit-content;">
+    
+    <div class="container main-section bg-grey" style="padding-top:5%;">
         <div class="row">
-            <div class="col-md-3" >
+            <div class="col-md-3">
+
+            </div>
+            <div  style="height: 90vh;overflow-y: scroll;left:0;position: absolute;width: 25%;" >
                 <div class="side-bar card">
                     <div class="card-body bg-primary ">
                         
@@ -184,7 +186,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9" >
+            
+            <div class="col-md-9"  style="padding-top:3%;">
                 <div class="row search-bar ">
                     <div class="row  col-md-12  align-items-center">
                         <div class="col-md-6 col-12">
@@ -200,14 +203,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row profile-cards py-1">
-                    <div class="col">
-                        <div class="row  col-md-12" id="profileCards" style="margin-top:30px">
+                <div class="row profile-cards py-1" >
+                    <div class="col px-0">
+                        <div class="row  col-md-12" id="profileCards" >
                             <!-- no pfoiles image -->
                             <!-- <img src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png"  alt=""> -->
                         </div>
+                        
                         <div class="row page-numbers justify-content-center">
-                         
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -314,10 +319,9 @@
     </script>
     <script>
         const myHeaders = new Headers();
-        var profileList = [];
-        var filteredProfiles = [];
+        var pageNumber = 1;
         var userData = {}
-        headroomInit()
+        headroomInit();
         async function profile(){
             var authRequestOptions = {
             method : "POST",
@@ -329,7 +333,6 @@
             .then(response => response.json());
             return result;
         }
-        search();
         async function loadData(){
             try{
                 profile().then(response =>{
@@ -342,7 +345,7 @@
                         $('#navbar-container').load('../components/navbar.html');
                         auth();
                     }
-                    loadProfiles();
+                    init();
                 })
             }
             catch(error){
@@ -350,19 +353,11 @@
             }
         }
         loadData();
-        function search(){
-            var data = [];
-            
+        function search(profileList){
+            var data = profileList;
             console.log(data);
             var searchBar = document.getElementById('searchBar');
             searchBar.addEventListener('keyup' , (e)=>{
-                if(filteredProfiles.length > 0){
-                    console.log("filtered")
-                    data = filteredProfiles;
-                }else{
-                    console.log("non filtered")
-                    data = profileList;
-                }
                 console.log(e.target.value);
                 const searchString = e.target.value.toLowerCase();
                 const filteredData = data.filter( profile =>{
@@ -376,60 +371,157 @@
             })
         }
 
-
-        async function loadProfiles(){
-            var page = 1;
-            //build page links
+        function init(){
             var data = {
-                load : "pageCount"
-            }
-            data = JSON.stringify(data);
-            var requestOptions = {
-                method :"POST",
-                redirect : "follow",
-                headers : myHeaders,
-                body : data
-            };
-            try {
-                var result = await fetch('../../ws/businessprofile.php',requestOptions).then(response => response.json());
-                console.log(result);
-                var count = result.count;
-                console.log(count);
-                console.log(pageElement);
-                for(var i = 1 ; i <= count ; i ++){
-                    var pageContainer = document.querySelector('.page-numbers');
-                    var pageElement = document.createElement('a');
-                    pageElement.setAttribute('class','mr-1 p-1 bg-primary text-white');
-                    pageElement.setAttribute('href',`?page=`+i)
-                    console.log(i);
-                    pageElement.innerText = i;
-                    pageContainer.appendChild(pageElement);
-                }
-            } catch (error) {
-                console.log(error)
-            }
-            const params = (new URL(document.location)).searchParams;
-            if(params.get('page')){
-                page = params.get('page');
-            }
-            var businessBody = {
                 load : "loadallMemdata",
-                page
+                page : "1",
+                chapters : "",
+                groups : "",
+                categories : ""
             }
-            businessBody = JSON.stringify(businessBody);
-            console.log(businessBody);
+
+            loadProfiles(data);
+        }
+        function pageChange(){
+            //get page elements
+            var pageElements = document.querySelectorAll('.pageNumber');
+            //get filters data
+            pageElements = Array.from(pageElements);
+            console.log(pageElements);
+            pageElements.forEach((element)=>{
+                element.addEventListener('click',()=>{
+                    // alert(element.innerText);
+                    var categories = [];
+                    var groups = [];
+                    var chapters = [];
+                    var categoriesElements = document.querySelectorAll('input[name=categoriesfilter]:checked');
+                    var groupsElements = document.querySelectorAll('input[name=groupsfilter]:checked');
+                    var chaptersElements = document.querySelectorAll('input[name=chaptersfilter]:checked');
+                    if( categoriesElements.length > 0){
+                        categoriesElements = Array.from(categoriesElements);
+                        categoriesElements.forEach(item=>{
+                            if(item.checked){
+                                categories.push(item.value);
+                            }
+                        })
+                    }
+                    if( groupsElements.length > 0){
+                        groupsElements = Array.from(groupsElements);
+                        groupsElements.forEach(item=>{
+                            if(item.checked){
+                                groups.push(item.value);
+                            }
+                        })
+                    }
+                    if( chaptersElements.length > 0){
+                        chaptersElements = Array.from(chaptersElements);
+                        chaptersElements.forEach(item=>{
+                            if(item.checked){
+                                chapters.push(item.value);
+                            }
+                        })
+                    }
+                    categories = categories.join(',');
+                    chapters = chapters.join(',');
+                    groups = groups.join(',');
+                    console.log(categories);
+                    console.log(chapters);
+                    console.log(groups);
+                    var page = parseInt(element.innerText);
+                    var data = {
+                        load : "loadallMemdata",
+                        page : page,
+                        chapters : chapters,
+                        groups : groups,
+                        categories : categories
+                    }
+                    loadProfiles(data);
+                })
+            })
+        }
+        function filterChange(){
+            var checkBoxes = document.querySelectorAll('.checkbox-input');
+            checkBoxes = Array.from(checkBoxes);
+            checkBoxes.forEach(box =>{
+                box.addEventListener('click',()=>{
+                    // alert(box.value);
+                    var categories = [];
+                    var groups = [];
+                    var chapters = [];
+                    var categoriesElements = document.querySelectorAll('input[name=categoriesfilter]:checked');
+                    var groupsElements = document.querySelectorAll('input[name=groupsfilter]:checked');
+                    var chaptersElements = document.querySelectorAll('input[name=chaptersfilter]:checked');
+                    if( categoriesElements.length > 0){
+                        categoriesElements = Array.from(categoriesElements);
+                        categoriesElements.forEach(item=>{
+                            if(item.checked){
+                                categories.push(item.value);
+                            }
+                        })
+                    }
+                    if( groupsElements.length > 0){
+                        groupsElements = Array.from(groupsElements);
+                        groupsElements.forEach(item=>{
+                            if(item.checked){
+                                groups.push(item.value);
+                            }
+                        })
+                    }
+                    if( chaptersElements.length > 0){
+                        chaptersElements = Array.from(chaptersElements);
+                        chaptersElements.forEach(item=>{
+                            if(item.checked){
+                                chapters.push(item.value);
+                            }
+                        })
+                    }
+                    categories = categories.join(',');
+                    chapters = chapters.join(',');
+                    groups = groups.join(',');
+                    console.log(categories);
+                    console.log(chapters);
+                    console.log(groups);
+                    var data = {
+                        load : "loadallMemdata",
+                        page : 1,
+                        chapters : chapters,
+                        groups : groups,
+                        categories : categories
+                    }
+                    loadProfiles(data);
+                });
+            })
+        }
+        async function loadProfiles(data){
+            var profileList = [];
+            data = JSON.stringify(data);
+            console.log(data);
             var businessRequestOptions = {
-            method : "POST",
-            headers : myHeaders,
-            redirect : "follow",
-            body : businessBody
+                method : "POST",
+                headers : myHeaders,
+                redirect : "follow",
+                body : data
             }
-            fetch("../../ws/businessprofile.php",businessRequestOptions)
-            .then(response => response.json())
-            .then(result => {
+            try {
+                var result = await fetch("../../ws/businessprofile.php",businessRequestOptions).then(response => response.json());
                 console.log(result);
-                if(Array.isArray(result)){
-                    profileList = result;
+                var pageCount;
+                profileList = result.slice(1);
+                if(Array.from(profileList) && profileList.length > 0){
+                    pageCount = result[0].count;
+                    //make pages
+                    var pageNumberContainer = document.querySelector('.page-numbers');
+                    pageNumberContainer.innerHTML = "";
+                    for (let index = 1; index <= pageCount; index++) {
+                        var element = document.createElement('div');
+                        element.innerHTML = `<label class="pageNumber" for="page-`+index+`">`+index+`</label>
+                                             <input type="radio" name="pageNumber" id="page-`+index+`">`;
+                        pageNumberContainer.appendChild(element.firstChild);
+                    }
+                    pageChange();
+                    filterChange();
+                    search(profileList);
+                    //get contacts
                     profileList.forEach(profile=>{
                         var loadContactsBody = {
                             load : "loadmemcontacts",
@@ -473,39 +565,20 @@
                             console.log(error);
                         });
                     })
+                }else{
+                    var pageNumberContainer = document.querySelector('.page-numbers');
+                    pageNumberContainer.innerHTML = ""; 
+                    profileList  = [];
+                    displayMembers(profileList);
                 }
-                else{
-                    console.log("hello");
-                    var mainSection = document.querySelector('.main-section');
-                    mainSection.innerHTML  = "";
-                    var button = ``;
-                    if(userData.privilige == "Admin" || userData.privilige == "Core Member"){
-                        button = `<div class="col-6 text-center">
-                                    <a href="./main.html" class="btn btn-primary">Add Profiles</a>
-                                </div>`;
-                    }
-                    var businessProfiles = document.createElement('div');
-                    businessProfiles.innerHTML = `<div class="row align-items-center justify-content-around">
-                                                    <div class="col-4">
-                                                        <img src="#" alt="" id="emptyImage">
-                                                        <h4 class="text-center">No Profiles</h4>
-                                                    </div>
-                                                    `+button+`
-                                                </div>`;
-                    //make a template for the empty state;
-                    //call empty state function with business profile template as argument
-                    emptyState(businessProfiles,"Search").then((result)=>{
-                        mainSection.appendChild(result.firstChild);
-                    })
-                }
-            })
-            .catch(error =>{console.log(error);});    
+            } catch (error) {
+                console.log(error);
+            }
         }
         function displayMembers(profiles){
             console.log(profiles);
             var profileCards = document.getElementById('profileCards');
             if(profiles.length > 0){
-                
                 console.log(profiles);
                 const cardHtml = (profiles)
                     .map((profile) =>{
@@ -609,9 +682,7 @@
                 profileCards.innerHTML = cardHtml;
             }else{
                 empty(profileCards);
-            }
-
-            
+            }    
         }
         function viewProfile(category,memberid){
             memberid = memberid.slice(1);
@@ -622,31 +693,7 @@
         }
         function applyFilters(){
             //target each set of radio buttons
-            var filteredData = [];
-            var categoryFilter = Array.from(document.querySelectorAll('input[name="categoriesfilter"]:checked'));
-            console.log(categoryFilter);
-            var groupFilter = Array.from(document.querySelectorAll('input[name="chaptersfilter"]:checked'));
-            var chapterFilter = Array.from(document.querySelectorAll('input[name="groupsfilter"]:checked'));
-            if(categoryFilter.length > 0){
-                categoryFilter.forEach(category =>{
-                    var temp = profileList.filter( item =>{
-                        var searchId = category.defaultValue.toLowerCase();
-                        return(
-                            item.ContentName.toLowerCase() === searchId
-                        );
-                    });
-                    console.log(temp);
-                    filteredData = filteredData.concat(temp);
-                })
-            }
-            if(groupFilter.length > 0){
-
-            }
-            if(chapterFilter.length > 0){
-
-            }
-            filteredProfiles = filteredData;
-            displayMembers(filteredData);
+            
         }
         function loadFilter(filter){
             var filterOptions = {
@@ -675,7 +722,7 @@
                         filterOptions = filterOptions+ `<div class="row py-1 px-2" style="border-bottom : 0.5px solid #c1c1c1">
                                                             <span class="mx-1"></span>
                                                             <div class="checkbox" style="cursor : pointer">
-                                                                <input type="checkbox" class="checkbox-input" id="`+element.ContentName+`" name="`+filter+`filter" value="`+element.ContentName+`">
+                                                                <input type="checkbox" class="checkbox-input" id="`+element.ContentName+`" name="`+filter+`filter" value="`+element.id+`">
                                                                 <label for="`+element.ContentName+`" class="text-white">`+element.ContentName+`</label>
                                                             </div>
                                                         </div>`;
@@ -737,15 +784,18 @@
         async function empty(section){
             section.innerHTML = "";
             var template = document.createElement('div');
-            template.innerHTML = `<div class="row justify-content-center">
-                                    <div class="col-8">
-                                        <div class="row justify-content-center">
-                                            <img src="#" id="emptyImage" alt="" width="50%">
-                                        </div>
+            template.setAttribute('style','width:100%');
+            template.setAttribute('class','text-center')
+            template.innerHTML = ` <div class="row justify-content-center" >
+                                        <h5 class="text-bold-500"> No Profiles</h5>
                                     </div>
-                                </div>`;
+                                    <div class="row justify-content-center">
+                                        <img src="#" id="emptyImage" alt="">
+                                    </div> 
+                               `;
             template = await emptyState(template,"Search");
-            section.innerHTML = template.innerHTML;
+            section.innerHTML = "";
+            section.appendChild(template);
         }
     </script>
     

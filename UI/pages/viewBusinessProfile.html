@@ -170,7 +170,7 @@
             </div>
             <div class="col-8" id="editProfileSection restrict">
                 <div class="row justify-content-end addProductsBtn">
-                    <button onclick="prodcutForm()" class="btn btn-warning mr-1"><i class="bx bx-plus" style="background-color: rgba(255, 255, 255, 0.425);color: #fff;border-radius: 100%;padding : 0.2rem;"></i> Add Products</button>
+                    <button onclick="prodcutForm()" class="btn btn-warning mr-1 restrict"><i class="bx bx-plus" style="background-color: rgba(255, 255, 255, 0.425);color: #fff;border-radius: 100%;padding : 0.2rem;"></i> Add Products</button>
                 </div>
             </div>
         </div>
@@ -594,7 +594,7 @@
                         prodButton ="";
                     }
                     productsSection.innerHTML = `<div class="card">
-                    <div class="col-8 card-body" id=" restrict">
+                    <div class="col-8 card-body restrict" >
                         <div class="row justify-content-between onlyAdmin align-items-center">
                             <h5  class="text-warning">No products yet!</h5>
                             `+prodButton+`
