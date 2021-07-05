@@ -915,15 +915,15 @@
                     }
                     var editBtn = "";
                     var referBtn = "";
+                    var temp = memberId.slice(1);
                     if(userData.status === "Logged In"){
-                        referBtn = `<button class="btn btn-warning mr-1">
+                        referBtn = `<a class="btn btn-warning mr-1 txt-white" href="./refferalForm.html?action=bussiness&id=%2B`+temp+`">
                             <span class="material-icons  align-middle">
                                 people
                             </span>
                             Refer
-                        </button>`;
+                        </a>`;
                         if(userData.privilige == "Admin" || userData.privilige == "Core Member"){
-                            var temp = memberId.slice(1);
                             editBtn = `<a class="btn btn-primary mr-1 text-white" href="./member_form.html?action=modify&memberId=%2B`+temp+`">
                                 <span class="material-icons  align-middle">
                                     edit

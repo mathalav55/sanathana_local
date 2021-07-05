@@ -735,15 +735,6 @@
                     filterHead.querySelector('.filter-count').innerText = count;
                 }
             })
-            .then(()=>{
-                var options = document.querySelectorAll(`input[name="`+filter+`filter"]`);
-                options = Array.from(options);
-                options.forEach((option)=>{
-                    option.addEventListener('click',()=>{
-                        applyFilters();
-                    });
-                });
-            })
             .catch(error =>{console.log(error);});
         }
         function loadFilters(){
