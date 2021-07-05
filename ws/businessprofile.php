@@ -107,7 +107,7 @@ function load_allMembusinessdata($conn)
 {
   global $page,$chapters,$groups,$categories;
   //starting record according to page numer
-  $recordsPerPage = 3;
+  $recordsPerPage = 25;
   $startingRecord = ( $page - 1) * $recordsPerPage;
   
   $baseQuery = "Select `memberlogin`.`userid`,`businessprofile`.`Name` AS `BusinessName`, `businessprofile`.`Description`, `businessprofile`.`Address`, `businessprofile`.`pincode`, `businessprofile`.`city`, `businessprofile`.`country`,`businessprofile`.`state`, `businessprofile`.`status`, `businessprofile`.`logo`, `businessprofile`.`banner`, `memberprofile`.`Name`, `memberprofile`.`Surname`, `memberprofile`.`Dob`,`memberprofile`.`gender`, `memberprofile`.`gothram`, `memberprofile`.`photo`, `memberprofile`.`privilige`, `acessconfig`.`ContentName` FROM `businessprofile` JOIN `memberprofile` ON `businessprofile`.`Memberid` = `memberprofile`.`id` JOIN `acessconfig` ON `businessprofile`.`categories` = `acessconfig`.`id` JOIN `memberlogin` ON `memberlogin`.`memberid` = `memberprofile`.`id`";

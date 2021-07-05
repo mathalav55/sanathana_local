@@ -346,6 +346,7 @@
                         auth();
                     }
                     init();
+                        
                 })
             }
             catch(error){
@@ -518,15 +519,13 @@
                                              <input type="radio" name="pageNumber" id="page-`+index+`">`;
                         pageNumberContainer.appendChild(element.firstChild);
                     }
-                    pageChange();
-                    filterChange();
-                    search(profileList);
+                    
                     //get contacts
-                    profileList.forEach(profile=>{
+                    for(var i  in profileList){
                         var loadContactsBody = {
                             load : "loadmemcontacts",
-                            id : profile.userid,
-                            category : profile.ContentName
+                            id : profileList[i].userid,
+                            category : profileList[i].ContentName
                         }
                         loadContactsBody = JSON.stringify(loadContactsBody);
                         var loadContactsOptions = {
@@ -535,36 +534,28 @@
                             headers : myHeaders,
                             body : loadContactsBody
                         }
-                        fetch("../../ws/businessprofile.php",loadContactsOptions)
-                        .then(response => response.json())
-                        .then(result => {
-                            console.log(result);
-                            var email = "no email";
-                            var phoneNumber = "no number";
-                            if(Array.isArray(result)){
-                                result.forEach(item=>{
-                                    if(item.ContentName === "Phone Number"){
-                                        phoneNumber = item.contactdetails;
-                                    }else if(item.ContentName === "Email"){
-                                        email = item.contactdetails
-                                    }
-                                });
-                            }
-                            var inedx = profileList.indexOf(profile);
-                            profile.email = email;
-                            profile.phoneNumber  = phoneNumber;
-                            console.log(profileList[inedx]);
-                            profileList[inedx] = profile;
-                            console.log(profile);
-                        })
-                        .then(()=>{
-                            displayMembers(profileList);
-                        })
-                        .catch(error =>{
-                            // noConnection();
-                            console.log(error);
-                        });
-                    })
+                        var result = await  fetch("../../ws/businessprofile.php",loadContactsOptions).then(response => response.json());
+                        console.log(result);
+                        var email = "no email";
+                        var phoneNumber = "no number";
+                        if(Array.isArray(result)){
+                            result.forEach(item=>{
+                                if(item.ContentName === "Phone Number"){
+                                    phoneNumber = item.contactdetails;
+                                }else if(item.ContentName === "Email"){
+                                    email = item.contactdetails
+                                }
+                            });
+                        }
+                        var inedx = profileList.indexOf(profileList[i]);
+                        profileList[i].email = email;
+                        profileList[i].phoneNumber  = phoneNumber;
+                        profileList[inedx] = profileList[i];
+                    }
+                    pageChange();
+                    filterChange();
+                    search(profileList);
+                    displayMembers(profileList);
                 }else{
                     var pageNumberContainer = document.querySelector('.page-numbers');
                     pageNumberContainer.innerHTML = ""; 
@@ -691,10 +682,7 @@
         async function loadContactDetails(contactDiv,category,id){
             return true;
         }
-        function applyFilters(){
-            //target each set of radio buttons
-            
-        }
+    
         function loadFilter(filter){
             var filterOptions = {
                 load : "loadbyparent",
@@ -735,6 +723,7 @@
                     filterHead.querySelector('.filter-count').innerText = count;
                 }
             })
+            
             .catch(error =>{console.log(error);});
         }
         function loadFilters(){
