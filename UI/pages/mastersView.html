@@ -600,7 +600,9 @@ function changeStatus(id,status){
             updateddate: formValues.updateddate,
             urlredirection: formValues.urlredirection,
             videopath: formValues.videopath,
-            emptystateimg : formValues.emptystateimg
+            emptystateimg : formValues.emptystateimg,
+            hexcolor : formValues.hexcolor,
+            sequenceid : parseInt(formValues.sequenceid)
         };
         data = JSON.stringify(data);
         console.log(data);

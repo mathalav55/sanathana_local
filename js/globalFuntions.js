@@ -1081,6 +1081,39 @@ function auth(...args){
     })
       
 }
+async function isDuplicate(id,parent){
+  var data = {
+    load : "loadbyparent",
+    id : parent
+  }
+  data = JSON.stringify(data);
+  console.log(data);
+  var requestOptions = {
+    method : "POST",
+    redirect : "follow",
+    headers : myHeaders,
+    body : data
+  }
+  try {
+      var result = await fetch('../../ws/accessconfig.php',requestOptions).then(response => response.json());
+      console.log(result);
+      if(Array.isArray(result)){
+        for (let index = 0; index < result.length; index++) {
+          result[index].sequenceid = parseInt(result[index].sequenceid);
+            if(result[index].sequenceid == id && result[index].sequenceid != 0){
+              console.log(result[index]);
+              return true;
+            }         
+        }
+        return false;
+      }else{
+        return false;
+      }
+  } catch (error) {
+    console.log(error)
+    return false;
+  }
+}
 function addResetModal(memberId){
     var modal =  document.createElement('div');
     var modalContent = document.createElement('div');

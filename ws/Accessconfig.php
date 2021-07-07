@@ -44,11 +44,12 @@ else if($rcvData == "addEntry")
   $updateddate = $data['updateddate'];
   $status = $data['status'];
   $emptystateimg = $data['emptystateimg'];
+  $hexcolor = $data['hexcolor'];
+  $sequenceid = $data['sequenceid'];
   insert_masters($conn);
 }
 else
 {
-	
   $id = $data['id'];
   $ContentName = $data['ContentName'];
   $Alias_Name = $data['Alias_Name'];
@@ -66,6 +67,8 @@ else
   $updateddate = $data['updateddate'];
   $status = $data['status'];
   $emptystateimg = $data['emptystateimg'];
+  $hexcolor = $data['hexcolor'];
+  $sequenceid = $data['sequenceid'];
   update_masters($conn);
 }
 
@@ -113,12 +116,6 @@ function create_membershipid($conn){
       $jsonresponse = array('code' => '400', 'status' => 'Updated Failure');
       echo json_encode($jsonresponse);
   }
-
-
-
-
-
-
 }
 function load_masterdatabyparent($conn)
 {
@@ -158,8 +155,8 @@ function load_masterdatabyname($conn)
 
 function insert_masters($conn)
 {
-  global $ContentName,$Alias_Name,$parent_id,$access_to,$urlredirection,$iconpath,$header,$content,$imagepath,$videopath,$createdby,$createddate,$updatedby,$updateddate,$status,$emptystateimg;
-  $insertUpdateQuery = "insert INTO `acessconfig`(`ContentName`, `Alias_Name`, `parent_id`, `access_to`, `urlredirection`, `iconpath`, `header`, `content`, `imagepath`, `videopath`,`status`,`createdby`, `createddate`, `updatedby`, `updateddate`,`emptystateimg`) VALUES ('$ContentName','$Alias_Name','$parent_id','$access_to','$urlredirection','$iconpath','$header','$content','$imagepath','$videopath','$status','$createdby','$createddate','$updatedby','$updateddate','$emptystateimg')";
+  global $ContentName,$Alias_Name,$parent_id,$access_to,$urlredirection,$iconpath,$header,$content,$imagepath,$videopath,$createdby,$createddate,$updatedby,$updateddate,$status,$emptystateimg,$hexcolor,$sequenceid;
+  $insertUpdateQuery = "insert INTO `acessconfig`(`ContentName`, `Alias_Name`, `parent_id`, `access_to`, `urlredirection`, `iconpath`, `header`, `content`, `imagepath`, `videopath`,`status`,`createdby`, `createddate`, `updatedby`, `updateddate`,`emptystateimg`,`hexcolor`, `sequenceid`) VALUES ('$ContentName','$Alias_Name','$parent_id','$access_to','$urlredirection','$iconpath','$header','$content','$imagepath','$videopath','$status','$createdby','$createddate','$updatedby','$updateddate','$emptystateimg','$hexcolor','$sequenceid')";
   $returndata = setData($conn, $insertUpdateQuery);
   //echo json_encode("Added Succesfully");
   if($returndata == "Record created")
@@ -176,13 +173,13 @@ function insert_masters($conn)
 
 function update_masters($conn)
 {
-  global $id,$ContentName,$Alias_Name,$parent_id,$access_to,$urlredirection,$iconpath,$header,$content,$imagepath,$videopath,$createdby,$createddate,$updatedby,$updateddate,$status,$emptystateimg;
+  global $id,$ContentName,$Alias_Name,$parent_id,$access_to,$urlredirection,$iconpath,$header,$content,$imagepath,$videopath,$createdby,$createddate,$updatedby,$updateddate,$status,$emptystateimg,$sequenceid,$hexcolor;
 
   $slqry = "select * FROM `acessconfig` WHERE `id` = '$id'";
   $tempdata = getdata($conn, $slqry);
   if(count($tempdata) >0)
   {
-    $insertUpdateQuery = "Update `acessconfig` SET `ContentName`='$ContentName' ,`Alias_Name`='$Alias_Name',`parent_id`='$parent_id',`access_to`='$access_to',`urlredirection`='$urlredirection',`iconpath`='$iconpath',`header`='$header',`content`='$content',`imagepath`='$imagepath',`videopath`='$videopath',`status` = '$status',`createdby`='$createdby',`createddate`='$createddate',`updatedby`='$updatedby',`updateddate`='$updateddate',`emptystateimg` = '$emptystateimg' WHERE `id` = '$id'";
+    $insertUpdateQuery = "Update `acessconfig` SET `ContentName`='$ContentName' ,`Alias_Name`='$Alias_Name',`parent_id`='$parent_id',`access_to`='$access_to',`urlredirection`='$urlredirection',`iconpath`='$iconpath',`header`='$header',`content`='$content',`imagepath`='$imagepath',`videopath`='$videopath',`status` = '$status',`createdby`='$createdby',`createddate`='$createddate',`updatedby`='$updatedby',`updateddate`='$updateddate',`emptystateimg` = '$emptystateimg', `hexcolor` = '$hexcolor', `sequenceid` = '$sequenceid' WHERE `id` = '$id'";
     $returndata = setData($conn, $insertUpdateQuery);
     if($returndata == "Record created")
     {

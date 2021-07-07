@@ -259,6 +259,20 @@
                             </div>
                             <div class="col-md-6 col-12">
                               <div class="form-group">
+                                <label for="hexcolor">Hex Color</label>
+                                  <input type="text" id="hexcolor" class="form-control" 
+                                    placeholder="Hex Color">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group">
+                                <label for="sequenceid">Sequence Id</label>
+                                  <input type="number" id="sequenceid" class="form-control" 
+                                    placeholder="Sequence Id">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <div class="form-group">
                                   <label for="videoPath">Video</label>
                                   <input type="text" id="videoPath" class="form-control" 
                                     placeholder="Upload Video" name="videUpload">
@@ -444,6 +458,8 @@ function loadForm()
             document.getElementById("urlColumn").value = formValues.urlredirection;
             document.getElementById("header").value = formValues.header;
             document.getElementById("content").value = formValues.content;
+            document.getElementById("hexcolor").value = formValues.hexcolor;
+            document.getElementById("sequenceid").value = formValues.sequenceid;
             imageUrl = formValues.imagepath;
             iconUrl = formValues.iconpath;
             videoUrl = formValues.videopath;
@@ -482,7 +498,7 @@ function fillAlias(){
   }
 }
 fillAlias();
-function saveForm(){
+async function saveForm(){
     //date
     var load = "";
     load = (action == "add") ? "addEntry" : "update";
@@ -497,6 +513,7 @@ function saveForm(){
         updateDate = "";
     }
     var status  = (document.getElementById("radio1").checked)? 1 : 0 ;
+    var sequenceid = (document.getElementById('sequenceid').value)? document.getElementById('sequenceid').value : 0;
     //uploadig files if exists
     if(emptyImagePath.files.length > 0){
         var newEmptyImageName = date + emptyImagePath.files[0].name;
@@ -535,7 +552,9 @@ function saveForm(){
         updatedby: "",
         updateddate: updateDate,
         emptystateimg : emptyImageUrl,
-        status: status
+        status: status,
+        hexcolor : document.getElementById('hexcolor').value,
+        sequenceid : parseInt(sequenceid)
     };
     console.log(data);
     data = JSON.stringify(data);
@@ -545,7 +564,7 @@ function saveForm(){
         redirect: 'follow',
         body : data
     }
-    if(validateForm()){
+    if(await validateForm()){
       fetch("../../ws/Accessconfig.php",requestOptions).then(response => response.json())
       .then(result =>{
           console.log(result);
@@ -572,10 +591,17 @@ function saveForm(){
     }else{
       toast("Please check the values","bg-warning");
     }
-    function validateForm(){
+    async function validateForm(){
       var valid = true;
       var nameElement = document.getElementById("contentName");
       var aliasNameELement = document.getElementById("aliasName");
+      var sequenceidElement = document.getElementById("sequenceid");
+      if(await isDuplicate(sequenceidElement.value,id)){
+        showError(sequenceidElement,"ID Exists");
+        valid = false;
+      }else{
+        removeError(sequenceidElement);
+      }
       if(validate(nameElement.value)){
         removeError(nameElement);
       }else{
