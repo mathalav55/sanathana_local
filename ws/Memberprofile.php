@@ -130,7 +130,7 @@ function load_singlememdata($conn)
 function load_memchapters($conn)
 {
   global $id;
-  $sqlQuery = "Select `acessconfig`.`ContentName`, `memberchapters`.`prime` FROM `memberchapters` JOIN `acessconfig` ON `memberchapters`.`chapter` = `acessconfig`.`id` WHERE `memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
+  $sqlQuery = "Select `acessconfig`.`ContentName`,`acessconfig`.`hexcolor`, `memberchapters`.`prime` FROM `memberchapters` JOIN `acessconfig` ON `memberchapters`.`chapter` = `acessconfig`.`id` WHERE `memberid` = (SELECT `memberid` FROM `memberlogin` WHERE `userid` = '$id')";
   $datatable = getdata($conn, $sqlQuery);
   if (count($datatable) > 0) 
   {

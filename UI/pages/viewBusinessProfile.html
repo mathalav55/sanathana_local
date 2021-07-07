@@ -634,6 +634,13 @@
                     var businessTitle = document.getElementById('businessTitle');
                     var bannerImage = document.getElementById('bannerImage');
                     var logoImage = document.getElementById('logoImage');
+                    var gothramElement = "";
+                    if(userData.privilige){
+                        gothramElement = `<span class="material-icons mr-1 text-primary">
+                                self_improvement
+                            </span>
+                        <span>` +basicDetails.gothram+` Gothram</span>`;   
+                    }
                     detailsBody.innerHTML = `
                         <h3 class="row pb-2 text-bold-500 text-primary">
                             <span>` +basicDetails.Name+`</span>
@@ -645,11 +652,7 @@
                             <span>` +basicDetails.gender+`</span>
                         </div>
                         <div class="row pb-1 ">
-                            
-                            <span class="material-icons mr-1 text-primary">
-                                self_improvement
-                            </span>
-                            <span>` +basicDetails.gothram+` Gothram</span>
+                            `+gothramElement+`
                         </div>
                         <div class="row pb-1">
                             <span class="material-icons mr-1 text-primary   ">
@@ -723,9 +726,9 @@
                             //add groups to body
                             var groupHtml = '';
                             for( var i in result){
-                                groupHtml = groupHtml + `<div class="row">
+                                groupHtml = groupHtml + `<span class="row" style="color : `+result[i].hexcolor+`">
                                     `+result[i].ContentName+` 
-                                </div>`;
+                                </span>`;
                             }
                             groupsData.innerHTML = groupHtml
                         }else{
@@ -754,9 +757,9 @@
                         if(Array.isArray(result)){
                             var chapterHtml = '';
                             for( var i in result){
-                                chapterHtml = chapterHtml + `<div class="row">
+                                chapterHtml = chapterHtml + `<span class="row" style="color : `+result[i].hexcolor+`">
                                     `+result[i].ContentName+` 
-                                </div>`;
+                                </span>`;
                             }
                             chaptersData.innerHTML = chapterHtml;
                         }else{
